@@ -1,0 +1,389 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C06526D11B53FD6900DF4E34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C06526D01B53FD6900DF4E34 /* main.m */; };
+		C06526D41B53FD6900DF4E34 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C06526D31B53FD6900DF4E34 /* AppDelegate.m */; };
+		C06526D71B53FD6900DF4E34 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C06526D61B53FD6900DF4E34 /* ViewController.m */; };
+		C06526DA1B53FD6900DF4E34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C06526D81B53FD6900DF4E34 /* Main.storyboard */; };
+		C06526DC1B53FD6900DF4E34 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06526DB1B53FD6900DF4E34 /* Images.xcassets */; };
+		C06526DF1B53FD6900DF4E34 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C06526DD1B53FD6900DF4E34 /* LaunchScreen.xib */; };
+		C0C00BBE1B552A1500059160 /* EMDayRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C00BBD1B552A1500059160 /* EMDayRecord.m */; };
+		C0C00BC11B552A3500059160 /* EMMilkPowder.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C00BC01B552A3500059160 /* EMMilkPowder.m */; };
+		C0C00BC41B552A4500059160 /* EMBreastMilk.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C00BC31B552A4500059160 /* EMBreastMilk.m */; };
+		C0C00BC71B552A7800059160 /* EMExcrement.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C00BC61B552A7800059160 /* EMExcrement.m */; };
+		C0C00BCA1B55352500059160 /* EMPiss.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C00BC91B55352500059160 /* EMPiss.m */; };
+		C0C00BCD1B55353F00059160 /* EMSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C00BCC1B55353F00059160 /* EMSleep.m */; };
+		C0D36D581B54AAB90014E19A /* EMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D36D571B54AAB90014E19A /* EMDBManager.m */; };
+		C0D36D5D1B54AC600014E19A /* EMDBManagerImplPlist.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D36D5C1B54AC600014E19A /* EMDBManagerImplPlist.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C06526CB1B53FD6900DF4E34 /* WeiNai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiNai.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C06526CF1B53FD6900DF4E34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C06526D01B53FD6900DF4E34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C06526D21B53FD6900DF4E34 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C06526D31B53FD6900DF4E34 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C06526D51B53FD6900DF4E34 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		C06526D61B53FD6900DF4E34 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C06526D91B53FD6900DF4E34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C06526DB1B53FD6900DF4E34 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C06526DE1B53FD6900DF4E34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		C0C00BBC1B552A1500059160 /* EMDayRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMDayRecord.h; sourceTree = "<group>"; };
+		C0C00BBD1B552A1500059160 /* EMDayRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMDayRecord.m; sourceTree = "<group>"; };
+		C0C00BBF1B552A3500059160 /* EMMilkPowder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMMilkPowder.h; sourceTree = "<group>"; };
+		C0C00BC01B552A3500059160 /* EMMilkPowder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMMilkPowder.m; sourceTree = "<group>"; };
+		C0C00BC21B552A4500059160 /* EMBreastMilk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMBreastMilk.h; sourceTree = "<group>"; };
+		C0C00BC31B552A4500059160 /* EMBreastMilk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMBreastMilk.m; sourceTree = "<group>"; };
+		C0C00BC51B552A7800059160 /* EMExcrement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMExcrement.h; sourceTree = "<group>"; };
+		C0C00BC61B552A7800059160 /* EMExcrement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMExcrement.m; sourceTree = "<group>"; };
+		C0C00BC81B55352500059160 /* EMPiss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPiss.h; sourceTree = "<group>"; };
+		C0C00BC91B55352500059160 /* EMPiss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPiss.m; sourceTree = "<group>"; };
+		C0C00BCB1B55353F00059160 /* EMSleep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSleep.h; sourceTree = "<group>"; };
+		C0C00BCC1B55353F00059160 /* EMSleep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSleep.m; sourceTree = "<group>"; };
+		C0D36D561B54AAB90014E19A /* EMDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMDBManager.h; sourceTree = "<group>"; };
+		C0D36D571B54AAB90014E19A /* EMDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMDBManager.m; sourceTree = "<group>"; };
+		C0D36D591B54AB240014E19A /* IDBManagerImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDBManagerImpl.h; sourceTree = "<group>"; };
+		C0D36D5B1B54AC600014E19A /* EMDBManagerImplPlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMDBManagerImplPlist.h; sourceTree = "<group>"; };
+		C0D36D5C1B54AC600014E19A /* EMDBManagerImplPlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMDBManagerImplPlist.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C06526C81B53FD6900DF4E34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C06526C21B53FD6900DF4E34 = {
+			isa = PBXGroup;
+			children = (
+				C06526CD1B53FD6900DF4E34 /* WeiNai */,
+				C06526CC1B53FD6900DF4E34 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C06526CC1B53FD6900DF4E34 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C06526CB1B53FD6900DF4E34 /* WeiNai.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C06526CD1B53FD6900DF4E34 /* WeiNai */ = {
+			isa = PBXGroup;
+			children = (
+				C0C00BBB1B552A1500059160 /* types */,
+				C0D36D551B54AAB90014E19A /* database */,
+				C06526F61B53FD9000DF4E34 /* model */,
+				C06526D21B53FD6900DF4E34 /* AppDelegate.h */,
+				C06526D31B53FD6900DF4E34 /* AppDelegate.m */,
+				C06526D51B53FD6900DF4E34 /* ViewController.h */,
+				C06526D61B53FD6900DF4E34 /* ViewController.m */,
+				C06526D81B53FD6900DF4E34 /* Main.storyboard */,
+				C06526DB1B53FD6900DF4E34 /* Images.xcassets */,
+				C06526DD1B53FD6900DF4E34 /* LaunchScreen.xib */,
+				C06526CE1B53FD6900DF4E34 /* Supporting Files */,
+			);
+			path = WeiNai;
+			sourceTree = "<group>";
+		};
+		C06526CE1B53FD6900DF4E34 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C06526CF1B53FD6900DF4E34 /* Info.plist */,
+				C06526D01B53FD6900DF4E34 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C06526F61B53FD9000DF4E34 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		C0C00BBB1B552A1500059160 /* types */ = {
+			isa = PBXGroup;
+			children = (
+				C0C00BBC1B552A1500059160 /* EMDayRecord.h */,
+				C0C00BBD1B552A1500059160 /* EMDayRecord.m */,
+				C0C00BBF1B552A3500059160 /* EMMilkPowder.h */,
+				C0C00BC01B552A3500059160 /* EMMilkPowder.m */,
+				C0C00BC21B552A4500059160 /* EMBreastMilk.h */,
+				C0C00BC31B552A4500059160 /* EMBreastMilk.m */,
+				C0C00BC51B552A7800059160 /* EMExcrement.h */,
+				C0C00BC61B552A7800059160 /* EMExcrement.m */,
+				C0C00BC81B55352500059160 /* EMPiss.h */,
+				C0C00BC91B55352500059160 /* EMPiss.m */,
+				C0C00BCB1B55353F00059160 /* EMSleep.h */,
+				C0C00BCC1B55353F00059160 /* EMSleep.m */,
+			);
+			name = types;
+			path = model/types;
+			sourceTree = "<group>";
+		};
+		C0D36D551B54AAB90014E19A /* database */ = {
+			isa = PBXGroup;
+			children = (
+				C0D36D5A1B54AC140014E19A /* impl */,
+				C0D36D561B54AAB90014E19A /* EMDBManager.h */,
+				C0D36D571B54AAB90014E19A /* EMDBManager.m */,
+				C0D36D591B54AB240014E19A /* IDBManagerImpl.h */,
+			);
+			path = database;
+			sourceTree = "<group>";
+		};
+		C0D36D5A1B54AC140014E19A /* impl */ = {
+			isa = PBXGroup;
+			children = (
+				C0D36D5B1B54AC600014E19A /* EMDBManagerImplPlist.h */,
+				C0D36D5C1B54AC600014E19A /* EMDBManagerImplPlist.m */,
+			);
+			path = impl;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C06526CA1B53FD6900DF4E34 /* WeiNai */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C06526EE1B53FD6900DF4E34 /* Build configuration list for PBXNativeTarget "WeiNai" */;
+			buildPhases = (
+				C06526C71B53FD6900DF4E34 /* Sources */,
+				C06526C81B53FD6900DF4E34 /* Frameworks */,
+				C06526C91B53FD6900DF4E34 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WeiNai;
+			productName = WeiNai;
+			productReference = C06526CB1B53FD6900DF4E34 /* WeiNai.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C06526C31B53FD6900DF4E34 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Ji Fang";
+				TargetAttributes = {
+					C06526CA1B53FD6900DF4E34 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+				};
+			};
+			buildConfigurationList = C06526C61B53FD6900DF4E34 /* Build configuration list for PBXProject "WeiNai" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C06526C21B53FD6900DF4E34;
+			productRefGroup = C06526CC1B53FD6900DF4E34 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C06526CA1B53FD6900DF4E34 /* WeiNai */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C06526C91B53FD6900DF4E34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C06526DA1B53FD6900DF4E34 /* Main.storyboard in Resources */,
+				C06526DF1B53FD6900DF4E34 /* LaunchScreen.xib in Resources */,
+				C06526DC1B53FD6900DF4E34 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C06526C71B53FD6900DF4E34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0C00BC71B552A7800059160 /* EMExcrement.m in Sources */,
+				C06526D71B53FD6900DF4E34 /* ViewController.m in Sources */,
+				C0C00BC41B552A4500059160 /* EMBreastMilk.m in Sources */,
+				C0D36D581B54AAB90014E19A /* EMDBManager.m in Sources */,
+				C0C00BCD1B55353F00059160 /* EMSleep.m in Sources */,
+				C06526D41B53FD6900DF4E34 /* AppDelegate.m in Sources */,
+				C06526D11B53FD6900DF4E34 /* main.m in Sources */,
+				C0C00BCA1B55352500059160 /* EMPiss.m in Sources */,
+				C0C00BBE1B552A1500059160 /* EMDayRecord.m in Sources */,
+				C0D36D5D1B54AC600014E19A /* EMDBManagerImplPlist.m in Sources */,
+				C0C00BC11B552A3500059160 /* EMMilkPowder.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C06526D81B53FD6900DF4E34 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C06526D91B53FD6900DF4E34 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C06526DD1B53FD6900DF4E34 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C06526DE1B53FD6900DF4E34 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C06526EC1B53FD6900DF4E34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C06526ED1B53FD6900DF4E34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C06526EF1B53FD6900DF4E34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WeiNai/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C06526F01B53FD6900DF4E34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WeiNai/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C06526C61B53FD6900DF4E34 /* Build configuration list for PBXProject "WeiNai" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C06526EC1B53FD6900DF4E34 /* Debug */,
+				C06526ED1B53FD6900DF4E34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C06526EE1B53FD6900DF4E34 /* Build configuration list for PBXNativeTarget "WeiNai" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C06526EF1B53FD6900DF4E34 /* Debug */,
+				C06526F01B53FD6900DF4E34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C06526C31B53FD6900DF4E34 /* Project object */;
+}

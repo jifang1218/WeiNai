@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EMActivityBase.h"
 
-@interface EMSleep : NSObject
+@interface EMSleep : EMActivityBase
 
 @end

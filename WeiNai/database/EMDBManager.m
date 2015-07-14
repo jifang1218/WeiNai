@@ -93,22 +93,18 @@ static EMDBManager *_sharedInstance = nil;
 }
 
 #pragma mark - insert
-- (BOOL)insertDayRecord:(EMDayRecord *)dayRecord
-               afterDay:(NSDateComponents *)day {
+- (BOOL)insertDayRecord:(EMDayRecord *)dayRecord {
     BOOL ret = NO;
     
-    ret = [_dbman insertDayRecord:dayRecord
-                         afterDay:day];
+    ret = [_dbman insertDayRecord:dayRecord];
     
     return ret;
 }
 
-- (NSInteger)insertDayRecords:(NSArray *)dayRecords
-                     afterDay:(NSDateComponents *)day {
+- (NSInteger)insertDayRecords:(NSArray *)dayRecords {
     NSInteger ret = -1;
     
-    ret = [_dbman insertDayRecords:dayRecords
-                          afterDay:day];
+    ret = [_dbman insertDayRecords:dayRecords];
     
     return ret;
 }

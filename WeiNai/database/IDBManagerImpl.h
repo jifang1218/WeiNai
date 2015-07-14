@@ -27,10 +27,8 @@
                          to:(NSDateComponents *)to;
 
 // insert
-- (BOOL)insertDayRecord:(EMDayRecord *)dayRecord
-               afterDay:(NSDateComponents *)day;
-- (NSInteger)insertDayRecords:(NSArray *)dayRecords
-                     afterDay:(NSDateComponents *)day;
+- (BOOL)insertDayRecord:(EMDayRecord *)dayRecord;
+- (NSInteger)insertDayRecords:(NSArray *)dayRecords;
 
 // delete
 - (BOOL)deleteDayRecordAtDay:(NSDateComponents *)day;

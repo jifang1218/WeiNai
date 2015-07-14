@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EMActivityBase.h"
 
-@interface EMMilkPowder : NSObject
+@interface EMMilkPowder : EMActivityBase
 
 @end

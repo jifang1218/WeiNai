@@ -7,6 +7,7 @@
 //
 
 #import "EMPiss.h"
+#import "EMActivityBase.h"
 
 @implementation EMPiss
 

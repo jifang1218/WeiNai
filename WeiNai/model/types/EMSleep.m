@@ -7,6 +7,7 @@
 //
 
 #import "EMSleep.h"
+#import "EMActivityBase.h"
 
 @implementation EMSleep
 

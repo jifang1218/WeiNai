@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EMActivityBase.h"
 
-@interface EMBreastMilk : NSObject
+@interface EMBreastMilk : EMActivityBase
 
 @end

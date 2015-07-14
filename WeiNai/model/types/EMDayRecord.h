@@ -16,4 +16,7 @@
 @property (nonatomic, strong) NSArray *pisses;
 @property (nonatomic, strong) NSArray *sleeps;
 
+// valid fields: year, month, day;
+@property (nonatomic, strong) NSDateComponents *date;
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "EMMilkPowder.h"
+#import "EMActivityBase.h"
 
 @implementation EMMilkPowder
 

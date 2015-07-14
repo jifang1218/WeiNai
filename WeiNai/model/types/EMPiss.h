@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EMActivityBase.h"
 
-@interface EMPiss : NSObject
+@interface EMPiss : EMActivityBase
 
 @end

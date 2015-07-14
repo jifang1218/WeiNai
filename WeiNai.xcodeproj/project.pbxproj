@@ -21,6 +21,7 @@
 		C0C00BCD1B55353F00059160 /* EMSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C00BCC1B55353F00059160 /* EMSleep.m */; };
 		C0D36D581B54AAB90014E19A /* EMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D36D571B54AAB90014E19A /* EMDBManager.m */; };
 		C0D36D5D1B54AC600014E19A /* EMDBManagerImplPlist.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D36D5C1B54AC600014E19A /* EMDBManagerImplPlist.m */; };
+		C0E1206B1B556484001F90E8 /* EMActivityBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E1206A1B556484001F90E8 /* EMActivityBase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,8 @@
 		C0D36D591B54AB240014E19A /* IDBManagerImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDBManagerImpl.h; sourceTree = "<group>"; };
 		C0D36D5B1B54AC600014E19A /* EMDBManagerImplPlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMDBManagerImplPlist.h; sourceTree = "<group>"; };
 		C0D36D5C1B54AC600014E19A /* EMDBManagerImplPlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMDBManagerImplPlist.m; sourceTree = "<group>"; };
+		C0E120691B556484001F90E8 /* EMActivityBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMActivityBase.h; sourceTree = "<group>"; };
+		C0E1206A1B556484001F90E8 /* EMActivityBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMActivityBase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +132,8 @@
 				C0C00BC91B55352500059160 /* EMPiss.m */,
 				C0C00BCB1B55353F00059160 /* EMSleep.h */,
 				C0C00BCC1B55353F00059160 /* EMSleep.m */,
+				C0E120691B556484001F90E8 /* EMActivityBase.h */,
+				C0E1206A1B556484001F90E8 /* EMActivityBase.m */,
 			);
 			name = types;
 			path = model/types;
@@ -229,6 +234,7 @@
 				C0C00BC41B552A4500059160 /* EMBreastMilk.m in Sources */,
 				C0D36D581B54AAB90014E19A /* EMDBManager.m in Sources */,
 				C0C00BCD1B55353F00059160 /* EMSleep.m in Sources */,
+				C0E1206B1B556484001F90E8 /* EMActivityBase.m in Sources */,
 				C06526D41B53FD6900DF4E34 /* AppDelegate.m in Sources */,
 				C06526D11B53FD6900DF4E34 /* main.m in Sources */,
 				C0C00BCA1B55352500059160 /* EMPiss.m in Sources */,

@@ -10,10 +10,12 @@
 
 @implementation EMDayRecord
 
-@synthesize milkPowders;
-@synthesize breastMilks;
-@synthesize excrements;
-@synthesize pisses;
-@synthesize sleeps;
+@synthesize milkPowders = _milkPowders;
+@synthesize breastMilks = _breastMilks;
+@synthesize excrements = _excrements;
+@synthesize pisses = _pisses;
+@synthesize sleeps = _sleeps;
+
+@synthesize date = _date;
 
 @end

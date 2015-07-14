@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EMActivityBase.h"
 
-@interface EMExcrement : NSObject
+@interface EMExcrement : EMActivityBase
 
 @end

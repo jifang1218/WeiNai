@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "EMActivityBase.h"
+#import "EMMilk.h"
 
-@interface EMBreastMilk : EMActivityBase
+@interface EMBreastMilk : EMMilk
 
 @end

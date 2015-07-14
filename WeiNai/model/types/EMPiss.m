@@ -11,4 +11,7 @@
 
 @implementation EMPiss
 
+@synthesize ml;
+@synthesize color;
+
 @end

@@ -11,4 +11,7 @@
 
 @implementation EMSleep
 
+@synthesize durationInMinutes;
+@synthesize quality;
+
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "EMBreastMilk.h"
-#import "EMActivityBase.h"
 
 @implementation EMBreastMilk
 

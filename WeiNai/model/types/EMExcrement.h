@@ -9,6 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "EMActivityBase.h"
 
+typedef enum _EMExcrementQuality {
+    ExcrementQualityGood = 0,
+    ExcrementQualityBad
+} EMExcrementQuality;
+
 @interface EMExcrement : EMActivityBase
+
+@property (nonatomic) NSUInteger weight;
+@property (nonatomic) EMExcrementQuality quality;
 
 @end

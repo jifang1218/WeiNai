@@ -10,8 +10,7 @@
 
 @interface EMDayRecord : NSObject
 
-@property (nonatomic, strong) NSArray *milkPowders;
-@property (nonatomic, strong) NSArray *breastMilks;
+@property (nonatomic, strong) NSArray *milks;
 @property (nonatomic, strong) NSArray *excrements;
 @property (nonatomic, strong) NSArray *pisses;
 @property (nonatomic, strong) NSArray *sleeps;

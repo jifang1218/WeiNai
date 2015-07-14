@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C06526D11B53FD6900DF4E34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C06526D01B53FD6900DF4E34 /* main.m */; };
 		C06526D41B53FD6900DF4E34 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C06526D31B53FD6900DF4E34 /* AppDelegate.m */; };
-		C06526D71B53FD6900DF4E34 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C06526D61B53FD6900DF4E34 /* ViewController.m */; };
 		C06526DA1B53FD6900DF4E34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C06526D81B53FD6900DF4E34 /* Main.storyboard */; };
 		C06526DC1B53FD6900DF4E34 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06526DB1B53FD6900DF4E34 /* Images.xcassets */; };
 		C06526DF1B53FD6900DF4E34 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C06526DD1B53FD6900DF4E34 /* LaunchScreen.xib */; };
@@ -23,6 +22,13 @@
 		C0D36D5D1B54AC600014E19A /* EMDBManagerImplPlist.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D36D5C1B54AC600014E19A /* EMDBManagerImplPlist.m */; };
 		C0E1206B1B556484001F90E8 /* EMActivityBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E1206A1B556484001F90E8 /* EMActivityBase.m */; };
 		C0E1206E1B55856E001F90E8 /* EMMilk.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E1206D1B55856E001F90E8 /* EMMilk.m */; };
+		C0E120721B55870F001F90E8 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E120711B55870F001F90E8 /* MainViewController.m */; };
+		C0E120751B55885E001F90E8 /* RecordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E120741B55885E001F90E8 /* RecordListViewController.m */; };
+		C0E120781B558872001F90E8 /* RecordDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E120771B558872001F90E8 /* RecordDetailViewController.m */; };
+		C0E1207B1B55888D001F90E8 /* ActivityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E1207A1B55888D001F90E8 /* ActivityListViewController.m */; };
+		C0E1207E1B55889B001F90E8 /* ActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E1207D1B55889A001F90E8 /* ActivityDetailViewController.m */; };
+		C0E120811B5588D2001F90E8 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E120801B5588D2001F90E8 /* StatisticsViewController.m */; };
+		C0E120841B5588DE001F90E8 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E120831B5588DE001F90E8 /* SettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,8 +37,6 @@
 		C06526D01B53FD6900DF4E34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C06526D21B53FD6900DF4E34 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C06526D31B53FD6900DF4E34 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C06526D51B53FD6900DF4E34 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		C06526D61B53FD6900DF4E34 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		C06526D91B53FD6900DF4E34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C06526DB1B53FD6900DF4E34 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C06526DE1B53FD6900DF4E34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -57,6 +61,20 @@
 		C0E1206A1B556484001F90E8 /* EMActivityBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMActivityBase.m; sourceTree = "<group>"; };
 		C0E1206C1B55856E001F90E8 /* EMMilk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMMilk.h; sourceTree = "<group>"; };
 		C0E1206D1B55856E001F90E8 /* EMMilk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMMilk.m; sourceTree = "<group>"; };
+		C0E120701B55870F001F90E8 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		C0E120711B55870F001F90E8 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		C0E120731B55885E001F90E8 /* RecordListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordListViewController.h; sourceTree = "<group>"; };
+		C0E120741B55885E001F90E8 /* RecordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordListViewController.m; sourceTree = "<group>"; };
+		C0E120761B558872001F90E8 /* RecordDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordDetailViewController.h; sourceTree = "<group>"; };
+		C0E120771B558872001F90E8 /* RecordDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordDetailViewController.m; sourceTree = "<group>"; };
+		C0E120791B55888D001F90E8 /* ActivityListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityListViewController.h; sourceTree = "<group>"; };
+		C0E1207A1B55888D001F90E8 /* ActivityListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityListViewController.m; sourceTree = "<group>"; };
+		C0E1207C1B55889A001F90E8 /* ActivityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailViewController.h; sourceTree = "<group>"; };
+		C0E1207D1B55889A001F90E8 /* ActivityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailViewController.m; sourceTree = "<group>"; };
+		C0E1207F1B5588D2001F90E8 /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
+		C0E120801B5588D2001F90E8 /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
+		C0E120821B5588DE001F90E8 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		C0E120831B5588DE001F90E8 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,13 +107,12 @@
 		C06526CD1B53FD6900DF4E34 /* WeiNai */ = {
 			isa = PBXGroup;
 			children = (
+				C0E1206F1B55870F001F90E8 /* ui */,
 				C0C00BBB1B552A1500059160 /* types */,
 				C0D36D551B54AAB90014E19A /* database */,
 				C06526F61B53FD9000DF4E34 /* model */,
 				C06526D21B53FD6900DF4E34 /* AppDelegate.h */,
 				C06526D31B53FD6900DF4E34 /* AppDelegate.m */,
-				C06526D51B53FD6900DF4E34 /* ViewController.h */,
-				C06526D61B53FD6900DF4E34 /* ViewController.m */,
 				C06526D81B53FD6900DF4E34 /* Main.storyboard */,
 				C06526DB1B53FD6900DF4E34 /* Images.xcassets */,
 				C06526DD1B53FD6900DF4E34 /* LaunchScreen.xib */,
@@ -162,6 +179,27 @@
 				C0D36D5C1B54AC600014E19A /* EMDBManagerImplPlist.m */,
 			);
 			path = impl;
+			sourceTree = "<group>";
+		};
+		C0E1206F1B55870F001F90E8 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				C0E120701B55870F001F90E8 /* MainViewController.h */,
+				C0E120711B55870F001F90E8 /* MainViewController.m */,
+				C0E120731B55885E001F90E8 /* RecordListViewController.h */,
+				C0E120741B55885E001F90E8 /* RecordListViewController.m */,
+				C0E120761B558872001F90E8 /* RecordDetailViewController.h */,
+				C0E120771B558872001F90E8 /* RecordDetailViewController.m */,
+				C0E120791B55888D001F90E8 /* ActivityListViewController.h */,
+				C0E1207A1B55888D001F90E8 /* ActivityListViewController.m */,
+				C0E1207C1B55889A001F90E8 /* ActivityDetailViewController.h */,
+				C0E1207D1B55889A001F90E8 /* ActivityDetailViewController.m */,
+				C0E1207F1B5588D2001F90E8 /* StatisticsViewController.h */,
+				C0E120801B5588D2001F90E8 /* StatisticsViewController.m */,
+				C0E120821B5588DE001F90E8 /* SettingsViewController.h */,
+				C0E120831B5588DE001F90E8 /* SettingsViewController.m */,
+			);
+			path = ui;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,19 +272,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0E120721B55870F001F90E8 /* MainViewController.m in Sources */,
 				C0C00BC71B552A7800059160 /* EMExcrement.m in Sources */,
-				C06526D71B53FD6900DF4E34 /* ViewController.m in Sources */,
+				C0E1207E1B55889B001F90E8 /* ActivityDetailViewController.m in Sources */,
+				C0E120811B5588D2001F90E8 /* StatisticsViewController.m in Sources */,
 				C0C00BC41B552A4500059160 /* EMBreastMilk.m in Sources */,
 				C0E1206E1B55856E001F90E8 /* EMMilk.m in Sources */,
 				C0D36D581B54AAB90014E19A /* EMDBManager.m in Sources */,
 				C0C00BCD1B55353F00059160 /* EMSleep.m in Sources */,
 				C0E1206B1B556484001F90E8 /* EMActivityBase.m in Sources */,
+				C0E120751B55885E001F90E8 /* RecordListViewController.m in Sources */,
 				C06526D41B53FD6900DF4E34 /* AppDelegate.m in Sources */,
+				C0E120841B5588DE001F90E8 /* SettingsViewController.m in Sources */,
 				C06526D11B53FD6900DF4E34 /* main.m in Sources */,
 				C0C00BCA1B55352500059160 /* EMPiss.m in Sources */,
 				C0C00BBE1B552A1500059160 /* EMDayRecord.m in Sources */,
 				C0D36D5D1B54AC600014E19A /* EMDBManagerImplPlist.m in Sources */,
 				C0C00BC11B552A3500059160 /* EMMilkPowder.m in Sources */,
+				C0E120781B558872001F90E8 /* RecordDetailViewController.m in Sources */,
+				C0E1207B1B55888D001F90E8 /* ActivityListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

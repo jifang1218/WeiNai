@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MainViewController.h
 //  WeiNai
 //
 //  Created by Ji Fang on 7/13/15.
@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+//@interface MainViewController : UIViewController
+@interface MainViewController : UITabBarController
 
 
 @end

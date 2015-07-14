@@ -1,19 +1,19 @@
 //
-//  ViewController.m
+//  MainViewController.m
 //  WeiNai
 //
 //  Created by Ji Fang on 7/13/15.
 //  Copyright (c) 2015 Ji Fang. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MainViewController.h"
 #import "EMDBManager.h"
 
-@interface ViewController ()
+@interface MainViewController ()
 
 @end
 
-@implementation ViewController
+@implementation MainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

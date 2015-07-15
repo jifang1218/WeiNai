@@ -20,7 +20,7 @@
     UINavigationController *_settingsViewController;
 }
 
--(void)selectedTapTabBarItems:(UITabBarItem *)tabBarItem;
+- (void)selectedTapTabBarItems:(UITabBarItem *)tabBarItem;
 - (void)setupSubviews;
 
 @end

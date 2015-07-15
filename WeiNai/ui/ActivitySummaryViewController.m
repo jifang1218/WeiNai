@@ -28,18 +28,11 @@
 - (void)decorateExcrementCell:(UITableViewCell *)cell;
 - (void)decorateCell:(UITableViewCell *)cell indexPath:(NSIndexPath *)indexPath;
 
+- (void)addActivity:(UIBarButtonItem *)sender;
+
 @end
 
 @implementation ActivitySummaryViewController
-
-//- (id)initWithCoder:(NSCoder *)aDecoder {
-//    if (self=[super initWithCoder:aDecoder]) {
-//        _summary = [[ActivitySummary alloc] init];
-//        _summary.delegate = self;
-//    }
-//    
-//    return self;
-//}
 
 - (id)init {
     if (self=[super init]) {
@@ -60,9 +53,15 @@
     _pissSummary = [_summary pissSummary];
     _sleepSummary = [_summary sleepSummary];
     
+    UIBarButtonItem *addActivityButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                       target:self
+                                                                                       action:@selector(addActivity:)];
+    self.navigationItem.rightBarButtonItem = addActivityButton;
+    
     self.title = @"今日汇总";
 }
 
+#pragma mark - table
 - (void)decorateMilkCell:(UITableViewCell *)cell {
     cell.textLabel.text = @"喂奶";
     NSString *mlText = [[NSString alloc] initWithFormat:@"共 %lu 毫升", (unsigned long)_milkSummary.ml];
@@ -133,6 +132,10 @@
     NSInteger ret = 4;
     
     return ret;
+}
+
+#pragma mark - action
+- (void)addActivity:(UIBarButtonItem *)sender {
 }
 
 @end

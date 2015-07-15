@@ -14,10 +14,10 @@
 #import "UIMacros.h"
 
 @interface MainViewController () {
-    ActivitySummaryViewController *_activitySummaryViewController;
-    ActivityListViewController *_activityListViewController;
-    StatisticsViewController *_statisticsViewController;
-    SettingsViewController *_settingsViewController;
+    UINavigationController *_activitySummaryViewController;
+    UINavigationController *_activityListViewController;
+    UINavigationController *_statisticsViewController;
+    UINavigationController *_settingsViewController;
 }
 
 -(void)selectedTapTabBarItems:(UITabBarItem *)tabBarItem;
@@ -51,8 +51,9 @@
 //    self.tabBar.selectionIndicatorImage = [[UIImage imageNamed:@"tabbarSelectBg"] stretchableImageWithLeftCapWidth:25
 //                                                                                                      topCapHeight:25];
     
-    _activitySummaryViewController = [[ActivitySummaryViewController alloc] init];
-    _activitySummaryViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"今天"
+    ActivitySummaryViewController *activitySummaryViewController = [[ActivitySummaryViewController alloc] init];
+    _activitySummaryViewController = [[UINavigationController alloc] initWithRootViewController:activitySummaryViewController];
+    _activitySummaryViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"今日汇总"
                                                                               image:nil
                                                                                 tag:0];
 //    [_recordListViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_chatsHL"]
@@ -60,8 +61,9 @@
 //    [self unSelectedTapTabBarItems:_chatListVC.tabBarItem];
 //    [self selectedTapTabBarItems:_chatListVC.tabBarItem];
     
-    _activityListViewController = [[ActivityListViewController alloc] init];
-    _activityListViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"所有"
+    ActivityListViewController *activityListViewController = [[ActivityListViewController alloc] init];
+    _activityListViewController = [[UINavigationController alloc] initWithRootViewController:activityListViewController];
+    _activityListViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"全部记录"
                                                                            image:nil
                                                                              tag:1];
 //    [_contactsVC.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_contactsHL"]
@@ -69,8 +71,9 @@
 //    [self unSelectedTapTabBarItems:_contactsVC.tabBarItem];
 //    [self selectedTapTabBarItems:_contactsVC.tabBarItem];
     
-    _statisticsViewController = [[StatisticsViewController alloc] init];
-    _statisticsViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"统计"
+    StatisticsViewController *statisticsViewController = [[StatisticsViewController alloc] init];
+    _statisticsViewController = [[UINavigationController alloc] initWithRootViewController:statisticsViewController];
+    _statisticsViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"图表统计"
                                                                          image:nil
                                                                            tag:2];
 //    [_settingsVC.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_settingHL"]
@@ -79,7 +82,8 @@
 //    [self unSelectedTapTabBarItems:_settingsVC.tabBarItem];
 //    [self selectedTapTabBarItems:_settingsVC.tabBarItem];
     
-    _settingsViewController = [[SettingsViewController alloc] init];
+    SettingsViewController *settingsViewController = [[SettingsViewController alloc] init];
+    _settingsViewController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
     _settingsViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"设置"
                                                                          image:nil
                                                                            tag:3];

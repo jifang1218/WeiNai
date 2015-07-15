@@ -11,6 +11,7 @@
 @implementation ActivityListViewController
 
 - (void)viewDidLoad {
+    self.title = @"全部记录";
 }
 
 @end

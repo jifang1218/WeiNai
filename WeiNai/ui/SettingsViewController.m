@@ -11,6 +11,7 @@
 @implementation SettingsViewController
 
 - (void)viewDidLoad {
+    self.title = @"设置";
 }
 
 @end

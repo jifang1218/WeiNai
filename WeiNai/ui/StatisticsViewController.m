@@ -11,6 +11,7 @@
 @implementation StatisticsViewController
 
 - (void)viewDidLoad {
+    self.title = @"图表统计";
 }
 
 @end

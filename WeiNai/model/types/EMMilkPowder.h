@@ -11,4 +11,6 @@
 
 @interface EMMilkPowder : EMMilk
 
+@property (nonatomic, strong) NSString *brand;
+
 @end

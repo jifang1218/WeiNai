@@ -16,7 +16,7 @@ typedef enum _EMExcrementQuality {
 
 @interface EMExcrement : EMActivityBase
 
-@property (nonatomic) NSUInteger weight;
+@property (nonatomic) float kg;
 @property (nonatomic) EMExcrementQuality quality;
 
 @end

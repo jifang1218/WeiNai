@@ -11,4 +11,6 @@
 
 @interface EMBreastMilk : EMMilk
 
+@property (nonatomic, strong) NSString *person;
+
 @end

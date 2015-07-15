@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @class EMDayRecord;
+@class EMMilk;
+@class EMExcrement;
+@class EMPiss;
+@class EMSleep;
 
 @protocol ActivitySummaryDelegate <NSObject>
 
@@ -22,6 +26,11 @@
 
 - (EMDayRecord *)todayRecord;
 - (EMDayRecord *)recordAtDay:(NSDateComponents *)day;
+
+- (EMMilk *)milkSummary;
+- (EMExcrement *)excrementSummary;
+- (EMPiss *)pissSummary;
+- (EMSleep *)sleepSummary;
 
 @end
 

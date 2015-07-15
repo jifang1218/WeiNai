@@ -11,4 +11,6 @@
 
 @implementation EMMilkPowder
 
+@synthesize brand;
+
 @end

@@ -10,4 +10,6 @@
 
 @implementation EMBreastMilk
 
+@synthesize person;
+
 @end

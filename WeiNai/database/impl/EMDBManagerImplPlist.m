@@ -14,6 +14,7 @@
 @interface EMDBManagerImplPlist() {
     NSMutableDictionary *_dbroot;
     NSMutableArray *_dayRecords;
+    NSMutableDictionary *_settings;
     NSString *_filename;
 }
 
@@ -42,6 +43,7 @@
     // write default db.
     if (![[NSFileManager defaultManager] fileExistsAtPath:_filename]) {
         NSDictionary *d = @{@"db_ver":[NSNumber numberWithFloat:0.1],
+                            @"settings":[NSDictionary dictionary],
                             @"day_records":@[]};
         [d writeToFile:_filename
             atomically:YES];
@@ -54,12 +56,14 @@
     NSLog(@"%f", dbVer);
     NSArray *dayRecords = [dbroot objectForKey:@"day_records"];
     _dayRecords = [[NSMutableArray alloc] initWithArray:dayRecords];
+    _settings = [dbroot objectForKey:@"settings"];
 }
 
 - (void)unLoad {
     [_dayRecords removeAllObjects];
     [_dbroot removeAllObjects];
     _dayRecords = nil;
+    _settings = nil;
     _dbroot = nil;
 }
 
@@ -72,7 +76,7 @@
 - (NSArray *)allDayRecords {
     NSArray *ret = nil;
     
-    ret = _dayRecords.copy;
+    ret = _dayRecords;
     
     return ret;
 }
@@ -112,7 +116,7 @@
             [days addObject:record];
         }
     }
-    ret = days.copy;
+    ret = days;
     
     return ret;
 }
@@ -131,7 +135,7 @@
             [days addObject:record];
         }
     }
-    ret = days.copy;
+    ret = days;
     
     return ret;
 }
@@ -155,7 +159,7 @@
         }
     }
     
-    ret = days.copy;
+    ret = days;
     
     return ret;
 }

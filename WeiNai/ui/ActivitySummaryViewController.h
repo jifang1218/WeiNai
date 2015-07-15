@@ -1,5 +1,5 @@
 //
-//  RecordDetailViewController.h
+//  ActivitySummaryViewController.h
 //  WeiNai
 //
 //  Created by Ji Fang on 7/15/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RecordDetailViewController : UIViewController
+@interface ActivitySummaryViewController : UIViewController
 
 @end

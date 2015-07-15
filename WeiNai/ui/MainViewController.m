@@ -7,16 +7,14 @@
 //
 
 #import "MainViewController.h"
-#import "RecordListViewController.h"
+#import "ActivitySummaryViewController.h"
 #import "ActivityListViewController.h"
 #import "StatisticsViewController.h"
 #import "SettingsViewController.h"
 #import "UIMacros.h"
 
-#import "EMDBManager.h"
-
 @interface MainViewController () {
-    RecordListViewController *_recordListViewController;
+    ActivitySummaryViewController *_activitySummaryViewController;
     ActivityListViewController *_activityListViewController;
     StatisticsViewController *_statisticsViewController;
     SettingsViewController *_settingsViewController;
@@ -34,10 +32,6 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     [self setupSubviews];
-    
-    // for testing purpose.
-    EMDBManager *dbman = [EMDBManager sharedInstance];
-    dbman = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,22 +40,28 @@
 }
 
 - (void)setupSubviews {
+    // tabs:
+    // 1. today's activity summary;
+    // 2. history activity list;
+    // 3. statistics
+    // 4. settings
+    
 //    self.tabBar.backgroundImage = [[UIImage imageNamed:@"tabbarBackground"] stretchableImageWithLeftCapWidth:25
 //                                                                                                topCapHeight:25];
 //    self.tabBar.selectionIndicatorImage = [[UIImage imageNamed:@"tabbarSelectBg"] stretchableImageWithLeftCapWidth:25
 //                                                                                                      topCapHeight:25];
     
-    _recordListViewController = [[RecordListViewController alloc] init];
-    _recordListViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"记录"
-                                                                         image:nil
-                                                                           tag:0];
+    _activitySummaryViewController = [[ActivitySummaryViewController alloc] init];
+    _activitySummaryViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"今天"
+                                                                              image:nil
+                                                                                tag:0];
 //    [_recordListViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_chatsHL"]
 //                         withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_chats"]];
 //    [self unSelectedTapTabBarItems:_chatListVC.tabBarItem];
 //    [self selectedTapTabBarItems:_chatListVC.tabBarItem];
     
     _activityListViewController = [[ActivityListViewController alloc] init];
-    _activityListViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"活动"
+    _activityListViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"所有"
                                                                            image:nil
                                                                              tag:1];
 //    [_contactsVC.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_contactsHL"]
@@ -84,11 +84,11 @@
                                                                          image:nil
                                                                            tag:3];
     
-    self.viewControllers = @[_recordListViewController,
+    self.viewControllers = @[_activitySummaryViewController,
                              _activityListViewController,
                              _statisticsViewController,
                              _settingsViewController];
-    [self selectedTapTabBarItems:_recordListViewController.tabBarItem];
+    [self selectedTapTabBarItems:_activitySummaryViewController.tabBarItem];
 }
 
 -(void)selectedTapTabBarItems:(UITabBarItem *)tabBarItem {

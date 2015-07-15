@@ -10,4 +10,7 @@
 
 @implementation StatisticsViewController
 
+- (void)viewDidLoad {
+}
+
 @end

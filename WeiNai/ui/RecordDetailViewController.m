@@ -10,4 +10,7 @@
 
 @implementation RecordDetailViewController
 
+- (void)viewDidLoad {
+}
+
 @end

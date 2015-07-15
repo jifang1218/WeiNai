@@ -10,4 +10,7 @@
 
 @implementation RecordListViewController
 
+- (void)viewDidLoad {
+}
+
 @end

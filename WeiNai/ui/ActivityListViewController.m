@@ -10,4 +10,7 @@
 
 @implementation ActivityListViewController
 
+- (void)viewDidLoad {
+}
+
 @end

@@ -10,4 +10,7 @@
 
 @implementation SettingsViewController
 
+- (void)viewDidLoad {
+}
+
 @end

@@ -10,4 +10,7 @@
 
 @implementation ActivityDetailViewController
 
+- (void)viewDidLoad {
+}
+
 @end

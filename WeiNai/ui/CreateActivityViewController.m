@@ -10,6 +10,7 @@
 #import "ActionSheetDatePicker.h"
 #import "CreateActivity.h"
 #import "Utility.h"
+#import "ActivityUtils.h"
 #import "NSDate+Category.h"
 #import "DoneCancelNumberPadToolbar.h"
 
@@ -27,6 +28,7 @@
     UITableViewCell *_valueCell;
     UILabel *_valueUnitLabel;
     UITextField *_valueField;
+    UISwitch *_breastMilkSwitch;
 }
 
 - (void)saveActivity:(UIBarButtonItem *)sender;
@@ -37,6 +39,8 @@
 - (UITableViewCell *)_configureValueCell;
 - (UITableViewCell *)_configureMemoCell;
 - (void)selectTime:(id)sender;
+- (void)updateSleepValue;
+- (void)updateMilkSwitch;
 
 @end
 
@@ -89,6 +93,26 @@
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.backgroundView = nil;
     [self.view addSubview:_tableView];
+}
+
+#pragma mark - helper
+- (void)updateMilkSwitch {
+    if (_createActivity.currentActivityType == ActivityType_Milk) {
+        _breastMilkSwitch.hidden = NO;
+        _valueCell.detailTextLabel.text = @"是母乳吗?";
+        _valueCell.detailTextLabel.backgroundColor = [UIColor blueColor];
+    } else {
+        _breastMilkSwitch.hidden = YES;
+        _valueCell.detailTextLabel.text = @"";
+    }
+}
+
+- (void)updateSleepValue {
+    if (_createActivity.currentActivityType == ActivityType_Sleep) {
+        NSTimeInterval seconds = [_createActivity.endTime timeIntervalSinceDate:_createActivity.startTime];
+        NSInteger minutes = (NSInteger)(seconds / 60.0 + 0.5);
+        _valueField.text = [[NSString alloc] initWithFormat:@"%lu", minutes];
+    }
 }
 
 #pragma mark - table
@@ -180,11 +204,12 @@
 }
 
 - (UITableViewCell *)_configureValueCell {
-    static NSString *cellIdentifier = @"ActivityValueCell";
+    static NSString *cellIdentifier = @"CreateActivityValueCell";
     UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
                                       reuseIdentifier:cellIdentifier];
+        // value field
         UITextField *valueField = [[UITextField alloc] init];
         valueField.keyboardType = UIKeyboardTypeNumberPad;
         valueField.placeholder = @"请输入...";
@@ -196,33 +221,13 @@
         frame.origin.x = 20;
         frame.origin.y = (cell.frame.size.height - frame.size.height) / 2.0;
         valueField.frame = frame;
-        if (_createActivity.currentActivityType == ActivityType_Sleep) {
-            NSTimeInterval seconds = [_createActivity.endTime timeIntervalSinceDate:_createActivity.startTime];
-            NSInteger minutes = (NSInteger)(seconds / 60.0 + 0.5);
-            valueField.text = [[NSString alloc] initWithFormat:@"%lu", minutes];
-        }
+        [self updateSleepValue];
         [cell addSubview:valueField];
         _valueField = valueField;
         
+        // unit label
         UILabel *unit = [[UILabel alloc] init];
-        NSString *strUnit = nil;
-        switch (_createActivity.currentActivityType) {
-            case ActivityType_Milk: {
-                strUnit = @"毫升";
-            } break;
-            case ActivityType_Excrement: {
-                strUnit = @"克";
-            } break;
-            case ActivityType_Piss: {
-                strUnit = @"毫升";
-            } break;
-            case ActivityType_Sleep: {
-                strUnit = @"分钟";
-            } break;
-            default: {
-            } break;
-        }
-        unit.text = strUnit;
+        unit.text = [ActivityUtils ActivityTypeUnit2String:_createActivity.currentActivityType];
         [unit sizeToFit];
         frame = unit.frame;
         frame.origin.x = valueField.frame.origin.x + valueField.frame.size.width + 20;
@@ -230,20 +235,18 @@
         unit.frame = frame;
         [cell addSubview:unit];
         _valueUnitLabel = unit;
+        
+        // is breast milk switch
+        UISwitch *breastMilk = [[UISwitch alloc] init];
+        [breastMilk sizeToFit];
+        breastMilk.hidden = YES;
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+        cell.accessoryView = breastMilk;
+        _breastMilkSwitch = breastMilk;
+        [self updateMilkSwitch];
     }
     
     return cell;
-}
-
-#pragma mark - DoneCancelNumberPadToolbarDelegate
--(void)doneCancelNumberPadToolbarDelegate:(DoneCancelNumberPadToolbar *)controller didClickDone:(UITextField *)textField
-{
-    NSLog(@"%@", textField.text);
-}
-
--(void)doneCancelNumberPadToolbarDelegate:(DoneCancelNumberPadToolbar *)controller didClickCancel:(UITextField *)textField
-{
-    NSLog(@"Canceled: %@", [textField description]);
 }
 
 - (UITableViewCell *)_configureMemoCell {
@@ -322,25 +325,28 @@
     return ret;
 }
 
+#pragma mark - DoneCancelNumberPadToolbarDelegate
+-(void)doneCancelNumberPadToolbarDelegate:(DoneCancelNumberPadToolbar *)controller didClickDone:(UITextField *)textField
+{
+    NSLog(@"%@ -- %@", NSStringFromSelector(_cmd), textField.text);
+}
+
+-(void)doneCancelNumberPadToolbarDelegate:(DoneCancelNumberPadToolbar *)controller didClickCancel:(UITextField *)textField
+{
+    NSLog(@"%@ -- %@", NSStringFromSelector(_cmd), [textField description]);
+}
+
 #pragma mark - CreateActivityDelegate
 - (void)didEndTimeChanged:(NSDate *)endTime {
     _endCell.textLabel.text = [Utility timeString:endTime];
     
-    if (_createActivity.currentActivityType == ActivityType_Sleep) {
-        NSTimeInterval seconds = [_createActivity.endTime timeIntervalSinceDate:_createActivity.startTime];
-        NSInteger minutes = (NSInteger)(seconds / 60.0 + 0.5);
-        _valueField.text = [[NSString alloc] initWithFormat:@"%lu", minutes];
-    }
+    [self updateSleepValue];
 }
 
 - (void)didStartTimeChanged:(NSDate *)startTime {
     _startCell.textLabel.text = [Utility timeString:startTime];
     
-    if (_createActivity.currentActivityType == ActivityType_Sleep) {
-        NSTimeInterval seconds = [_createActivity.endTime timeIntervalSinceDate:_createActivity.startTime];
-        NSInteger minutes = (NSInteger)(seconds / 60.0 + 0.5);
-        _valueField.text = [[NSString alloc] initWithFormat:@"%lu", minutes];
-    }
+    [self updateSleepValue];
 }
 
 - (void)didCurrentActivityTypeChanged:(EMActivityType)activityType {
@@ -361,11 +367,8 @@
         } break;
     }
     
-    if (_createActivity.currentActivityType == ActivityType_Sleep) {
-        NSTimeInterval seconds = [_createActivity.endTime timeIntervalSinceDate:_createActivity.startTime];
-        NSInteger minutes = (NSInteger)(seconds / 60.0 + 0.5);
-        _valueField.text = [[NSString alloc] initWithFormat:@"%lu", minutes];
-    }
+    [self updateSleepValue];
+    [self updateMilkSwitch];
 }
 
 #pragma mark - actions
@@ -396,6 +399,8 @@
 
 - (void)makeCurrentTime:(id)sender {
     _createActivity.endTime = [NSDate date];
+    
+    [self updateSleepValue];
 }
 
 - (void)selectTime:(id)sender {

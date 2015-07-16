@@ -11,7 +11,7 @@
 @implementation SettingsViewController
 
 - (void)viewDidLoad {
-    self.title = @"设置";
+    self.title = self.navigationController.tabBarItem.title;
 }
 
 @end

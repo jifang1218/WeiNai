@@ -11,7 +11,7 @@
 @implementation StatisticsViewController
 
 - (void)viewDidLoad {
-    self.title = @"图表统计";
+    self.title = self.navigationController.tabBarItem.title;
 }
 
 @end

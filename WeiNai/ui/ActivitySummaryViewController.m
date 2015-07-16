@@ -13,6 +13,7 @@
 #import "EMExcrement.h"
 #import "EMPiss.h"
 #import "EMSleep.h"
+#import "CreateActivityViewController.h"
 
 @interface ActivitySummaryViewController()<ActivitySummaryDelegate> {
     ActivitySummary *_summary;
@@ -27,6 +28,7 @@
 - (void)decoratePissCell:(UITableViewCell *)cell;
 - (void)decorateExcrementCell:(UITableViewCell *)cell;
 - (void)decorateCell:(UITableViewCell *)cell indexPath:(NSIndexPath *)indexPath;
+- (void)decorateDateCell:(UITableViewCell *)cell;
 
 - (void)addActivity:(UIBarButtonItem *)sender;
 
@@ -58,7 +60,7 @@
                                                                                        action:@selector(addActivity:)];
     self.navigationItem.rightBarButtonItem = addActivityButton;
     
-    self.title = @"今日汇总";
+    self.title = self.navigationController.tabBarItem.title;
 }
 
 #pragma mark - table
@@ -82,26 +84,38 @@
 
 - (void)decorateExcrementCell:(UITableViewCell *)cell {
     cell.textLabel.text = @"大便";
-    NSString *kgText = [[NSString alloc] initWithFormat:@"共 %g 公斤", _excrementSummary.kg];
+    NSString *kgText = [[NSString alloc] initWithFormat:@"共 %g 克", _excrementSummary.kg * 1000];
     cell.detailTextLabel.text = kgText;
 }
 
+- (void)decorateDateCell:(UITableViewCell *)cell {
+    NSDateFormatter*formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *localeString=[formatter stringFromDate: [NSDate date]];
+    cell.textLabel.text = localeString;
+}
+
 - (void)decorateCell:(UITableViewCell *)cell indexPath:(NSIndexPath *)indexPath {
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
     NSInteger row = indexPath.row;
     switch (row) {
         case 0: {
-            [self decorateMilkCell:cell];
+            [self decorateDateCell:cell];
         } break;
         case 1: {
-            [self decorateSleepCell:cell];
+            [self decorateMilkCell:cell];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         } break;
         case 2: {
-            [self decoratePissCell:cell];
+            [self decorateSleepCell:cell];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         } break;
         case 3: {
+            [self decoratePissCell:cell];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        } break;
+        case 4: {
             [self decorateExcrementCell:cell];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         } break;
         default: {
         } break;
@@ -113,8 +127,13 @@
     static NSString *cellIdentifier = @"SummaryCell";
     cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
-                                      reuseIdentifier:cellIdentifier];
+        if (indexPath.row != 0) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
+                                          reuseIdentifier:cellIdentifier];
+        } else {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                          reuseIdentifier:cellIdentifier];
+        }
         [self decorateCell:cell indexPath:indexPath];
     }
     
@@ -128,14 +147,16 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // 1. milk, 2. excrement, 3. piss, 4. sleep
-    NSInteger ret = 4;
+    // 1. milk, 2. excrement, 3. piss, 4. sleep, plus date
+    NSInteger ret = 4 + 1;
     
     return ret;
 }
 
 #pragma mark - action
 - (void)addActivity:(UIBarButtonItem *)sender {
+    CreateActivityViewController *viewController = [[CreateActivityViewController alloc] init];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 @end

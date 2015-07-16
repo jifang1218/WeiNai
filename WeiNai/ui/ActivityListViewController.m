@@ -11,7 +11,7 @@
 @implementation ActivityListViewController
 
 - (void)viewDidLoad {
-    self.title = @"全部记录";
+    self.title = self.navigationController.tabBarItem.title;
 }
 
 @end

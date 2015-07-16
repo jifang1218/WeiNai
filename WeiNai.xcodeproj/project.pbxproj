@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C03F13CB1B56A90E001653D5 /* CreateActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C03F13CA1B56A90E001653D5 /* CreateActivityViewController.m */; };
 		C06526D11B53FD6900DF4E34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C06526D01B53FD6900DF4E34 /* main.m */; };
 		C06526D41B53FD6900DF4E34 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C06526D31B53FD6900DF4E34 /* AppDelegate.m */; };
 		C06526DA1B53FD6900DF4E34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C06526D81B53FD6900DF4E34 /* Main.storyboard */; };
@@ -32,6 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C03F13C91B56A90E001653D5 /* CreateActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateActivityViewController.h; sourceTree = "<group>"; };
+		C03F13CA1B56A90E001653D5 /* CreateActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateActivityViewController.m; sourceTree = "<group>"; };
 		C06526CB1B53FD6900DF4E34 /* WeiNai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiNai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C06526CF1B53FD6900DF4E34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C06526D01B53FD6900DF4E34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -200,6 +203,8 @@
 				C0E120821B5588DE001F90E8 /* SettingsViewController.h */,
 				C0E120831B5588DE001F90E8 /* SettingsViewController.m */,
 				C0E120851B55FC9F001F90E8 /* UIMacros.h */,
+				C03F13C91B56A90E001653D5 /* CreateActivityViewController.h */,
+				C03F13CA1B56A90E001653D5 /* CreateActivityViewController.m */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -287,6 +292,7 @@
 				C0E1206B1B556484001F90E8 /* EMActivityBase.m in Sources */,
 				C06526D41B53FD6900DF4E34 /* AppDelegate.m in Sources */,
 				C0E120841B5588DE001F90E8 /* SettingsViewController.m in Sources */,
+				C03F13CB1B56A90E001653D5 /* CreateActivityViewController.m in Sources */,
 				C06526D11B53FD6900DF4E34 /* main.m in Sources */,
 				C0C00BCA1B55352500059160 /* EMPiss.m in Sources */,
 				C0C00BBE1B552A1500059160 /* EMDayRecord.m in Sources */,

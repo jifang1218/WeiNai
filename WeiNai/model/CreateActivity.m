@@ -9,9 +9,23 @@
 #import "CreateActivity.h"
 #import "ActivityUtils.h"
 
+@interface CreateActivity () {
+}
+
+@end
+
 @implementation CreateActivity
 
 @synthesize delegate = _delegate;
+@synthesize currentActivityType = _currentActivityType;
+
+- (id)init {
+    if (self=[super init]) {
+        _currentActivityType = ActivityType_Milk;
+    }
+    
+    return self;
+}
 
 - (NSUInteger)numberOfActivityTypes {
     return [ActivityUtils numberOfActivityTypes];

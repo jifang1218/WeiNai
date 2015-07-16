@@ -12,5 +12,6 @@
 
 // valid fields: hour, minute, second;
 @property (nonatomic, strong) NSDateComponents *time;
+@property (nonatomic, strong) NSString *memo;
 
 @end

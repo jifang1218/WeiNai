@@ -18,6 +18,7 @@
 @interface CreateActivity : NSObject
 
 @property (nonatomic, weak) id<CreateActivityDelegate> delegate;
+@property (nonatomic) EMActivityType currentActivityType;
 
 - (NSUInteger)numberOfActivityTypes;
 - (NSString *)activityType2String:(EMActivityType)activityType;

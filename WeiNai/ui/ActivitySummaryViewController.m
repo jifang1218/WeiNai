@@ -15,6 +15,7 @@
 #import "EMSleep.h"
 #import "CreateActivityViewController.h"
 #import "UIMacros.h"
+#import "Utility.h"
 
 @interface ActivitySummaryViewController()<ActivitySummaryDelegate> {
     ActivitySummary *_summary;
@@ -98,10 +99,7 @@
 }
 
 - (void)decorateDateCell:(UITableViewCell *)cell {
-    NSDateFormatter*formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    NSString *localeString=[formatter stringFromDate: [NSDate date]];
-    cell.textLabel.text = localeString;
+    cell.textLabel.text = [Utility CurrentDateString];;
 }
 
 - (void)decorateCell:(UITableViewCell *)cell indexPath:(NSIndexPath *)indexPath {

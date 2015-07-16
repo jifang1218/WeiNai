@@ -11,5 +11,6 @@
 @implementation EMActivityBase
 
 @synthesize time = _time;
+@synthesize memo = _memo;
 
 @end

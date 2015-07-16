@@ -27,6 +27,7 @@
 		C09B94381B5796CB0049B04E /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = C09B94361B5796CB0049B04E /* NSDateFormatter+Category.m */; };
 		C09B943B1B579ED40049B04E /* CreateActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = C09B943A1B579ED40049B04E /* CreateActivity.m */; };
 		C09B943E1B57A7520049B04E /* ActivityUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C09B943D1B57A7520049B04E /* ActivityUtils.m */; };
+		C09B94411B57BBAC0049B04E /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = C09B94401B57BBAC0049B04E /* Utility.m */; };
 		C0C00BBE1B552A1500059160 /* EMDayRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C00BBD1B552A1500059160 /* EMDayRecord.m */; };
 		C0C00BC11B552A3500059160 /* EMMilkPowder.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C00BC01B552A3500059160 /* EMMilkPowder.m */; };
 		C0C00BC41B552A4500059160 /* EMBreastMilk.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C00BC31B552A4500059160 /* EMBreastMilk.m */; };
@@ -85,6 +86,8 @@
 		C09B943A1B579ED40049B04E /* CreateActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateActivity.m; sourceTree = "<group>"; };
 		C09B943C1B57A7520049B04E /* ActivityUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityUtils.h; sourceTree = "<group>"; };
 		C09B943D1B57A7520049B04E /* ActivityUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityUtils.m; sourceTree = "<group>"; };
+		C09B943F1B57BBAC0049B04E /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		C09B94401B57BBAC0049B04E /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		C0C00BBC1B552A1500059160 /* EMDayRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMDayRecord.h; sourceTree = "<group>"; };
 		C0C00BBD1B552A1500059160 /* EMDayRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMDayRecord.m; sourceTree = "<group>"; };
 		C0C00BBF1B552A3500059160 /* EMMilkPowder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMMilkPowder.h; sourceTree = "<group>"; };
@@ -181,6 +184,8 @@
 				C09B943A1B579ED40049B04E /* CreateActivity.m */,
 				C09B943C1B57A7520049B04E /* ActivityUtils.h */,
 				C09B943D1B57A7520049B04E /* ActivityUtils.m */,
+				C09B943F1B57BBAC0049B04E /* Utility.h */,
+				C09B94401B57BBAC0049B04E /* Utility.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -374,6 +379,7 @@
 				C09B94151B562A5C0049B04E /* ActivitySummary.m in Sources */,
 				C0E120811B5588D2001F90E8 /* StatisticsViewController.m in Sources */,
 				C09B942D1B57779F0049B04E /* ActionSheetDistancePicker.m in Sources */,
+				C09B94411B57BBAC0049B04E /* Utility.m in Sources */,
 				C09B94381B5796CB0049B04E /* NSDateFormatter+Category.m in Sources */,
 				C09B943E1B57A7520049B04E /* ActivityUtils.m in Sources */,
 				C09B94311B57779F0049B04E /* SWActionSheet.m in Sources */,

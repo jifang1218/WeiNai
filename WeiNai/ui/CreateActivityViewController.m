@@ -9,14 +9,28 @@
 #import "CreateActivityViewController.h"
 #import "ActionSheetDatePicker.h"
 #import "CreateActivity.h"
+#import "Utility.h"
+
+#define kSetStartButtonTag   100
+#define kSetEndButtonTag     101
+#define kSetCurrentButtonTag 102
 
 @interface CreateActivityViewController () <UITableViewDataSource, UITableViewDelegate, CreateActivityDelegate> {
     UITableView *_tableView;
     CreateActivity *_createActivity;
+    UITableViewCell *_startCell;
+    UITableViewCell *_activityTypeCell;
+    UITableViewCell *_endCell;
 }
 
 - (void)saveActivity:(UIBarButtonItem *)sender;
 - (void)setupUI;
+- (UITableViewCell *)_configureActivityTypeCell;
+- (UITableViewCell *)_configureStartCell;
+- (UITableViewCell *)_configureEndCell;
+- (UITableViewCell *)_configureValueCell;
+- (UITableViewCell *)_configureMemoCell;
+- (void)selectTime:(id)sender;
 
 @end
 
@@ -43,7 +57,6 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                                                                                            target:self
                                                                                            action:@selector(saveActivity:)];
-    self.view.backgroundColor = [UIColor blueColor];
     [self setupUI];
 }
 
@@ -67,17 +80,122 @@
                                               style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.backgroundColor = [UIColor clearColor];
+    _tableView.backgroundView = nil;
     [self.view addSubview:_tableView];
 }
 
 #pragma mark - table
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = nil;
-    static NSString *cellIdentifier = @"CreateActivityCell";
-    cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+- (UITableViewCell *)_configureActivityTypeCell {
+    static NSString *cellIdentifier = @"CreateActivityTypeCell";
+    UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:cellIdentifier];
+        UISegmentedControl *typesSeg = [[UISegmentedControl alloc] initWithItems:
+                                        @[[_createActivity activityType2String:ActivityType_Milk],
+                                          [_createActivity activityType2String:ActivityType_Piss],
+                                          [_createActivity activityType2String:ActivityType_Excrement],
+                                          [_createActivity activityType2String:ActivityType_Sleep],
+                                          ]];
+        typesSeg.selectedSegmentIndex = 0;
+        typesSeg.frame = cell.contentView.bounds;
+        [cell.contentView addSubview:typesSeg];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.backgroundView = nil;
+    }
+    _activityTypeCell = cell;
+    
+    return cell;
+}
+
+- (UITableViewCell *)_configureStartCell {
+    static NSString *cellIdentifier = @"CreateActivityStartCell";
+    UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:cellIdentifier];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [button addTarget:self
+                   action:@selector(selectTime:)
+         forControlEvents:UIControlEventTouchUpInside];
+        [button setTitle:@"设定"
+                forState:UIControlStateNormal];
+        [button sizeToFit];
+        button.tag = kSetStartButtonTag;
+        cell.accessoryView = button;
+        cell.textLabel.text = [Utility CurrentTimeString];
+    }
+    _startCell = cell;
+    
+    return cell;
+}
+
+- (UITableViewCell *)_configureEndCell {
+    static NSString *cellIdentifier = @"CreateActivityEndCell";
+    UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:cellIdentifier];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [button addTarget:self
+                   action:@selector(selectTime:)
+         forControlEvents:UIControlEventTouchUpInside];
+        [button setTitle:@"设定"
+                forState:UIControlStateNormal];
+        [button sizeToFit];
+        button.tag = kSetEndButtonTag;
+        cell.accessoryView = button;
+        cell.textLabel.text = [Utility CurrentTimeString];
+    }
+    _endCell = cell;;
+    
+    return cell;
+}
+
+- (UITableViewCell *)_configureValueCell {
+    static NSString *cellIdentifier = @"ActivityValueCell";
+    UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:cellIdentifier];
+    }
+    
+    return cell;
+}
+
+- (UITableViewCell *)_configureMemoCell {
+    static NSString *cellIdentifier = @"ActivityMemoCell";
+    UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:cellIdentifier];
+    }
+    
+    return cell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = nil;
+    NSInteger section = indexPath.section;
+    switch (section) {
+        case 0: { // 活动类型
+            cell = [self _configureActivityTypeCell];
+        } break;
+        case 1: { // 开始时间
+            cell = [self _configureStartCell];
+        } break;
+        case 2: { // 结束时间
+            cell = [self _configureEndCell];
+        } break;
+        case 3: { // 数值
+            cell = [self _configureValueCell];
+        } break;
+        case 4: { // 备注
+            cell = [self _configureMemoCell];
+        } break;
+        default: {
+        } break;
     }
     
     return cell;
@@ -123,12 +241,38 @@
 }
 
 #pragma mark - actions
-- (void)saveActivity:(UIBarButtonItem *)sender {
-    ActionDateDoneBlock done = ^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
+- (void)selectTime:(id)sender {
+    UIButton *button = nil;
+    if (![sender isKindOfClass:[UIButton class]]) {
+        return;
+    }
+    button = (UIButton *)sender;
+    NSInteger tag = button.tag;
+    
+    ActionDateDoneBlock startDone = ^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
     };
-    ActionDateCancelBlock cancel = ^(ActionSheetDatePicker *picker) {
+    ActionDateDoneBlock endDone = ^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
     };
+    ActionDateDoneBlock modifyDone = ^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
+    };
+    ActionDateCancelBlock startCancel = ^(ActionSheetDatePicker *picker) {
+    };
+    ActionDateCancelBlock endCancel = ^(ActionSheetDatePicker *picker) {
+    };
+    ActionDateCancelBlock modifyCancel = ^(ActionSheetDatePicker *picker) {
+    };
+    
+    ActionDateDoneBlock done = nil;
+    ActionDateCancelBlock cancel = nil;
     NSDate *now = [NSDate date];
+    if (tag == kSetStartButtonTag) {
+        done = startDone;
+        cancel = startCancel;
+    } else if (tag == kSetEndButtonTag) {
+        done = endDone;
+        cancel = endCancel;
+    } else {
+    }
     [ActionSheetDatePicker showPickerWithTitle:@"test"
                                 datePickerMode:UIDatePickerModeTime
                                   selectedDate:now
@@ -137,6 +281,9 @@
                                      doneBlock:done
                                    cancelBlock:cancel
                                         origin:self.view];
+}
+
+- (void)saveActivity:(UIBarButtonItem *)sender {
 }
 
 @end

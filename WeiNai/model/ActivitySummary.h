@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UIMacros.h"
 
 @class EMDayRecord;
 @class EMMilk;
@@ -31,6 +32,9 @@
 - (EMExcrement *)excrementSummary;
 - (EMPiss *)pissSummary;
 - (EMSleep *)sleepSummary;
+
+- (NSString *)activityType2String:(EMActivityType)activityType;
+- (NSString *)activityTypeUnit2String:(EMActivityType)activityType;
 
 @end
 

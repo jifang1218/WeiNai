@@ -13,6 +13,7 @@
 #import "EMExcrement.h"
 #import "EMPiss.h"
 #import "EMSleep.h"
+#import "ActivityUtils.h"
 
 @interface ActivitySummary() {
     EMDayRecord *_record;
@@ -82,13 +83,13 @@
     }
     
     NSArray *excrements = _record.excrements;
-    float kg = 0;
+    NSUInteger g = 0;
     for (EMExcrement *excrement in excrements) {
-        kg += excrement.kg;
+        g += excrement.g;
     }
     
     ret = [[EMExcrement alloc] init];
-    ret.kg = kg;
+    ret.g = g;
     
     return ret;
 }
@@ -127,6 +128,22 @@
     
     ret = [[EMSleep alloc] init];
     ret.durationInMinutes = duration;
+    
+    return ret;
+}
+
+- (NSString *)activityType2String:(EMActivityType)activityType {
+    NSString *ret = nil;
+    
+    ret = [ActivityUtils ActivityType2String:activityType];
+    
+    return ret;
+}
+
+- (NSString *)activityTypeUnit2String:(EMActivityType)activityType {
+    NSString *ret = nil;
+    
+    ret = [ActivityUtils ActivityTypeUnit2String:activityType];
     
     return ret;
 }

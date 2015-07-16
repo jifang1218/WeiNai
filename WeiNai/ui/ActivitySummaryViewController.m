@@ -14,6 +14,7 @@
 #import "EMPiss.h"
 #import "EMSleep.h"
 #import "CreateActivityViewController.h"
+#import "UIMacros.h"
 
 @interface ActivitySummaryViewController()<ActivitySummaryDelegate> {
     ActivitySummary *_summary;
@@ -65,27 +66,35 @@
 
 #pragma mark - table
 - (void)decorateMilkCell:(UITableViewCell *)cell {
-    cell.textLabel.text = @"喂奶";
-    NSString *mlText = [[NSString alloc] initWithFormat:@"共 %lu 毫升", (unsigned long)_milkSummary.ml];
+    NSString *text = [_summary activityType2String:ActivityType_Milk];
+    NSString *unit = [_summary activityTypeUnit2String:ActivityType_Milk];
+    cell.textLabel.text = text;
+    NSString *mlText = [[NSString alloc] initWithFormat:@"共 %lu %@", _milkSummary.ml, unit];
     cell.detailTextLabel.text = mlText;
 }
 
 - (void)decorateSleepCell:(UITableViewCell *)cell {
-    cell.textLabel.text = @"睡觉";
-    NSString *durationText = [[NSString alloc] initWithFormat:@"共 %lu 分钟", (unsigned long)_sleepSummary.durationInMinutes];
+    NSString *text = [_summary activityType2String:ActivityType_Sleep];
+    NSString *unit = [_summary activityTypeUnit2String:ActivityType_Sleep];
+    cell.textLabel.text = text;
+    NSString *durationText = [[NSString alloc] initWithFormat:@"共 %lu %@", _sleepSummary.durationInMinutes, unit];
     cell.detailTextLabel.text = durationText;
 }
 
 - (void)decoratePissCell:(UITableViewCell *)cell {
-    cell.textLabel.text = @"尿尿";
-    NSString *mlText = [[NSString alloc] initWithFormat:@"共 %lu 毫升", (unsigned long)_pissSummary.ml];
+    NSString *text = [_summary activityType2String:ActivityType_Piss];
+    NSString *unit = [_summary activityTypeUnit2String:ActivityType_Piss];
+    cell.textLabel.text = text;
+    NSString *mlText = [[NSString alloc] initWithFormat:@"共 %lu %@", _pissSummary.ml, unit];
     cell.detailTextLabel.text = mlText;
 }
 
 - (void)decorateExcrementCell:(UITableViewCell *)cell {
-    cell.textLabel.text = @"大便";
-    NSString *kgText = [[NSString alloc] initWithFormat:@"共 %g 克", _excrementSummary.kg * 1000];
-    cell.detailTextLabel.text = kgText;
+    NSString *text = [_summary activityType2String:ActivityType_Excrement];
+    NSString *unit = [_summary activityTypeUnit2String:ActivityType_Excrement];
+    cell.textLabel.text = text;
+    NSString *gText = [[NSString alloc] initWithFormat:@"共 %lu %@", _excrementSummary.g, unit];
+    cell.detailTextLabel.text = gText;
 }
 
 - (void)decorateDateCell:(UITableViewCell *)cell {

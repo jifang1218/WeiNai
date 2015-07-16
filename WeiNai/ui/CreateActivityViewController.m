@@ -7,8 +7,12 @@
 //
 
 #import "CreateActivityViewController.h"
+#import "ActionSheetDatePicker.h"
+#import "CreateActivity.h"
 
-@interface CreateActivityViewController () {
+@interface CreateActivityViewController () <UITableViewDataSource, UITableViewDelegate, CreateActivityDelegate> {
+    UITableView *_tableView;
+    CreateActivity *_createActivity;
 }
 
 - (void)saveActivity:(UIBarButtonItem *)sender;
@@ -18,14 +22,28 @@
 
 @implementation CreateActivityViewController
 
+- (id)init {
+    if (self=[super init]) {
+        _createActivity = [[CreateActivity alloc] init];
+        _createActivity.delegate = self;
+    }
+    
+    return self;
+}
+
+- (void)dealloc {
+    _createActivity.delegate = nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.title = @"新建活动";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                                                                                            target:self
                                                                                            action:@selector(saveActivity:)];
-//    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor blueColor];
     [self setupUI];
 }
 
@@ -45,46 +63,80 @@
 */
 
 - (void)setupUI {
-    CGFloat nextY = 0;
-    // 1. place start picker
-    UILabel *startLabel = [[UILabel alloc] init];
-    startLabel.text = @"开始时间";
-    [startLabel sizeToFit];
-    CGRect frame;
-    frame = startLabel.frame;
-    frame.origin.x = (self.view.frame.size.width - frame.size.width) / 2.0;
-    frame.origin.y = nextY;
-    startLabel.frame = frame;
-    [self.view addSubview:startLabel];
-    nextY += frame.size.height;
-    return;
+    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds
+                                              style:UITableViewStyleGrouped];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    [self.view addSubview:_tableView];
+}
+
+#pragma mark - table
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = nil;
+    static NSString *cellIdentifier = @"CreateActivityCell";
+    cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:cellIdentifier];
+    }
     
+    return cell;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // 1. 活动类型; 2. 开始; 3. 结束; 4. 数据; 5. 备注
+    NSInteger ret = 5;
     
-    UIDatePicker *startPicker = [[UIDatePicker alloc] init];
-    frame = startPicker.frame;
-    frame.origin.y = startLabel.frame.origin.y + startLabel.frame.size.height;
-    startPicker.frame = frame;
-    [self.view addSubview:startPicker];
+    return ret;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSInteger ret = 1;
     
-    // 2. place end picker and end button
-    UILabel *endLabel = [[UILabel alloc] init];
-    endLabel.text = @"结束时间";
-    [endLabel sizeToFit];
-    frame = endLabel.frame;
-    frame.origin.x = (self.view.frame.size.width - frame.size.width) / 2.0;
-    frame.origin.y = startPicker.frame.origin.y + startPicker.frame.size.height;
-    endLabel.frame = frame;
-    [self.view addSubview:endLabel];
+    return ret;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSString *ret = nil;
     
-    UIDatePicker *endPicker = [[UIDatePicker alloc] init];
-    frame = endPicker.frame;
-    frame.origin.y = endLabel.frame.origin.y + endLabel.frame.size.height;
-    endPicker.frame = frame;
-    [self.view addSubview:endPicker];
+    switch (section) {
+        case 0: {
+            ret = @"活动类型";
+        } break;
+        case 1: {
+            ret = @"开始时间";
+        } break;
+        case 2: {
+            ret = @"结束时间";
+        } break;
+        case 3: {
+            ret = @"数值";
+        } break;
+        case 4: {
+            ret = @"备注";
+        } break;
+        default: {
+        } break;
+    }
+    
+    return ret;
 }
 
 #pragma mark - actions
 - (void)saveActivity:(UIBarButtonItem *)sender {
+    ActionDateDoneBlock done = ^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
+    };
+    ActionDateCancelBlock cancel = ^(ActionSheetDatePicker *picker) {
+    };
+    NSDate *now = [NSDate date];
+    [ActionSheetDatePicker showPickerWithTitle:@"test"
+                                datePickerMode:UIDatePickerModeTime
+                                  selectedDate:now
+                                   minimumDate:now
+                                   maximumDate:now
+                                     doneBlock:done
+                                   cancelBlock:cancel
+                                        origin:self.view];
 }
 
 @end

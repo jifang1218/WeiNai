@@ -12,6 +12,6 @@
 @implementation EMExcrement
 
 @synthesize quality;
-@synthesize kg;
+@synthesize g;
 
 @end

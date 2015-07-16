@@ -13,9 +13,7 @@
 + (NSString *)CurrentDateString {
     NSString *ret = nil;
     
-    NSDateFormatter*formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    ret = [formatter stringFromDate: [NSDate date]];
+    ret = [Utility dateString:[NSDate date]];
     
     return ret;
 }
@@ -23,9 +21,27 @@
 + (NSString *)CurrentTimeString {
     NSString *ret = nil;
     
+    ret = [Utility timeString:[NSDate date]];
+    
+    return ret;
+}
+
++ (NSString *)dateString:(NSDate *)date {
+    NSString *ret = nil;
+    
+    NSDateFormatter*formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    ret = [formatter stringFromDate:date];
+    
+    return ret;
+}
+
++ (NSString *)timeString:(NSDate *)time {
+    NSString *ret = nil;
+    
     NSDateFormatter*formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:mm"];
-    ret = [formatter stringFromDate: [NSDate date]];
+    ret = [formatter stringFromDate:time];
     
     return ret;
 }

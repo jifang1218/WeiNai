@@ -10,17 +10,23 @@
 #import "ActionSheetDatePicker.h"
 #import "CreateActivity.h"
 #import "Utility.h"
+#import "NSDate+Category.h"
+#import "DoneCancelNumberPadToolbar.h"
 
 #define kSetStartButtonTag   100
 #define kSetEndButtonTag     101
 #define kSetCurrentButtonTag 102
 
-@interface CreateActivityViewController () <UITableViewDataSource, UITableViewDelegate, CreateActivityDelegate> {
+@interface CreateActivityViewController () <UITableViewDataSource, UITableViewDelegate,
+                                            CreateActivityDelegate, DoneCancelNumberPadToolbarDelegate> {
     UITableView *_tableView;
     CreateActivity *_createActivity;
     UITableViewCell *_startCell;
     UITableViewCell *_activityTypeCell;
     UITableViewCell *_endCell;
+    UITableViewCell *_valueCell;
+    UILabel *_valueUnitLabel;
+    UITextField *_valueField;
 }
 
 - (void)saveActivity:(UIBarButtonItem *)sender;
@@ -98,6 +104,9 @@
                                           [_createActivity activityType2String:ActivityType_Excrement],
                                           [_createActivity activityType2String:ActivityType_Sleep],
                                           ]];
+        [typesSeg addTarget:self
+                     action:@selector(activityTypeSelected:)
+           forControlEvents:UIControlEventValueChanged];
         typesSeg.selectedSegmentIndex = 0;
         typesSeg.frame = cell.contentView.bounds;
         [cell.contentView addSubview:typesSeg];
@@ -124,6 +133,7 @@
         [button sizeToFit];
         button.tag = kSetStartButtonTag;
         cell.accessoryView = button;
+        _createActivity.startTime = [NSDate date];
         cell.textLabel.text = [Utility CurrentTimeString];
     }
     _startCell = cell;
@@ -147,6 +157,22 @@
         button.tag = kSetEndButtonTag;
         cell.accessoryView = button;
         cell.textLabel.text = [Utility CurrentTimeString];
+        _createActivity.endTime = [NSDate date];
+        
+        // add current time.
+        button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [button addTarget:self
+                   action:@selector(makeCurrentTime:)
+         forControlEvents:UIControlEventTouchUpInside];
+        [button setTitle:@"设置为当前时间"
+                forState:UIControlStateNormal];
+        [button sizeToFit];
+        button.tag = kSetCurrentButtonTag;
+        CGRect frame = button.frame;
+        frame.origin.x = (cell.frame.size.width - button.frame.size.width) / 2.0;
+        frame.origin.y = (cell.frame.size.height - button.frame.size.height) / 2.0;
+        button.frame = frame;
+        [cell addSubview:button];
     }
     _endCell = cell;;
     
@@ -159,9 +185,65 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:cellIdentifier];
+        UITextField *valueField = [[UITextField alloc] init];
+        valueField.keyboardType = UIKeyboardTypeNumberPad;
+        valueField.placeholder = @"请输入...";
+        DoneCancelNumberPadToolbar *toolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:valueField];
+        toolbar.numberPadDelegate = self;
+        valueField.inputAccessoryView = toolbar;
+        [valueField sizeToFit];
+        CGRect frame = valueField.bounds;
+        frame.origin.x = 20;
+        frame.origin.y = (cell.frame.size.height - frame.size.height) / 2.0;
+        valueField.frame = frame;
+        if (_createActivity.currentActivityType == ActivityType_Sleep) {
+            NSTimeInterval seconds = [_createActivity.endTime timeIntervalSinceDate:_createActivity.startTime];
+            NSInteger minutes = (NSInteger)(seconds / 60.0 + 0.5);
+            valueField.text = [[NSString alloc] initWithFormat:@"%lu", minutes];
+        }
+        [cell addSubview:valueField];
+        _valueField = valueField;
+        
+        UILabel *unit = [[UILabel alloc] init];
+        NSString *strUnit = nil;
+        switch (_createActivity.currentActivityType) {
+            case ActivityType_Milk: {
+                strUnit = @"毫升";
+            } break;
+            case ActivityType_Excrement: {
+                strUnit = @"克";
+            } break;
+            case ActivityType_Piss: {
+                strUnit = @"毫升";
+            } break;
+            case ActivityType_Sleep: {
+                strUnit = @"分钟";
+            } break;
+            default: {
+            } break;
+        }
+        unit.text = strUnit;
+        [unit sizeToFit];
+        frame = unit.frame;
+        frame.origin.x = valueField.frame.origin.x + valueField.frame.size.width + 20;
+        frame.origin.y = (cell.frame.size.height - frame.size.height) / 2.0;
+        unit.frame = frame;
+        [cell addSubview:unit];
+        _valueUnitLabel = unit;
     }
     
     return cell;
+}
+
+#pragma mark - DoneCancelNumberPadToolbarDelegate
+-(void)doneCancelNumberPadToolbarDelegate:(DoneCancelNumberPadToolbar *)controller didClickDone:(UITextField *)textField
+{
+    NSLog(@"%@", textField.text);
+}
+
+-(void)doneCancelNumberPadToolbarDelegate:(DoneCancelNumberPadToolbar *)controller didClickCancel:(UITextField *)textField
+{
+    NSLog(@"Canceled: %@", [textField description]);
 }
 
 - (UITableViewCell *)_configureMemoCell {
@@ -240,7 +322,82 @@
     return ret;
 }
 
+#pragma mark - CreateActivityDelegate
+- (void)didEndTimeChanged:(NSDate *)endTime {
+    _endCell.textLabel.text = [Utility timeString:endTime];
+    
+    if (_createActivity.currentActivityType == ActivityType_Sleep) {
+        NSTimeInterval seconds = [_createActivity.endTime timeIntervalSinceDate:_createActivity.startTime];
+        NSInteger minutes = (NSInteger)(seconds / 60.0 + 0.5);
+        _valueField.text = [[NSString alloc] initWithFormat:@"%lu", minutes];
+    }
+}
+
+- (void)didStartTimeChanged:(NSDate *)startTime {
+    _startCell.textLabel.text = [Utility timeString:startTime];
+    
+    if (_createActivity.currentActivityType == ActivityType_Sleep) {
+        NSTimeInterval seconds = [_createActivity.endTime timeIntervalSinceDate:_createActivity.startTime];
+        NSInteger minutes = (NSInteger)(seconds / 60.0 + 0.5);
+        _valueField.text = [[NSString alloc] initWithFormat:@"%lu", minutes];
+    }
+}
+
+- (void)didCurrentActivityTypeChanged:(EMActivityType)activityType {
+    switch (_createActivity.currentActivityType) {
+        case ActivityType_Milk: {
+            _valueUnitLabel.text = @"毫升";
+        } break;
+        case ActivityType_Excrement: {
+            _valueUnitLabel.text = @"克";
+        } break;
+        case ActivityType_Piss: {
+            _valueUnitLabel.text = @"毫升";
+        } break;
+        case ActivityType_Sleep: {
+            _valueUnitLabel.text = @"分钟";
+        } break;
+        default: {
+        } break;
+    }
+    
+    if (_createActivity.currentActivityType == ActivityType_Sleep) {
+        NSTimeInterval seconds = [_createActivity.endTime timeIntervalSinceDate:_createActivity.startTime];
+        NSInteger minutes = (NSInteger)(seconds / 60.0 + 0.5);
+        _valueField.text = [[NSString alloc] initWithFormat:@"%lu", minutes];
+    }
+}
+
 #pragma mark - actions
+- (void)activityTypeSelected:(id)sender {
+    if ([sender isKindOfClass:[UISegmentedControl class]]) {
+        UISegmentedControl *seg = (UISegmentedControl *)sender;
+        NSInteger index = seg.selectedSegmentIndex;
+        EMActivityType activityType = ActivityType_Milk;
+        switch (index) {
+            case 0: {
+                activityType = ActivityType_Milk;
+            } break;
+            case 1: {
+                activityType = ActivityType_Piss;
+            } break;
+            case 2: {
+                activityType = ActivityType_Excrement;
+            } break;
+            case 3: {
+                activityType = ActivityType_Sleep;
+            } break;
+            default: {
+            } break;
+        }
+        _createActivity.currentActivityType = activityType;
+    }
+}
+
+- (void)makeCurrentTime:(id)sender {
+    _createActivity.endTime = [NSDate date];
+}
+
 - (void)selectTime:(id)sender {
     UIButton *button = nil;
     if (![sender isKindOfClass:[UIButton class]]) {
@@ -250,16 +407,16 @@
     NSInteger tag = button.tag;
     
     ActionDateDoneBlock startDone = ^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
+        NSDate *date = (NSDate *)selectedDate;
+        _createActivity.startTime = date;
     };
     ActionDateDoneBlock endDone = ^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-    };
-    ActionDateDoneBlock modifyDone = ^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
+        NSDate *date = (NSDate *)selectedDate;
+        _createActivity.endTime = date;
     };
     ActionDateCancelBlock startCancel = ^(ActionSheetDatePicker *picker) {
     };
     ActionDateCancelBlock endCancel = ^(ActionSheetDatePicker *picker) {
-    };
-    ActionDateCancelBlock modifyCancel = ^(ActionSheetDatePicker *picker) {
     };
     
     ActionDateDoneBlock done = nil;
@@ -273,11 +430,11 @@
         cancel = endCancel;
     } else {
     }
-    [ActionSheetDatePicker showPickerWithTitle:@"test"
+    [ActionSheetDatePicker showPickerWithTitle:@"请选择时间"
                                 datePickerMode:UIDatePickerModeTime
                                   selectedDate:now
-                                   minimumDate:now
-                                   maximumDate:now
+                                   minimumDate:[now dateAtStartOfDay]
+                                   maximumDate:[NSDate dateTomorrow]
                                      doneBlock:done
                                    cancelBlock:cancel
                                         origin:self.view];

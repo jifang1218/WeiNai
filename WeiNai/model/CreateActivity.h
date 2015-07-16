@@ -12,6 +12,9 @@
 @protocol CreateActivityDelegate <NSObject>
 
 @optional
+- (void)didStartTimeChanged:(NSDate *)startTime;
+- (void)didEndTimeChanged:(NSDate *)endTime;
+- (void)didCurrentActivityTypeChanged:(EMActivityType)activityType;
 
 @end
 
@@ -19,6 +22,8 @@
 
 @property (nonatomic, weak) id<CreateActivityDelegate> delegate;
 @property (nonatomic) EMActivityType currentActivityType;
+@property (nonatomic, strong) NSDate *startTime;
+@property (nonatomic, strong) NSDate *endTime;
 
 - (NSUInteger)numberOfActivityTypes;
 - (NSString *)activityType2String:(EMActivityType)activityType;

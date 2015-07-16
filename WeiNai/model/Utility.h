@@ -13,4 +13,7 @@
 + (NSString *)CurrentDateString;
 + (NSString *)CurrentTimeString;
 
++ (NSString *)dateString:(NSDate *)date;
++ (NSString *)timeString:(NSDate *)time;
+
 @end

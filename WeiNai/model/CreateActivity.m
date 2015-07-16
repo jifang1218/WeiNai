@@ -18,6 +18,8 @@
 
 @synthesize delegate = _delegate;
 @synthesize currentActivityType = _currentActivityType;
+@synthesize endTime = _endTime;
+@synthesize startTime = _startTime;
 
 - (id)init {
     if (self=[super init]) {
@@ -45,6 +47,33 @@
     ret = [ActivityUtils ActivityTypeUnit2String:activityType];
     
     return ret;
+}
+
+- (void)setStartTime:(NSDate *)startTime {
+    if (_startTime != startTime) {
+        _startTime = startTime;
+        if ([_delegate respondsToSelector:@selector(didStartTimeChanged:)]) {
+            [_delegate didStartTimeChanged:startTime];
+        }
+    }
+}
+
+- (void)setEndTime:(NSDate *)endTime {
+    if (_endTime != endTime) {
+        _endTime = endTime;
+        if ([_delegate respondsToSelector:@selector(didEndTimeChanged:)]) {
+            [_delegate didEndTimeChanged:endTime];
+        }
+    }
+}
+
+- (void)setCurrentActivityType:(EMActivityType)currentActivityType {
+    if (_currentActivityType != currentActivityType) {
+        _currentActivityType = currentActivityType;
+        if ([_delegate respondsToSelector:@selector(didCurrentActivityTypeChanged:)]) {
+            [_delegate didCurrentActivityTypeChanged:currentActivityType];
+        }
+    }
 }
 
 @end

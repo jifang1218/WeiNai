@@ -20,6 +20,7 @@
 @synthesize currentActivityType = _currentActivityType;
 @synthesize endTime = _endTime;
 @synthesize startTime = _startTime;
+@synthesize milkType = _milkType;
 
 - (id)init {
     if (self=[super init]) {
@@ -29,6 +30,7 @@
     return self;
 }
 
+#pragma mark - activity type helpers
 - (NSUInteger)numberOfActivityTypes {
     return [ActivityUtils numberOfActivityTypes];
 }
@@ -49,6 +51,7 @@
     return ret;
 }
 
+#pragma mark - property setters
 - (void)setStartTime:(NSDate *)startTime {
     if (_startTime != startTime) {
         _startTime = startTime;
@@ -74,6 +77,35 @@
             [_delegate didCurrentActivityTypeChanged:currentActivityType];
         }
     }
+}
+
+- (void)setMilkType:(EMMilkType)milkType {
+    if (milkType != _milkType) {
+        _milkType = milkType;
+        if ([_delegate respondsToSelector:@selector(didMilkTypeChanged:)]) {
+            [_delegate didMilkTypeChanged:milkType];
+        }
+    }
+}
+
+#pragma mark - activity helpers
+- (EMActivityBase *)generateActivity {
+    EMActivityBase *ret = nil;
+    
+    switch (_currentActivityType) {
+        case ActivityType_Milk: {
+        } break;
+        case ActivityType_Excrement: {
+        } break;
+        case ActivityType_Piss: {
+        } break;
+        case ActivityType_Sleep: {
+        } break;
+        default: {
+        } break;
+    }
+    
+    return ret;
 }
 
 @end

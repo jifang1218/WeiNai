@@ -52,8 +52,7 @@
     
     // open db.
     NSMutableDictionary *dbroot = [[NSMutableDictionary alloc] initWithContentsOfFile:_filename];
-    float dbVer = [[dbroot objectForKey:@"db_ver"] floatValue];
-    NSLog(@"%f", dbVer);
+//    float dbVer = [[dbroot objectForKey:@"db_ver"] floatValue];
     NSArray *dayRecords = [dbroot objectForKey:@"day_records"];
     _dayRecords = [[NSMutableArray alloc] initWithArray:dayRecords];
     _settings = [dbroot objectForKey:@"settings"];

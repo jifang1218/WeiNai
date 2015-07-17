@@ -13,6 +13,7 @@
 #import "ActivityUtils.h"
 #import "NSDate+Category.h"
 #import "DoneCancelNumberPadToolbar.h"
+#import "EMActivityBase.h"
 
 #define kSetStartButtonTag   100
 #define kSetEndButtonTag     101
@@ -64,7 +65,7 @@
     // Do any additional setup after loading the view.
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.title = @"新建活动";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                                            target:self
                                                                                            action:@selector(saveActivity:)];
     [self setupUI];
@@ -100,7 +101,7 @@
     if (_createActivity.currentActivityType == ActivityType_Milk) {
         _breastMilkSwitch.hidden = NO;
         _valueCell.detailTextLabel.text = @"是母乳吗?";
-        _valueCell.detailTextLabel.backgroundColor = [UIColor blueColor];
+        _breastMilkSwitch.on = (_createActivity.milkType == MilkType_BreastMilk);
     } else {
         _breastMilkSwitch.hidden = YES;
         _valueCell.detailTextLabel.text = @"";
@@ -196,7 +197,7 @@
         frame.origin.x = (cell.frame.size.width - button.frame.size.width) / 2.0;
         frame.origin.y = (cell.frame.size.height - button.frame.size.height) / 2.0;
         button.frame = frame;
-        [cell addSubview:button];
+        [cell.contentView addSubview:button];
     }
     _endCell = cell;;
     
@@ -222,7 +223,7 @@
         frame.origin.y = (cell.frame.size.height - frame.size.height) / 2.0;
         valueField.frame = frame;
         [self updateSleepValue];
-        [cell addSubview:valueField];
+        [cell.contentView addSubview:valueField];
         _valueField = valueField;
         
         // unit label
@@ -233,11 +234,15 @@
         frame.origin.x = valueField.frame.origin.x + valueField.frame.size.width + 20;
         frame.origin.y = (cell.frame.size.height - frame.size.height) / 2.0;
         unit.frame = frame;
-        [cell addSubview:unit];
+        [cell.contentView addSubview:unit];
         _valueUnitLabel = unit;
+        _valueCell = cell; // updateMilkSwitch needs it. 
         
         // is breast milk switch
         UISwitch *breastMilk = [[UISwitch alloc] init];
+        [breastMilk addTarget:self
+                       action:@selector(milkTypeChanged:)
+             forControlEvents:UIControlEventValueChanged];
         [breastMilk sizeToFit];
         breastMilk.hidden = YES;
         cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
@@ -245,6 +250,7 @@
         _breastMilkSwitch = breastMilk;
         [self updateMilkSwitch];
     }
+    _valueCell = cell;
     
     return cell;
 }
@@ -326,17 +332,21 @@
 }
 
 #pragma mark - DoneCancelNumberPadToolbarDelegate
--(void)doneCancelNumberPadToolbarDelegate:(DoneCancelNumberPadToolbar *)controller didClickDone:(UITextField *)textField
-{
-    NSLog(@"%@ -- %@", NSStringFromSelector(_cmd), textField.text);
+-(void)doneCancelNumberPadToolbarDelegate:(DoneCancelNumberPadToolbar *)controller
+                             didClickDone:(UITextField *)textField {
+    //NSLog(@"%@ -- %@", NSStringFromSelector(_cmd), textField.text);
 }
 
--(void)doneCancelNumberPadToolbarDelegate:(DoneCancelNumberPadToolbar *)controller didClickCancel:(UITextField *)textField
-{
-    NSLog(@"%@ -- %@", NSStringFromSelector(_cmd), [textField description]);
+-(void)doneCancelNumberPadToolbarDelegate:(DoneCancelNumberPadToolbar *)controller
+                           didClickCancel:(UITextField *)textField {
+    //NSLog(@"%@ -- %@", NSStringFromSelector(_cmd), [textField description]);
 }
 
 #pragma mark - CreateActivityDelegate
+- (void)didMilkTypeChanged:(EMMilkType)milkType {
+    //
+}
+
 - (void)didEndTimeChanged:(NSDate *)endTime {
     _endCell.textLabel.text = [Utility timeString:endTime];
     
@@ -372,6 +382,13 @@
 }
 
 #pragma mark - actions
+- (void)milkTypeChanged:(id)sender {
+    if ([sender isKindOfClass:[UISwitch class]]) {
+        UISwitch *milkSwitch = (UISwitch *)sender;
+        _createActivity.milkType = milkSwitch.isOn?MilkType_BreastMilk:MilkType_PowderMilk;
+    }
+}
+
 - (void)activityTypeSelected:(id)sender {
     if ([sender isKindOfClass:[UISegmentedControl class]]) {
         UISegmentedControl *seg = (UISegmentedControl *)sender;
@@ -427,9 +444,11 @@
     ActionDateDoneBlock done = nil;
     ActionDateCancelBlock cancel = nil;
     NSDate *now = [NSDate date];
+    NSDate *min = now;
     if (tag == kSetStartButtonTag) {
         done = startDone;
         cancel = startCancel;
+        min = [now dateAtStartOfDay];
     } else if (tag == kSetEndButtonTag) {
         done = endDone;
         cancel = endCancel;
@@ -438,7 +457,7 @@
     [ActionSheetDatePicker showPickerWithTitle:@"请选择时间"
                                 datePickerMode:UIDatePickerModeTime
                                   selectedDate:now
-                                   minimumDate:[now dateAtStartOfDay]
+                                   minimumDate:min
                                    maximumDate:[NSDate dateTomorrow]
                                      doneBlock:done
                                    cancelBlock:cancel
@@ -446,6 +465,7 @@
 }
 
 - (void)saveActivity:(UIBarButtonItem *)sender {
+    EMActivityBase *activity = [_createActivity generateActivity];
 }
 
 @end

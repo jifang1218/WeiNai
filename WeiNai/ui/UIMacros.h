@@ -20,4 +20,9 @@ typedef enum _EMActivityType {
     ActivityType_NumberOfActivityTypes
 }EMActivityType;
 
+typedef enum _EMMilkType {
+    MilkType_BreastMilk = 0,
+    MilkType_PowderMilk
+}EMMilkType;
+
 #endif

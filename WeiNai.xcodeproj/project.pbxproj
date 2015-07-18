@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C027F6621B5AA54B00BB40BA /* EMActivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C027F6611B5AA54B00BB40BA /* EMActivityManager.m */; };
 		C03F13CB1B56A90E001653D5 /* CreateActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C03F13CA1B56A90E001653D5 /* CreateActivityViewController.m */; };
 		C06526D11B53FD6900DF4E34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C06526D01B53FD6900DF4E34 /* main.m */; };
 		C06526D41B53FD6900DF4E34 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C06526D31B53FD6900DF4E34 /* AppDelegate.m */; };
@@ -47,6 +48,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C027F6601B5AA54B00BB40BA /* EMActivityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMActivityManager.h; sourceTree = "<group>"; };
+		C027F6611B5AA54B00BB40BA /* EMActivityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMActivityManager.m; sourceTree = "<group>"; };
 		C03F13C91B56A90E001653D5 /* CreateActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateActivityViewController.h; sourceTree = "<group>"; };
 		C03F13CA1B56A90E001653D5 /* CreateActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateActivityViewController.m; sourceTree = "<group>"; };
 		C06526CB1B53FD6900DF4E34 /* WeiNai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiNai.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,6 +192,8 @@
 				C09B943D1B57A7520049B04E /* ActivityUtils.m */,
 				C09B943F1B57BBAC0049B04E /* Utility.h */,
 				C09B94401B57BBAC0049B04E /* Utility.m */,
+				C027F6601B5AA54B00BB40BA /* EMActivityManager.h */,
+				C027F6611B5AA54B00BB40BA /* EMActivityManager.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -412,6 +417,7 @@
 				C09B942F1B57779F0049B04E /* ActionSheetStringPicker.m in Sources */,
 				C09B942C1B57779F0049B04E /* ActionSheetDatePicker.m in Sources */,
 				C0B8B9F31B58104400DBE54E /* DoneCancelNumberPadToolbar.m in Sources */,
+				C027F6621B5AA54B00BB40BA /* EMActivityManager.m in Sources */,
 				C09B942A1B57779F0049B04E /* AbstractActionSheetPicker.m in Sources */,
 				C0C00BCA1B55352500059160 /* EMPiss.m in Sources */,
 				C0C00BBE1B552A1500059160 /* EMDayRecord.m in Sources */,

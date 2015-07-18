@@ -14,7 +14,7 @@
 static EMDBManager *_sharedInstance = nil;
 
 @interface EMDBManager () {
-    id<IDBManagerImpl> _dbman;
+    id<IDBManagerImpl> _dbmanImpl;
 }
 
 @end
@@ -33,29 +33,29 @@ static EMDBManager *_sharedInstance = nil;
 
 - (id)init {
     if (self=[super init]) {
-        _dbman = [[EMDBManagerImplPlist alloc] init];
+        _dbmanImpl = [[EMDBManagerImplPlist alloc] init];
     }
     
     return self;
 }
 
 - (void)load {
-    [_dbman load];
+    [_dbmanImpl load];
 }
 
 - (void)unLoad {
-    [_dbman unLoad];
+    [_dbmanImpl unLoad];
 }
 
 - (void)save {
-    [_dbman save];
+    [_dbmanImpl save];
 }
 
 #pragma mark - query
 - (NSArray *)allDayRecords {
     NSArray *ret = nil;
     
-    ret = [_dbman allDayRecords];
+    ret = [_dbmanImpl allDayRecords];
     
     return ret;
 }
@@ -63,7 +63,7 @@ static EMDBManager *_sharedInstance = nil;
 - (EMDayRecord *)dayRecordAt:(NSDateComponents *)day {
     EMDayRecord *ret = nil;
     
-    ret = [_dbman dayRecordAt:day];
+    ret = [_dbmanImpl dayRecordAt:day];
     
     return ret;
 }
@@ -71,7 +71,7 @@ static EMDBManager *_sharedInstance = nil;
 - (NSArray *)dayRecordsInMonthAndYear:(NSDateComponents *)monthAndYear {
     NSArray *ret = nil;
     
-    ret = [_dbman dayRecordsInMonthAndYear:monthAndYear];
+    ret = [_dbmanImpl dayRecordsInMonthAndYear:monthAndYear];
     
     return ret;
 }
@@ -79,7 +79,7 @@ static EMDBManager *_sharedInstance = nil;
 - (NSArray *)dayRecordsForYear:(NSDateComponents *)year {
     NSArray *ret = nil;
     
-    ret = [_dbman dayRecordsForYear:year];
+    ret = [_dbmanImpl dayRecordsForYear:year];
     
     return ret;
 }
@@ -87,7 +87,7 @@ static EMDBManager *_sharedInstance = nil;
 - (NSArray *)dayRecordsFrom:(NSDateComponents *)from to:(NSDateComponents *)to {
     NSArray *ret = nil;
     
-    ret = [_dbman dayRecordsFrom:from to:to];
+    ret = [_dbmanImpl dayRecordsFrom:from to:to];
     
     return ret;
 }
@@ -96,7 +96,7 @@ static EMDBManager *_sharedInstance = nil;
 - (BOOL)insertDayRecord:(EMDayRecord *)dayRecord {
     BOOL ret = NO;
     
-    ret = [_dbman insertDayRecord:dayRecord];
+    ret = [_dbmanImpl insertDayRecord:dayRecord];
     
     return ret;
 }
@@ -104,7 +104,7 @@ static EMDBManager *_sharedInstance = nil;
 - (NSInteger)insertDayRecords:(NSArray *)dayRecords {
     NSInteger ret = -1;
     
-    ret = [_dbman insertDayRecords:dayRecords];
+    ret = [_dbmanImpl insertDayRecords:dayRecords];
     
     return ret;
 }
@@ -113,7 +113,7 @@ static EMDBManager *_sharedInstance = nil;
 - (BOOL)deleteDayRecordAtDay:(NSDateComponents *)day {
     BOOL ret = NO;
     
-    ret = [_dbman deleteDayRecordAtDay:day];
+    ret = [_dbmanImpl deleteDayRecordAtDay:day];
     
     return ret;
 }
@@ -122,7 +122,7 @@ static EMDBManager *_sharedInstance = nil;
                                to:(NSDateComponents *)to {
     NSInteger ret = -1;
     
-    ret = [_dbman deleteDayRecordsFrom:from
+    ret = [_dbmanImpl deleteDayRecordsFrom:from
                                     to:to];
     
     return ret;
@@ -133,7 +133,7 @@ static EMDBManager *_sharedInstance = nil;
            withDayRecord:(EMDayRecord *)newDayRecord {
     BOOL ret = NO;
     
-    ret = [_dbman replaceDayRecord:oldDayRecord
+    ret = [_dbmanImpl replaceDayRecord:oldDayRecord
                      withDayRecord:newDayRecord];
     
     return ret;
@@ -143,7 +143,7 @@ static EMDBManager *_sharedInstance = nil;
                    with:(NSString *)params {
     BOOL ret = NO;
     
-    ret = [_dbman modifyDayRecord:dayRecord
+    ret = [_dbmanImpl modifyDayRecord:dayRecord
                              with:params];
     
     return ret;

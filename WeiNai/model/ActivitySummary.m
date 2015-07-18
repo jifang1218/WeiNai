@@ -7,7 +7,7 @@
 //
 
 #import "ActivitySummary.h"
-#import "EMDBManager.h"
+#import "EMActivityManager.h"
 #import "EMDayRecord.h"
 #import "EMMilk.h"
 #import "EMExcrement.h"
@@ -28,14 +28,8 @@
 - (EMDayRecord *)todayRecord {
     EMDayRecord *ret = nil;
     
-    EMDBManager *dbman = [EMDBManager sharedInstance];
-    NSDate *date = [NSDate date];
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
-    comps = [calendar components:unitFlags
-                        fromDate:date];
-    ret = [dbman dayRecordAt:comps];
+    EMActivityManager *activityMan = [EMActivityManager sharedInstance];
+    ret = [activityMan todayRecord];
     _record = ret;
     
     return ret;
@@ -49,8 +43,8 @@
         return ret;
     }
     
-    EMDBManager *dbman = [EMDBManager sharedInstance];
-    ret = [dbman dayRecordAt:day];
+    EMActivityManager *activityMan = [EMActivityManager sharedInstance];
+    ret = [activityMan dayRecordAt:day];
     _record = ret;
     
     return ret;

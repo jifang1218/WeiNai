@@ -16,6 +16,7 @@
 - (void)didEndTimeChanged:(NSDate *)endTime;
 - (void)didCurrentActivityTypeChanged:(EMActivityType)activityType;
 - (void)didMilkTypeChanged:(EMMilkType)milkType;
+- (void)didActivityValueChanged:(NSUInteger)activityValue;
 
 @end
 
@@ -28,6 +29,7 @@
 @property (nonatomic, strong) NSDate *startTime;
 @property (nonatomic, strong) NSDate *endTime;
 @property (nonatomic) EMMilkType milkType;
+@property (nonatomic) NSUInteger activityValue;
 
 #pragma mark - activity type helpers
 - (NSUInteger)numberOfActivityTypes;

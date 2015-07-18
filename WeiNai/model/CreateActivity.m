@@ -8,9 +8,21 @@
 
 #import "CreateActivity.h"
 #import "ActivityUtils.h"
+#import "NSDate+Category.h"
+#import "EMMilkPowder.h"
+#import "EMBreastMilk.h"
+#import "EMExcrement.h"
+#import "EMPiss.h"
+#import "EMSleep.h"
 
 @interface CreateActivity () {
 }
+
+- (EMActivityBase *)generateActivity;
+- (EMActivityBase *)makeSleepActivity;
+- (EMActivityBase *)makePissActivity;
+- (EMActivityBase *)makeExcrementActivity;
+- (EMActivityBase *)makeMilkActivity;
 
 @end
 
@@ -21,6 +33,7 @@
 @synthesize endTime = _endTime;
 @synthesize startTime = _startTime;
 @synthesize milkType = _milkType;
+@synthesize activityValue = _activityValue;
 
 - (id)init {
     if (self=[super init]) {
@@ -88,22 +101,136 @@
     }
 }
 
+- (void)setActivityValue:(NSUInteger)activityValue {
+    if (_activityValue != activityValue) {
+        _activityValue = activityValue;
+        if ([_delegate respondsToSelector:@selector(didActivityValueChanged:)]) {
+            [_delegate didActivityValueChanged:_activityValue];
+        }
+    }
+}
+
 #pragma mark - activity helpers
 - (EMActivityBase *)generateActivity {
     EMActivityBase *ret = nil;
     
     switch (_currentActivityType) {
         case ActivityType_Milk: {
+            ret = [self makeMilkActivity];
         } break;
         case ActivityType_Excrement: {
+            ret = [self makeExcrementActivity];
         } break;
         case ActivityType_Piss: {
+            ret = [self makePissActivity];
         } break;
         case ActivityType_Sleep: {
+            ret = [self makeSleepActivity];
         } break;
         default: {
         } break;
     }
+    
+    return ret;
+}
+
+- (EMActivityBase *)makeMilkActivity {
+    EMActivityBase *ret = nil;
+    
+    EMMilkType milkType = _milkType;
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    dateComponents.year = _startTime.year;
+    dateComponents.month = _startTime.month;
+    dateComponents.day = _startTime.day;
+    dateComponents.hour = _startTime.hour;
+    dateComponents.minute = _startTime.minute;
+    dateComponents.second = _startTime.seconds;
+    
+    EMMilk *milk = nil;
+    switch (milkType) {
+        case MilkType_BreastMilk: {
+            EMBreastMilk *breastMilk = [[EMBreastMilk alloc] init];
+            breastMilk.person = @"王坤";
+            milk = breastMilk;
+        } break;
+        case MilkType_PowderMilk: {
+            EMMilkPowder *powder = [[EMMilkPowder alloc] init];
+            powder.brand = @"Aptamil";
+            milk = powder;
+        } break;
+        default: {
+        } break;
+    }
+    milk.time = dateComponents;
+    milk.ml = _activityValue;
+    
+    ret = milk;
+    
+    return ret;
+}
+
+- (EMActivityBase *)makeExcrementActivity {
+    EMActivityBase *ret = nil;
+    
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    dateComponents.year = _startTime.year;
+    dateComponents.month = _startTime.month;
+    dateComponents.day = _startTime.day;
+    dateComponents.hour = _startTime.hour;
+    dateComponents.minute = _startTime.minute;
+    dateComponents.second = _startTime.seconds;
+    
+    EMExcrement *excrement = [[EMExcrement alloc] init];
+    excrement.time = dateComponents;
+    excrement.quality = ExcrementQualityGood;
+    excrement.g = _activityValue;
+    
+    ret = excrement;
+    
+    return ret;
+}
+
+- (EMActivityBase *)makePissActivity {
+    EMActivityBase *ret = nil;
+    
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    dateComponents.year = _startTime.year;
+    dateComponents.month = _startTime.month;
+    dateComponents.day = _startTime.day;
+    dateComponents.hour = _startTime.hour;
+    dateComponents.minute = _startTime.minute;
+    dateComponents.second = _startTime.seconds;
+    
+    EMPiss *piss = [[EMPiss alloc] init];
+    piss.time = dateComponents;
+    piss.ml = _activityValue;
+    piss.color = PissColor_White;
+    
+    ret = piss;
+    
+    return ret;
+}
+
+- (EMActivityBase *)makeSleepActivity {
+    EMActivityBase *ret = nil;
+    
+    NSDateComponents *startTime = [[NSDateComponents alloc] init];
+    startTime.year = _startTime.year;
+    startTime.month = _startTime.month;
+    startTime.day = _startTime.day;
+    startTime.hour = _startTime.hour;
+    startTime.minute = _startTime.minute;
+    startTime.second = _startTime.seconds;
+    
+    NSTimeInterval durationInSeconds = [_endTime timeIntervalSinceDate:_startTime];
+    NSUInteger durationInMinutes = (NSUInteger)(durationInSeconds / 60.0 + 0.5);
+    
+    EMSleep *sleep = [[EMSleep alloc] init];
+    sleep.time = startTime;
+    sleep.quality = SleepQuality_Deep;
+    sleep.durationInMinutes = durationInMinutes;
+    
+    ret = sleep;
     
     return ret;
 }

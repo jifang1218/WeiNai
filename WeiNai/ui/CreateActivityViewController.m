@@ -334,16 +334,20 @@
 #pragma mark - DoneCancelNumberPadToolbarDelegate
 -(void)doneCancelNumberPadToolbarDelegate:(DoneCancelNumberPadToolbar *)controller
                              didClickDone:(UITextField *)textField {
-    //NSLog(@"%@ -- %@", NSStringFromSelector(_cmd), textField.text);
+    _createActivity.activityValue = (NSUInteger)[textField.text integerValue];
 }
 
 -(void)doneCancelNumberPadToolbarDelegate:(DoneCancelNumberPadToolbar *)controller
                            didClickCancel:(UITextField *)textField {
-    //NSLog(@"%@ -- %@", NSStringFromSelector(_cmd), [textField description]);
+    NSLog(@"%@ -- %@", NSStringFromSelector(_cmd), [textField description]);
 }
 
 #pragma mark - CreateActivityDelegate
 - (void)didMilkTypeChanged:(EMMilkType)milkType {
+    //
+}
+
+- (void)didActivityValueChanged:(NSUInteger)activityValue {
     //
 }
 
@@ -449,19 +453,27 @@
         done = startDone;
         cancel = startCancel;
         min = [now dateAtStartOfDay];
+        [ActionSheetDatePicker showPickerWithTitle:@"请选择开始时间"
+                                    datePickerMode:UIDatePickerModeTime
+                                      selectedDate:now
+                                       minimumDate:min
+                                       maximumDate:[NSDate dateTomorrow]
+                                         doneBlock:done
+                                       cancelBlock:cancel
+                                            origin:self.view];
     } else if (tag == kSetEndButtonTag) {
         done = endDone;
         cancel = endCancel;
+        [ActionSheetDatePicker showPickerWithTitle:@"请选择结束时间"
+                                    datePickerMode:UIDatePickerModeTime
+                                      selectedDate:now
+                                       minimumDate:_createActivity.startTime
+                                       maximumDate:[NSDate dateTomorrow]
+                                         doneBlock:done
+                                       cancelBlock:cancel
+                                            origin:self.view];
     } else {
     }
-    [ActionSheetDatePicker showPickerWithTitle:@"请选择时间"
-                                datePickerMode:UIDatePickerModeTime
-                                  selectedDate:now
-                                   minimumDate:min
-                                   maximumDate:[NSDate dateTomorrow]
-                                     doneBlock:done
-                                   cancelBlock:cancel
-                                        origin:self.view];
 }
 
 - (void)saveActivity:(UIBarButtonItem *)sender {

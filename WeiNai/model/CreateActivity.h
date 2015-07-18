@@ -17,6 +17,10 @@
 - (void)didCurrentActivityTypeChanged:(EMActivityType)activityType;
 - (void)didMilkTypeChanged:(EMMilkType)milkType;
 - (void)didActivityValueChanged:(NSUInteger)activityValue;
+- (void)didSleepQualityChanged:(EMSleepQuality)sleepQuality;
+- (void)didPissColorChanged:(EMPissColor)pissColor;
+- (void)didPowderMilkBrandChanged:(NSString *)powderMilkBrand;
+- (void)didBreastMilkPersonChanged:(NSString *)breastMilkPerson;
 
 @end
 
@@ -30,6 +34,10 @@
 @property (nonatomic, strong) NSDate *endTime;
 @property (nonatomic) EMMilkType milkType;
 @property (nonatomic) NSUInteger activityValue;
+@property (nonatomic) EMSleepQuality sleepQuality;
+@property (nonatomic) EMPissColor pissColor;
+@property (nonatomic, strong) NSString *powderMilkBrand;
+@property (nonatomic, strong) NSString *breastMilkPerson;
 
 #pragma mark - activity type helpers
 - (NSUInteger)numberOfActivityTypes;

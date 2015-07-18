@@ -8,12 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "EMActivityBase.h"
-
-typedef enum _EMSleepQuality {
-    SleepQuality_Medium = 0,
-    SleepQuality_Shallow,
-    SleepQuality_Deep
-}EMSleepQuality;
+#import "UIMacros.h"
 
 @interface EMSleep : EMActivityBase
 

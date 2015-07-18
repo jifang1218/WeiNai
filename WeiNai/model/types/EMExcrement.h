@@ -8,11 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "EMActivityBase.h"
-
-typedef enum _EMExcrementQuality {
-    ExcrementQualityGood = 0,
-    ExcrementQualityBad
-} EMExcrementQuality;
+#import "UIMacros.h"
 
 @interface EMExcrement : EMActivityBase
 

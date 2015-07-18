@@ -25,4 +25,20 @@ typedef enum _EMMilkType {
     MilkType_PowderMilk
 }EMMilkType;
 
+typedef enum _EMSleepQuality {
+    SleepQuality_Medium = 0,
+    SleepQuality_Shallow,
+    SleepQuality_Deep
+}EMSleepQuality;
+
+typedef enum _EMPissColor {
+    PissColor_White = 0,
+    PissColor_Yellow
+}EMPissColor;
+
+typedef enum _EMExcrementQuality {
+    ExcrementQualityGood = 0,
+    ExcrementQualityBad
+} EMExcrementQuality;
+
 #endif

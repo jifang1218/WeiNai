@@ -11,6 +11,13 @@
 
 @implementation EMMilkPowder
 
-@synthesize brand;
+@synthesize brand = _brand;
+
+- (id)init {
+    if (self=[super init]) {
+    }
+    
+    return self;
+}
 
 @end

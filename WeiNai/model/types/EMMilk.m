@@ -10,6 +10,15 @@
 
 @implementation EMMilk
 
-@synthesize ml;
+@synthesize ml = _ml;
+
+- (id)init {
+    if (self=[super init]) {
+        _ml = 0;
+        self.type = ActivityType_Milk;
+    }
+    
+    return self;
+}
 
 @end

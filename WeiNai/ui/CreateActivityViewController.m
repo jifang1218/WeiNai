@@ -385,6 +385,22 @@
     [self updateMilkSwitch];
 }
 
+- (void)didSleepQualityChanged:(EMSleepQuality)sleepQuality {
+    //
+}
+
+- (void)didPissColorChanged:(EMPissColor)pissColor {
+    //
+}
+
+- (void)didPowderMilkBrandChanged:(NSString *)powderMilkBrand {
+    //
+}
+
+- (void)didBreastMilkPersonChanged:(NSString *)breastMilkPerson {
+    //
+}
+
 #pragma mark - actions
 - (void)milkTypeChanged:(id)sender {
     if ([sender isKindOfClass:[UISwitch class]]) {

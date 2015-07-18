@@ -11,7 +11,17 @@
 
 @implementation EMPiss
 
-@synthesize ml;
-@synthesize color;
+@synthesize ml = _ml;
+@synthesize color = _color;
+
+- (id)init {
+    if (self=[super init]) {
+        _ml = 0;
+        _color = PissColor_White;
+        self.type = ActivityType_Piss;
+    }
+    
+    return self;
+}
 
 @end

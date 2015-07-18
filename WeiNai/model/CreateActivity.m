@@ -34,10 +34,18 @@
 @synthesize startTime = _startTime;
 @synthesize milkType = _milkType;
 @synthesize activityValue = _activityValue;
+@synthesize sleepQuality = _sleepQuality;
+@synthesize pissColor = _pissColor;
+@synthesize powderMilkBrand = _powderMilkBrand;
+@synthesize breastMilkPerson = _breastMilkPerson;
 
 - (id)init {
     if (self=[super init]) {
         _currentActivityType = ActivityType_Milk;
+        _sleepQuality = SleepQuality_Medium;
+        _pissColor = PissColor_White;
+        _powderMilkBrand = @"Aptamil";
+        _breastMilkPerson = @"王坤";
     }
     
     return self;
@@ -110,6 +118,42 @@
     }
 }
 
+- (void)setSleepQuality:(EMSleepQuality)sleepQuality {
+    if (_sleepQuality != sleepQuality) {
+        _sleepQuality = sleepQuality;
+        if ([_delegate respondsToSelector:@selector(didSleepQualityChanged:)]) {
+            [_delegate didSleepQualityChanged:_sleepQuality];
+        }
+    }
+}
+
+- (void)setPissColor:(EMPissColor)pissColor {
+    if (_pissColor != pissColor) {
+        _pissColor = pissColor;
+        if ([_delegate respondsToSelector:@selector(didPissColorChanged:)]) {
+            [_delegate didPissColorChanged:_pissColor];
+        }
+    }
+}
+
+- (void)setPowderMilkBrand:(NSString *)powderMilkBrand {
+    if (![_powderMilkBrand isEqualToString:powderMilkBrand]) {
+        _powderMilkBrand = powderMilkBrand;
+        if ([_delegate respondsToSelector:@selector(didPowderMilkBrandChanged:)]) {
+            [_delegate didPowderMilkBrandChanged:_powderMilkBrand];
+        }
+    }
+}
+
+- (void)setBreastMilkPerson:(NSString *)breastMilkPerson {
+    if (![_breastMilkPerson isEqualToString:breastMilkPerson]) {
+        _breastMilkPerson = breastMilkPerson;
+        if ([_delegate respondsToSelector:@selector(didBreastMilkPersonChanged:)]) {
+            [_delegate didBreastMilkPersonChanged:_breastMilkPerson];
+        }
+    }
+}
+
 #pragma mark - activity helpers
 - (EMActivityBase *)generateActivity {
     EMActivityBase *ret = nil;
@@ -150,12 +194,12 @@
     switch (milkType) {
         case MilkType_BreastMilk: {
             EMBreastMilk *breastMilk = [[EMBreastMilk alloc] init];
-            breastMilk.person = @"王坤";
+            breastMilk.person = _breastMilkPerson;
             milk = breastMilk;
         } break;
         case MilkType_PowderMilk: {
             EMMilkPowder *powder = [[EMMilkPowder alloc] init];
-            powder.brand = @"Aptamil";
+            powder.brand = _powderMilkBrand;
             milk = powder;
         } break;
         default: {
@@ -204,7 +248,7 @@
     EMPiss *piss = [[EMPiss alloc] init];
     piss.time = dateComponents;
     piss.ml = _activityValue;
-    piss.color = PissColor_White;
+    piss.color = _pissColor;
     
     ret = piss;
     
@@ -227,7 +271,7 @@
     
     EMSleep *sleep = [[EMSleep alloc] init];
     sleep.time = startTime;
-    sleep.quality = SleepQuality_Deep;
+    sleep.quality = _sleepQuality;
     sleep.durationInMinutes = durationInMinutes;
     
     ret = sleep;

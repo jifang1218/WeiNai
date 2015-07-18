@@ -8,11 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "EMActivityBase.h"
-
-typedef enum _EMPissColor {
-    PissColor_White = 0,
-    PissColor_Yellow
-}EMPissColor;
+#import "UIMacros.h"
 
 @interface EMPiss : EMActivityBase
 

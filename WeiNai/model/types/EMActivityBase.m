@@ -12,5 +12,6 @@
 
 @synthesize time = _time;
 @synthesize memo = _memo;
+@synthesize type = _type;
 
 @end

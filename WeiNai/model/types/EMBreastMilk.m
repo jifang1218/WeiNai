@@ -10,6 +10,13 @@
 
 @implementation EMBreastMilk
 
-@synthesize person;
+@synthesize person = _person;
+
+- (id)init {
+    if (self=[super init]) {
+    }
+    
+    return self;
+}
 
 @end

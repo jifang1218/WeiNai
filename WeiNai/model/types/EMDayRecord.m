@@ -7,6 +7,14 @@
 //
 
 #import "EMDayRecord.h"
+#import "NSDate+Category.h"
+#import "UIMacros.h"
+#import "EMActivityBase.h"
+
+@class EMMilk;
+@class EMExcrement;
+@class EMPiss;
+@class EMSleep;
 
 @interface EMDayRecord() {
     NSMutableArray *_milks;
@@ -14,6 +22,11 @@
     NSMutableArray *_pisses;
     NSMutableArray *_sleeps;
 }
+
+- (BOOL)addMilk:(EMMilk *)milk;
+- (BOOL)addExcrement:(EMExcrement *)excrement;
+- (BOOL)addPiss:(EMPiss *)piss;
+- (BOOL)addSleep:(EMSleep *)sleep;
 
 @end
 
@@ -25,6 +38,26 @@
 @synthesize sleeps = _sleeps;
 
 @synthesize date = _date;
+
+- (id)init {
+    if (self=[super init]) {
+        _milks = [[NSMutableArray alloc] init];
+        _excrements = [[NSMutableArray alloc] init];
+        _pisses = [[NSMutableArray alloc] init];
+        _sleeps = [[NSMutableArray alloc] init];
+        
+        NSDate *now = [NSDate date];
+        _date = [[NSDateComponents alloc] init];
+        _date.year = now.year;
+        _date.month = now.month;
+        _date.day = now.day;
+        _date.hour = now.hour;
+        _date.minute = now.minute;
+        _date.second = now.seconds;
+    }
+    
+    return self;
+}
 
 - (BOOL)addMilk:(EMMilk *)milk {
     BOOL ret = NO;
@@ -69,6 +102,34 @@
         if (![_sleeps containsObject:sleep]) {
             [_sleeps addObject:sleep];
         }
+    }
+    
+    return ret;
+}
+
+- (BOOL)addActivity:(EMActivityBase *)activity {
+    BOOL ret = NO;
+    
+    EMActivityType type = activity.type;
+    switch (type) {
+        case ActivityType_Excrement: {
+            EMExcrement *excrement = (EMExcrement *)activity;
+            ret = [self addExcrement:excrement];
+        } break;
+        case ActivityType_Milk: {
+            EMMilk *milk = (EMMilk *)activity;
+            ret = [self addMilk:milk];
+        } break;
+        case ActivityType_Piss: {
+            EMPiss *piss = (EMPiss *)activity;
+            ret = [self addPiss:piss];
+        } break;
+        case ActivityType_Sleep: {
+            EMSleep *sleep = (EMSleep *)activity;
+            ret = [self addSleep:sleep];
+        } break;
+        default: {
+        } break;
     }
     
     return ret;

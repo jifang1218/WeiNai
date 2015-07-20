@@ -13,7 +13,7 @@
 #import "EMExcrement.h"
 #import "EMPiss.h"
 #import "EMSleep.h"
-#import "ActivityUtils.h"
+#import "EMActivityManager.h"
 
 @interface ActivitySummary() {
     EMDayRecord *_record;
@@ -129,7 +129,8 @@
 - (NSString *)activityType2String:(EMActivityType)activityType {
     NSString *ret = nil;
     
-    ret = [ActivityUtils ActivityType2String:activityType];
+    EMActivityManager *activityMgr = [EMActivityManager sharedInstance];
+    ret = [activityMgr ActivityType2String:activityType];
     
     return ret;
 }
@@ -137,7 +138,8 @@
 - (NSString *)activityTypeUnit2String:(EMActivityType)activityType {
     NSString *ret = nil;
     
-    ret = [ActivityUtils ActivityTypeUnit2String:activityType];
+    EMActivityManager *activityMgr = [EMActivityManager sharedInstance];
+    ret = [activityMgr ActivityTypeUnit2String:activityType];
     
     return ret;
 }

@@ -17,6 +17,10 @@ static EMDBManager *_sharedInstance = nil;
     id<IDBManagerImpl> _dbmanImpl;
 }
 
+- (void)load;
+- (void)unLoad;
+- (void)save;
+
 @end
 
 @implementation EMDBManager

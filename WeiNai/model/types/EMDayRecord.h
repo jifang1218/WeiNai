@@ -8,24 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@class EMMilk;
-@class EMExcrement;
-@class EMPiss;
-@class EMSleep;
+@class EMActivityBase;
 
 @interface EMDayRecord : NSObject
 
-@property (nonatomic, strong) NSArray *milks;
-@property (nonatomic, strong) NSArray *excrements;
-@property (nonatomic, strong) NSArray *pisses;
-@property (nonatomic, strong) NSArray *sleeps;
+@property (nonatomic, strong, readonly) NSArray *milks;
+@property (nonatomic, strong, readonly) NSArray *excrements;
+@property (nonatomic, strong, readonly) NSArray *pisses;
+@property (nonatomic, strong, readonly) NSArray *sleeps;
 
 // valid fields: year, month, day;
-@property (nonatomic, strong) NSDateComponents *date;
+@property (nonatomic, strong, readonly) NSDateComponents *date;
 
-- (BOOL)addMilk:(EMMilk *)milk;
-- (BOOL)addExcrement:(EMExcrement *)excrement;
-- (BOOL)addPiss:(EMPiss *)piss;
-- (BOOL)addSleep:(EMSleep *)sleep;
+- (BOOL)addActivity:(EMActivityBase *)activity;
 
 @end

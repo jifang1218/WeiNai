@@ -14,10 +14,6 @@
 
 + (EMDBManager *)sharedInstance;
 
-- (void)load;
-- (void)unLoad;
-- (void)save;
-
 // query
 - (NSArray *)allDayRecords;
 - (EMDayRecord *)dayRecordAt:(NSDateComponents *)day;

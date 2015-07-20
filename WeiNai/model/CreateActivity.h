@@ -45,6 +45,6 @@
 - (NSString *)activityTypeUnit2String:(EMActivityType)activityType;
 
 #pragma mark - activity helpers
-- (EMActivityBase *)generateActivity;
+- (BOOL)saveTodayActivity;
 
 @end

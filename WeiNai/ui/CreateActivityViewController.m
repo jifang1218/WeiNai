@@ -10,7 +10,7 @@
 #import "ActionSheetDatePicker.h"
 #import "CreateActivity.h"
 #import "Utility.h"
-#import "ActivityUtils.h"
+#import "EMActivityManager.h"
 #import "NSDate+Category.h"
 #import "DoneCancelNumberPadToolbar.h"
 #import "EMActivityBase.h"
@@ -228,7 +228,8 @@
         
         // unit label
         UILabel *unit = [[UILabel alloc] init];
-        unit.text = [ActivityUtils ActivityTypeUnit2String:_createActivity.currentActivityType];
+        EMActivityManager *activityMgr = [EMActivityManager sharedInstance];
+        unit.text = [activityMgr ActivityTypeUnit2String:_createActivity.currentActivityType];
         [unit sizeToFit];
         frame = unit.frame;
         frame.origin.x = valueField.frame.origin.x + valueField.frame.size.width + 20;
@@ -493,7 +494,7 @@
 }
 
 - (void)saveActivity:(UIBarButtonItem *)sender {
-    EMActivityBase *activity = [_createActivity generateActivity];
+    [_createActivity saveTodayActivity];
 }
 
 @end

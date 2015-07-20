@@ -7,7 +7,8 @@
 //
 
 #import "CreateActivity.h"
-#import "ActivityUtils.h"
+#import "EMActivityManager.h"
+#import "EMDayRecord.h"
 #import "NSDate+Category.h"
 #import "EMMilkPowder.h"
 #import "EMBreastMilk.h"
@@ -41,6 +42,7 @@
 
 - (id)init {
     if (self=[super init]) {
+        // set default value.  
         _currentActivityType = ActivityType_Milk;
         _sleepQuality = SleepQuality_Medium;
         _pissColor = PissColor_White;
@@ -53,13 +55,15 @@
 
 #pragma mark - activity type helpers
 - (NSUInteger)numberOfActivityTypes {
-    return [ActivityUtils numberOfActivityTypes];
+    EMActivityManager *activityMgr = [EMActivityManager sharedInstance];
+    return [activityMgr numberOfActivityTypes];
 }
 
 - (NSString *)activityType2String:(EMActivityType)activityType {
     NSString *ret = nil;
     
-    ret = [ActivityUtils ActivityType2String:activityType];
+    EMActivityManager *activityMgr = [EMActivityManager sharedInstance];
+    ret = [activityMgr ActivityType2String:activityType];
     
     return ret;
 }
@@ -67,7 +71,8 @@
 - (NSString *)activityTypeUnit2String:(EMActivityType)activityType {
     NSString *ret = nil;
     
-    ret = [ActivityUtils ActivityTypeUnit2String:activityType];
+    EMActivityManager *activityMgr = [EMActivityManager sharedInstance];
+    ret = [activityMgr ActivityTypeUnit2String:activityType];
     
     return ret;
 }
@@ -275,6 +280,21 @@
     sleep.durationInMinutes = durationInMinutes;
     
     ret = sleep;
+    
+    return ret;
+}
+
+- (BOOL)saveTodayActivity {
+    BOOL ret = NO;
+    
+    EMActivityBase *activity = [self generateActivity];
+    EMActivityManager *activityMgr = [EMActivityManager sharedInstance];
+    EMDayRecord *today = [activityMgr todayRecord];
+    if (!today) {
+        today = [[EMDayRecord alloc] init];
+        [activityMgr addDayRecord:today];
+    }
+    ret = [today addActivity:activity];
     
     return ret;
 }

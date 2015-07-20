@@ -46,6 +46,7 @@ static EMActivityManager *_sharedInstance = nil;
     return self;
 }
 
+#pragma mark - record operations
 - (EMDayRecord *)todayRecord {
     EMDayRecord *ret = nil;
     
@@ -69,6 +70,82 @@ static EMActivityManager *_sharedInstance = nil;
     
     EMDBManager *dbman = [EMDBManager sharedInstance];
     ret = [dbman dayRecordsFrom:from to:to];
+    
+    return ret;
+}
+
+- (BOOL)addDayRecord:(EMDayRecord *)dayRecord {
+    BOOL ret = NO;
+    
+    EMDBManager *dbman = [EMDBManager sharedInstance];
+    ret = [dbman insertDayRecord:dayRecord];
+    
+    return ret;
+}
+
+- (BOOL)removeDayRecord:(NSDateComponents *)date {
+    BOOL ret = NO;
+    
+    EMDBManager *dbman = [EMDBManager sharedInstance];
+    ret = [dbman deleteDayRecordAtDay:date];
+    
+    return ret;
+}
+
+- (EMDayRecord *)createEmptyDayRecord {
+    EMDayRecord *ret = nil;
+    
+    ret = [[EMDayRecord alloc] init];
+    [self addDayRecord:ret];
+    
+    return ret;
+}
+
+#pragma mark - activity helpers
+- (NSUInteger)numberOfActivityTypes {
+    return ActivityType_NumberOfActivityTypes;
+}
+
+- (NSString *)ActivityType2String:(EMActivityType)activityType {
+    NSString *ret = nil;
+    switch (activityType) {
+        case ActivityType_Excrement: {
+            ret = @"便便";
+        } break;
+        case ActivityType_Milk: {
+            ret = @"喂奶";
+        } break;
+        case ActivityType_Piss: {
+            ret = @"尿尿";
+        } break;
+        case ActivityType_Sleep: {
+            ret = @"睡觉";
+        } break;
+        default: {
+        } break;
+    }
+    
+    return ret;
+}
+
+- (NSString *)ActivityTypeUnit2String:(EMActivityType)activityType {
+    NSString *ret = nil;
+    switch (activityType) {
+        case ActivityType_Excrement: {
+            ret = @"克";
+        } break;
+        case ActivityType_Milk: {
+            ret = @"毫升";
+        } break;
+        case ActivityType_Piss: {
+            ret = @"毫升";
+        } break;
+        case ActivityType_Sleep: {
+            ret = @"分钟";
+        } break;
+        default: {
+        } break;
+    }
     
     return ret;
 }

@@ -65,6 +65,7 @@
     if (milk) {
         if (![_milks containsObject:milk]) {
             [_milks addObject:milk];
+            ret = YES;
         }
     }
     
@@ -77,6 +78,7 @@
     if (excrement) {
         if (![_excrements containsObject:excrement]) {
             [_excrements addObject:excrement];
+            ret = YES;
         }
     }
     
@@ -89,6 +91,7 @@
     if (piss) {
         if (![_pisses containsObject:piss]) {
             [_pisses addObject:piss];
+            ret = YES;
         }
     }
     
@@ -101,6 +104,7 @@
     if (sleep) {
         if (![_sleeps containsObject:sleep]) {
             [_sleeps addObject:sleep];
+            ret = YES;
         }
     }
     

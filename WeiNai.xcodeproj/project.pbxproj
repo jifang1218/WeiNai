@@ -22,6 +22,7 @@
 		C06C802B1B5F9835001F9A58 /* NSDateComponents+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C802A1B5F9835001F9A58 /* NSDateComponents+Dict.m */; };
 		C06C802E1B5FC21E001F9A58 /* EMActivityBase+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C802D1B5FC21E001F9A58 /* EMActivityBase+Dict.m */; };
 		C06C80311B5FC283001F9A58 /* EMMilk+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C80301B5FC283001F9A58 /* EMMilk+Dict.m */; };
+		C07852AD1B5FE0FE003F0A8C /* EMDayRecord+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C07852AC1B5FE0FE003F0A8C /* EMDayRecord+Dict.m */; };
 		C09B94121B5624290049B04E /* ActivitySummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09B94111B5624290049B04E /* ActivitySummaryViewController.m */; };
 		C09B94151B562A5C0049B04E /* ActivitySummary.m in Sources */ = {isa = PBXBuildFile; fileRef = C09B94141B562A5C0049B04E /* ActivitySummary.m */; };
 		C09B942A1B57779F0049B04E /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C09B94191B57779F0049B04E /* AbstractActionSheetPicker.m */; };
@@ -83,6 +84,8 @@
 		C06C802D1B5FC21E001F9A58 /* EMActivityBase+Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMActivityBase+Dict.m"; sourceTree = "<group>"; };
 		C06C802F1B5FC283001F9A58 /* EMMilk+Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMMilk+Dict.h"; sourceTree = "<group>"; };
 		C06C80301B5FC283001F9A58 /* EMMilk+Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMMilk+Dict.m"; sourceTree = "<group>"; };
+		C07852AB1B5FE0FE003F0A8C /* EMDayRecord+Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMDayRecord+Dict.h"; sourceTree = "<group>"; };
+		C07852AC1B5FE0FE003F0A8C /* EMDayRecord+Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMDayRecord+Dict.m"; sourceTree = "<group>"; };
 		C09B94101B5624290049B04E /* ActivitySummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitySummaryViewController.h; sourceTree = "<group>"; };
 		C09B94111B5624290049B04E /* ActivitySummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitySummaryViewController.m; sourceTree = "<group>"; };
 		C09B94131B562A5C0049B04E /* ActivitySummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitySummary.h; sourceTree = "<group>"; };
@@ -328,6 +331,8 @@
 				C06C802D1B5FC21E001F9A58 /* EMActivityBase+Dict.m */,
 				C06C802F1B5FC283001F9A58 /* EMMilk+Dict.h */,
 				C06C80301B5FC283001F9A58 /* EMMilk+Dict.m */,
+				C07852AB1B5FE0FE003F0A8C /* EMDayRecord+Dict.h */,
+				C07852AC1B5FE0FE003F0A8C /* EMDayRecord+Dict.m */,
 			);
 			path = impl;
 			sourceTree = "<group>";
@@ -434,6 +439,7 @@
 				C06C802B1B5F9835001F9A58 /* NSDateComponents+Dict.m in Sources */,
 				C0E120811B5588D2001F90E8 /* StatisticsViewController.m in Sources */,
 				C06C80311B5FC283001F9A58 /* EMMilk+Dict.m in Sources */,
+				C07852AD1B5FE0FE003F0A8C /* EMDayRecord+Dict.m in Sources */,
 				C09B942D1B57779F0049B04E /* ActionSheetDistancePicker.m in Sources */,
 				C09B94411B57BBAC0049B04E /* Utility.m in Sources */,
 				C09B94381B5796CB0049B04E /* NSDateFormatter+Category.m in Sources */,

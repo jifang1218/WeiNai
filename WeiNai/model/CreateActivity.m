@@ -294,7 +294,8 @@
         today = [[EMDayRecord alloc] init];
         [activityMgr addDayRecord:today];
     }
-    ret = [today addActivity:activity];
+    [today addActivity:activity];
+    ret = [activityMgr save];
     
     return ret;
 }

@@ -494,7 +494,9 @@
 }
 
 - (void)saveActivity:(UIBarButtonItem *)sender {
-    [_createActivity saveTodayActivity];
+    if ([_createActivity saveTodayActivity]) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end

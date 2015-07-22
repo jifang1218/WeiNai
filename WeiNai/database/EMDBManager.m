@@ -19,7 +19,6 @@ static EMDBManager *_sharedInstance = nil;
 
 - (void)load;
 - (void)unLoad;
-- (void)save;
 
 @end
 
@@ -51,8 +50,12 @@ static EMDBManager *_sharedInstance = nil;
     [_dbmanImpl unLoad];
 }
 
-- (void)save {
-    [_dbmanImpl save];
+- (BOOL)save {
+    BOOL ret = NO;
+    
+    ret = [_dbmanImpl save];
+    
+    return ret;
 }
 
 #pragma mark - query

@@ -15,6 +15,6 @@ static NSString *kExcrementQuality = @"quality";
 @interface EMExcrement (Dict)
 
 - (NSDictionary *)toDict;
-- (EMExcrement *)fromDict:(NSDictionary *)dict;
+- (id)initWithDict:(NSDictionary *)dict;
 
 @end

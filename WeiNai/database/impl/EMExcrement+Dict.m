@@ -24,20 +24,17 @@
     return ret;
 }
 
-- (EMExcrement *)fromDict:(NSDictionary *)dict {
-    EMExcrement *ret = nil;
-    
-    if (dict) {
+- (id)initWithDict:(NSDictionary *)dict {
+    if (self=[super init]) {
         self.g = [[dict objectForKey:kG] unsignedIntegerValue];
         self.quality = (EMExcrementQuality)[[dict objectForKey:kExcrementQuality] unsignedIntegerValue];
         NSDictionary *timeDict = [dict objectForKey:kTime];
-        [self.time fromDict:timeDict];
+        self.time = [[NSDateComponents alloc] initWithDict:timeDict];
         self.memo = [dict objectForKey:kMemo];
         self.type = (EMActivityType)[[dict objectForKey:kType] unsignedIntegerValue];
-        ret = self;
     }
     
-    return ret;
+    return self;
 }
 
 @end

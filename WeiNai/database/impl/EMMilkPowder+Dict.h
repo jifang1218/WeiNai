@@ -14,6 +14,6 @@ static NSString *kBrand = @"brand";
 @interface EMMilkPowder (Dict)
 
 - (NSDictionary *)toDict;
-- (EMMilkPowder *)fromDict:(NSDictionary *)dict;
+- (id)initWithDict:(NSDictionary *)dict;
 
 @end

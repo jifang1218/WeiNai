@@ -16,7 +16,7 @@
 
 - (void)load;
 - (void)unLoad;
-- (void)save;
+- (BOOL)save;
 
 // query
 - (NSArray *)allDayRecords;

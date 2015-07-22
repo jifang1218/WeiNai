@@ -24,20 +24,17 @@
     return ret;
 }
 
-- (EMSleep *)fromDict:(NSDictionary *)dict {
-    EMSleep *ret = nil;
-    
-    if (dict) {
+- (id)initWithDict:(NSDictionary *)dict {
+    if (self=[super init]) {
         self.durationInMinutes = [[dict objectForKey:kDurationInMinute] unsignedIntegerValue];
         self.quality = (EMSleepQuality)[[dict objectForKey:kSleepQuality] unsignedIntegerValue];
         NSDictionary *timeDict = [dict objectForKey:kTime];
-        [self.time fromDict:timeDict];
+        self.time = [[NSDateComponents alloc] initWithDict:timeDict];
         self.memo = [dict objectForKey:kMemo];
         self.type = (EMActivityType)[[dict objectForKey:kType] unsignedIntegerValue];
-        ret = self;
     }
     
-    return ret;
+    return self;
 }
 
 @end

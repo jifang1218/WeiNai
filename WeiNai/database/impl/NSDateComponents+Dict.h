@@ -18,6 +18,6 @@ static NSString *kDateComponentSecond = @"second";
 @interface NSDateComponents (Dict)
 
 - (NSDictionary *)toDict;
-- (NSDateComponents *)fromDict:(NSDictionary *)dict;
+- (id)initWithDict:(NSDictionary *)dict;
 
 @end

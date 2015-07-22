@@ -15,6 +15,6 @@ static NSString *kPissColor = @"pisscolor";
 @interface EMPiss (Dict)
 
 - (NSDictionary *)toDict;
-- (EMPiss *)fromDict:(NSDictionary *)dict;
+- (id)initWithDict:(NSDictionary *)dict;
 
 @end

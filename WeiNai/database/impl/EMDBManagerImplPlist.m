@@ -7,7 +7,7 @@
 //
 
 #import "EMDBManagerImplPlist.h"
-#import "EMDayRecord.h"
+#import "EMDayRecord+Dict.h"
 #import "EMPiss+Dict.h"
 #import "EMBreastMilk+Dict.h"
 #import "EMMilkPowder+Dict.h"
@@ -16,12 +16,15 @@
 #import "NSDateComponents+Dict.h"
 
 #define FILENAME @"db.plist"
+#define DB_VER @"db_ver"
+#define SETTINGS @"settings"
+#define DAY_RECORDS @"day_records"
 
 @interface EMDBManagerImplPlist() {
-    NSMutableDictionary *_dbroot;
-    NSMutableArray *_dayRecords; // NSDictionary Array. 
+    NSMutableArray *_dayRecords; // EMDayRecord array
     NSMutableDictionary *_settings;
     NSString *_filename;
+    float _dbVer;
 }
 
 @end
@@ -58,24 +61,39 @@
     }
     
     // open db.
-    NSMutableDictionary *dbroot = [[NSMutableDictionary alloc] initWithContentsOfFile:_filename];
-//    float dbVer = [[dbroot objectForKey:@"db_ver"] floatValue];
-    NSArray *dayRecords = [dbroot objectForKey:@"day_records"];
-    _dayRecords = [[NSMutableArray alloc] initWithArray:dayRecords];
+    NSDictionary *dbroot = [[NSDictionary alloc] initWithContentsOfFile:_filename];
+    _dbVer = [[dbroot objectForKey:@"db_ver"] floatValue];
     _settings = [dbroot objectForKey:@"settings"];
+    
+    // handle objects
+    NSArray *dayRecordDicts = [dbroot objectForKey:@"day_records"];
+    NSMutableArray *dayRecords = [[NSMutableArray alloc] initWithCapacity:dayRecordDicts.count];
+    for (NSDictionary *dayRecordDict in dayRecordDicts) {
+        EMDayRecord *dayRecord = [[EMDayRecord alloc] initWithDict:dayRecordDict];
+        [dayRecords addObject:dayRecord];
+    }
+    _dayRecords = dayRecords;
 }
 
 - (void)unLoad {
-    [_dayRecords removeAllObjects];
-    [_dbroot removeAllObjects];
-    _dayRecords = nil;
-    _settings = nil;
-    _dbroot = nil;
 }
 
-- (void)save {
-    [_dbroot writeToFile:_filename
-              atomically:YES];
+- (BOOL)save {
+    BOOL ret = NO;
+    
+    NSMutableArray *dayRecordDicts = [[NSMutableArray alloc] initWithCapacity:_dayRecords.count];
+    for (EMDayRecord *dayRecord in _dayRecords) {
+        NSDictionary *dayRecordDict = [dayRecord toDict];
+        [dayRecordDicts addObject:dayRecordDict];
+    }
+    NSDictionary *dict = @{DAY_RECORDS:dayRecordDicts,
+                           SETTINGS:_settings,
+                           DB_VER:[NSNumber numberWithFloat:_dbVer]};
+    
+    ret = [dict writeToFile:_filename
+                    atomically:YES];
+    
+    return ret;
 }
 
 #pragma mark - query

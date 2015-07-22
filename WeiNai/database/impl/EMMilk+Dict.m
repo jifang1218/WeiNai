@@ -10,4 +10,12 @@
 
 @implementation EMMilk (Dict)
 
+- (NSDictionary *)toDict {
+    NSDictionary *ret = nil;
+    
+    NSLog(@"shouldn't reach here.");
+    
+    return ret;
+}
+
 @end

@@ -14,6 +14,6 @@ static NSString *kPerson = @"person";
 @interface EMBreastMilk (Dict)
 
 - (NSDictionary *)toDict;
-- (EMBreastMilk *)fromDict:(NSDictionary *)dict;
+- (id)initWithDict:(NSDictionary *)dict;
 
 @end

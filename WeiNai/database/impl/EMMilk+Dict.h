@@ -13,4 +13,6 @@ static NSString *kMilkML = @"ml";
 
 @interface EMMilk (Dict)
 
+- (NSDictionary *)toDict;
+
 @end

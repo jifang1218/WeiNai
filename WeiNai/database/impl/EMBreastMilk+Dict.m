@@ -24,20 +24,17 @@
     return ret;
 }
 
-- (EMBreastMilk *)fromDict:(NSDictionary *)dict {
-    EMBreastMilk *ret = nil;
-    
-    if (dict) {
+- (id)initWithDict:(NSDictionary *)dict {
+    if (self=[super init]) {
         self.ml = [[dict objectForKey:kMilkML] unsignedIntegerValue];
         self.person = [dict objectForKey:kPerson];
         NSDictionary *timeDict = [dict objectForKey:kTime];
-        [self.time fromDict:timeDict];
+        self.time = [[NSDateComponents alloc] initWithDict:timeDict];
         self.memo = [dict objectForKey:kMemo];
         self.type = (EMActivityType)[[dict objectForKey:kType] unsignedIntegerValue];
-        ret = self;
     }
     
-    return ret;
+    return self;
 }
 
 @end

@@ -37,4 +37,6 @@
 - (BOOL)modifyDayRecord:(EMDayRecord *)dayRecord
                    with:(NSString *)params;
 
+- (BOOL)save;
+
 @end

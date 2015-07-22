@@ -15,6 +15,6 @@ static NSString *kSleepQuality = @"quality";
 @interface EMSleep (Dict)
 
 - (NSDictionary *)toDict;
-- (EMSleep *)fromDict:(NSDictionary *)dict;
+- (id)initWithDict:(NSDictionary *)dict;
 
 @end

@@ -29,4 +29,7 @@
 - (NSString *)ActivityType2String:(EMActivityType)activityType;
 - (NSString *)ActivityTypeUnit2String:(EMActivityType)activityType;
 
+#pragma mark - db
+- (BOOL)save;
+
 @end

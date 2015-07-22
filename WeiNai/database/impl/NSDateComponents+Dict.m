@@ -31,19 +31,17 @@
     return ret;
 }
 
-- (NSDateComponents *)fromDict:(NSDictionary *)dict {
-    NSDateComponents *ret = nil;
-    if (dict) {
+- (id)initWithDict:(NSDictionary *)dict {
+    if (self=[super init]) {
         self.year = [[dict objectForKey:kDateComponentYear] unsignedIntegerValue];
         self.month = [[dict objectForKey:kDateComponentMonth] unsignedIntegerValue];
         self.day = [[dict objectForKey:kDateComponentDay] unsignedIntegerValue];
         self.hour = [[dict objectForKey:kDateComponentHour] unsignedIntegerValue];
         self.minute = [[dict objectForKey:kDateComponentMinute] unsignedIntegerValue];
         self.second = [[dict objectForKey:kDateComponentSecond] unsignedIntegerValue];
-        ret = self;
     }
     
-    return ret;
+    return self;
 }
 
 @end

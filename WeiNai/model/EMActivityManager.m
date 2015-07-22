@@ -150,4 +150,13 @@ static EMActivityManager *_sharedInstance = nil;
     return ret;
 }
 
+- (BOOL)save {
+    BOOL ret = NO;
+    
+    EMDBManager *dbman = [EMDBManager sharedInstance];
+    ret = [dbman save];
+    
+    return ret;
+}
+
 @end

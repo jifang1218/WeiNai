@@ -8,12 +8,18 @@
 
 #import "EMDBManagerImplPlist.h"
 #import "EMDayRecord.h"
+#import "EMPiss+Dict.h"
+#import "EMBreastMilk+Dict.h"
+#import "EMMilkPowder+Dict.h"
+#import "EMExcrement+Dict.h"
+#import "EMSleep+Dict.h"
+#import "NSDateComponents+Dict.h"
 
 #define FILENAME @"db.plist"
 
 @interface EMDBManagerImplPlist() {
     NSMutableDictionary *_dbroot;
-    NSMutableArray *_dayRecords;
+    NSMutableArray *_dayRecords; // NSDictionary Array. 
     NSMutableDictionary *_settings;
     NSString *_filename;
 }
@@ -45,8 +51,9 @@
         NSDictionary *d = @{@"db_ver":[NSNumber numberWithFloat:0.1],
                             @"settings":[NSDictionary dictionary],
                             @"day_records":@[]};
-        [d writeToFile:_filename
-            atomically:YES];
+        BOOL result = NO;
+        result = [d writeToFile:_filename
+                     atomically:YES];
         
     }
     

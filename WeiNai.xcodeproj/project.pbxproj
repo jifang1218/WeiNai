@@ -14,6 +14,14 @@
 		C06526DA1B53FD6900DF4E34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C06526D81B53FD6900DF4E34 /* Main.storyboard */; };
 		C06526DC1B53FD6900DF4E34 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06526DB1B53FD6900DF4E34 /* Images.xcassets */; };
 		C06526DF1B53FD6900DF4E34 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C06526DD1B53FD6900DF4E34 /* LaunchScreen.xib */; };
+		C06C801C1B5F954E001F9A58 /* EMPiss+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C801B1B5F954E001F9A58 /* EMPiss+Dict.m */; };
+		C06C801F1B5F9569001F9A58 /* EMBreastMilk+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C801E1B5F9569001F9A58 /* EMBreastMilk+Dict.m */; };
+		C06C80221B5F957C001F9A58 /* EMMilkPowder+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C80211B5F957C001F9A58 /* EMMilkPowder+Dict.m */; };
+		C06C80251B5F958E001F9A58 /* EMExcrement+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C80241B5F958E001F9A58 /* EMExcrement+Dict.m */; };
+		C06C80281B5F95E8001F9A58 /* EMSleep+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C80271B5F95E8001F9A58 /* EMSleep+Dict.m */; };
+		C06C802B1B5F9835001F9A58 /* NSDateComponents+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C802A1B5F9835001F9A58 /* NSDateComponents+Dict.m */; };
+		C06C802E1B5FC21E001F9A58 /* EMActivityBase+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C802D1B5FC21E001F9A58 /* EMActivityBase+Dict.m */; };
+		C06C80311B5FC283001F9A58 /* EMMilk+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C80301B5FC283001F9A58 /* EMMilk+Dict.m */; };
 		C09B94121B5624290049B04E /* ActivitySummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09B94111B5624290049B04E /* ActivitySummaryViewController.m */; };
 		C09B94151B562A5C0049B04E /* ActivitySummary.m in Sources */ = {isa = PBXBuildFile; fileRef = C09B94141B562A5C0049B04E /* ActivitySummary.m */; };
 		C09B942A1B57779F0049B04E /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C09B94191B57779F0049B04E /* AbstractActionSheetPicker.m */; };
@@ -59,6 +67,22 @@
 		C06526D91B53FD6900DF4E34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C06526DB1B53FD6900DF4E34 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C06526DE1B53FD6900DF4E34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		C06C801A1B5F954E001F9A58 /* EMPiss+Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMPiss+Dict.h"; sourceTree = "<group>"; };
+		C06C801B1B5F954E001F9A58 /* EMPiss+Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMPiss+Dict.m"; sourceTree = "<group>"; };
+		C06C801D1B5F9569001F9A58 /* EMBreastMilk+Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMBreastMilk+Dict.h"; sourceTree = "<group>"; };
+		C06C801E1B5F9569001F9A58 /* EMBreastMilk+Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMBreastMilk+Dict.m"; sourceTree = "<group>"; };
+		C06C80201B5F957C001F9A58 /* EMMilkPowder+Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMMilkPowder+Dict.h"; sourceTree = "<group>"; };
+		C06C80211B5F957C001F9A58 /* EMMilkPowder+Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMMilkPowder+Dict.m"; sourceTree = "<group>"; };
+		C06C80231B5F958E001F9A58 /* EMExcrement+Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMExcrement+Dict.h"; sourceTree = "<group>"; };
+		C06C80241B5F958E001F9A58 /* EMExcrement+Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMExcrement+Dict.m"; sourceTree = "<group>"; };
+		C06C80261B5F95E8001F9A58 /* EMSleep+Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMSleep+Dict.h"; sourceTree = "<group>"; };
+		C06C80271B5F95E8001F9A58 /* EMSleep+Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMSleep+Dict.m"; sourceTree = "<group>"; };
+		C06C80291B5F9835001F9A58 /* NSDateComponents+Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateComponents+Dict.h"; sourceTree = "<group>"; };
+		C06C802A1B5F9835001F9A58 /* NSDateComponents+Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateComponents+Dict.m"; sourceTree = "<group>"; };
+		C06C802C1B5FC21E001F9A58 /* EMActivityBase+Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMActivityBase+Dict.h"; sourceTree = "<group>"; };
+		C06C802D1B5FC21E001F9A58 /* EMActivityBase+Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMActivityBase+Dict.m"; sourceTree = "<group>"; };
+		C06C802F1B5FC283001F9A58 /* EMMilk+Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMMilk+Dict.h"; sourceTree = "<group>"; };
+		C06C80301B5FC283001F9A58 /* EMMilk+Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMMilk+Dict.m"; sourceTree = "<group>"; };
 		C09B94101B5624290049B04E /* ActivitySummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitySummaryViewController.h; sourceTree = "<group>"; };
 		C09B94111B5624290049B04E /* ActivitySummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitySummaryViewController.m; sourceTree = "<group>"; };
 		C09B94131B562A5C0049B04E /* ActivitySummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitySummary.h; sourceTree = "<group>"; };
@@ -288,6 +312,22 @@
 			children = (
 				C0D36D5B1B54AC600014E19A /* EMDBManagerImplPlist.h */,
 				C0D36D5C1B54AC600014E19A /* EMDBManagerImplPlist.m */,
+				C06C801A1B5F954E001F9A58 /* EMPiss+Dict.h */,
+				C06C801B1B5F954E001F9A58 /* EMPiss+Dict.m */,
+				C06C801D1B5F9569001F9A58 /* EMBreastMilk+Dict.h */,
+				C06C801E1B5F9569001F9A58 /* EMBreastMilk+Dict.m */,
+				C06C80201B5F957C001F9A58 /* EMMilkPowder+Dict.h */,
+				C06C80211B5F957C001F9A58 /* EMMilkPowder+Dict.m */,
+				C06C80231B5F958E001F9A58 /* EMExcrement+Dict.h */,
+				C06C80241B5F958E001F9A58 /* EMExcrement+Dict.m */,
+				C06C80261B5F95E8001F9A58 /* EMSleep+Dict.h */,
+				C06C80271B5F95E8001F9A58 /* EMSleep+Dict.m */,
+				C06C80291B5F9835001F9A58 /* NSDateComponents+Dict.h */,
+				C06C802A1B5F9835001F9A58 /* NSDateComponents+Dict.m */,
+				C06C802C1B5FC21E001F9A58 /* EMActivityBase+Dict.h */,
+				C06C802D1B5FC21E001F9A58 /* EMActivityBase+Dict.m */,
+				C06C802F1B5FC283001F9A58 /* EMMilk+Dict.h */,
+				C06C80301B5FC283001F9A58 /* EMMilk+Dict.m */,
 			);
 			path = impl;
 			sourceTree = "<group>";
@@ -390,14 +430,19 @@
 				C09B942B1B57779F0049B04E /* ActionSheetCustomPicker.m in Sources */,
 				C0E1207E1B55889B001F90E8 /* ActivityDetailViewController.m in Sources */,
 				C09B94151B562A5C0049B04E /* ActivitySummary.m in Sources */,
+				C06C801F1B5F9569001F9A58 /* EMBreastMilk+Dict.m in Sources */,
+				C06C802B1B5F9835001F9A58 /* NSDateComponents+Dict.m in Sources */,
 				C0E120811B5588D2001F90E8 /* StatisticsViewController.m in Sources */,
+				C06C80311B5FC283001F9A58 /* EMMilk+Dict.m in Sources */,
 				C09B942D1B57779F0049B04E /* ActionSheetDistancePicker.m in Sources */,
 				C09B94411B57BBAC0049B04E /* Utility.m in Sources */,
 				C09B94381B5796CB0049B04E /* NSDateFormatter+Category.m in Sources */,
 				C09B94311B57779F0049B04E /* SWActionSheet.m in Sources */,
 				C0C00BC41B552A4500059160 /* EMBreastMilk.m in Sources */,
+				C06C802E1B5FC21E001F9A58 /* EMActivityBase+Dict.m in Sources */,
 				C0E1206E1B55856E001F90E8 /* EMMilk.m in Sources */,
 				C09B94121B5624290049B04E /* ActivitySummaryViewController.m in Sources */,
+				C06C801C1B5F954E001F9A58 /* EMPiss+Dict.m in Sources */,
 				C0D36D581B54AAB90014E19A /* EMDBManager.m in Sources */,
 				C09B943B1B579ED40049B04E /* CreateActivity.m in Sources */,
 				C09B942E1B57779F0049B04E /* ActionSheetLocalePicker.m in Sources */,
@@ -406,17 +451,20 @@
 				C06526D41B53FD6900DF4E34 /* AppDelegate.m in Sources */,
 				C0E120841B5588DE001F90E8 /* SettingsViewController.m in Sources */,
 				C03F13CB1B56A90E001653D5 /* CreateActivityViewController.m in Sources */,
+				C06C80251B5F958E001F9A58 /* EMExcrement+Dict.m in Sources */,
 				C06526D11B53FD6900DF4E34 /* main.m in Sources */,
 				C09B94301B57779F0049B04E /* DistancePickerView.m in Sources */,
 				C09B942F1B57779F0049B04E /* ActionSheetStringPicker.m in Sources */,
 				C09B942C1B57779F0049B04E /* ActionSheetDatePicker.m in Sources */,
 				C0B8B9F31B58104400DBE54E /* DoneCancelNumberPadToolbar.m in Sources */,
+				C06C80221B5F957C001F9A58 /* EMMilkPowder+Dict.m in Sources */,
 				C027F6621B5AA54B00BB40BA /* EMActivityManager.m in Sources */,
 				C09B942A1B57779F0049B04E /* AbstractActionSheetPicker.m in Sources */,
 				C0C00BCA1B55352500059160 /* EMPiss.m in Sources */,
 				C0C00BBE1B552A1500059160 /* EMDayRecord.m in Sources */,
 				C0D36D5D1B54AC600014E19A /* EMDBManagerImplPlist.m in Sources */,
 				C0C00BC11B552A3500059160 /* EMMilkPowder.m in Sources */,
+				C06C80281B5F95E8001F9A58 /* EMSleep+Dict.m in Sources */,
 				C09B94371B5796CB0049B04E /* NSDate+Category.m in Sources */,
 				C0E1207B1B55888D001F90E8 /* ActivityListViewController.m in Sources */,
 			);

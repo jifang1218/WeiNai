@@ -16,6 +16,7 @@
 #import "CreateActivityViewController.h"
 #import "UIMacros.h"
 #import "Utility.h"
+#import "ActivityDetailViewController.h"
 
 @interface ActivitySummaryViewController()<ActivitySummaryDelegate> {
     ActivitySummary *_summary;
@@ -100,6 +101,7 @@
 
 - (void)decorateDateCell:(UITableViewCell *)cell {
     cell.textLabel.text = [Utility CurrentDateString];;
+    [cell setUserInteractionEnabled:NO];
 }
 
 - (void)decorateCell:(UITableViewCell *)cell indexPath:(NSIndexPath *)indexPath {
@@ -158,6 +160,61 @@
     NSInteger ret = 4 + 1;
     
     return ret;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger row = indexPath.row;
+    
+    switch (row) {
+        case 0: {
+            [tableView deselectRowAtIndexPath:indexPath
+                                     animated:NO];
+        } break;
+        case 1: {
+            [tableView deselectRowAtIndexPath:indexPath
+                                     animated:YES];
+            NSArray *milks = _summary.todayRecord.milks;
+            ActivityDetailViewController *detailViewController = [[ActivityDetailViewController alloc] init];
+            detailViewController.activities = milks;
+            detailViewController.activityType = ActivityType_Milk;
+            [self.navigationController pushViewController:detailViewController
+                                                 animated:YES];
+        } break;
+        case 2: {
+            [tableView deselectRowAtIndexPath:indexPath
+                                     animated:YES];
+            NSArray *sleeps = _summary.todayRecord.sleeps;
+            ActivityDetailViewController *detailViewController = [[ActivityDetailViewController alloc] init];
+            detailViewController.activities = sleeps;
+            detailViewController.activityType = ActivityType_Sleep;
+            [self.navigationController pushViewController:detailViewController
+                                                 animated:YES];
+        } break;
+        case 3: {
+            [tableView deselectRowAtIndexPath:indexPath
+                                     animated:YES];
+            NSArray *pisses = _summary.todayRecord.pisses;
+            ActivityDetailViewController *detailViewController = [[ActivityDetailViewController alloc] init];
+            detailViewController.activities = pisses;
+            detailViewController.activityType = ActivityType_Piss;
+            [self.navigationController pushViewController:detailViewController
+                                                 animated:YES];
+        } break;
+        case 4: {
+            [tableView deselectRowAtIndexPath:indexPath
+                                     animated:YES];
+            NSArray *excrements = _summary.todayRecord.excrements;
+            ActivityDetailViewController *detailViewController = [[ActivityDetailViewController alloc] init];
+            detailViewController.activities = excrements;
+            detailViewController.activityType = ActivityType_Excrement;
+            [self.navigationController pushViewController:detailViewController
+                                                 animated:YES];
+        } break;
+        default: {
+            [tableView deselectRowAtIndexPath:indexPath
+                                     animated:NO];
+        } break;
+    }
 }
 
 #pragma mark - model delegate

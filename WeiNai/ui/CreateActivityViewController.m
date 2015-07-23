@@ -423,6 +423,8 @@
         } break;
     }
     
+    [_tableView reloadData];
+    
     [self updateSleepValue];
     [self updateMilkSwitch];
 }

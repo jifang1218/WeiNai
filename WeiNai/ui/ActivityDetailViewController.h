@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIMacros.h"
 
 @interface ActivityDetailViewController : UIViewController
+
+@property (nonatomic, weak) NSArray *activities;
+@property (nonatomic) EMActivityType activityType;
 
 @end

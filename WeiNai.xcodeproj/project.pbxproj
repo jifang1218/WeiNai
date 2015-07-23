@@ -15,6 +15,7 @@
 		C06124C51B60B65400493CEC /* UUChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C06124BD1B60B65400493CEC /* UUChartLabel.m */; };
 		C06124C61B60B65400493CEC /* UUColor.m in Sources */ = {isa = PBXBuildFile; fileRef = C06124BF1B60B65400493CEC /* UUColor.m */; };
 		C06124C71B60B65400493CEC /* UULineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C06124C11B60B65400493CEC /* UULineChart.m */; };
+		C06124DD1B6104AF00493CEC /* ActivityDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C06124DC1B6104AF00493CEC /* ActivityDetail.m */; };
 		C06526D11B53FD6900DF4E34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C06526D01B53FD6900DF4E34 /* main.m */; };
 		C06526D41B53FD6900DF4E34 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C06526D31B53FD6900DF4E34 /* AppDelegate.m */; };
 		C06526DA1B53FD6900DF4E34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C06526D81B53FD6900DF4E34 /* Main.storyboard */; };
@@ -79,6 +80,8 @@
 		C06124BF1B60B65400493CEC /* UUColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUColor.m; sourceTree = "<group>"; };
 		C06124C01B60B65400493CEC /* UULineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UULineChart.h; sourceTree = "<group>"; };
 		C06124C11B60B65400493CEC /* UULineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UULineChart.m; sourceTree = "<group>"; };
+		C06124DB1B6104AF00493CEC /* ActivityDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetail.h; sourceTree = "<group>"; };
+		C06124DC1B6104AF00493CEC /* ActivityDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetail.m; sourceTree = "<group>"; };
 		C06526CB1B53FD6900DF4E34 /* WeiNai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiNai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C06526CF1B53FD6900DF4E34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C06526D01B53FD6900DF4E34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -257,6 +260,8 @@
 				C09B94401B57BBAC0049B04E /* Utility.m */,
 				C027F6601B5AA54B00BB40BA /* EMActivityManager.h */,
 				C027F6611B5AA54B00BB40BA /* EMActivityManager.m */,
+				C06124DB1B6104AF00493CEC /* ActivityDetail.h */,
+				C06124DC1B6104AF00493CEC /* ActivityDetail.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -482,6 +487,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0E120721B55870F001F90E8 /* MainViewController.m in Sources */,
+				C06124DD1B6104AF00493CEC /* ActivityDetail.m in Sources */,
 				C0C00BC71B552A7800059160 /* EMExcrement.m in Sources */,
 				C09B942B1B57779F0049B04E /* ActionSheetCustomPicker.m in Sources */,
 				C0E1207E1B55889B001F90E8 /* ActivityDetailViewController.m in Sources */,

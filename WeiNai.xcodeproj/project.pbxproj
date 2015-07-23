@@ -23,6 +23,7 @@
 		C06C802E1B5FC21E001F9A58 /* EMActivityBase+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C802D1B5FC21E001F9A58 /* EMActivityBase+Dict.m */; };
 		C06C80311B5FC283001F9A58 /* EMMilk+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C80301B5FC283001F9A58 /* EMMilk+Dict.m */; };
 		C07852AD1B5FE0FE003F0A8C /* EMDayRecord+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C07852AC1B5FE0FE003F0A8C /* EMDayRecord+Dict.m */; };
+		C07852B11B606626003F0A8C /* EMGCDMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C07852B01B606626003F0A8C /* EMGCDMulticastDelegate.m */; };
 		C09B94121B5624290049B04E /* ActivitySummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09B94111B5624290049B04E /* ActivitySummaryViewController.m */; };
 		C09B94151B562A5C0049B04E /* ActivitySummary.m in Sources */ = {isa = PBXBuildFile; fileRef = C09B94141B562A5C0049B04E /* ActivitySummary.m */; };
 		C09B942A1B57779F0049B04E /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C09B94191B57779F0049B04E /* AbstractActionSheetPicker.m */; };
@@ -86,6 +87,8 @@
 		C06C80301B5FC283001F9A58 /* EMMilk+Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMMilk+Dict.m"; sourceTree = "<group>"; };
 		C07852AB1B5FE0FE003F0A8C /* EMDayRecord+Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMDayRecord+Dict.h"; sourceTree = "<group>"; };
 		C07852AC1B5FE0FE003F0A8C /* EMDayRecord+Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMDayRecord+Dict.m"; sourceTree = "<group>"; };
+		C07852AF1B606626003F0A8C /* EMGCDMulticastDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMGCDMulticastDelegate.h; sourceTree = "<group>"; };
+		C07852B01B606626003F0A8C /* EMGCDMulticastDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMGCDMulticastDelegate.m; sourceTree = "<group>"; };
 		C09B94101B5624290049B04E /* ActivitySummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitySummaryViewController.h; sourceTree = "<group>"; };
 		C09B94111B5624290049B04E /* ActivitySummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitySummaryViewController.m; sourceTree = "<group>"; };
 		C09B94131B562A5C0049B04E /* ActivitySummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitySummary.h; sourceTree = "<group>"; };
@@ -208,6 +211,7 @@
 		C06526F61B53FD9000DF4E34 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				C07852AE1B606626003F0A8C /* GCDMulticastDelegate */,
 				C09B94131B562A5C0049B04E /* ActivitySummary.h */,
 				C09B94141B562A5C0049B04E /* ActivitySummary.m */,
 				C09B94391B579ED40049B04E /* CreateActivity.h */,
@@ -218,6 +222,15 @@
 				C027F6611B5AA54B00BB40BA /* EMActivityManager.m */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		C07852AE1B606626003F0A8C /* GCDMulticastDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				C07852AF1B606626003F0A8C /* EMGCDMulticastDelegate.h */,
+				C07852B01B606626003F0A8C /* EMGCDMulticastDelegate.m */,
+			);
+			path = GCDMulticastDelegate;
 			sourceTree = "<group>";
 		};
 		C09B94161B57779F0049B04E /* third_parties */ = {
@@ -446,6 +459,7 @@
 				C09B94311B57779F0049B04E /* SWActionSheet.m in Sources */,
 				C0C00BC41B552A4500059160 /* EMBreastMilk.m in Sources */,
 				C06C802E1B5FC21E001F9A58 /* EMActivityBase+Dict.m in Sources */,
+				C07852B11B606626003F0A8C /* EMGCDMulticastDelegate.m in Sources */,
 				C0E1206E1B55856E001F90E8 /* EMMilk.m in Sources */,
 				C09B94121B5624290049B04E /* ActivitySummaryViewController.m in Sources */,
 				C06C801C1B5F954E001F9A58 /* EMPiss+Dict.m in Sources */,

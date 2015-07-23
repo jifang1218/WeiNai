@@ -10,11 +10,13 @@
 #import "EMDayRecord.h"
 #import "EMDBManager.h"
 #import "NSDate+Category.h"
+#import "EMGCDMulticastDelegate.h"
 
 static EMActivityManager *_sharedInstance = nil;
 
 @interface EMActivityManager() {
     EMDayRecord *_today;
+    EMGCDMulticastDelegate<EMActivityManagerDelegate> *_delegates;
 }
 
 @end
@@ -33,6 +35,7 @@ static EMActivityManager *_sharedInstance = nil;
 
 - (id)init {
     if (self=[super init]) {
+        _delegates = (EMGCDMulticastDelegate<EMActivityManagerDelegate> *)[[EMGCDMulticastDelegate alloc] init];
         EMDBManager *dbman = [EMDBManager sharedInstance];
         NSDateComponents *today = [[NSDateComponents alloc] init];
         NSDate *now = [NSDate date];
@@ -44,6 +47,15 @@ static EMActivityManager *_sharedInstance = nil;
     }
     
     return self;
+}
+
+- (void)addDelegate:(id<EMActivityManagerDelegate>)delegate {
+    [_delegates addDelegate:delegate
+              delegateQueue:dispatch_get_main_queue()];
+}
+
+- (void)removeDelegate:(id<EMActivityManagerDelegate>)delegate {
+    [_delegates removeDelegate:delegate];
 }
 
 #pragma mark - record operations
@@ -79,6 +91,10 @@ static EMActivityManager *_sharedInstance = nil;
     
     EMDBManager *dbman = [EMDBManager sharedInstance];
     ret = [dbman insertDayRecord:dayRecord];
+    if (ret) {
+        dayRecord.delegate = self;
+        [_delegates didDayRecordChanged:dayRecord];
+    }
     
     return ret;
 }
@@ -87,16 +103,13 @@ static EMActivityManager *_sharedInstance = nil;
     BOOL ret = NO;
     
     EMDBManager *dbman = [EMDBManager sharedInstance];
+    EMDayRecord *dayRecord = [dbman dayRecordAt:date];
     ret = [dbman deleteDayRecordAtDay:date];
+    if (ret) {
+        [_delegates didDayRecordChanged:dayRecord];
+        dayRecord.delegate = nil;
+    }
     
-    return ret;
-}
-
-- (EMDayRecord *)createEmptyDayRecord {
-    EMDayRecord *ret = nil;
-    
-    ret = [[EMDayRecord alloc] init];
-    [self addDayRecord:ret];
     
     return ret;
 }
@@ -157,6 +170,11 @@ static EMActivityManager *_sharedInstance = nil;
     ret = [dbman save];
     
     return ret;
+}
+
+#pragma mark - EMDayRecordDelegate
+- (void)didActivityChanged:(EMActivityBase *)activity inDayRecord:(EMDayRecord *)dayRecord {
+    [_delegates didDayRecordChanged:dayRecord];
 }
 
 @end

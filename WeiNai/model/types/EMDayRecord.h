@@ -9,6 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @class EMActivityBase;
+@class EMDayRecord;
+
+@protocol EMDayRecordDelegate <NSObject>
+
+@optional
+- (void)didActivityChanged:(EMActivityBase *)activity inDayRecord:(EMDayRecord *)dayRecord;
+
+@end
 
 @interface EMDayRecord : NSObject
 
@@ -19,6 +27,7 @@
 
 // valid fields: year, month, day;
 @property (nonatomic, strong) NSDateComponents *date;
+@property (nonatomic, weak) id<EMDayRecordDelegate> delegate;
 
 - (BOOL)addActivity:(EMActivityBase *)activity;
 

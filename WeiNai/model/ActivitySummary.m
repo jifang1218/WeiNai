@@ -15,7 +15,7 @@
 #import "EMSleep.h"
 #import "EMActivityManager.h"
 
-@interface ActivitySummary() {
+@interface ActivitySummary()<EMActivityManagerDelegate> {
     EMDayRecord *_record;
 }
 
@@ -23,7 +23,21 @@
 
 @implementation ActivitySummary
 
-@synthesize delegate;
+@synthesize delegate = _delegate;
+
+- (id)init {
+    if (self=[super init]) {
+        EMActivityManager *activityman = [EMActivityManager sharedInstance];
+        [activityman addDelegate:self];
+    }
+    
+    return self;
+}
+
+- (void)dealloc {
+    EMActivityManager *activityman = [EMActivityManager sharedInstance];
+    [activityman removeDelegate:self];
+}
 
 - (EMDayRecord *)todayRecord {
     EMDayRecord *ret = nil;
@@ -31,6 +45,7 @@
     EMActivityManager *activityMan = [EMActivityManager sharedInstance];
     ret = [activityMan todayRecord];
     _record = ret;
+    _record.delegate = activityMan;
     
     return ret;
 }
@@ -46,6 +61,7 @@
     EMActivityManager *activityMan = [EMActivityManager sharedInstance];
     ret = [activityMan dayRecordAt:day];
     _record = ret;
+    _record.delegate = activityMan;
     
     return ret;
 }
@@ -142,6 +158,13 @@
     ret = [activityMgr ActivityTypeUnit2String:activityType];
     
     return ret;
+}
+
+#pragma mark - activity manager delegate
+- (void)didDayRecordChanged:(EMDayRecord *)dayRecord {
+    if ([_delegate respondsToSelector:@selector(didDayRecordChanged:)]) {
+        [_delegate didDayRecordChanged:dayRecord];
+    }
 }
 
 @end

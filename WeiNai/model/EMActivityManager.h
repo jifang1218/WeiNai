@@ -7,13 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EMDayRecord.h"
 #import "UIMacros.h"
 
-@class EMDayRecord;
+@protocol EMActivityManagerDelegate <NSObject>
 
-@interface EMActivityManager : NSObject
+@optional
+- (void)didDayRecordChanged:(EMDayRecord *)dayRecord;
+
+@end
+
+@interface EMActivityManager : NSObject<EMDayRecordDelegate>
 
 + (EMActivityManager *)sharedInstance;
+- (void)addDelegate:(id<EMActivityManagerDelegate>)delegate;
+- (void)removeDelegate:(id<EMActivityManagerDelegate>)delegate;
 
 #pragma mark - record operations
 - (EMDayRecord *)todayRecord;
@@ -22,7 +30,6 @@
                              to:(NSDateComponents *)to;
 - (BOOL)addDayRecord:(EMDayRecord *)dayRecord;
 - (BOOL)removeDayRecord:(NSDateComponents *)date;
-- (EMDayRecord *)createEmptyDayRecord;
 
 #pragma mark - activity helpers
 - (NSUInteger)numberOfActivityTypes;

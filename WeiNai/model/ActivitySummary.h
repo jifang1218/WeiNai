@@ -18,6 +18,7 @@
 @protocol ActivitySummaryDelegate <NSObject>
 
 @optional
+- (void)didDayRecordChanged:(EMDayRecord *)dayRecord;
 
 @end
 

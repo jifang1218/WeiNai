@@ -38,6 +38,7 @@
 @synthesize sleeps = _sleeps;
 
 @synthesize date = _date;
+@synthesize delegate = _delegate;
 
 - (id)init {
     if (self=[super init]) {
@@ -134,6 +135,12 @@
         } break;
         default: {
         } break;
+    }
+    
+    if (ret) {
+        if ([_delegate respondsToSelector:@selector(didActivityChanged:inDayRecord:)]) {
+            [_delegate didActivityChanged:activity inDayRecord:self];
+        }
     }
     
     return ret;

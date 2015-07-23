@@ -141,8 +141,8 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                           reuseIdentifier:cellIdentifier];
         }
-        [self decorateCell:cell indexPath:indexPath];
     }
+    [self decorateCell:cell indexPath:indexPath];
     
     return cell;
 }
@@ -158,6 +158,16 @@
     NSInteger ret = 4 + 1;
     
     return ret;
+}
+
+#pragma mark - model delegate
+- (void)didDayRecordChanged:(EMDayRecord *)dayRecord {
+    // get summaries
+    _milkSummary = [_summary milkSummary];
+    _excrementSummary = [_summary excrementSummary];
+    _pissSummary = [_summary pissSummary];
+    _sleepSummary = [_summary sleepSummary];
+    [self.tableView reloadData];
 }
 
 #pragma mark - action

@@ -28,6 +28,7 @@
 - (EMDayRecord *)dayRecordAt:(NSDateComponents *)date;
 - (EMDayRecord *)dayRecordsFrom:(NSDateComponents *)from
                              to:(NSDateComponents *)to;
+- (NSArray *)allDayRecords;
 - (BOOL)addDayRecord:(EMDayRecord *)dayRecord;
 - (BOOL)removeDayRecord:(NSDateComponents *)date;
 

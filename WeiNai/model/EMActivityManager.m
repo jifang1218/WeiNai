@@ -84,7 +84,17 @@ static EMActivityManager *_sharedInstance = nil;
     NSArray *ret = nil;
     
     EMDBManager *dbman = [EMDBManager sharedInstance];
-    ret = [dbman dayRecordsFrom:from to:to];
+    ret = [dbman dayRecordsFrom:from
+                             to:to];
+    
+    return ret;
+}
+
+- (NSArray *)allDayRecords {
+    NSArray *ret = nil;
+    
+    EMDBManager *dbman = [EMDBManager sharedInstance];
+    ret = [dbman allDayRecords];
     
     return ret;
 }

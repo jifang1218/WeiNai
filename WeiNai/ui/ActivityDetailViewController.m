@@ -9,6 +9,7 @@
 #import "ActivityDetailViewController.h"
 #import "ActivityDetail.h"
 #import "EMActivityManager.h"
+#import "CreateActivityViewController.h"
 
 @interface ActivityDetailViewController()<UITableViewDataSource, UITableViewDelegate, ActivityDetailDelegate> {
     UITableView *_tableView;
@@ -18,6 +19,8 @@
 - (void)setupUI;
 - (void)configureCell:(UITableViewCell *)cell
                 index:(NSInteger)index;
+
+- (void)addActivity:(id)sender;
 
 @end
 
@@ -64,6 +67,10 @@
     EMActivityManager *activityMan = [EMActivityManager sharedInstance];
     NSString *strActivityType = [activityMan ActivityType2String:_activityDetail.activityType];
     self.title = [[NSString alloc] initWithFormat:@"今日明细 - %@", strActivityType];
+    UIBarButtonItem *addActivityButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                       target:self
+                                                                                       action:@selector(addActivity:)];
+    self.navigationItem.rightBarButtonItem = addActivityButton;
     
     [self setupUI];
 }
@@ -87,6 +94,14 @@
     _tableView.dataSource = self;
     _tableView.delegate = self;
     [self.view addSubview:_tableView];
+}
+
+#pragma mark - actions
+- (void)addActivity:(id)sender {
+    CreateActivityViewController *viewController = [[CreateActivityViewController alloc] init];
+    viewController.activityType = _activityDetail.activityType;
+    [self.navigationController pushViewController:viewController
+                                         animated:YES];
 }
 
 #pragma mark - tableview
@@ -113,6 +128,11 @@
     [self configureCell:cell index:row];
     
     return cell;
+}
+
+#pragma mark - ActivityDetailDelegate
+- (void)didActivitiesChanged:(NSArray *)activities {
+    [_tableView reloadData];
 }
 
 @end

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIMacros.h"
 
 @interface CreateActivityViewController : UIViewController
+
+@property (nonatomic) EMActivityType activityType;
 
 @end

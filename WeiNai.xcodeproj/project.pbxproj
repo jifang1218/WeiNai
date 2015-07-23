@@ -45,6 +45,7 @@
 		C09B94381B5796CB0049B04E /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = C09B94361B5796CB0049B04E /* NSDateFormatter+Category.m */; };
 		C09B943B1B579ED40049B04E /* CreateActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = C09B943A1B579ED40049B04E /* CreateActivity.m */; };
 		C09B94411B57BBAC0049B04E /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = C09B94401B57BBAC0049B04E /* Utility.m */; };
+		C0B6F8AF1B6139020063B33C /* ActivityList.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B6F8AE1B6139020063B33C /* ActivityList.m */; };
 		C0B8B9F31B58104400DBE54E /* DoneCancelNumberPadToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B8B9F21B58104400DBE54E /* DoneCancelNumberPadToolbar.m */; };
 		C0C00BBE1B552A1500059160 /* EMDayRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C00BBD1B552A1500059160 /* EMDayRecord.m */; };
 		C0C00BC11B552A3500059160 /* EMMilkPowder.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C00BC01B552A3500059160 /* EMMilkPowder.m */; };
@@ -140,6 +141,8 @@
 		C09B943A1B579ED40049B04E /* CreateActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateActivity.m; sourceTree = "<group>"; };
 		C09B943F1B57BBAC0049B04E /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		C09B94401B57BBAC0049B04E /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		C0B6F8AD1B6139020063B33C /* ActivityList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityList.h; sourceTree = "<group>"; };
+		C0B6F8AE1B6139020063B33C /* ActivityList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityList.m; sourceTree = "<group>"; };
 		C0B8B9F11B58104400DBE54E /* DoneCancelNumberPadToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoneCancelNumberPadToolbar.h; sourceTree = "<group>"; };
 		C0B8B9F21B58104400DBE54E /* DoneCancelNumberPadToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoneCancelNumberPadToolbar.m; sourceTree = "<group>"; };
 		C0C00BBC1B552A1500059160 /* EMDayRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMDayRecord.h; sourceTree = "<group>"; };
@@ -262,6 +265,8 @@
 				C027F6611B5AA54B00BB40BA /* EMActivityManager.m */,
 				C06124DB1B6104AF00493CEC /* ActivityDetail.h */,
 				C06124DC1B6104AF00493CEC /* ActivityDetail.m */,
+				C0B6F8AD1B6139020063B33C /* ActivityList.h */,
+				C0B6F8AE1B6139020063B33C /* ActivityList.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -512,6 +517,7 @@
 				C06124C51B60B65400493CEC /* UUChartLabel.m in Sources */,
 				C0D36D581B54AAB90014E19A /* EMDBManager.m in Sources */,
 				C06124C71B60B65400493CEC /* UULineChart.m in Sources */,
+				C0B6F8AF1B6139020063B33C /* ActivityList.m in Sources */,
 				C09B943B1B579ED40049B04E /* CreateActivity.m in Sources */,
 				C06124C41B60B65400493CEC /* UUChart.m in Sources */,
 				C09B942E1B57779F0049B04E /* ActionSheetLocalePicker.m in Sources */,

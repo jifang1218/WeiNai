@@ -14,7 +14,7 @@
 @optional
 - (void)didStartTimeChanged:(NSDate *)startTime;
 - (void)didEndTimeChanged:(NSDate *)endTime;
-- (void)didCurrentActivityTypeChanged:(EMActivityType)activityType;
+- (void)didActivityTypeChanged:(EMActivityType)activityType;
 - (void)didMilkTypeChanged:(EMMilkType)milkType;
 - (void)didActivityValueChanged:(NSUInteger)activityValue;
 - (void)didSleepQualityChanged:(EMSleepQuality)sleepQuality;
@@ -29,7 +29,7 @@
 @interface CreateActivity : NSObject
 
 @property (nonatomic, weak) id<CreateActivityDelegate> delegate;
-@property (nonatomic) EMActivityType currentActivityType;
+@property (nonatomic) EMActivityType activityType;
 @property (nonatomic, strong) NSDate *startTime;
 @property (nonatomic, strong) NSDate *endTime;
 @property (nonatomic) EMMilkType milkType;

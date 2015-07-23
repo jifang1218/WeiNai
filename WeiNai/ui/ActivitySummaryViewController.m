@@ -230,6 +230,7 @@
 #pragma mark - action
 - (void)addActivity:(UIBarButtonItem *)sender {
     CreateActivityViewController *viewController = [[CreateActivityViewController alloc] init];
+    viewController.activityType = ActivityType_Milk;
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

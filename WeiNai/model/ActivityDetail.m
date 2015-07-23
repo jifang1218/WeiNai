@@ -14,11 +14,30 @@
 #import "EMPiss.h"
 #import "EMExcrement.h"
 
+@interface ActivityDetail()<EMActivityManagerDelegate> {
+}
+
+@end
+
 @implementation ActivityDetail
 
 @synthesize activities = _activities;
 @synthesize activityType = _activityType;
 @synthesize delegate = _delegate;
+
+- (id)init {
+    if (self=[super init]) {
+        EMActivityManager *activityMgr = [EMActivityManager sharedInstance];
+        [activityMgr addDelegate:self];
+    }
+    
+    return self;
+}
+
+- (void)dealloc {
+    EMActivityManager *activityMgr = [EMActivityManager sharedInstance];
+    [activityMgr removeDelegate:self];
+}
 
 - (void)setActivityType:(EMActivityType)activityType {
     if (_activityType != activityType) {
@@ -92,6 +111,12 @@
     }
     
     return ret;
+}
+
+- (void)didDayRecordChanged:(EMDayRecord *)dayRecord {
+    if ([_delegate respondsToSelector:@selector(didActivitiesChanged:)]) {
+        [_delegate didActivitiesChanged:_activities];
+    }
 }
 
 @end

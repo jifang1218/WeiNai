@@ -30,7 +30,7 @@
 @implementation CreateActivity
 
 @synthesize delegate = _delegate;
-@synthesize currentActivityType = _currentActivityType;
+@synthesize activityType = _activityType;
 @synthesize endTime = _endTime;
 @synthesize startTime = _startTime;
 @synthesize milkType = _milkType;
@@ -42,8 +42,7 @@
 
 - (id)init {
     if (self=[super init]) {
-        // set default value.  
-        _currentActivityType = ActivityType_Milk;
+        // set default value.
         _sleepQuality = SleepQuality_Medium;
         _pissColor = PissColor_White;
         _powderMilkBrand = @"Aptamil";
@@ -96,11 +95,11 @@
     }
 }
 
-- (void)setCurrentActivityType:(EMActivityType)currentActivityType {
-    if (_currentActivityType != currentActivityType) {
-        _currentActivityType = currentActivityType;
-        if ([_delegate respondsToSelector:@selector(didCurrentActivityTypeChanged:)]) {
-            [_delegate didCurrentActivityTypeChanged:currentActivityType];
+- (void)setActivityType:(EMActivityType)activityType {
+    if (_activityType != activityType) {
+        _activityType = activityType;
+        if ([_delegate respondsToSelector:@selector(didActivityTypeChanged:)]) {
+            [_delegate didActivityTypeChanged:_activityType];
         }
     }
 }
@@ -163,7 +162,7 @@
 - (EMActivityBase *)generateActivity {
     EMActivityBase *ret = nil;
     
-    switch (_currentActivityType) {
+    switch (_activityType) {
         case ActivityType_Milk: {
             ret = [self makeMilkActivity];
         } break;

@@ -47,6 +47,8 @@
 
 @implementation CreateActivityViewController
 
+@dynamic activityType;
+
 - (id)init {
     if (self=[super init]) {
         _createActivity = [[CreateActivity alloc] init];
@@ -58,6 +60,14 @@
 
 - (void)dealloc {
     _createActivity.delegate = nil;
+}
+
+- (EMActivityType)activityType {
+    return _createActivity.activityType;
+}
+
+- (void)setActivityType:(EMActivityType)activityType {
+    _createActivity.activityType = activityType;
 }
 
 - (void)viewDidLoad {
@@ -98,7 +108,7 @@
 
 #pragma mark - helper
 - (void)updateMilkSwitch {
-    if (_createActivity.currentActivityType == ActivityType_Milk) {
+    if (_createActivity.activityType == ActivityType_Milk) {
         _breastMilkSwitch.hidden = NO;
         _valueCell.detailTextLabel.text = @"是母乳吗?";
         _breastMilkSwitch.on = (_createActivity.milkType == MilkType_BreastMilk);
@@ -109,7 +119,7 @@
 }
 
 - (void)updateSleepValue {
-    if (_createActivity.currentActivityType == ActivityType_Sleep) {
+    if (_createActivity.activityType == ActivityType_Sleep) {
         NSTimeInterval seconds = [_createActivity.endTime timeIntervalSinceDate:_createActivity.startTime];
         NSInteger minutes = (NSInteger)(seconds / 60.0 + 0.5);
         _valueField.text = [[NSString alloc] initWithFormat:@"%lu", minutes];
@@ -132,8 +142,28 @@
         [typesSeg addTarget:self
                      action:@selector(activityTypeSelected:)
            forControlEvents:UIControlEventValueChanged];
-        typesSeg.selectedSegmentIndex = 0;
-        typesSeg.frame = cell.contentView.bounds;
+        NSInteger segIndex = 0;
+        switch (_createActivity.activityType) {
+            case ActivityType_Milk: {
+                segIndex = 0;
+            } break;
+            case ActivityType_Excrement: {
+                segIndex = 2;
+            } break;
+            case ActivityType_Piss: {
+                segIndex = 1;
+            } break;
+            case ActivityType_Sleep: {
+                segIndex = 3;
+            } break;
+            default: {
+            } break;
+        }
+        typesSeg.selectedSegmentIndex = segIndex;
+        CGRect frame = typesSeg.frame;
+        frame.origin.x = (cell.contentView.frame.size.width - frame.size.width) / 2.0;
+        frame.origin.y = (cell.contentView.frame.size.height - frame.size.height) / 2.0;
+        typesSeg.frame = frame;
         [cell.contentView addSubview:typesSeg];
         cell.backgroundColor = [UIColor clearColor];
         cell.backgroundView = nil;
@@ -229,7 +259,7 @@
         // unit label
         UILabel *unit = [[UILabel alloc] init];
         EMActivityManager *activityMgr = [EMActivityManager sharedInstance];
-        unit.text = [activityMgr ActivityTypeUnit2String:_createActivity.currentActivityType];
+        unit.text = [activityMgr ActivityTypeUnit2String:_createActivity.activityType];
         [unit sizeToFit];
         frame = unit.frame;
         frame.origin.x = valueField.frame.origin.x + valueField.frame.size.width + 20;
@@ -270,7 +300,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
     NSInteger section = indexPath.section;
-    if (_createActivity.currentActivityType == ActivityType_Sleep) {
+    if (_createActivity.activityType == ActivityType_Sleep) {
         switch (section) {
             case 0: { // 活动类型
                 cell = [self _configureActivityTypeCell];
@@ -315,7 +345,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // 1. 活动类型; 2. 开始; 3. 结束; 4. 数据; 5. 备注
     NSInteger ret = 4;
-    if (_createActivity.currentActivityType == ActivityType_Sleep) {
+    if (_createActivity.activityType == ActivityType_Sleep) {
         ret += 1; // 除去sleep, 别的都没有结束时间.
     }
     
@@ -331,7 +361,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSString *ret = nil;
     
-    if (_createActivity.currentActivityType == ActivityType_Sleep) {
+    if (_createActivity.activityType == ActivityType_Sleep) {
         switch (section) {
             case 0: {
                 ret = @"活动类型";
@@ -405,8 +435,8 @@
     [self updateSleepValue];
 }
 
-- (void)didCurrentActivityTypeChanged:(EMActivityType)activityType {
-    switch (_createActivity.currentActivityType) {
+- (void)didActivityTypeChanged:(EMActivityType)activityType {
+    switch (_createActivity.activityType) {
         case ActivityType_Milk: {
             _valueUnitLabel.text = @"毫升";
         } break;
@@ -474,7 +504,7 @@
             default: {
             } break;
         }
-        _createActivity.currentActivityType = activityType;
+        _createActivity.activityType = activityType;
     }
 }
 
@@ -495,10 +525,16 @@
     ActionDateDoneBlock startDone = ^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
         NSDate *date = (NSDate *)selectedDate;
         _createActivity.startTime = date;
+        if ([_createActivity.startTime isLaterThanDate:_createActivity.endTime]) {
+            _createActivity.endTime = _createActivity.startTime;
+        }
     };
     ActionDateDoneBlock endDone = ^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
         NSDate *date = (NSDate *)selectedDate;
         _createActivity.endTime = date;
+        if ([_createActivity.endTime isEarlierThanDate:_createActivity.startTime]) {
+            _createActivity.endTime = _createActivity.startTime;
+        }
     };
     ActionDateCancelBlock startCancel = ^(ActionSheetDatePicker *picker) {
     };

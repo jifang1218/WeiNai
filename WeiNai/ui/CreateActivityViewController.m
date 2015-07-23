@@ -270,24 +270,43 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
     NSInteger section = indexPath.section;
-    switch (section) {
-        case 0: { // 活动类型
-            cell = [self _configureActivityTypeCell];
-        } break;
-        case 1: { // 开始时间
-            cell = [self _configureStartCell];
-        } break;
-        case 2: { // 结束时间
-            cell = [self _configureEndCell];
-        } break;
-        case 3: { // 数值
-            cell = [self _configureValueCell];
-        } break;
-        case 4: { // 备注
-            cell = [self _configureMemoCell];
-        } break;
-        default: {
-        } break;
+    if (_createActivity.currentActivityType == ActivityType_Sleep) {
+        switch (section) {
+            case 0: { // 活动类型
+                cell = [self _configureActivityTypeCell];
+            } break;
+            case 1: { // 开始时间
+                cell = [self _configureStartCell];
+            } break;
+            case 2: { // 结束时间
+                cell = [self _configureEndCell];
+            } break;
+            case 3: { // 数值
+                cell = [self _configureValueCell];
+            } break;
+            case 4: { // 备注
+                cell = [self _configureMemoCell];
+            } break;
+            default: {
+            } break;
+        }
+    } else {
+        switch (section) {
+            case 0: { // 活动类型
+                cell = [self _configureActivityTypeCell];
+            } break;
+            case 1: { // 开始时间
+                cell = [self _configureStartCell];
+            } break;
+            case 2: { // 数值
+                cell = [self _configureValueCell];
+            } break;
+            case 3: { // 备注
+                cell = [self _configureMemoCell];
+            } break;
+            default: {
+            } break;
+        }
     }
     
     return cell;
@@ -295,7 +314,10 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // 1. 活动类型; 2. 开始; 3. 结束; 4. 数据; 5. 备注
-    NSInteger ret = 5;
+    NSInteger ret = 4;
+    if (_createActivity.currentActivityType == ActivityType_Sleep) {
+        ret += 1; // 除去sleep, 别的都没有结束时间.
+    }
     
     return ret;
 }
@@ -309,24 +331,43 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSString *ret = nil;
     
-    switch (section) {
-        case 0: {
-            ret = @"活动类型";
-        } break;
-        case 1: {
-            ret = @"开始时间";
-        } break;
-        case 2: {
-            ret = @"结束时间";
-        } break;
-        case 3: {
-            ret = @"数值";
-        } break;
-        case 4: {
-            ret = @"备注";
-        } break;
-        default: {
-        } break;
+    if (_createActivity.currentActivityType == ActivityType_Sleep) {
+        switch (section) {
+            case 0: {
+                ret = @"活动类型";
+            } break;
+            case 1: {
+                ret = @"开始时间";
+            } break;
+            case 2: {
+                ret = @"结束时间";
+            } break;
+            case 3: {
+                ret = @"数值";
+            } break;
+            case 4: {
+                ret = @"备注";
+            } break;
+            default: {
+            } break;
+        }
+    } else {
+        switch (section) {
+            case 0: {
+                ret = @"活动类型";
+            } break;
+            case 1: {
+                ret = @"开始时间";
+            } break;
+            case 2: {
+                ret = @"数值";
+            } break;
+            case 3: {
+                ret = @"备注";
+            } break;
+            default: {
+            } break;
+        }
     }
     
     return ret;

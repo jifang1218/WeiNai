@@ -61,7 +61,10 @@ static EMActivityManager *_sharedInstance = nil;
 #pragma mark - record operations
 - (EMDayRecord *)todayRecord {
     EMDayRecord *ret = nil;
-    
+    if (!_today) {
+        _today = [[EMDayRecord alloc] init];
+        [self addDayRecord:_today];
+    }
     ret = _today;
     
     return ret;

@@ -290,10 +290,6 @@
     EMActivityBase *activity = [self generateActivity];
     EMActivityManager *activityMgr = [EMActivityManager sharedInstance];
     EMDayRecord *today = [activityMgr todayRecord];
-    if (!today) {
-        today = [[EMDayRecord alloc] init];
-        [activityMgr addDayRecord:today];
-    }
     [today addActivity:activity];
     ret = [activityMgr save];
     

@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		C027F6621B5AA54B00BB40BA /* EMActivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C027F6611B5AA54B00BB40BA /* EMActivityManager.m */; };
 		C03F13CB1B56A90E001653D5 /* CreateActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C03F13CA1B56A90E001653D5 /* CreateActivityViewController.m */; };
+		C06124C21B60B65400493CEC /* UUBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C06124B71B60B65400493CEC /* UUBar.m */; };
+		C06124C31B60B65400493CEC /* UUBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C06124B91B60B65400493CEC /* UUBarChart.m */; };
+		C06124C41B60B65400493CEC /* UUChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C06124BB1B60B65400493CEC /* UUChart.m */; };
+		C06124C51B60B65400493CEC /* UUChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C06124BD1B60B65400493CEC /* UUChartLabel.m */; };
+		C06124C61B60B65400493CEC /* UUColor.m in Sources */ = {isa = PBXBuildFile; fileRef = C06124BF1B60B65400493CEC /* UUColor.m */; };
+		C06124C71B60B65400493CEC /* UULineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C06124C11B60B65400493CEC /* UULineChart.m */; };
 		C06526D11B53FD6900DF4E34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C06526D01B53FD6900DF4E34 /* main.m */; };
 		C06526D41B53FD6900DF4E34 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C06526D31B53FD6900DF4E34 /* AppDelegate.m */; };
 		C06526DA1B53FD6900DF4E34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C06526D81B53FD6900DF4E34 /* Main.storyboard */; };
@@ -61,6 +67,18 @@
 		C027F6611B5AA54B00BB40BA /* EMActivityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMActivityManager.m; sourceTree = "<group>"; };
 		C03F13C91B56A90E001653D5 /* CreateActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateActivityViewController.h; sourceTree = "<group>"; };
 		C03F13CA1B56A90E001653D5 /* CreateActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateActivityViewController.m; sourceTree = "<group>"; };
+		C06124B61B60B65400493CEC /* UUBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBar.h; sourceTree = "<group>"; };
+		C06124B71B60B65400493CEC /* UUBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBar.m; sourceTree = "<group>"; };
+		C06124B81B60B65400493CEC /* UUBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBarChart.h; sourceTree = "<group>"; };
+		C06124B91B60B65400493CEC /* UUBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBarChart.m; sourceTree = "<group>"; };
+		C06124BA1B60B65400493CEC /* UUChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChart.h; sourceTree = "<group>"; };
+		C06124BB1B60B65400493CEC /* UUChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChart.m; sourceTree = "<group>"; };
+		C06124BC1B60B65400493CEC /* UUChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChartLabel.h; sourceTree = "<group>"; };
+		C06124BD1B60B65400493CEC /* UUChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChartLabel.m; sourceTree = "<group>"; };
+		C06124BE1B60B65400493CEC /* UUColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUColor.h; sourceTree = "<group>"; };
+		C06124BF1B60B65400493CEC /* UUColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUColor.m; sourceTree = "<group>"; };
+		C06124C01B60B65400493CEC /* UULineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UULineChart.h; sourceTree = "<group>"; };
+		C06124C11B60B65400493CEC /* UULineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UULineChart.m; sourceTree = "<group>"; };
 		C06526CB1B53FD6900DF4E34 /* WeiNai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiNai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C06526CF1B53FD6900DF4E34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C06526D01B53FD6900DF4E34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -166,6 +184,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C06124B51B60B65400493CEC /* UUChart */ = {
+			isa = PBXGroup;
+			children = (
+				C06124B61B60B65400493CEC /* UUBar.h */,
+				C06124B71B60B65400493CEC /* UUBar.m */,
+				C06124B81B60B65400493CEC /* UUBarChart.h */,
+				C06124B91B60B65400493CEC /* UUBarChart.m */,
+				C06124BA1B60B65400493CEC /* UUChart.h */,
+				C06124BB1B60B65400493CEC /* UUChart.m */,
+				C06124BC1B60B65400493CEC /* UUChartLabel.h */,
+				C06124BD1B60B65400493CEC /* UUChartLabel.m */,
+				C06124BE1B60B65400493CEC /* UUColor.h */,
+				C06124BF1B60B65400493CEC /* UUColor.m */,
+				C06124C01B60B65400493CEC /* UULineChart.h */,
+				C06124C11B60B65400493CEC /* UULineChart.m */,
+			);
+			path = UUChart;
+			sourceTree = "<group>";
+		};
 		C06526C21B53FD6900DF4E34 = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +273,7 @@
 		C09B94161B57779F0049B04E /* third_parties */ = {
 			isa = PBXGroup;
 			children = (
+				C06124B51B60B65400493CEC /* UUChart */,
 				C0B8B9F01B58104400DBE54E /* DoneCancelNumberPadToolbar */,
 				C09B94321B5796CB0049B04E /* catagories */,
 				C09B94171B57779F0049B04E /* ActionsheetPickers */,
@@ -449,6 +487,7 @@
 				C0E1207E1B55889B001F90E8 /* ActivityDetailViewController.m in Sources */,
 				C09B94151B562A5C0049B04E /* ActivitySummary.m in Sources */,
 				C06C801F1B5F9569001F9A58 /* EMBreastMilk+Dict.m in Sources */,
+				C06124C21B60B65400493CEC /* UUBar.m in Sources */,
 				C06C802B1B5F9835001F9A58 /* NSDateComponents+Dict.m in Sources */,
 				C0E120811B5588D2001F90E8 /* StatisticsViewController.m in Sources */,
 				C06C80311B5FC283001F9A58 /* EMMilk+Dict.m in Sources */,
@@ -460,11 +499,15 @@
 				C0C00BC41B552A4500059160 /* EMBreastMilk.m in Sources */,
 				C06C802E1B5FC21E001F9A58 /* EMActivityBase+Dict.m in Sources */,
 				C07852B11B606626003F0A8C /* EMGCDMulticastDelegate.m in Sources */,
+				C06124C61B60B65400493CEC /* UUColor.m in Sources */,
 				C0E1206E1B55856E001F90E8 /* EMMilk.m in Sources */,
 				C09B94121B5624290049B04E /* ActivitySummaryViewController.m in Sources */,
 				C06C801C1B5F954E001F9A58 /* EMPiss+Dict.m in Sources */,
+				C06124C51B60B65400493CEC /* UUChartLabel.m in Sources */,
 				C0D36D581B54AAB90014E19A /* EMDBManager.m in Sources */,
+				C06124C71B60B65400493CEC /* UULineChart.m in Sources */,
 				C09B943B1B579ED40049B04E /* CreateActivity.m in Sources */,
+				C06124C41B60B65400493CEC /* UUChart.m in Sources */,
 				C09B942E1B57779F0049B04E /* ActionSheetLocalePicker.m in Sources */,
 				C0C00BCD1B55353F00059160 /* EMSleep.m in Sources */,
 				C0E1206B1B556484001F90E8 /* EMActivityBase.m in Sources */,
@@ -478,6 +521,7 @@
 				C09B942C1B57779F0049B04E /* ActionSheetDatePicker.m in Sources */,
 				C0B8B9F31B58104400DBE54E /* DoneCancelNumberPadToolbar.m in Sources */,
 				C06C80221B5F957C001F9A58 /* EMMilkPowder+Dict.m in Sources */,
+				C06124C31B60B65400493CEC /* UUBarChart.m in Sources */,
 				C027F6621B5AA54B00BB40BA /* EMActivityManager.m in Sources */,
 				C09B942A1B57779F0049B04E /* AbstractActionSheetPicker.m in Sources */,
 				C0C00BCA1B55352500059160 /* EMPiss.m in Sources */,

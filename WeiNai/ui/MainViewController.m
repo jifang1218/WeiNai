@@ -9,7 +9,7 @@
 #import "MainViewController.h"
 #import "ActivitySummaryViewController.h"
 #import "ActivityListViewController.h"
-#import "StatisticsViewController.h"
+#import "ToolboxViewController.h"
 #import "SettingsViewController.h"
 #import "UIMacros.h"
 
@@ -18,7 +18,7 @@
 @interface MainViewController () {
     UINavigationController *_activitySummaryViewController;
     UINavigationController *_activityListViewController;
-    UINavigationController *_statisticsViewController;
+    UINavigationController *_toolboxViewController;
     UINavigationController *_settingsViewController;
 }
 
@@ -79,9 +79,9 @@
 //    [self selectedTapTabBarItems:_contactsVC.tabBarItem];
     
     // statistics
-    StatisticsViewController *statisticsViewController = [[StatisticsViewController alloc] init];
-    _statisticsViewController = [[UINavigationController alloc] initWithRootViewController:statisticsViewController];
-    _statisticsViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"图表统计"
+    ToolboxViewController *toolboxViewController = [[ToolboxViewController alloc] init];
+    _toolboxViewController = [[UINavigationController alloc] initWithRootViewController:toolboxViewController];
+    _toolboxViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"工具箱"
                                                                          image:nil
                                                                            tag:2];
 //    [_settingsVC.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_settingHL"]
@@ -99,7 +99,7 @@
     
     self.viewControllers = @[_activitySummaryViewController,
                              _activityListViewController,
-                             _statisticsViewController,
+                             _toolboxViewController,
                              _settingsViewController];
     [self selectedTapTabBarItems:_activitySummaryViewController.tabBarItem];
 }

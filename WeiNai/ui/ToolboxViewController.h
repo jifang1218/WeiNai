@@ -1,5 +1,5 @@
 //
-//  StatisticsViewController.h
+//  ToolboxViewController.h
 //  WeiNai
 //
 //  Created by Ji Fang on 7/15/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StatisticsViewController : UIViewController
+@interface ToolboxViewController : UIViewController
 
 @end

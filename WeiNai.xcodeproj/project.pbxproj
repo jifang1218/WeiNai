@@ -61,7 +61,7 @@
 		C0E120721B55870F001F90E8 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E120711B55870F001F90E8 /* MainViewController.m */; };
 		C0E1207B1B55888D001F90E8 /* ActivityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E1207A1B55888D001F90E8 /* ActivityListViewController.m */; };
 		C0E1207E1B55889B001F90E8 /* ActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E1207D1B55889A001F90E8 /* ActivityDetailViewController.m */; };
-		C0E120811B5588D2001F90E8 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E120801B5588D2001F90E8 /* StatisticsViewController.m */; };
+		C0E120811B5588D2001F90E8 /* ToolboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E120801B5588D2001F90E8 /* ToolboxViewController.m */; };
 		C0E120841B5588DE001F90E8 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E120831B5588DE001F90E8 /* SettingsViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -175,8 +175,8 @@
 		C0E1207A1B55888D001F90E8 /* ActivityListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityListViewController.m; sourceTree = "<group>"; };
 		C0E1207C1B55889A001F90E8 /* ActivityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailViewController.h; sourceTree = "<group>"; };
 		C0E1207D1B55889A001F90E8 /* ActivityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailViewController.m; sourceTree = "<group>"; };
-		C0E1207F1B5588D2001F90E8 /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
-		C0E120801B5588D2001F90E8 /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
+		C0E1207F1B5588D2001F90E8 /* ToolboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolboxViewController.h; sourceTree = "<group>"; };
+		C0E120801B5588D2001F90E8 /* ToolboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolboxViewController.m; sourceTree = "<group>"; };
 		C0E120821B5588DE001F90E8 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		C0E120831B5588DE001F90E8 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		C0E120851B55FC9F001F90E8 /* UIMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIMacros.h; sourceTree = "<group>"; };
@@ -413,8 +413,8 @@
 				C0E1207A1B55888D001F90E8 /* ActivityListViewController.m */,
 				C0E1207C1B55889A001F90E8 /* ActivityDetailViewController.h */,
 				C0E1207D1B55889A001F90E8 /* ActivityDetailViewController.m */,
-				C0E1207F1B5588D2001F90E8 /* StatisticsViewController.h */,
-				C0E120801B5588D2001F90E8 /* StatisticsViewController.m */,
+				C0E1207F1B5588D2001F90E8 /* ToolboxViewController.h */,
+				C0E120801B5588D2001F90E8 /* ToolboxViewController.m */,
 				C0E120821B5588DE001F90E8 /* SettingsViewController.h */,
 				C0E120831B5588DE001F90E8 /* SettingsViewController.m */,
 				C0E120851B55FC9F001F90E8 /* UIMacros.h */,
@@ -505,7 +505,7 @@
 				C06C801F1B5F9569001F9A58 /* EMBreastMilk+Dict.m in Sources */,
 				C06124C21B60B65400493CEC /* UUBar.m in Sources */,
 				C06C802B1B5F9835001F9A58 /* NSDateComponents+Dict.m in Sources */,
-				C0E120811B5588D2001F90E8 /* StatisticsViewController.m in Sources */,
+				C0E120811B5588D2001F90E8 /* ToolboxViewController.m in Sources */,
 				C06C80311B5FC283001F9A58 /* EMMilk+Dict.m in Sources */,
 				C07852AD1B5FE0FE003F0A8C /* EMDayRecord+Dict.m in Sources */,
 				C09B942D1B57779F0049B04E /* ActionSheetDistancePicker.m in Sources */,

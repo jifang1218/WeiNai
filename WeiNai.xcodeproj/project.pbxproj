@@ -45,7 +45,8 @@
 		C09B94381B5796CB0049B04E /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = C09B94361B5796CB0049B04E /* NSDateFormatter+Category.m */; };
 		C09B943B1B579ED40049B04E /* CreateActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = C09B943A1B579ED40049B04E /* CreateActivity.m */; };
 		C09B94411B57BBAC0049B04E /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = C09B94401B57BBAC0049B04E /* Utility.m */; };
-		C09EAEB91B627B5700F0B733 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09EAEB81B627B5700F0B733 /* ChartViewController.m */; };
+		C09EAEB91B627B5700F0B733 /* ActivityChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09EAEB81B627B5700F0B733 /* ActivityChartViewController.m */; };
+		C09EAEBC1B62BB9900F0B733 /* DayRecordChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09EAEBB1B62BB9900F0B733 /* DayRecordChartViewController.m */; };
 		C0B6F8AF1B6139020063B33C /* ActivityList.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B6F8AE1B6139020063B33C /* ActivityList.m */; };
 		C0B8B9F31B58104400DBE54E /* DoneCancelNumberPadToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B8B9F21B58104400DBE54E /* DoneCancelNumberPadToolbar.m */; };
 		C0C00BBE1B552A1500059160 /* EMDayRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C00BBD1B552A1500059160 /* EMDayRecord.m */; };
@@ -142,8 +143,10 @@
 		C09B943A1B579ED40049B04E /* CreateActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateActivity.m; sourceTree = "<group>"; };
 		C09B943F1B57BBAC0049B04E /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		C09B94401B57BBAC0049B04E /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
-		C09EAEB71B627B5700F0B733 /* ChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartViewController.h; sourceTree = "<group>"; };
-		C09EAEB81B627B5700F0B733 /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartViewController.m; sourceTree = "<group>"; };
+		C09EAEB71B627B5700F0B733 /* ActivityChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityChartViewController.h; sourceTree = "<group>"; };
+		C09EAEB81B627B5700F0B733 /* ActivityChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityChartViewController.m; sourceTree = "<group>"; };
+		C09EAEBA1B62BB9900F0B733 /* DayRecordChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayRecordChartViewController.h; sourceTree = "<group>"; };
+		C09EAEBB1B62BB9900F0B733 /* DayRecordChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayRecordChartViewController.m; sourceTree = "<group>"; };
 		C0B6F8AD1B6139020063B33C /* ActivityList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityList.h; sourceTree = "<group>"; };
 		C0B6F8AE1B6139020063B33C /* ActivityList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityList.m; sourceTree = "<group>"; };
 		C0B8B9F11B58104400DBE54E /* DoneCancelNumberPadToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoneCancelNumberPadToolbar.h; sourceTree = "<group>"; };
@@ -420,8 +423,10 @@
 				C0E120851B55FC9F001F90E8 /* UIMacros.h */,
 				C03F13C91B56A90E001653D5 /* CreateActivityViewController.h */,
 				C03F13CA1B56A90E001653D5 /* CreateActivityViewController.m */,
-				C09EAEB71B627B5700F0B733 /* ChartViewController.h */,
-				C09EAEB81B627B5700F0B733 /* ChartViewController.m */,
+				C09EAEB71B627B5700F0B733 /* ActivityChartViewController.h */,
+				C09EAEB81B627B5700F0B733 /* ActivityChartViewController.m */,
+				C09EAEBA1B62BB9900F0B733 /* DayRecordChartViewController.h */,
+				C09EAEBB1B62BB9900F0B733 /* DayRecordChartViewController.m */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -516,7 +521,7 @@
 				C06C802E1B5FC21E001F9A58 /* EMActivityBase+Dict.m in Sources */,
 				C07852B11B606626003F0A8C /* EMGCDMulticastDelegate.m in Sources */,
 				C06124C61B60B65400493CEC /* UUColor.m in Sources */,
-				C09EAEB91B627B5700F0B733 /* ChartViewController.m in Sources */,
+				C09EAEB91B627B5700F0B733 /* ActivityChartViewController.m in Sources */,
 				C0E1206E1B55856E001F90E8 /* EMMilk.m in Sources */,
 				C09B94121B5624290049B04E /* ActivitySummaryViewController.m in Sources */,
 				C06C801C1B5F954E001F9A58 /* EMPiss+Dict.m in Sources */,
@@ -531,6 +536,7 @@
 				C0E1206B1B556484001F90E8 /* EMActivityBase.m in Sources */,
 				C06526D41B53FD6900DF4E34 /* AppDelegate.m in Sources */,
 				C0E120841B5588DE001F90E8 /* SettingsViewController.m in Sources */,
+				C09EAEBC1B62BB9900F0B733 /* DayRecordChartViewController.m in Sources */,
 				C03F13CB1B56A90E001653D5 /* CreateActivityViewController.m in Sources */,
 				C06C80251B5F958E001F9A58 /* EMExcrement+Dict.m in Sources */,
 				C06526D11B53FD6900DF4E34 /* main.m in Sources */,

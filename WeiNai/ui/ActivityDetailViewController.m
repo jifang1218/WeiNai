@@ -11,7 +11,7 @@
 #import "EMActivityManager.h"
 #import "CreateActivityViewController.h"
 #import "NSDate+Category.h"
-#import "ChartViewController.h"
+#import "ActivityChartViewController.h"
 #import "EMMilk.h"
 #import "EMSleep.h"
 #import "EMPiss.h"
@@ -138,7 +138,7 @@
 }
 
 - (void)showChart:(id)sender {
-    ChartViewController *chartViewController = [[ChartViewController alloc] init];
+    ActivityChartViewController *chartViewController = [[ActivityChartViewController alloc] init];
     EMActivityType activityType = self.activityType;
     chartViewController.title = [[EMActivityManager sharedInstance] ActivityType2String:activityType];
     NSArray *xArray = [_activityDetail chartXArray];

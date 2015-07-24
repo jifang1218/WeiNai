@@ -1,15 +1,15 @@
 //
-//  ChartViewController.m
+//  ActivityChartViewController.m
 //  WeiNai
 //
 //  Created by Ji Fang on 7/24/15.
 //  Copyright (c) 2015 Ji Fang. All rights reserved.
 //
 
-#import "ChartViewController.h"
+#import "ActivityChartViewController.h"
 #import "UUChart.h"
 
-@interface ChartViewController ()<UUChartDataSource> {
+@interface ActivityChartViewController ()<UUChartDataSource> {
     UUChart *_chart;
 }
 
@@ -17,7 +17,7 @@
 
 @end
 
-@implementation ChartViewController
+@implementation ActivityChartViewController
 
 @synthesize xArray = _xArray;
 @synthesize yArray = _yArray;

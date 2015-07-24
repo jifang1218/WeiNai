@@ -69,15 +69,11 @@
 
 - (void)configureCell:(UITableViewCell *)cell
               atIndex:(NSInteger)index {
-    for (UIView *view in cell.contentView.subviews) {
-        [view removeFromSuperview];
-    }
-    
+    NSString *dayRecordTime = [_activityList dayRecordTimeTextAtIndex:index];
+    cell.textLabel.text = dayRecordTime;
     NSString *dayRecordText = [_activityList dayRecordSummaryTextAtIndex:index];
-    UILabel *label = [[UILabel alloc] initWithFrame:cell.contentView.bounds];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.text = dayRecordText;
-    [cell.contentView addSubview:label];
+    cell.detailTextLabel.text = dayRecordText;
+    cell.detailTextLabel.font = [UIFont fontWithName:nil size:10];
 }
 
 #pragma mark - tableview
@@ -100,7 +96,7 @@
     static NSString *cellIdentifier = @"ActivityListCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                       reuseIdentifier:cellIdentifier];
     }
     NSInteger index = indexPath.row;

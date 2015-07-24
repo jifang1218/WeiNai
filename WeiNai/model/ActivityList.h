@@ -22,6 +22,7 @@
 @property (nonatomic, weak) id<ActivityListDelegate> delegate;
 
 - (NSArray *)allDayRecords;
+- (NSString *)dayRecordTimeTextAtIndex:(NSInteger)index;
 - (NSString *)dayRecordSummaryTextAtIndex:(NSInteger)index;
 - (EMDayRecord *)dayRecordAtIndex:(NSInteger)index;
 

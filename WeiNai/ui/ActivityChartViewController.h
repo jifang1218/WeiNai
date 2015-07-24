@@ -1,5 +1,5 @@
 //
-//  ChartViewController.h
+//  ActivityChartViewController.h
 //  WeiNai
 //
 //  Created by Ji Fang on 7/24/15.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChartViewController : UIViewController
+@interface ActivityChartViewController : UIViewController
 
 @property (nonatomic, strong) NSArray *xArray;
 @property (nonatomic, strong) NSArray *yArray;

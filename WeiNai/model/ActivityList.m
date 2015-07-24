@@ -78,7 +78,7 @@
     return ret;
 }
 
-- (NSString *)dayRecordSummaryTextAtIndex:(NSInteger)index {
+- (NSString *)dayRecordTimeTextAtIndex:(NSInteger)index {
     NSString *ret = nil;
     
     if (index >= _allDayRecords.count) {
@@ -90,7 +90,19 @@
     // handle date
     NSString *strDate = [[NSString alloc] initWithFormat:@"%lu/%lu/%lu",
                          dayRecord.date.year, dayRecord.date.month, dayRecord.date.day];
+    ret = strDate;
     
+    return ret;
+}
+
+- (NSString *)dayRecordSummaryTextAtIndex:(NSInteger)index {
+    NSString *ret = nil;
+    
+    if (index >= _allDayRecords.count) {
+        return ret;
+    }
+    
+    EMDayRecord *dayRecord = [_allDayRecords objectAtIndex:index];
     EMActivityManager *activityman = [EMActivityManager sharedInstance];
     
     // handle sleep
@@ -128,8 +140,7 @@
     for (EMMilk *milk in milks) {
         totalMilkMLs += milk.ml;
     }
-    ret = [[NSString alloc] initWithFormat:@"%@   %@: %lu %@   %@: %lu %@   %@: %lu %@   %@: %lu %@",
-           strDate,
+    ret = [[NSString alloc] initWithFormat:@"%@: %lu %@   %@: %lu %@   %@: %lu %@   %@: %lu %@",
            strSleep, totalSleepDurations, strSleepUnit,
            strPiss, totalPissMLs, strPissUnit,
            strMilk, totalMilkMLs, strMilkUnit,

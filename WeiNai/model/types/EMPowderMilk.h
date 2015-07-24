@@ -1,5 +1,5 @@
 //
-//  EMMilkPowder.h
+//  EMPowderMilk.h
 //  WeiNai
 //
 //  Created by Ji Fang on 7/14/15.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "EMMilk.h"
 
-@interface EMMilkPowder : EMMilk
+@interface EMPowderMilk : EMMilk
 
 @property (nonatomic, strong) NSString *brand;
 

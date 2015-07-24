@@ -18,6 +18,7 @@
 - (void)setupUI;
 - (void)configureCell:(UITableViewCell *)cell
               atIndex:(NSInteger)index;
+- (void)showChart:(id)sender;
 
 @end
 
@@ -41,8 +42,20 @@
     [self setupUI];
 }
 
+#pragma mark - actions
+- (void)showChart:(id)sender {
+}
+
 #pragma mark - helpers
 - (void)setupUI {
+    // right button
+    NSMutableArray *rightButtons = [[NSMutableArray alloc] init];
+    UIBarButtonItem *showChartButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                                     target:self
+                                                                                     action:@selector(showChart:)];
+    [rightButtons addObject:showChartButton];
+    self.navigationItem.rightBarButtonItems = rightButtons;
+    
     // table
     _tableview = [[UITableView alloc] initWithFrame:self.view.bounds
                                               style:UITableViewStylePlain];

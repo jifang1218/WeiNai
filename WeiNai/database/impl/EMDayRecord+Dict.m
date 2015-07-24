@@ -9,7 +9,7 @@
 #import "EMDayRecord+Dict.h"
 #import "NSDateComponents+Dict.h"
 #import "EMBreastMilk+Dict.h"
-#import "EMMilkPowder+Dict.h"
+#import "EMPowderMilk+Dict.h"
 #import "EMExcrement+Dict.h"
 #import "EMPiss+Dict.h"
 #import "EMSleep+Dict.h"
@@ -80,7 +80,7 @@
         for (NSDictionary *milkDict in milkDicts) {
             EMMilk *milk = nil;
             if ([milkDict objectForKey:kPerson] == nil) { // milk powder
-                EMMilkPowder *milkPowder = [[EMMilkPowder alloc] initWithDict:milkDict];
+                EMPowderMilk *milkPowder = [[EMPowderMilk alloc] initWithDict:milkDict];
                 milk = milkPowder;
             } else { // milk breast
                 EMBreastMilk *milkBreast = [[EMBreastMilk alloc] initWithDict:milkDict];

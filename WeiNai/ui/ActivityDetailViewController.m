@@ -22,6 +22,7 @@
                 index:(NSInteger)index;
 
 - (void)addActivity:(id)sender;
+- (void)showChart:(id)sender;
 
 @end
 
@@ -78,6 +79,11 @@
     NSString *strActivityType = [activityMan ActivityType2String:_activityDetail.activityType];
     self.title = [[NSString alloc] initWithFormat:@"%@", strActivityType];
     
+    NSMutableArray *rightButtons = [[NSMutableArray alloc] init];
+    UIBarButtonItem *chartButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                                 target:self
+                                                                                 action:@selector(showChart:)];
+    [rightButtons addObject:chartButton];
     // only available for today
     NSDateComponents *recordDate = _activityDetail.date;
     NSDate *today = [NSDate date];
@@ -87,8 +93,9 @@
         UIBarButtonItem *addActivityButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                            target:self
                                                                                            action:@selector(addActivity:)];
-        self.navigationItem.rightBarButtonItem = addActivityButton;
+        [rightButtons addObject:addActivityButton];
     }
+    self.navigationItem.rightBarButtonItems = rightButtons;
     
     [self setupUI];
 }
@@ -120,6 +127,9 @@
     viewController.activityType = _activityDetail.activityType;
     [self.navigationController pushViewController:viewController
                                          animated:YES];
+}
+
+- (void)showChart:(id)sender {
 }
 
 #pragma mark - tableview

@@ -35,6 +35,7 @@
 - (void)decorateDateCell:(UITableViewCell *)cell;
 
 - (void)addActivity:(UIBarButtonItem *)sender;
+- (void)showChart:(id)sender;
 
 @end
 
@@ -70,6 +71,12 @@
     _pissSummary = [_summary pissSummary];
     _sleepSummary = [_summary sleepSummary];
     
+    NSMutableArray *rightButtons = [[NSMutableArray alloc] init];
+    UIBarButtonItem *chartButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                                 target:self
+                                                                                 action:@selector(showChart:)];
+    [rightButtons addObject:chartButton];
+    
     // only available for today
     NSDateComponents *recordDate = _summary.dayRecord.date;
     NSDate *today = [NSDate date];
@@ -79,8 +86,9 @@
         UIBarButtonItem *addActivityButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                            target:self
                                                                                            action:@selector(addActivity:)];
-        self.navigationItem.rightBarButtonItem = addActivityButton;
+        [rightButtons addObject:addActivityButton];
     }
+    self.navigationItem.rightBarButtonItems = rightButtons;
 }
 
 #pragma mark - table
@@ -245,6 +253,9 @@
     CreateActivityViewController *viewController = [[CreateActivityViewController alloc] init];
     viewController.activityType = ActivityType_Milk;
     [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (void)showChart:(id)sender {
 }
 
 @end

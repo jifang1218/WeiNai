@@ -9,7 +9,7 @@
 #import "ActivityDetail.h"
 #import "EMActivityManager.h"
 #import "EMBreastMilk.h"
-#import "EMMilkPowder.h"
+#import "EMPowderMilk.h"
 #import "EMSleep.h"
 #import "EMPiss.h"
 #import "EMExcrement.h"
@@ -82,7 +82,7 @@
                 ret = [[NSString alloc] initWithFormat:@"%@   %@ %@   %@   %@",
                        time, strValue, strUnit, milkMethod, person];
             } else {
-                EMMilkPowder *powderMilk = (EMMilkPowder *)milk;
+                EMPowderMilk *powderMilk = (EMPowderMilk *)milk;
                 milkMethod = @"奶粉";
                 NSString *brand = powderMilk.brand;
                 ret = [[NSString alloc] initWithFormat:@"%@   %@ %@   %@   %@",

@@ -10,7 +10,7 @@
 #import "EMDayRecord+Dict.h"
 #import "EMPiss+Dict.h"
 #import "EMBreastMilk+Dict.h"
-#import "EMMilkPowder+Dict.h"
+#import "EMPowderMilk+Dict.h"
 #import "EMExcrement+Dict.h"
 #import "EMSleep+Dict.h"
 #import "NSDateComponents+Dict.h"

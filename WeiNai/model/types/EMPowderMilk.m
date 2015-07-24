@@ -1,15 +1,15 @@
 //
-//  EMMilkPowder.m
+//  EMPowderMilk.m
 //  WeiNai
 //
 //  Created by Ji Fang on 7/14/15.
 //  Copyright (c) 2015 Ji Fang. All rights reserved.
 //
 
-#import "EMMilkPowder.h"
+#import "EMPowderMilk.h"
 #import "EMActivityBase.h"
 
-@implementation EMMilkPowder
+@implementation EMPowderMilk
 
 @synthesize brand = _brand;
 

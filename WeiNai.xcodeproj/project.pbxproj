@@ -23,7 +23,7 @@
 		C06526DF1B53FD6900DF4E34 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C06526DD1B53FD6900DF4E34 /* LaunchScreen.xib */; };
 		C06C801C1B5F954E001F9A58 /* EMPiss+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C801B1B5F954E001F9A58 /* EMPiss+Dict.m */; };
 		C06C801F1B5F9569001F9A58 /* EMBreastMilk+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C801E1B5F9569001F9A58 /* EMBreastMilk+Dict.m */; };
-		C06C80221B5F957C001F9A58 /* EMMilkPowder+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C80211B5F957C001F9A58 /* EMMilkPowder+Dict.m */; };
+		C06C80221B5F957C001F9A58 /* EMPowderMilk+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C80211B5F957C001F9A58 /* EMPowderMilk+Dict.m */; };
 		C06C80251B5F958E001F9A58 /* EMExcrement+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C80241B5F958E001F9A58 /* EMExcrement+Dict.m */; };
 		C06C80281B5F95E8001F9A58 /* EMSleep+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C80271B5F95E8001F9A58 /* EMSleep+Dict.m */; };
 		C06C802B1B5F9835001F9A58 /* NSDateComponents+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C802A1B5F9835001F9A58 /* NSDateComponents+Dict.m */; };
@@ -48,7 +48,7 @@
 		C0B6F8AF1B6139020063B33C /* ActivityList.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B6F8AE1B6139020063B33C /* ActivityList.m */; };
 		C0B8B9F31B58104400DBE54E /* DoneCancelNumberPadToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B8B9F21B58104400DBE54E /* DoneCancelNumberPadToolbar.m */; };
 		C0C00BBE1B552A1500059160 /* EMDayRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C00BBD1B552A1500059160 /* EMDayRecord.m */; };
-		C0C00BC11B552A3500059160 /* EMMilkPowder.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C00BC01B552A3500059160 /* EMMilkPowder.m */; };
+		C0C00BC11B552A3500059160 /* EMPowderMilk.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C00BC01B552A3500059160 /* EMPowderMilk.m */; };
 		C0C00BC41B552A4500059160 /* EMBreastMilk.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C00BC31B552A4500059160 /* EMBreastMilk.m */; };
 		C0C00BC71B552A7800059160 /* EMExcrement.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C00BC61B552A7800059160 /* EMExcrement.m */; };
 		C0C00BCA1B55352500059160 /* EMPiss.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C00BC91B55352500059160 /* EMPiss.m */; };
@@ -95,8 +95,8 @@
 		C06C801B1B5F954E001F9A58 /* EMPiss+Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMPiss+Dict.m"; sourceTree = "<group>"; };
 		C06C801D1B5F9569001F9A58 /* EMBreastMilk+Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMBreastMilk+Dict.h"; sourceTree = "<group>"; };
 		C06C801E1B5F9569001F9A58 /* EMBreastMilk+Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMBreastMilk+Dict.m"; sourceTree = "<group>"; };
-		C06C80201B5F957C001F9A58 /* EMMilkPowder+Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMMilkPowder+Dict.h"; sourceTree = "<group>"; };
-		C06C80211B5F957C001F9A58 /* EMMilkPowder+Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMMilkPowder+Dict.m"; sourceTree = "<group>"; };
+		C06C80201B5F957C001F9A58 /* EMPowderMilk+Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMPowderMilk+Dict.h"; sourceTree = "<group>"; };
+		C06C80211B5F957C001F9A58 /* EMPowderMilk+Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMPowderMilk+Dict.m"; sourceTree = "<group>"; };
 		C06C80231B5F958E001F9A58 /* EMExcrement+Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMExcrement+Dict.h"; sourceTree = "<group>"; };
 		C06C80241B5F958E001F9A58 /* EMExcrement+Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMExcrement+Dict.m"; sourceTree = "<group>"; };
 		C06C80261B5F95E8001F9A58 /* EMSleep+Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMSleep+Dict.h"; sourceTree = "<group>"; };
@@ -147,8 +147,8 @@
 		C0B8B9F21B58104400DBE54E /* DoneCancelNumberPadToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoneCancelNumberPadToolbar.m; sourceTree = "<group>"; };
 		C0C00BBC1B552A1500059160 /* EMDayRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMDayRecord.h; sourceTree = "<group>"; };
 		C0C00BBD1B552A1500059160 /* EMDayRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMDayRecord.m; sourceTree = "<group>"; };
-		C0C00BBF1B552A3500059160 /* EMMilkPowder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMMilkPowder.h; sourceTree = "<group>"; };
-		C0C00BC01B552A3500059160 /* EMMilkPowder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMMilkPowder.m; sourceTree = "<group>"; };
+		C0C00BBF1B552A3500059160 /* EMPowderMilk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPowderMilk.h; sourceTree = "<group>"; };
+		C0C00BC01B552A3500059160 /* EMPowderMilk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPowderMilk.m; sourceTree = "<group>"; };
 		C0C00BC21B552A4500059160 /* EMBreastMilk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMBreastMilk.h; sourceTree = "<group>"; };
 		C0C00BC31B552A4500059160 /* EMBreastMilk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMBreastMilk.m; sourceTree = "<group>"; };
 		C0C00BC51B552A7800059160 /* EMExcrement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMExcrement.h; sourceTree = "<group>"; };
@@ -343,8 +343,8 @@
 				C0C00BBD1B552A1500059160 /* EMDayRecord.m */,
 				C0E1206C1B55856E001F90E8 /* EMMilk.h */,
 				C0E1206D1B55856E001F90E8 /* EMMilk.m */,
-				C0C00BBF1B552A3500059160 /* EMMilkPowder.h */,
-				C0C00BC01B552A3500059160 /* EMMilkPowder.m */,
+				C0C00BBF1B552A3500059160 /* EMPowderMilk.h */,
+				C0C00BC01B552A3500059160 /* EMPowderMilk.m */,
 				C0C00BC21B552A4500059160 /* EMBreastMilk.h */,
 				C0C00BC31B552A4500059160 /* EMBreastMilk.m */,
 				C0C00BC51B552A7800059160 /* EMExcrement.h */,
@@ -380,8 +380,8 @@
 				C06C801B1B5F954E001F9A58 /* EMPiss+Dict.m */,
 				C06C801D1B5F9569001F9A58 /* EMBreastMilk+Dict.h */,
 				C06C801E1B5F9569001F9A58 /* EMBreastMilk+Dict.m */,
-				C06C80201B5F957C001F9A58 /* EMMilkPowder+Dict.h */,
-				C06C80211B5F957C001F9A58 /* EMMilkPowder+Dict.m */,
+				C06C80201B5F957C001F9A58 /* EMPowderMilk+Dict.h */,
+				C06C80211B5F957C001F9A58 /* EMPowderMilk+Dict.m */,
 				C06C80231B5F958E001F9A58 /* EMExcrement+Dict.h */,
 				C06C80241B5F958E001F9A58 /* EMExcrement+Dict.m */,
 				C06C80261B5F95E8001F9A58 /* EMSleep+Dict.h */,
@@ -532,14 +532,14 @@
 				C09B942F1B57779F0049B04E /* ActionSheetStringPicker.m in Sources */,
 				C09B942C1B57779F0049B04E /* ActionSheetDatePicker.m in Sources */,
 				C0B8B9F31B58104400DBE54E /* DoneCancelNumberPadToolbar.m in Sources */,
-				C06C80221B5F957C001F9A58 /* EMMilkPowder+Dict.m in Sources */,
+				C06C80221B5F957C001F9A58 /* EMPowderMilk+Dict.m in Sources */,
 				C06124C31B60B65400493CEC /* UUBarChart.m in Sources */,
 				C027F6621B5AA54B00BB40BA /* EMActivityManager.m in Sources */,
 				C09B942A1B57779F0049B04E /* AbstractActionSheetPicker.m in Sources */,
 				C0C00BCA1B55352500059160 /* EMPiss.m in Sources */,
 				C0C00BBE1B552A1500059160 /* EMDayRecord.m in Sources */,
 				C0D36D5D1B54AC600014E19A /* EMDBManagerImplPlist.m in Sources */,
-				C0C00BC11B552A3500059160 /* EMMilkPowder.m in Sources */,
+				C0C00BC11B552A3500059160 /* EMPowderMilk.m in Sources */,
 				C06C80281B5F95E8001F9A58 /* EMSleep+Dict.m in Sources */,
 				C09B94371B5796CB0049B04E /* NSDate+Category.m in Sources */,
 				C0E1207B1B55888D001F90E8 /* ActivityListViewController.m in Sources */,

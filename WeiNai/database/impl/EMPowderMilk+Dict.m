@@ -1,15 +1,15 @@
 //
-//  EMMilkPowder+Dict.m
+//  EMPowderMilk+Dict.m
 //  WeiNai
 //
 //  Created by Ji Fang on 7/22/15.
 //  Copyright (c) 2015 Ji Fang. All rights reserved.
 //
 
-#import "EMMilkPowder+Dict.h"
+#import "EMPowderMilk+Dict.h"
 #import "NSDateComponents+Dict.h"
 
-@implementation EMMilkPowder (Dict)
+@implementation EMPowderMilk (Dict)
 
 - (NSDictionary *)toDict {
     NSDictionary *ret = nil;

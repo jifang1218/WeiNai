@@ -10,7 +10,7 @@
 #import "EMActivityManager.h"
 #import "EMDayRecord.h"
 #import "NSDate+Category.h"
-#import "EMMilkPowder.h"
+#import "EMPowderMilk.h"
 #import "EMBreastMilk.h"
 #import "EMExcrement.h"
 #import "EMPiss.h"
@@ -202,7 +202,7 @@
             milk = breastMilk;
         } break;
         case MilkType_PowderMilk: {
-            EMMilkPowder *powder = [[EMMilkPowder alloc] init];
+            EMPowderMilk *powder = [[EMPowderMilk alloc] init];
             powder.brand = _powderMilkBrand;
             milk = powder;
         } break;

@@ -10,6 +10,7 @@
 #import "ActivityDetail.h"
 #import "EMActivityManager.h"
 #import "CreateActivityViewController.h"
+#import "NSDate+Category.h"
 
 @interface ActivityDetailViewController()<UITableViewDataSource, UITableViewDelegate, ActivityDetailDelegate> {
     UITableView *_tableView;
@@ -28,6 +29,15 @@
 
 @dynamic activities;
 @dynamic activityType;
+@dynamic date;
+
+- (NSDateComponents *)date {
+    return _activityDetail.date;
+}
+
+- (void)setDate:(NSDateComponents *)date {
+    _activityDetail.date = date;
+}
 
 - (NSArray *)activities {
     NSArray *ret = nil;
@@ -66,11 +76,19 @@
     // title
     EMActivityManager *activityMan = [EMActivityManager sharedInstance];
     NSString *strActivityType = [activityMan ActivityType2String:_activityDetail.activityType];
-    self.title = [[NSString alloc] initWithFormat:@"今日明细 - %@", strActivityType];
-    UIBarButtonItem *addActivityButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                                       target:self
-                                                                                       action:@selector(addActivity:)];
-    self.navigationItem.rightBarButtonItem = addActivityButton;
+    self.title = [[NSString alloc] initWithFormat:@"%@", strActivityType];
+    
+    // only available for today
+    NSDateComponents *recordDate = _activityDetail.date;
+    NSDate *today = [NSDate date];
+    if ((recordDate.year == today.year) &&
+        (recordDate.month == today.month) &&
+        (recordDate.day == today.day)) {
+        UIBarButtonItem *addActivityButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                           target:self
+                                                                                           action:@selector(addActivity:)];
+        self.navigationItem.rightBarButtonItem = addActivityButton;
+    }
     
     [self setupUI];
 }

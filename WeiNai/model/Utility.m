@@ -46,4 +46,20 @@
     return ret;
 }
 
++ (NSString *)dateComponentsString:(NSDateComponents *)date {
+    NSString *ret = nil;
+    
+    ret = [[NSString alloc] initWithFormat:@"%lu-%lu-%lu", date.year, date.month, date.day];
+    
+    return ret;
+}
+
++ (NSString *)timeComponentsString:(NSDateComponents *)time {
+    NSString *ret = nil;
+    
+    ret = [[NSString alloc] initWithFormat:@"%lu:%lu", time.hour, time.minute];
+    
+    return ret;
+}
+
 @end

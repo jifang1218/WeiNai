@@ -14,9 +14,9 @@
 #import "EMPiss.h"
 #import "EMSleep.h"
 #import "EMActivityManager.h"
+#import "Utility.h"
 
 @interface ActivitySummary()<EMActivityManagerDelegate> {
-    EMDayRecord *_record;
 }
 
 @end
@@ -24,6 +24,7 @@
 @implementation ActivitySummary
 
 @synthesize delegate = _delegate;
+@synthesize dayRecord = _dayRecord;
 
 - (id)init {
     if (self=[super init]) {
@@ -39,29 +40,16 @@
     [activityman removeDelegate:self];
 }
 
-- (EMDayRecord *)todayRecord {
-    EMDayRecord *ret = nil;
-    
-    EMActivityManager *activityMan = [EMActivityManager sharedInstance];
-    ret = [activityMan todayRecord];
-    _record = ret;
-    _record.delegate = activityMan;
-    
-    return ret;
+- (void)setDayRecord:(EMDayRecord *)dayRecord {
+    _dayRecord = dayRecord;
+    EMActivityManager *activityman = [EMActivityManager sharedInstance];
+    _dayRecord.delegate = activityman;
 }
 
-- (EMDayRecord *)recordAtDay:(NSDateComponents *)day {
-    EMDayRecord *ret = nil;
+- (NSString *)dateString {
+    NSString *ret = nil;
     
-    // validation
-    if (!day.year || !day.month || !day.day) {
-        return ret;
-    }
-    
-    EMActivityManager *activityMan = [EMActivityManager sharedInstance];
-    ret = [activityMan dayRecordAt:day];
-    _record = ret;
-    _record.delegate = activityMan;
+    ret = [Utility dateComponentsString:_dayRecord.date];
     
     return ret;
 }
@@ -69,11 +57,11 @@
 - (EMMilk *)milkSummary {
     EMMilk *ret = nil;
     
-    if (!_record) {
+    if (!_dayRecord) {
         return ret;
     }
     
-    NSArray *milks = _record.milks;
+    NSArray *milks = _dayRecord.milks;
     NSUInteger ml = 0;
     for (EMMilk *milk in milks) {
         ml += milk.ml;
@@ -88,11 +76,11 @@
 - (EMExcrement *)excrementSummary {
     EMExcrement *ret = nil;
     
-    if (!_record) {
+    if (!_dayRecord) {
         return ret;
     }
     
-    NSArray *excrements = _record.excrements;
+    NSArray *excrements = _dayRecord.excrements;
     NSUInteger g = 0;
     for (EMExcrement *excrement in excrements) {
         g += excrement.g;
@@ -107,11 +95,11 @@
 - (EMPiss *)pissSummary {
     EMPiss *ret = nil;
     
-    if (!_record) {
+    if (!_dayRecord) {
         return ret;
     }
     
-    NSArray *pisses = _record.pisses;
+    NSArray *pisses = _dayRecord.pisses;
     NSUInteger ml = 0;
     for (EMPiss *piss in pisses) {
         ml += piss.ml;
@@ -126,11 +114,11 @@
 - (EMSleep *)sleepSummary {
     EMSleep *ret = nil;
     
-    if (!_record) {
+    if (!_dayRecord) {
         return ret;
     }
     
-    NSArray *sleeps = _record.sleeps;
+    NSArray *sleeps = _dayRecord.sleeps;
     NSUInteger duration = 0;
     for (EMSleep *sleep in sleeps) {
         duration += sleep.durationInMinutes;

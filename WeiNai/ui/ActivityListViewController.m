@@ -8,6 +8,7 @@
 
 #import "ActivityListViewController.h"
 #import "ActivityList.h"
+#import "ActivitySummaryViewController.h"
 
 @interface ActivityListViewController()<ActivityListDelegate, UITableViewDataSource, UITableViewDelegate> {
     ActivityList *_activityList;
@@ -56,7 +57,7 @@
         [view removeFromSuperview];
     }
     
-    NSString *dayRecordText = [_activityList dayRecordSummaryAtIndex:index];
+    NSString *dayRecordText = [_activityList dayRecordSummaryTextAtIndex:index];
     UILabel *label = [[UILabel alloc] initWithFrame:cell.contentView.bounds];
     label.textAlignment = NSTextAlignmentCenter;
     label.text = dayRecordText;
@@ -90,6 +91,17 @@
     [self configureCell:cell atIndex:index];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSInteger row = indexPath.row;
+    EMDayRecord *dayRecord = [_activityList dayRecordAtIndex:row];
+    ActivitySummaryViewController *activitySummaryViewController = [[ActivitySummaryViewController alloc] init];
+    activitySummaryViewController.dayRecord = dayRecord;
+    activitySummaryViewController.title = @"单日记录";
+    [self.navigationController pushViewController:activitySummaryViewController
+                                         animated:YES];
 }
 
 #pragma mark - ActivityListDelegate

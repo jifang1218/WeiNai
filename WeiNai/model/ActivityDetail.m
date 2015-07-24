@@ -23,6 +23,7 @@
 
 @synthesize activities = _activities;
 @synthesize activityType = _activityType;
+@synthesize date = _date;
 @synthesize delegate = _delegate;
 
 - (id)init {

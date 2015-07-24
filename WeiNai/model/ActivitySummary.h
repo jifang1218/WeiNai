@@ -25,10 +25,9 @@
 @interface ActivitySummary : NSObject
 
 @property (nonatomic, weak) id<ActivitySummaryDelegate> delegate;
+@property (nonatomic, strong) EMDayRecord *dayRecord;
 
-- (EMDayRecord *)todayRecord;
-- (EMDayRecord *)recordAtDay:(NSDateComponents *)day;
-
+- (NSString *)dateString;
 - (EMMilk *)milkSummary;
 - (EMExcrement *)excrementSummary;
 - (EMPiss *)pissSummary;

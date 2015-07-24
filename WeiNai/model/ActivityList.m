@@ -78,7 +78,7 @@
     return ret;
 }
 
-- (NSString *)dayRecordSummaryAtIndex:(NSInteger)index {
+- (NSString *)dayRecordSummaryTextAtIndex:(NSInteger)index {
     NSString *ret = nil;
     
     if (index >= _allDayRecords.count) {
@@ -134,6 +134,16 @@
            strPiss, totalPissMLs, strPissUnit,
            strMilk, totalMilkMLs, strMilkUnit,
            strExcrement, totalGs, strExcrementUnit];
+    
+    return ret;
+}
+
+- (EMDayRecord *)dayRecordAtIndex:(NSInteger)index {
+    EMDayRecord *ret = nil;
+    
+    if (index<_allDayRecords.count) {
+        ret = [_allDayRecords objectAtIndex:index];
+    }
     
     return ret;
 }

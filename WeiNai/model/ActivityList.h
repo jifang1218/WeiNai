@@ -15,11 +15,14 @@
 
 @end
 
+@class EMDayRecord;
+
 @interface ActivityList : NSObject
 
 @property (nonatomic, weak) id<ActivityListDelegate> delegate;
 
 - (NSArray *)allDayRecords;
-- (NSString *)dayRecordSummaryAtIndex:(NSInteger)index;
+- (NSString *)dayRecordSummaryTextAtIndex:(NSInteger)index;
+- (EMDayRecord *)dayRecordAtIndex:(NSInteger)index;
 
 @end

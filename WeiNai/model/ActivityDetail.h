@@ -22,6 +22,7 @@
 @property (nonatomic, weak) id<ActivityDetailDelegate> delegate;
 @property (nonatomic, weak) NSArray *activities;
 @property (nonatomic) EMActivityType activityType;
+@property (nonatomic, strong) NSDateComponents *date;
 
 - (NSString *)activityStringAtIndex:(NSInteger)index;
 

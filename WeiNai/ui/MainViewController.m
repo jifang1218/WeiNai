@@ -13,6 +13,8 @@
 #import "SettingsViewController.h"
 #import "UIMacros.h"
 
+#import "EMActivityManager.h"
+
 @interface MainViewController () {
     UINavigationController *_activitySummaryViewController;
     UINavigationController *_activityListViewController;
@@ -50,16 +52,22 @@
 //    self.tabBar.selectionIndicatorImage = [[UIImage imageNamed:@"tabbarSelectBg"] stretchableImageWithLeftCapWidth:25
 //                                                                                                      topCapHeight:25];
     
+    // activity summary
     ActivitySummaryViewController *activitySummaryViewController = [[ActivitySummaryViewController alloc] init];
+    EMActivityManager *activityman = [EMActivityManager sharedInstance];
+    EMDayRecord *dayRecord = [activityman todayRecord];
+    activitySummaryViewController.dayRecord = dayRecord;
     _activitySummaryViewController = [[UINavigationController alloc] initWithRootViewController:activitySummaryViewController];
     _activitySummaryViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"今日汇总"
                                                                               image:nil
                                                                                 tag:0];
+    activitySummaryViewController.title = _activitySummaryViewController.tabBarItem.title;
 //    [_recordListViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_chatsHL"]
 //                         withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_chats"]];
 //    [self unSelectedTapTabBarItems:_chatListVC.tabBarItem];
 //    [self selectedTapTabBarItems:_chatListVC.tabBarItem];
     
+    // activity list
     ActivityListViewController *activityListViewController = [[ActivityListViewController alloc] init];
     _activityListViewController = [[UINavigationController alloc] initWithRootViewController:activityListViewController];
     _activityListViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"全部记录"
@@ -70,6 +78,7 @@
 //    [self unSelectedTapTabBarItems:_contactsVC.tabBarItem];
 //    [self selectedTapTabBarItems:_contactsVC.tabBarItem];
     
+    // statistics
     StatisticsViewController *statisticsViewController = [[StatisticsViewController alloc] init];
     _statisticsViewController = [[UINavigationController alloc] initWithRootViewController:statisticsViewController];
     _statisticsViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"图表统计"
@@ -81,6 +90,7 @@
 //    [self unSelectedTapTabBarItems:_settingsVC.tabBarItem];
 //    [self selectedTapTabBarItems:_settingsVC.tabBarItem];
     
+    // settings
     SettingsViewController *settingsViewController = [[SettingsViewController alloc] init];
     _settingsViewController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
     _settingsViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"设置"

@@ -14,6 +14,8 @@
 + (NSString *)CurrentTimeString;
 
 + (NSString *)dateString:(NSDate *)date;
++ (NSString *)dateComponentsString:(NSDateComponents *)date;
 + (NSString *)timeString:(NSDate *)time;
++ (NSString *)timeComponentsString:(NSDateComponents *)time;
 
 @end

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class EMDayRecord;
+
 @interface ActivitySummaryViewController : UITableViewController
+
+@property (nonatomic, strong) EMDayRecord *dayRecord;
 
 @end

@@ -13,5 +13,6 @@
 
 @property (nonatomic, weak) NSArray *activities;
 @property (nonatomic) EMActivityType activityType;
+@property (nonatomic, weak) NSDateComponents *date;
 
 @end

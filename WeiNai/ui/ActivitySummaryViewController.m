@@ -17,6 +17,7 @@
 #import "UIMacros.h"
 #import "Utility.h"
 #import "ActivityDetailViewController.h"
+#import "NSDate+Category.h"
 
 @interface ActivitySummaryViewController()<ActivitySummaryDelegate> {
     ActivitySummary *_summary;
@@ -39,6 +40,8 @@
 
 @implementation ActivitySummaryViewController
 
+@dynamic dayRecord;
+
 - (id)init {
     if (self=[super init]) {
         _summary = [[ActivitySummary alloc] init];
@@ -48,22 +51,36 @@
     return self;
 }
 
-- (void)viewDidLoad {
-    EMDayRecord *record = nil;
-    record = [_summary todayRecord];
+- (EMDayRecord *)dayRecord {
+    EMDayRecord *ret = nil;
     
+    ret = _summary.dayRecord;
+    
+    return ret;
+}
+
+- (void)setDayRecord:(EMDayRecord *)dayRecord {
+    _summary.dayRecord = dayRecord;
+}
+
+- (void)viewDidLoad {    
     // get summaries
     _milkSummary = [_summary milkSummary];
     _excrementSummary = [_summary excrementSummary];
     _pissSummary = [_summary pissSummary];
     _sleepSummary = [_summary sleepSummary];
     
-    UIBarButtonItem *addActivityButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                                       target:self
-                                                                                       action:@selector(addActivity:)];
-    self.navigationItem.rightBarButtonItem = addActivityButton;
-    
-    self.title = self.navigationController.tabBarItem.title;
+    // only available for today
+    NSDateComponents *recordDate = _summary.dayRecord.date;
+    NSDate *today = [NSDate date];
+    if ((recordDate.year == today.year) &&
+        (recordDate.month == today.month) &&
+        (recordDate.day == today.day)) {
+        UIBarButtonItem *addActivityButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                           target:self
+                                                                                           action:@selector(addActivity:)];
+        self.navigationItem.rightBarButtonItem = addActivityButton;
+    }
 }
 
 #pragma mark - table
@@ -100,7 +117,7 @@
 }
 
 - (void)decorateDateCell:(UITableViewCell *)cell {
-    cell.textLabel.text = [Utility CurrentDateString];;
+    cell.textLabel.text = [_summary dateString];
     [cell setUserInteractionEnabled:NO];
 }
 
@@ -165,56 +182,52 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger row = indexPath.row;
     
+    ActivityDetailViewController *detailViewController = nil;
+    NSArray *activities = nil;
+    EMActivityType activityType = ActivityType_Milk;
+    
+    if (row!=0) {
+        detailViewController = [[ActivityDetailViewController alloc] init];
+    } else {
+        [tableView deselectRowAtIndexPath:indexPath
+                                 animated:NO];
+    }
+    
     switch (row) {
         case 0: {
-            [tableView deselectRowAtIndexPath:indexPath
-                                     animated:NO];
         } break;
         case 1: {
-            [tableView deselectRowAtIndexPath:indexPath
-                                     animated:YES];
-            NSArray *milks = _summary.todayRecord.milks;
-            ActivityDetailViewController *detailViewController = [[ActivityDetailViewController alloc] init];
-            detailViewController.activities = milks;
-            detailViewController.activityType = ActivityType_Milk;
-            [self.navigationController pushViewController:detailViewController
-                                                 animated:YES];
+            activities = _summary.dayRecord.milks;
         } break;
         case 2: {
-            [tableView deselectRowAtIndexPath:indexPath
-                                     animated:YES];
-            NSArray *sleeps = _summary.todayRecord.sleeps;
-            ActivityDetailViewController *detailViewController = [[ActivityDetailViewController alloc] init];
-            detailViewController.activities = sleeps;
-            detailViewController.activityType = ActivityType_Sleep;
-            [self.navigationController pushViewController:detailViewController
-                                                 animated:YES];
+            activities = _summary.dayRecord.sleeps;
+            activityType = ActivityType_Sleep;
         } break;
         case 3: {
-            [tableView deselectRowAtIndexPath:indexPath
-                                     animated:YES];
-            NSArray *pisses = _summary.todayRecord.pisses;
-            ActivityDetailViewController *detailViewController = [[ActivityDetailViewController alloc] init];
-            detailViewController.activities = pisses;
-            detailViewController.activityType = ActivityType_Piss;
-            [self.navigationController pushViewController:detailViewController
-                                                 animated:YES];
+            activities = _summary.dayRecord.pisses;
+            activityType = ActivityType_Piss;
         } break;
         case 4: {
-            [tableView deselectRowAtIndexPath:indexPath
-                                     animated:YES];
-            NSArray *excrements = _summary.todayRecord.excrements;
-            ActivityDetailViewController *detailViewController = [[ActivityDetailViewController alloc] init];
-            detailViewController.activities = excrements;
-            detailViewController.activityType = ActivityType_Excrement;
-            [self.navigationController pushViewController:detailViewController
-                                                 animated:YES];
+            activities = _summary.dayRecord.excrements;
+            activityType = ActivityType_Excrement;
         } break;
         default: {
             [tableView deselectRowAtIndexPath:indexPath
                                      animated:NO];
         } break;
     }
+    
+    if (row!=0) {
+        [tableView deselectRowAtIndexPath:indexPath
+                                 animated:YES];
+        detailViewController.activityType = activityType;
+        detailViewController.activities = activities;
+        detailViewController.date = _summary.dayRecord.date;
+        [self.navigationController pushViewController:detailViewController
+                                             animated:YES];
+    } else {
+    }
+    
 }
 
 #pragma mark - model delegate

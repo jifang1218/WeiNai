@@ -11,8 +11,6 @@
 
 #import "EMDBManagerImplPlist.h"
 
-static EMDBManager *_sharedInstance = nil;
-
 @interface EMDBManager () {
     id<IDBManagerImpl> _dbmanImpl;
 }
@@ -23,16 +21,6 @@ static EMDBManager *_sharedInstance = nil;
 @end
 
 @implementation EMDBManager
-
-+ (EMDBManager *)sharedInstance {
-    if (_sharedInstance == nil) {
-        @synchronized(self) {
-            _sharedInstance = [[EMDBManager alloc] init];
-        }
-    }
-    
-    return _sharedInstance;
-}
 
 - (id)init {
     if (self=[super init]) {

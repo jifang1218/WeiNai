@@ -24,7 +24,7 @@ typedef enum {
 
 @required
 //横坐标标题数组
-- (NSArray *)UUChart_xLableArray:(UUChart *)chart;
+- (NSArray *)UUChart_xLabelArray:(UUChart *)chart;
 
 //数值多重数组
 - (NSArray *)UUChart_yValueArray:(UUChart *)chart;

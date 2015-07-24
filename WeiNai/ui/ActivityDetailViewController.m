@@ -11,6 +11,11 @@
 #import "EMActivityManager.h"
 #import "CreateActivityViewController.h"
 #import "NSDate+Category.h"
+#import "ChartViewController.h"
+#import "EMMilk.h"
+#import "EMSleep.h"
+#import "EMPiss.h"
+#import "EMExcrement.h"
 
 @interface ActivityDetailViewController()<UITableViewDataSource, UITableViewDelegate, ActivityDetailDelegate> {
     UITableView *_tableView;
@@ -74,6 +79,9 @@
 }
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     // title
     EMActivityManager *activityMan = [EMActivityManager sharedInstance];
     NSString *strActivityType = [activityMan ActivityType2String:_activityDetail.activityType];
@@ -130,6 +138,14 @@
 }
 
 - (void)showChart:(id)sender {
+    ChartViewController *chartViewController = [[ChartViewController alloc] init];
+    EMActivityType activityType = self.activityType;
+    chartViewController.title = [[EMActivityManager sharedInstance] ActivityType2String:activityType];
+    NSArray *xArray = [_activityDetail chartXArray];
+    NSArray *yArray = [_activityDetail chartYArray];
+    chartViewController.xArray = xArray;
+    chartViewController.yArray = yArray;
+    [self.navigationController pushViewController:chartViewController animated:YES];
 }
 
 #pragma mark - tableview

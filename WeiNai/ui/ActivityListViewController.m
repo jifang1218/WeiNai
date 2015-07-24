@@ -38,6 +38,9 @@
 }
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+
     self.title = self.navigationController.tabBarItem.title;
     [self setupUI];
 }

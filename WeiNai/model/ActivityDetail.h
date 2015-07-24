@@ -25,5 +25,7 @@
 @property (nonatomic, strong) NSDateComponents *date;
 
 - (NSString *)activityStringAtIndex:(NSInteger)index;
+- (NSArray *)chartXArray;
+- (NSArray *)chartYArray;
 
 @end

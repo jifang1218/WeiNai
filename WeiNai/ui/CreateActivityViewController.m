@@ -72,8 +72,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    // Do any additional setup after loading the view.
+
     self.title = @"新建活动";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                                            target:self

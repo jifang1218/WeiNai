@@ -17,6 +17,7 @@ static EMActivityManager *_sharedInstance = nil;
 @interface EMActivityManager() {
     EMDayRecord *_today;
     EMGCDMulticastDelegate<EMActivityManagerDelegate> *_delegates;
+    EMDBManager *_dbman;
 }
 
 @end
@@ -36,14 +37,14 @@ static EMActivityManager *_sharedInstance = nil;
 - (id)init {
     if (self=[super init]) {
         _delegates = (EMGCDMulticastDelegate<EMActivityManagerDelegate> *)[[EMGCDMulticastDelegate alloc] init];
-        EMDBManager *dbman = [EMDBManager sharedInstance];
+        _dbman = [[EMDBManager alloc] init];
         NSDateComponents *today = [[NSDateComponents alloc] init];
         NSDate *now = [NSDate date];
         today.year = now.year;
         today.month = now.month;
         today.day = now.day;
         
-        _today = [dbman dayRecordAt:today];
+        _today = [_dbman dayRecordAt:today];
     }
     
     return self;
@@ -73,8 +74,7 @@ static EMActivityManager *_sharedInstance = nil;
 - (EMDayRecord *)dayRecordAt:(NSDateComponents *)date {
     EMDayRecord *ret = nil;
     
-    EMDBManager *dbman = [EMDBManager sharedInstance];
-    ret = [dbman dayRecordAt:date];
+    ret = [_dbman dayRecordAt:date];
     
     return ret;
 }
@@ -83,9 +83,8 @@ static EMActivityManager *_sharedInstance = nil;
                          to:(NSDateComponents *)to {
     NSArray *ret = nil;
     
-    EMDBManager *dbman = [EMDBManager sharedInstance];
-    ret = [dbman dayRecordsFrom:from
-                             to:to];
+    ret = [_dbman dayRecordsFrom:from
+                              to:to];
     
     return ret;
 }
@@ -93,8 +92,7 @@ static EMActivityManager *_sharedInstance = nil;
 - (NSArray *)allDayRecords {
     NSArray *ret = nil;
     
-    EMDBManager *dbman = [EMDBManager sharedInstance];
-    ret = [dbman allDayRecords];
+    ret = [_dbman allDayRecords];
     
     return ret;
 }
@@ -102,8 +100,7 @@ static EMActivityManager *_sharedInstance = nil;
 - (BOOL)addDayRecord:(EMDayRecord *)dayRecord {
     BOOL ret = NO;
     
-    EMDBManager *dbman = [EMDBManager sharedInstance];
-    ret = [dbman insertDayRecord:dayRecord];
+    ret = [_dbman insertDayRecord:dayRecord];
     if (ret) {
         dayRecord.delegate = self;
         [_delegates didDayRecordChanged:dayRecord];
@@ -115,9 +112,8 @@ static EMActivityManager *_sharedInstance = nil;
 - (BOOL)removeDayRecord:(NSDateComponents *)date {
     BOOL ret = NO;
     
-    EMDBManager *dbman = [EMDBManager sharedInstance];
-    EMDayRecord *dayRecord = [dbman dayRecordAt:date];
-    ret = [dbman deleteDayRecordAtDay:date];
+    EMDayRecord *dayRecord = [_dbman dayRecordAt:date];
+    ret = [_dbman deleteDayRecordAtDay:date];
     if (ret) {
         [_delegates didDayRecordChanged:dayRecord];
         dayRecord.delegate = nil;
@@ -179,8 +175,7 @@ static EMActivityManager *_sharedInstance = nil;
 - (BOOL)save {
     BOOL ret = NO;
     
-    EMDBManager *dbman = [EMDBManager sharedInstance];
-    ret = [dbman save];
+    ret = [_dbman save];
     
     return ret;
 }

@@ -85,7 +85,7 @@
         }
         
 		[_lineChart setYValues:[self.dataSource UUChart_yValueArray:self]];
-		[_lineChart setXLabels:[self.dataSource UUChart_xLableArray:self]];
+		[_lineChart setXLabels:[self.dataSource UUChart_xLabelArray:self]];
         
 		[_lineChart strokeChart];
 
@@ -102,7 +102,7 @@
             [_barChart setColors:[self.dataSource UUChart_ColorArray:self]];
         }
 		[_barChart setYValues:[self.dataSource UUChart_yValueArray:self]];
-		[_barChart setXLabels:[self.dataSource UUChart_xLableArray:self]];
+		[_barChart setXLabels:[self.dataSource UUChart_xLabelArray:self]];
         
         [_barChart strokeChart];
 	}

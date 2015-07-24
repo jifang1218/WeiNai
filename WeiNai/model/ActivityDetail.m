@@ -114,6 +114,62 @@
     return ret;
 }
 
+#pragma mark - chart
+- (NSArray *)chartXArray {
+    NSArray *ret = nil;
+    
+    NSMutableArray *xArray = [[NSMutableArray alloc] initWithCapacity:self.activities.count];
+    NSArray *activities = _activities;
+    for (EMActivityBase *activity in activities) {
+        NSDateComponents *time = activity.time;
+        NSString *x = [[NSString alloc] initWithFormat:@"%lu:%lu", time.hour, time.minute];
+        [xArray addObject:x];
+    }
+    ret = xArray;
+    
+    return ret;
+}
+
+- (NSArray *)chartYArray {
+    NSArray *ret = nil;
+    
+    NSMutableArray *yArray = [[NSMutableArray alloc] initWithCapacity:self.activities.count];
+    NSArray *activities = _activities;
+    switch (_activityType) {
+        case ActivityType_Milk: {
+            for (EMMilk *milk in activities) {
+                NSNumber *ml = [NSNumber numberWithUnsignedInteger:milk.ml];
+                [yArray addObject:ml];
+            }
+        } break;
+        case ActivityType_Excrement: {
+            for (EMExcrement *excrement in activities) {
+                NSNumber *g = [NSNumber numberWithUnsignedInteger:excrement.g];
+                [yArray addObject:g];
+                
+            }
+        } break;
+        case ActivityType_Piss: {
+            for (EMPiss *piss in activities) {
+                NSNumber *ml = [NSNumber numberWithUnsignedInteger:piss.ml];
+                [yArray addObject:ml];
+            }
+        } break;
+        case ActivityType_Sleep: {
+            for (EMSleep *sleep in activities) {
+                NSNumber *minute = [NSNumber numberWithUnsignedInteger:sleep.durationInMinutes];
+                [yArray addObject:minute];
+            }
+        } break;
+        default: {
+        } break;
+    }
+    ret = yArray;
+    
+    return ret;
+}
+
+#pragma mark - activity manager delegate
 - (void)didDayRecordChanged:(EMDayRecord *)dayRecord {
     if ([_delegate respondsToSelector:@selector(didActivitiesChanged:)]) {
         [_delegate didActivitiesChanged:_activities];

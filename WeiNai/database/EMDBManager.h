@@ -12,8 +12,6 @@
 
 @interface EMDBManager : NSObject
 
-+ (EMDBManager *)sharedInstance;
-
 // query
 - (NSArray *)allDayRecords;
 - (EMDayRecord *)dayRecordAt:(NSDateComponents *)day;

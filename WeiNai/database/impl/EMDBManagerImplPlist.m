@@ -176,9 +176,27 @@
     
     NSMutableArray *days = [[NSMutableArray alloc] init];
     for (EMDayRecord *record in _dayRecords) {
-        if ((record.date.year >= from.year && record.date.year <= to.year) &&
-            (record.date.month >= from.month && record.date.month <= to.month) &&
-            (record.date.day >= from.day && record.date.day <= to.day)) {
+        BOOL isInRange = NO;
+        // 1. year is in range
+        if ((record.date.year >= from.year) && (record.date.year <= to.year)) {
+            if (from.year != to.year) {
+                isInRange = YES;
+            } else {
+                // 2. month is in range
+                if ((record.date.month >= from.month) && (record.date.month <= to.month)) {
+                    if (from.month != to.month) {
+                        isInRange = YES;
+                    } else {
+                        // 3. day is in range
+                        if ((record.date.day >= from.day) && (record.date.day <= to.day)) {
+                            isInRange = YES;
+                        }
+                    }
+                }
+            }
+        }
+        
+        if (isInRange) {
             [days addObject:record];
         }
     }

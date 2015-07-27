@@ -99,7 +99,7 @@
                 from.month = to.month - 1 + 12;
             } else {
                 from.year = to.year;
-                from.month = from.month - 1;
+                from.month = to.month - 1;
             }
             from.day = to.day;
         } break;

@@ -152,12 +152,13 @@
         [view removeFromSuperview];
     }
     CGRect frame = cell.contentView.bounds;
-    frame.origin.x -= 10;
+    frame.size.width = cell.contentView.frame.size.width - 20;
     frame.size.height = 200;
     _chart = [[UUChart alloc] initwithUUChartDataFrame:frame
                                             withSource:self
                                              withStyle:UUChartLineStyle];
     [_chart showInView:cell.contentView];
+    cell.userInteractionEnabled = NO;
     
     return cell;
 }

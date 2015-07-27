@@ -38,6 +38,7 @@
     _chart = [[UUChart alloc] initwithUUChartDataFrame:frame
                                             withSource:self
                                              withStyle:UUChartLineStyle];
+    _chart.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [_chart showInView:self.view];
 }
 

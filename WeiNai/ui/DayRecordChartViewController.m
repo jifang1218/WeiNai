@@ -21,9 +21,9 @@
 }
 
 - (void)setupUI;
-- (void)configureCell:(UITableViewCell *)cell index:(NSInteger)index;
-- (void)configureActivitySelectorCell:(UITableViewCell *)cell;
-- (void)configureChartCell:(UITableViewCell *)cell;
+- (UITableViewCell *)configureCellAtIndex:(NSInteger)index;
+- (UITableViewCell *)configureActivitySelectorCell;
+- (UITableViewCell *)configureChartCell;
 - (void)activityTypeSelected:(id)sender;
 
 @end
@@ -157,6 +157,7 @@
     _chart = [[UUChart alloc] initwithUUChartDataFrame:frame
                                             withSource:self
                                              withStyle:UUChartLineStyle];
+    _chart.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;;
     [_chart showInView:cell.contentView];
     cell.userInteractionEnabled = NO;
     

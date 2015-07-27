@@ -253,7 +253,7 @@
     }
     CGRect frame = cell.contentView.bounds;
     frame.origin.x -= 10;
-    frame.size.height *= 4;
+    frame.size.height = 200;
     _chart = [[UUChart alloc] initwithUUChartDataFrame:frame
                                             withSource:self
                                              withStyle:UUChartLineStyle];

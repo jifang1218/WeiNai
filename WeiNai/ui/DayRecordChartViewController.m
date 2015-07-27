@@ -153,7 +153,7 @@
     }
     CGRect frame = cell.contentView.bounds;
     frame.origin.x -= 10;
-    frame.size.height *= 4;
+    frame.size.height = 200;
     _chart = [[UUChart alloc] initwithUUChartDataFrame:frame
                                             withSource:self
                                              withStyle:UUChartLineStyle];
@@ -230,7 +230,7 @@
 - (void)didDatasourceChangedXArray:(NSArray *)xArray yArray:(NSArray *)yArray {
     _xArray = xArray;
     _yArray = yArray;
-    [_chart strokeChart];
+    [_tableview reloadData];
 }
 
 #pragma mark - actions

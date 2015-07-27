@@ -11,7 +11,6 @@
 
 @interface DayRecordsChartViewController : UIViewController
 
-@property (nonatomic, strong) NSArray *historicalDayRecords;
 @property (nonatomic) EMActivityType activityType;
 @property (nonatomic) EMDayRecordsPeriod period;
 

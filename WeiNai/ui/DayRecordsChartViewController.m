@@ -9,7 +9,7 @@
 #import "DayRecordsChartViewController.h"
 #import "DayRecordsChart.h"
 #import "UUChart.h"
-
+#import "EMActivityManager.h"
 
 
 @interface DayRecordsChartViewController ()<DayRecordsChartDelegate, UUChartDataSource, UITableViewDataSource, UITableViewDelegate> {
@@ -26,14 +26,12 @@
 - (void)configureRecordPeriodSelectorCell:(UITableViewCell *)cell;
 - (void)configureChartCell:(UITableViewCell *)cell;
 - (void)activityTypeSelected:(id)sender;
+- (void)periodSelected:(id)sender;
 
 @end
 
 @implementation DayRecordsChartViewController
 
-#if 0
-
-@dynamic historicalDayRecords;
 @dynamic activityType;
 @dynamic period;
 
@@ -41,6 +39,7 @@
     if (self=[super init]) {
         _dayRecordsChart = [[DayRecordsChart alloc] init];
         _dayRecordsChart.delegate = self;
+        _dayRecordsChart.activityType = ActivityType_Milk;
     }
     
     return self;
@@ -48,14 +47,6 @@
 
 - (void)dealloc {
     _dayRecordsChart.delegate = nil;
-}
-
-- (NSArray *)historicalDayRecords {
-    return _dayRecordsChart.historicalDayRecords;
-}
-
-- (void)setHistoricalDayRecords:(NSArray *)historicalDayRecords {
-    _dayRecordsChart.historicalDayRecords = historicalDayRecords;
 }
 
 - (EMActivityType)activityType {
@@ -79,6 +70,53 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     [self setupUI];
+}
+
+#pragma mark - actions
+- (void)activityTypeSelected:(id)sender {
+    if ([sender isKindOfClass:[UISegmentedControl class]]) {
+        UISegmentedControl *seg = (UISegmentedControl *)sender;
+        NSInteger index = seg.selectedSegmentIndex;
+        switch (index) {
+            case 0: {
+                _dayRecordsChart.activityType = ActivityType_Milk;
+            } break;
+            case 1: {
+                _dayRecordsChart.activityType = ActivityType_Piss;
+            } break;
+            case 2: {
+                _dayRecordsChart.activityType = ActivityType_Excrement;
+            } break;
+            case 3: {
+                _dayRecordsChart.activityType = ActivityType_Sleep;
+            } break;
+            default: {
+            } break;
+        }
+    }
+}
+
+- (void)periodSelected:(id)sender {
+    if ([sender isKindOfClass:[UISegmentedControl class]]) {
+        UISegmentedControl *seg = (UISegmentedControl *)sender;
+        NSInteger index = seg.selectedSegmentIndex;
+        switch (index) {
+            case 0: {
+                _dayRecordsChart.period = DayRecordsPeriod_Week;
+            } break;
+            case 1: {
+                _dayRecordsChart.period = DayRecordsPeriod_3Weeks;
+            } break;
+            case 2: {
+                _dayRecordsChart.period = DayRecordsPeriod_Month;
+            } break;
+            case 3: {
+                _dayRecordsChart.period = DayRecordsPeriod_3Month;
+            } break;
+            default:
+                break;
+        }
+    }
 }
 
 #pragma mark - helpers
@@ -108,6 +146,40 @@
 }
 
 - (void)configureRecordPeriodSelectorCell:(UITableViewCell *)cell {
+    for (UIView *view in cell.contentView.subviews) {
+        [view removeFromSuperview];
+    }
+    EMActivityManager *activityman = [EMActivityManager sharedInstance];
+    UISegmentedControl *periodSeg = [[UISegmentedControl alloc] initWithItems:
+                                    @[[activityman PeriodType2String:DayRecordsPeriod_Week],
+                                      [activityman PeriodType2String:DayRecordsPeriod_3Weeks],
+                                      [activityman PeriodType2String:DayRecordsPeriod_Month],
+                                      [activityman PeriodType2String:DayRecordsPeriod_3Month]
+                                      ]];
+    [periodSeg addTarget:self
+                  action:@selector(periodSelected:)
+        forControlEvents:UIControlEventValueChanged];
+    switch (_dayRecordsChart.period) {
+        case DayRecordsPeriod_Week: {
+            periodSeg.selectedSegmentIndex = 0;
+        } break;
+        case DayRecordsPeriod_3Weeks: {
+            periodSeg.selectedSegmentIndex = 1;
+        } break;
+        case DayRecordsPeriod_Month: {
+            periodSeg.selectedSegmentIndex = 2;
+        } break;
+        case DayRecordsPeriod_3Month: {
+            periodSeg.selectedSegmentIndex = 3;
+        } break;
+        default: {
+        } break;
+    }
+    periodSeg.center = cell.contentView.center;
+    periodSeg.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    [cell.contentView addSubview:periodSeg];
+    cell.backgroundColor = [UIColor clearColor];
+    cell.backgroundView = nil;
 }
 
 - (void)configureActivitySelectorCell:(UITableViewCell *)cell {
@@ -124,7 +196,7 @@
     [typesSeg addTarget:self
                  action:@selector(activityTypeSelected:)
        forControlEvents:UIControlEventValueChanged];
-    switch (_dayRecordChart.activityType) {
+    switch (_dayRecordsChart.activityType) {
         case ActivityType_Milk: {
             typesSeg.selectedSegmentIndex = 0;
         } break;
@@ -190,7 +262,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger ret = 0;
     
-    ret = 2; // one for activity type selector, one for chart.
+    ret = 3; // one for period, one for activity type selector, one for chart.
     
     return ret;
 }
@@ -210,7 +282,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger row = indexPath.row;
-    if (row == 1) {
+    if (row == 2) {
         return 200;
     } else {
         return 44;
@@ -219,7 +291,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger row = indexPath.row;
-    if (row == 1) {
+    if (row == 2) {
         return 200;
     } else {
         return 44;
@@ -230,12 +302,13 @@
 - (void)didActivityTypeChanged:(EMActivityType)activityType {
 }
 
+- (void)didDayRecordsPeriodChanged:(EMDayRecordsPeriod)period {
+}
+
 - (void)didDatasourceChangedXArray:(NSArray *)xArray yArray:(NSArray *)yArray {
     _xArray = xArray;
     _yArray = yArray;
     [_chart strokeChart];
 }
-
-#endif
 
 @end

@@ -12,13 +12,16 @@
 @protocol DayRecordsChartDelegate <NSObject>
 
 @optional
+- (void)didActivityTypeChanged:(EMActivityType)activityType;
+- (void)didDayRecordsPeriodChanged:(EMDayRecordsPeriod)period;
+- (void)didDatasourceChangedXArray:(NSArray *)xArray
+                            yArray:(NSArray *)yArray;
 
 @end
 
 @interface DayRecordsChart : NSObject
 
 @property (nonatomic, weak) id<DayRecordsChartDelegate> delegate;
-@property (nonatomic, strong) NSArray *historicalDayRecords;
 @property (nonatomic) EMActivityType activityType;
 @property (nonatomic) EMDayRecordsPeriod period;
 

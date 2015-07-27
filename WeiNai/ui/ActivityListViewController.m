@@ -9,6 +9,7 @@
 #import "ActivityListViewController.h"
 #import "ActivityList.h"
 #import "ActivitySummaryViewController.h"
+#import "DayRecordsChartViewController.h"
 
 @interface ActivityListViewController()<ActivityListDelegate, UITableViewDataSource, UITableViewDelegate> {
     ActivityList *_activityList;
@@ -47,6 +48,9 @@
 
 #pragma mark - actions
 - (void)showChart:(id)sender {
+    DayRecordsChartViewController *chartViewController = [[DayRecordsChartViewController alloc] init];
+    chartViewController.period = DayRecordsPeriod_Week;
+    [self.navigationController pushViewController:chartViewController animated:YES];
 }
 
 #pragma mark - helpers

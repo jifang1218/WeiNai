@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C027F6621B5AA54B00BB40BA /* EMActivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C027F6611B5AA54B00BB40BA /* EMActivityManager.m */; };
 		C03F13CB1B56A90E001653D5 /* CreateActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C03F13CA1B56A90E001653D5 /* CreateActivityViewController.m */; };
+		C04F66F61B65CB60004F0E43 /* DayRecordsChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C04F66F51B65CB60004F0E43 /* DayRecordsChart.m */; };
 		C06124C21B60B65400493CEC /* UUBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C06124B71B60B65400493CEC /* UUBar.m */; };
 		C06124C31B60B65400493CEC /* UUBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C06124B91B60B65400493CEC /* UUBarChart.m */; };
 		C06124C41B60B65400493CEC /* UUChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C06124BB1B60B65400493CEC /* UUChart.m */; };
@@ -47,6 +48,7 @@
 		C09B94411B57BBAC0049B04E /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = C09B94401B57BBAC0049B04E /* Utility.m */; };
 		C09EAEB91B627B5700F0B733 /* ActivityChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09EAEB81B627B5700F0B733 /* ActivityChartViewController.m */; };
 		C09EAEBC1B62BB9900F0B733 /* DayRecordChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09EAEBB1B62BB9900F0B733 /* DayRecordChartViewController.m */; };
+		C0A9C2B01B644A1A00EA5D68 /* DayRecordChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A9C2AF1B644A1A00EA5D68 /* DayRecordChart.m */; };
 		C0B6F8AF1B6139020063B33C /* ActivityList.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B6F8AE1B6139020063B33C /* ActivityList.m */; };
 		C0B8B9F31B58104400DBE54E /* DoneCancelNumberPadToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B8B9F21B58104400DBE54E /* DoneCancelNumberPadToolbar.m */; };
 		C0C00BBE1B552A1500059160 /* EMDayRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C00BBD1B552A1500059160 /* EMDayRecord.m */; };
@@ -71,6 +73,8 @@
 		C027F6611B5AA54B00BB40BA /* EMActivityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMActivityManager.m; sourceTree = "<group>"; };
 		C03F13C91B56A90E001653D5 /* CreateActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateActivityViewController.h; sourceTree = "<group>"; };
 		C03F13CA1B56A90E001653D5 /* CreateActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateActivityViewController.m; sourceTree = "<group>"; };
+		C04F66F41B65CB60004F0E43 /* DayRecordsChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayRecordsChart.h; sourceTree = "<group>"; };
+		C04F66F51B65CB60004F0E43 /* DayRecordsChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayRecordsChart.m; sourceTree = "<group>"; };
 		C06124B61B60B65400493CEC /* UUBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBar.h; sourceTree = "<group>"; };
 		C06124B71B60B65400493CEC /* UUBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBar.m; sourceTree = "<group>"; };
 		C06124B81B60B65400493CEC /* UUBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBarChart.h; sourceTree = "<group>"; };
@@ -147,6 +151,8 @@
 		C09EAEB81B627B5700F0B733 /* ActivityChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityChartViewController.m; sourceTree = "<group>"; };
 		C09EAEBA1B62BB9900F0B733 /* DayRecordChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayRecordChartViewController.h; sourceTree = "<group>"; };
 		C09EAEBB1B62BB9900F0B733 /* DayRecordChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayRecordChartViewController.m; sourceTree = "<group>"; };
+		C0A9C2AE1B644A1A00EA5D68 /* DayRecordChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayRecordChart.h; sourceTree = "<group>"; };
+		C0A9C2AF1B644A1A00EA5D68 /* DayRecordChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayRecordChart.m; sourceTree = "<group>"; };
 		C0B6F8AD1B6139020063B33C /* ActivityList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityList.h; sourceTree = "<group>"; };
 		C0B6F8AE1B6139020063B33C /* ActivityList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityList.m; sourceTree = "<group>"; };
 		C0B8B9F11B58104400DBE54E /* DoneCancelNumberPadToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoneCancelNumberPadToolbar.h; sourceTree = "<group>"; };
@@ -273,6 +279,10 @@
 				C06124DC1B6104AF00493CEC /* ActivityDetail.m */,
 				C0B6F8AD1B6139020063B33C /* ActivityList.h */,
 				C0B6F8AE1B6139020063B33C /* ActivityList.m */,
+				C0A9C2AE1B644A1A00EA5D68 /* DayRecordChart.h */,
+				C0A9C2AF1B644A1A00EA5D68 /* DayRecordChart.m */,
+				C04F66F41B65CB60004F0E43 /* DayRecordsChart.h */,
+				C04F66F51B65CB60004F0E43 /* DayRecordsChart.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -535,6 +545,7 @@
 				C0C00BCD1B55353F00059160 /* EMSleep.m in Sources */,
 				C0E1206B1B556484001F90E8 /* EMActivityBase.m in Sources */,
 				C06526D41B53FD6900DF4E34 /* AppDelegate.m in Sources */,
+				C0A9C2B01B644A1A00EA5D68 /* DayRecordChart.m in Sources */,
 				C0E120841B5588DE001F90E8 /* SettingsViewController.m in Sources */,
 				C09EAEBC1B62BB9900F0B733 /* DayRecordChartViewController.m in Sources */,
 				C03F13CB1B56A90E001653D5 /* CreateActivityViewController.m in Sources */,
@@ -554,6 +565,7 @@
 				C0C00BC11B552A3500059160 /* EMPowderMilk.m in Sources */,
 				C06C80281B5F95E8001F9A58 /* EMSleep+Dict.m in Sources */,
 				C09B94371B5796CB0049B04E /* NSDate+Category.m in Sources */,
+				C04F66F61B65CB60004F0E43 /* DayRecordsChart.m in Sources */,
 				C0E1207B1B55888D001F90E8 /* ActivityListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

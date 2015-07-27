@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class EMDayRecord;
+
 @interface DayRecordChartViewController : UIViewController
 
-@property (nonatomic, strong) NSArray *xArray;
-@property (nonatomic, strong) NSArray *yArray;
+@property (nonatomic, strong) EMDayRecord *dayRecord;
 
 @end

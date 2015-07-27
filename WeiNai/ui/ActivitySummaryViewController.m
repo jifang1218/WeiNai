@@ -18,6 +18,7 @@
 #import "Utility.h"
 #import "ActivityDetailViewController.h"
 #import "NSDate+Category.h"
+#import "DayRecordChartViewController.h"
 
 @interface ActivitySummaryViewController()<ActivitySummaryDelegate> {
     ActivitySummary *_summary;
@@ -256,6 +257,9 @@
 }
 
 - (void)showChart:(id)sender {
+    DayRecordChartViewController *chartViewController = [[DayRecordChartViewController alloc] init];
+    chartViewController.dayRecord = _summary.dayRecord;
+    [self.navigationController pushViewController:chartViewController animated:YES];
 }
 
 @end

@@ -123,7 +123,8 @@
 }
 
 - (void)setupUI {
-    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
+    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds
+                                              style:UITableViewStyleGrouped];
     _tableView.dataSource = self;
     _tableView.delegate = self;
     [self.view addSubview:_tableView];
@@ -145,7 +146,8 @@
     NSArray *yArray = [_activityDetail chartYArray];
     chartViewController.xArray = xArray;
     chartViewController.yArray = yArray;
-    [self.navigationController pushViewController:chartViewController animated:YES];
+    [self.navigationController pushViewController:chartViewController
+                                         animated:YES];
 }
 
 #pragma mark - tableview

@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIMacros.h"
 
 @class EMDayRecord;
 
 @interface DayRecordChartViewController : UIViewController
 
 @property (nonatomic, strong) EMDayRecord *dayRecord;
+@property (nonatomic) EMActivityType activityType;
 
 @end

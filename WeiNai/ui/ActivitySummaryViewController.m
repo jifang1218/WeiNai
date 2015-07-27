@@ -259,6 +259,7 @@
 - (void)showChart:(id)sender {
     DayRecordChartViewController *chartViewController = [[DayRecordChartViewController alloc] init];
     chartViewController.dayRecord = _summary.dayRecord;
+    chartViewController.activityType = ActivityType_Milk;
     [self.navigationController pushViewController:chartViewController animated:YES];
 }
 

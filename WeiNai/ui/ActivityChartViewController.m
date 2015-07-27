@@ -39,7 +39,6 @@
                                             withSource:self
                                              withStyle:UUChartLineStyle];
     [_chart showInView:self.view];
-    [_chart strokeChart];
 }
 
 #pragma mark - UUChartDataSource

@@ -124,7 +124,7 @@
 
 - (void)setupUI {
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds
-                                              style:UITableViewStyleGrouped];
+                                              style:UITableViewStylePlain];
     _tableView.dataSource = self;
     _tableView.delegate = self;
     [self.view addSubview:_tableView];

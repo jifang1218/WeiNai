@@ -12,6 +12,16 @@
 #import "NSDate+Category.h"
 #import "EMGCDMulticastDelegate.h"
 
+#define TEST 0
+
+#if TEST
+#import "EMSleep.h"
+#import "EMBreastMilk.h"
+#import "EMPowderMilk.h"
+#import "EMExcrement.h"
+#import "EMPiss.h"
+#endif
+
 static EMActivityManager *_sharedInstance = nil;
 
 @interface EMActivityManager() {
@@ -19,6 +29,10 @@ static EMActivityManager *_sharedInstance = nil;
     EMGCDMulticastDelegate<EMActivityManagerDelegate> *_delegates;
     EMDBManager *_dbman;
 }
+
+#if TEST
+- (void)fakedata;
+#endif
 
 @end
 
@@ -43,7 +57,6 @@ static EMActivityManager *_sharedInstance = nil;
         today.year = now.year;
         today.month = now.month;
         today.day = now.day;
-        
         _today = [_dbman dayRecordAt:today];
     }
     
@@ -59,11 +72,85 @@ static EMActivityManager *_sharedInstance = nil;
     [_delegates removeDelegate:delegate];
 }
 
+#if TEST
+- (void)fakedata {
+    NSDateComponents *today = [[NSDateComponents alloc] init];
+    NSDate *now = [NSDate date];
+    today.year = now.year;
+    today.month = now.month;
+    today.day = now.day;
+    _today.date = today;
+    
+    for (int i=0; i<10; ++i) {
+        // sleep
+        EMSleep *sleep = [[EMSleep alloc] init];
+        NSDateComponents *time = [[NSDateComponents alloc] init];
+        NSDate *now = [NSDate date];
+        time.year = now.year;
+        time.month = now.month;
+        time.day = now.day;
+        time.hour = 9 + i;
+        time.minute = 10;
+        sleep.time = time;
+        sleep.quality = SleepQuality_Medium;
+        sleep.durationInMinutes = 10 + i*10;
+        [_today addActivity:sleep];
+        
+        // milk
+        EMBreastMilk *milk = [[EMBreastMilk alloc] init];
+        time = [[NSDateComponents alloc] init];
+        time.year = now.year;
+        time.month = now.month;
+        time.day = now.day;
+        time.hour = 9 + i;
+        time.minute = 10;
+        milk.time = time;
+        milk.ml = 10 + i*10;
+        milk.person = @"王坤";
+        [_today addActivity:milk];
+        
+        // piss
+        EMPiss *piss = [[EMPiss alloc] init];
+        time = [[NSDateComponents alloc] init];
+        time.year = now.year;
+        time.month = now.month;
+        time.day = now.day;
+        time.hour = 9 + i;
+        time.minute = 10;
+        piss.time = time;
+        piss.ml = 10 + i*10;
+        [_today addActivity:piss];
+        
+        // excrement
+        EMExcrement *excrement = [[EMExcrement alloc] init];
+        time = [[NSDateComponents alloc] init];
+        time.year = now.year;
+        time.month = now.month;
+        time.day = now.day;
+        time.hour = 9 + i;
+        time.minute = 10;
+        excrement.time = time;
+        excrement.g = 10 + i*10;
+        [_today addActivity:excrement];
+    }
+    [self save];
+}
+#endif
+
 #pragma mark - record operations
 - (EMDayRecord *)todayRecord {
     EMDayRecord *ret = nil;
     if (!_today) {
         _today = [[EMDayRecord alloc] init];
+        NSDateComponents *date = [[NSDateComponents alloc] init];
+        NSDate *now = [NSDate date];
+        date.year = now.year;
+        date.month = now.month;
+        date.day = now.day;
+        _today.date = date;
+#if TEST
+        [self fakedata];
+#endif
         [self addDayRecord:_today];
     }
     ret = _today;

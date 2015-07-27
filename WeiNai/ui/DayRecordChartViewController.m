@@ -14,9 +14,8 @@
 
 @interface DayRecordChartViewController ()<UUChartDataSource, UITableViewDataSource, UITableViewDelegate, DayRecordChartDelegate> {
     UITableView *_tableview;
-    EMDayRecord *_dayRecord;
     DayRecordChart *_dayRecordChart;
-    
+    UUChart *_chart;
     NSArray *_xArray;
     NSArray *_yArray;
 }
@@ -30,6 +29,25 @@
 @end
 
 @implementation DayRecordChartViewController
+
+@dynamic activityType;
+@dynamic dayRecord;
+
+- (EMDayRecord *)dayRecord {
+    return _dayRecordChart.dayRecord;
+}
+
+- (void)setDayRecord:(EMDayRecord *)dayRecord {
+    _dayRecordChart.dayRecord = dayRecord;
+}
+
+- (void)setActivityType:(EMActivityType)activityType {
+    _dayRecordChart.activityType = activityType;
+}
+
+- (EMActivityType)activityType {
+    return _dayRecordChart.activityType;
+}
 
 - (id)init {
     if (self=[super init]) {
@@ -54,7 +72,7 @@
 #pragma mark - helpers
 - (void)setupUI {
     _tableview = [[UITableView alloc] initWithFrame:self.view.bounds
-                                              style:UITableViewStyleGrouped];
+                                              style:UITableViewStylePlain];
     _tableview.dataSource = self;
     _tableview.delegate = self;
     [self.view addSubview:_tableview];
@@ -87,8 +105,22 @@
     [typesSeg addTarget:self
                  action:@selector(activityTypeSelected:)
        forControlEvents:UIControlEventValueChanged];
-    NSInteger segIndex = 0;
-    typesSeg.selectedSegmentIndex = segIndex;
+    switch (_dayRecordChart.activityType) {
+        case ActivityType_Milk: {
+            typesSeg.selectedSegmentIndex = 0;
+        } break;
+        case ActivityType_Piss: {
+            typesSeg.selectedSegmentIndex = 1;
+        } break;
+        case ActivityType_Excrement: {
+            typesSeg.selectedSegmentIndex = 2;
+        } break;
+        case ActivityType_Sleep: {
+            typesSeg.selectedSegmentIndex = 3;
+        } break;
+        default: {
+        } break;
+    }
     CGRect frame = typesSeg.frame;
     frame.origin.x = (cell.contentView.frame.size.width - frame.size.width) / 2.0;
     frame.origin.y = (cell.contentView.frame.size.height - frame.size.height) / 2.0;
@@ -105,10 +137,10 @@
     CGRect frame = cell.contentView.bounds;
     frame.origin.x -= 10;
     frame.size.height *= 4;
-    UUChart *chart = [[UUChart alloc] initwithUUChartDataFrame:frame
-                                                    withSource:self
-                                                     withStyle:UUChartLineStyle];
-    [cell.contentView addSubview:chart];
+    _chart = [[UUChart alloc] initwithUUChartDataFrame:frame
+                                            withSource:self
+                                             withStyle:UUChartLineStyle];
+    [_chart showInView:cell.contentView];
 }
 
 #pragma mark - UUChartDataSource
@@ -135,13 +167,13 @@
 
 #pragma makr - tableview datasource/delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2; // one for activity type selector, one for chart.
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger ret = 0;
     
-    ret = 1;
+    ret = 2; // one for activity type selector, one for chart.
     
     return ret;
 }
@@ -168,6 +200,15 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger row = indexPath.row;
+    if (row == 1) {
+        return 200;
+    } else {
+        return 44;
+    }
+}
+
 #pragma mark - DayRecordChartDelegate
 - (void)didActivityTypeChanged:(EMActivityType)activityType {
 }
@@ -175,7 +216,7 @@
 - (void)didDatasourceChangedXArray:(NSArray *)xArray yArray:(NSArray *)yArray {
     _xArray = xArray;
     _yArray = yArray;
-    [_tableview reloadData];
+    [_chart strokeChart];
 }
 
 #pragma mark - actions

@@ -17,8 +17,7 @@
 }
 
 - (void)setupUI;
-- (void)configureCell:(UITableViewCell *)cell
-              atIndex:(NSInteger)index;
+- (UITableViewCell *)configureCellAtIndex:(NSInteger)index;
 - (void)showChart:(id)sender;
 
 @end
@@ -71,13 +70,21 @@
     [self.view addSubview:_tableview];
 }
 
-- (void)configureCell:(UITableViewCell *)cell
-              atIndex:(NSInteger)index {
+- (UITableViewCell *)configureCellAtIndex:(NSInteger)index {
+    UITableViewCell *cell = nil;
+    static NSString *cellIdentifier = @"ActivityListCell";
+    cell = [_tableview dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+                                      reuseIdentifier:cellIdentifier];
+    }
     NSString *dayRecordTime = [_activityList dayRecordTimeTextAtIndex:index];
     cell.textLabel.text = dayRecordTime;
     NSString *dayRecordText = [_activityList dayRecordSummaryTextAtIndex:index];
     cell.detailTextLabel.text = dayRecordText;
     cell.detailTextLabel.font = [UIFont fontWithName:nil size:10];
+    
+    return cell;
 }
 
 #pragma mark - tableview
@@ -97,14 +104,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"ActivityListCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                      reuseIdentifier:cellIdentifier];
-    }
+    UITableViewCell *cell = nil;
     NSInteger index = indexPath.row;
-    [self configureCell:cell atIndex:index];
+    cell = [self configureCellAtIndex:index];
     
     return cell;
 }

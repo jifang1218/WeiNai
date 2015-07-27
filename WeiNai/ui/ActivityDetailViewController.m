@@ -23,8 +23,7 @@
 }
 
 - (void)setupUI;
-- (void)configureCell:(UITableViewCell *)cell
-                index:(NSInteger)index;
+- (UITableViewCell *)configureCellAtIndex:(NSInteger)index;
 
 - (void)addActivity:(id)sender;
 - (void)showChart:(id)sender;
@@ -109,8 +108,14 @@
 }
 
 #pragma mark - helper
-- (void)configureCell:(UITableViewCell *)cell
-                index:(NSInteger)index {
+- (UITableViewCell *)configureCellAtIndex:(NSInteger)index {
+    UITableViewCell *cell = nil;
+    static NSString *cellIdentifier = @"ActivityDetailTableviewCell";
+    cell = [_tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:cellIdentifier];
+    }
     for (UIView *view in cell.contentView.subviews) {
         [view removeFromSuperview];
     }
@@ -121,6 +126,8 @@
     [cell setUserInteractionEnabled:NO];
     label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [cell.contentView addSubview:label];
+    
+    return cell;
 }
 
 - (void)setupUI {
@@ -165,14 +172,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"ActivityDetailTableviewCell";
     NSInteger row = indexPath.row;
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:cellIdentifier];
-    }
-    [self configureCell:cell index:row];
+    UITableViewCell *cell = [self configureCellAtIndex:row];
     
     return cell;
 }

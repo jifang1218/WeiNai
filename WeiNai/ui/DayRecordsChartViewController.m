@@ -21,10 +21,10 @@
 }
 
 - (void)setupUI;
-- (void)configureCell:(UITableViewCell *)cell index:(NSInteger)index;
-- (void)configureActivitySelectorCell:(UITableViewCell *)cell;
-- (void)configureRecordPeriodSelectorCell:(UITableViewCell *)cell;
-- (void)configureChartCell:(UITableViewCell *)cell;
+- (UITableViewCell *)configureCellAtIndex:(NSInteger)index;
+- (UITableViewCell *)configureActivitySelectorCell;
+- (UITableViewCell *)configureRecordPeriodSelectorCell;
+- (UITableViewCell *)configureChartCell;
 - (void)activityTypeSelected:(id)sender;
 - (void)periodSelected:(id)sender;
 
@@ -128,24 +128,33 @@
     [self.view addSubview:_tableview];
 }
 
-- (void)configureCell:(UITableViewCell *)cell
-                index:(NSInteger)index {
+- (UITableViewCell *)configureCellAtIndex:(NSInteger)index {
+    UITableViewCell *cell = nil;
     switch (index) {
         case 0: {
-            [self configureActivitySelectorCell:cell];
+            cell = [self configureActivitySelectorCell];
         } break;
         case 1: {
-            [self configureRecordPeriodSelectorCell:cell];
+            cell = [self configureRecordPeriodSelectorCell];
         } break;
         case 2: {
-            [self configureChartCell:cell];
+            cell = [self configureChartCell];
         } break;
         default: {
         } break;
     }
+    
+    return cell;
 }
 
-- (void)configureRecordPeriodSelectorCell:(UITableViewCell *)cell {
+- (UITableViewCell *)configureRecordPeriodSelectorCell {
+    UITableViewCell *cell = nil;
+    static NSString *cellIdentifier = @"DayRecordsChartCell_PeriodSelector";
+    cell = [_tableview dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:cellIdentifier];
+    }
     for (UIView *view in cell.contentView.subviews) {
         [view removeFromSuperview];
     }
@@ -180,9 +189,19 @@
     [cell.contentView addSubview:periodSeg];
     cell.backgroundColor = [UIColor clearColor];
     cell.backgroundView = nil;
+    
+    return cell;
 }
 
-- (void)configureActivitySelectorCell:(UITableViewCell *)cell {
+- (UITableViewCell *)configureActivitySelectorCell {
+    UITableViewCell *cell = nil;
+    static NSString *cellIdentifier = @"DayRecordsChartCell_ActivitySelector";
+    cell = [_tableview dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:cellIdentifier];
+    }
+    
     for (UIView *view in cell.contentView.subviews) {
         [view removeFromSuperview];
     }
@@ -217,9 +236,18 @@
     [cell.contentView addSubview:typesSeg];
     cell.backgroundColor = [UIColor clearColor];
     cell.backgroundView = nil;
+    
+    return cell;
 }
 
-- (void)configureChartCell:(UITableViewCell *)cell {
+- (UITableViewCell *)configureChartCell {
+    UITableViewCell *cell = nil;
+    static NSString *cellIdentifier = @"DayRecordsChartCell_Chart";
+    cell = [_tableview dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:cellIdentifier];
+    }
     for (UIView *view in cell.contentView.subviews) {
         [view removeFromSuperview];
     }
@@ -230,6 +258,8 @@
                                             withSource:self
                                              withStyle:UUChartLineStyle];
     [_chart showInView:cell.contentView];
+    
+    return cell;
 }
 
 #pragma mark - UUChartDataSource
@@ -268,14 +298,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"DayRecordCell";
-    NSInteger row = indexPath.row;
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:cellIdentifier];
-    }
-    [self configureCell:cell index:row];
+    UITableViewCell *cell = nil;
+    cell = [self configureCellAtIndex:indexPath.row];
     
     return cell;
 }
@@ -308,7 +332,7 @@
 - (void)didDatasourceChangedXArray:(NSArray *)xArray yArray:(NSArray *)yArray {
     _xArray = xArray;
     _yArray = yArray;
-    [_chart strokeChart];
+    [_tableview reloadData];
 }
 
 @end

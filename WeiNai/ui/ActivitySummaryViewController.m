@@ -28,12 +28,12 @@
     EMSleep *_sleepSummary;
 }
 
-- (void)decorateMilkCell:(UITableViewCell *)cell;
-- (void)decorateSleepCell:(UITableViewCell *)cell;
-- (void)decoratePissCell:(UITableViewCell *)cell;
-- (void)decorateExcrementCell:(UITableViewCell *)cell;
-- (void)decorateCell:(UITableViewCell *)cell indexPath:(NSIndexPath *)indexPath;
-- (void)decorateDateCell:(UITableViewCell *)cell;
+- (UITableViewCell *)decorateMilkCell;
+- (UITableViewCell *)decorateSleepCell;
+- (UITableViewCell *)decoratePissCell;
+- (UITableViewCell *)decorateExcrementCell;
+- (UITableViewCell *)decorateCellAtIndex:(NSInteger)index;
+- (UITableViewCell *)decorateDateCell;
 
 - (void)addActivity:(UIBarButtonItem *)sender;
 - (void)showChart:(id)sender;
@@ -93,84 +93,120 @@
 }
 
 #pragma mark - table
-- (void)decorateMilkCell:(UITableViewCell *)cell {
+- (UITableViewCell *)decorateMilkCell {
+    UITableViewCell *cell = nil;
+    static NSString *cellIdentifier = @"ActivitySummaryCell_Milk";
+    cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
+                                      reuseIdentifier:cellIdentifier];
+    }
     NSString *text = [_summary activityType2String:ActivityType_Milk];
     NSString *unit = [_summary activityTypeUnit2String:ActivityType_Milk];
     cell.textLabel.text = text;
     NSString *mlText = [[NSString alloc] initWithFormat:@"共 %lu %@", _milkSummary.ml, unit];
     cell.detailTextLabel.text = mlText;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    return cell;
 }
 
-- (void)decorateSleepCell:(UITableViewCell *)cell {
+- (UITableViewCell *)decorateSleepCell {
+    UITableViewCell *cell = nil;
+    static NSString *cellIdentifier = @"ActivitySummaryCell_Sleep";
+    cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
+                                      reuseIdentifier:cellIdentifier];
+    }
     NSString *text = [_summary activityType2String:ActivityType_Sleep];
     NSString *unit = [_summary activityTypeUnit2String:ActivityType_Sleep];
     cell.textLabel.text = text;
     NSString *durationText = [[NSString alloc] initWithFormat:@"共 %lu %@", _sleepSummary.durationInMinutes, unit];
     cell.detailTextLabel.text = durationText;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    return cell;
 }
 
-- (void)decoratePissCell:(UITableViewCell *)cell {
+- (UITableViewCell *)decoratePissCell {
+    UITableViewCell *cell = nil;
+    static NSString *cellIdentifier = @"ActivitySummaryCell_Piss";
+    cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
+                                      reuseIdentifier:cellIdentifier];
+    }
     NSString *text = [_summary activityType2String:ActivityType_Piss];
     NSString *unit = [_summary activityTypeUnit2String:ActivityType_Piss];
     cell.textLabel.text = text;
     NSString *mlText = [[NSString alloc] initWithFormat:@"共 %lu %@", _pissSummary.ml, unit];
     cell.detailTextLabel.text = mlText;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    return cell;
 }
 
-- (void)decorateExcrementCell:(UITableViewCell *)cell {
+- (UITableViewCell *)decorateExcrementCell {
+    UITableViewCell *cell = nil;
+    static NSString *cellIdentifier = @"ActivitySummaryCell_Excrement";
+    cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
+                                      reuseIdentifier:cellIdentifier];
+    }
     NSString *text = [_summary activityType2String:ActivityType_Excrement];
     NSString *unit = [_summary activityTypeUnit2String:ActivityType_Excrement];
     cell.textLabel.text = text;
     NSString *gText = [[NSString alloc] initWithFormat:@"共 %lu %@", _excrementSummary.g, unit];
     cell.detailTextLabel.text = gText;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    return cell;
 }
 
-- (void)decorateDateCell:(UITableViewCell *)cell {
+- (UITableViewCell *)decorateDateCell {
+    UITableViewCell *cell = nil;
+    static NSString *cellIdentifier = @"ActivitySummaryCell_Date";
+    cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:cellIdentifier];
+    }
     cell.textLabel.text = [_summary dateString];
     [cell setUserInteractionEnabled:NO];
+    
+    return cell;
 }
 
-- (void)decorateCell:(UITableViewCell *)cell indexPath:(NSIndexPath *)indexPath {
-    NSInteger row = indexPath.row;
-    switch (row) {
+- (UITableViewCell *)decorateCellAtIndex:(NSInteger)index {
+    UITableViewCell *cell = nil;
+    switch (index) {
         case 0: {
-            [self decorateDateCell:cell];
+            cell = [self decorateDateCell];
         } break;
         case 1: {
-            [self decorateMilkCell:cell];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell = [self decorateMilkCell];
         } break;
         case 2: {
-            [self decorateSleepCell:cell];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell = [self decorateSleepCell];
         } break;
         case 3: {
-            [self decoratePissCell:cell];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell = [self decoratePissCell];
         } break;
         case 4: {
-            [self decorateExcrementCell:cell];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell = [self decorateExcrementCell];
         } break;
         default: {
         } break;
     }
+    
+    return cell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
-    static NSString *cellIdentifier = @"SummaryCell";
-    cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (!cell) {
-        if (indexPath.row != 0) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
-                                          reuseIdentifier:cellIdentifier];
-        } else {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                          reuseIdentifier:cellIdentifier];
-        }
-    }
-    [self decorateCell:cell indexPath:indexPath];
+    cell = [self decorateCellAtIndex:indexPath.row];
     
     return cell;
 }

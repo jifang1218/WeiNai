@@ -129,7 +129,7 @@
 
 #pragma mark - table
 - (UITableViewCell *)_configureActivityTypeCell {
-    static NSString *cellIdentifier = @"CreateActivityTypeCell";
+    static NSString *cellIdentifier = @"CreateActivityCell_Type";
     UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
@@ -177,7 +177,7 @@
 }
 
 - (UITableViewCell *)_configureStartCell {
-    static NSString *cellIdentifier = @"CreateActivityStartCell";
+    static NSString *cellIdentifier = @"CreateActivityCell_Start";
     UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
@@ -200,7 +200,7 @@
 }
 
 - (UITableViewCell *)_configureEndCell {
-    static NSString *cellIdentifier = @"CreateActivityEndCell";
+    static NSString *cellIdentifier = @"CreateActivityCell_End";
     UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
@@ -236,7 +236,7 @@
 }
 
 - (UITableViewCell *)_configureValueCell {
-    static NSString *cellIdentifier = @"CreateActivityValueCell";
+    static NSString *cellIdentifier = @"CreateActivityCell_Value";
     UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
@@ -290,7 +290,7 @@
 }
 
 - (UITableViewCell *)_configureMemoCell {
-    static NSString *cellIdentifier = @"ActivityMemoCell";
+    static NSString *cellIdentifier = @"CreateActivityCell_Memo";
     UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault

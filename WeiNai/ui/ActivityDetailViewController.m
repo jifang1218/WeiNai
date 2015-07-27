@@ -119,6 +119,7 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.text = [_activityDetail activityStringAtIndex:index];
     [cell setUserInteractionEnabled:NO];
+    label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [cell.contentView addSubview:label];
 }
 

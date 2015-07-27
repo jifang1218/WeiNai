@@ -259,6 +259,30 @@ static EMActivityManager *_sharedInstance = nil;
     return ret;
 }
 
+#pragma mark - period helpers
+- (NSString *)PeriodType2String:(EMDayRecordsPeriod)period {
+    NSString *ret = nil;
+    
+    switch (period) {
+        case DayRecordsPeriod_Week: {
+            ret = @"最近一周";
+        } break;
+        case DayRecordsPeriod_3Weeks: {
+            ret = @"最近三周";
+        } break;
+        case DayRecordsPeriod_Month: {
+            ret = @"最近一月";
+        } break;
+        case DayRecordsPeriod_3Month: {
+            ret = @"最近三月";
+        } break;
+        default: {
+        } break;
+    }
+
+    return ret;
+}
+
 - (BOOL)save {
     BOOL ret = NO;
     

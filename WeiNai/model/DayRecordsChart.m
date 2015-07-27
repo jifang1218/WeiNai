@@ -8,6 +8,16 @@
 
 #import "DayRecordsChart.h"
 
+@interface DayRecordsChart () {
+}
+
+@end
+
 @implementation DayRecordsChart
+
+@synthesize delegate = _delegate;
+@synthesize historicalDayRecords = _historicalDayRecords;
+@synthesize activityType = _activityType;
+@synthesize period = _period;
 
 @end

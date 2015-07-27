@@ -41,4 +41,11 @@ typedef enum _EMExcrementQuality {
     ExcrementQualityBad
 } EMExcrementQuality;
 
+typedef enum _EMDayRecordsPeriod {
+    DayRecordsPeriod_Week = 0,
+    DayRecordsPeriod_3Weeks,
+    DayRecordsPeriod_Month,
+    DayRecordsPeriod_3Month
+} EMDayRecordsPeriod;
+
 #endif

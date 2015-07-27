@@ -1,20 +1,20 @@
 //
-//  DayRecordChartViewController.m
+//  DayRecordsChartViewController.m
 //  WeiNai
 //
-//  Created by Ji Fang on 7/25/15.
+//  Created by Ji Fang on 7/27/15.
 //  Copyright (c) 2015 Ji Fang. All rights reserved.
 //
 
-#import "DayRecordChartViewController.h"
+#import "DayRecordsChartViewController.h"
+#import "DayRecordsChart.h"
 #import "UUChart.h"
-#import "EMActivityManager.h"
-#import "EMDayRecord.h"
-#import "DayRecordChart.h"
 
-@interface DayRecordChartViewController ()<UUChartDataSource, UITableViewDataSource, UITableViewDelegate, DayRecordChartDelegate> {
+
+
+@interface DayRecordsChartViewController ()<DayRecordsChartDelegate, UUChartDataSource, UITableViewDataSource, UITableViewDelegate> {
+    DayRecordsChart *_dayRecordsChart;
     UITableView *_tableview;
-    DayRecordChart *_dayRecordChart;
     UUChart *_chart;
     NSArray *_xArray;
     NSArray *_yArray;
@@ -23,43 +23,55 @@
 - (void)setupUI;
 - (void)configureCell:(UITableViewCell *)cell index:(NSInteger)index;
 - (void)configureActivitySelectorCell:(UITableViewCell *)cell;
+- (void)configureRecordPeriodSelectorCell:(UITableViewCell *)cell;
 - (void)configureChartCell:(UITableViewCell *)cell;
 - (void)activityTypeSelected:(id)sender;
 
 @end
 
-@implementation DayRecordChartViewController
+@implementation DayRecordsChartViewController
 
+#if 0
+
+@dynamic historicalDayRecords;
 @dynamic activityType;
-@dynamic dayRecord;
-
-- (EMDayRecord *)dayRecord {
-    return _dayRecordChart.dayRecord;
-}
-
-- (void)setDayRecord:(EMDayRecord *)dayRecord {
-    _dayRecordChart.dayRecord = dayRecord;
-}
-
-- (void)setActivityType:(EMActivityType)activityType {
-    _dayRecordChart.activityType = activityType;
-}
-
-- (EMActivityType)activityType {
-    return _dayRecordChart.activityType;
-}
+@dynamic period;
 
 - (id)init {
     if (self=[super init]) {
-        _dayRecordChart = [[DayRecordChart alloc] init];
-        _dayRecordChart.delegate = self;
+        _dayRecordsChart = [[DayRecordsChart alloc] init];
+        _dayRecordsChart.delegate = self;
     }
     
     return self;
 }
 
 - (void)dealloc {
-    _dayRecordChart.delegate = nil;
+    _dayRecordsChart.delegate = nil;
+}
+
+- (NSArray *)historicalDayRecords {
+    return _dayRecordsChart.historicalDayRecords;
+}
+
+- (void)setHistoricalDayRecords:(NSArray *)historicalDayRecords {
+    _dayRecordsChart.historicalDayRecords = historicalDayRecords;
+}
+
+- (EMActivityType)activityType {
+    return _dayRecordsChart.activityType;
+}
+
+- (void)setActivityType:(EMActivityType)activityType {
+    _dayRecordsChart.activityType = activityType;
+}
+
+- (void)setPeriod:(EMDayRecordsPeriod)period {
+    _dayRecordsChart.period = period;
+}
+
+- (EMDayRecordsPeriod)period {
+    return _dayRecordsChart.period;
 }
 
 - (void)viewDidLoad {
@@ -78,17 +90,24 @@
     [self.view addSubview:_tableview];
 }
 
-- (void)configureCell:(UITableViewCell *)cell index:(NSInteger)index {
+- (void)configureCell:(UITableViewCell *)cell
+                index:(NSInteger)index {
     switch (index) {
         case 0: {
             [self configureActivitySelectorCell:cell];
         } break;
         case 1: {
+            [self configureRecordPeriodSelectorCell:cell];
+        } break;
+        case 2: {
             [self configureChartCell:cell];
         } break;
         default: {
         } break;
     }
+}
+
+- (void)configureRecordPeriodSelectorCell:(UITableViewCell *)cell {
 }
 
 - (void)configureActivitySelectorCell:(UITableViewCell *)cell {
@@ -217,30 +236,6 @@
     [_chart strokeChart];
 }
 
-#pragma mark - actions
-- (void)activityTypeSelected:(id)sender {
-    if ([sender isKindOfClass:[UISegmentedControl class]]) {
-        UISegmentedControl *seg = (UISegmentedControl *)sender;
-        NSInteger index = seg.selectedSegmentIndex;
-        switch (index) {
-            case 0: {
-                _dayRecordChart.activityType = ActivityType_Milk;
-            } break;
-            case 1: {
-                _dayRecordChart.activityType = ActivityType_Piss;
-            } break;
-            case 2: {
-                _dayRecordChart.activityType = ActivityType_Excrement;
-            } break;
-            case 3: {
-                _dayRecordChart.activityType = ActivityType_Sleep;
-            } break;
-            default: {
-            } break;
-        }
-    }
-}
-
-//- (void)
+#endif
 
 @end

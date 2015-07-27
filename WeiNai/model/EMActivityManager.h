@@ -37,6 +37,9 @@
 - (NSString *)ActivityType2String:(EMActivityType)activityType;
 - (NSString *)ActivityTypeUnit2String:(EMActivityType)activityType;
 
+#pragma mark - period helpers
+- (NSString *)PeriodType2String:(EMDayRecordsPeriod)period;
+
 #pragma mark - db
 - (BOOL)save;
 

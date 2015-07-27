@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C027F6621B5AA54B00BB40BA /* EMActivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C027F6611B5AA54B00BB40BA /* EMActivityManager.m */; };
+		C03E48E01B66288500E31329 /* DayRecordsChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C03E48DF1B66288500E31329 /* DayRecordsChartViewController.m */; };
 		C03F13CB1B56A90E001653D5 /* CreateActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C03F13CA1B56A90E001653D5 /* CreateActivityViewController.m */; };
 		C04F66F61B65CB60004F0E43 /* DayRecordsChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C04F66F51B65CB60004F0E43 /* DayRecordsChart.m */; };
 		C06124C21B60B65400493CEC /* UUBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C06124B71B60B65400493CEC /* UUBar.m */; };
@@ -71,6 +72,8 @@
 /* Begin PBXFileReference section */
 		C027F6601B5AA54B00BB40BA /* EMActivityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMActivityManager.h; sourceTree = "<group>"; };
 		C027F6611B5AA54B00BB40BA /* EMActivityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMActivityManager.m; sourceTree = "<group>"; };
+		C03E48DE1B66288500E31329 /* DayRecordsChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayRecordsChartViewController.h; sourceTree = "<group>"; };
+		C03E48DF1B66288500E31329 /* DayRecordsChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayRecordsChartViewController.m; sourceTree = "<group>"; };
 		C03F13C91B56A90E001653D5 /* CreateActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateActivityViewController.h; sourceTree = "<group>"; };
 		C03F13CA1B56A90E001653D5 /* CreateActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateActivityViewController.m; sourceTree = "<group>"; };
 		C04F66F41B65CB60004F0E43 /* DayRecordsChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayRecordsChart.h; sourceTree = "<group>"; };
@@ -437,6 +440,8 @@
 				C09EAEB81B627B5700F0B733 /* ActivityChartViewController.m */,
 				C09EAEBA1B62BB9900F0B733 /* DayRecordChartViewController.h */,
 				C09EAEBB1B62BB9900F0B733 /* DayRecordChartViewController.m */,
+				C03E48DE1B66288500E31329 /* DayRecordsChartViewController.h */,
+				C03E48DF1B66288500E31329 /* DayRecordsChartViewController.m */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -521,6 +526,7 @@
 				C06124C21B60B65400493CEC /* UUBar.m in Sources */,
 				C06C802B1B5F9835001F9A58 /* NSDateComponents+Dict.m in Sources */,
 				C0E120811B5588D2001F90E8 /* ToolboxViewController.m in Sources */,
+				C03E48E01B66288500E31329 /* DayRecordsChartViewController.m in Sources */,
 				C06C80311B5FC283001F9A58 /* EMMilk+Dict.m in Sources */,
 				C07852AD1B5FE0FE003F0A8C /* EMDayRecord+Dict.m in Sources */,
 				C09B942D1B57779F0049B04E /* ActionSheetDistancePicker.m in Sources */,

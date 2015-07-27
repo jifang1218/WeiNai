@@ -161,10 +161,12 @@
             } break;
         }
         typesSeg.selectedSegmentIndex = segIndex;
-        CGRect frame = typesSeg.frame;
-        frame.origin.x = (cell.contentView.frame.size.width - frame.size.width) / 2.0;
-        frame.origin.y = (cell.contentView.frame.size.height - frame.size.height) / 2.0;
-        typesSeg.frame = frame;
+        typesSeg.center = cell.contentView.center;
+//        CGRect frame = typesSeg.frame;
+//        frame.origin.x = (cell.contentView.frame.size.width - frame.size.width) / 2.0;
+//        frame.origin.y = (cell.contentView.frame.size.height - frame.size.height) / 2.0;
+//        typesSeg.frame = frame;
+        typesSeg.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
         [cell.contentView addSubview:typesSeg];
         cell.backgroundColor = [UIColor clearColor];
         cell.backgroundView = nil;
@@ -224,10 +226,8 @@
                 forState:UIControlStateNormal];
         [button sizeToFit];
         button.tag = kSetCurrentButtonTag;
-        CGRect frame = button.frame;
-        frame.origin.x = (cell.frame.size.width - button.frame.size.width) / 2.0;
-        frame.origin.y = (cell.frame.size.height - button.frame.size.height) / 2.0;
-        button.frame = frame;
+        button.center = cell.contentView.center;
+        button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
         [cell.contentView addSubview:button];
     }
     _endCell = cell;;
@@ -254,6 +254,7 @@
         frame.origin.y = (cell.frame.size.height - frame.size.height) / 2.0;
         valueField.frame = frame;
         [self updateSleepValue];
+        valueField.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
         [cell.contentView addSubview:valueField];
         _valueField = valueField;
         
@@ -266,6 +267,7 @@
         frame.origin.x = valueField.frame.origin.x + valueField.frame.size.width + 20;
         frame.origin.y = (cell.frame.size.height - frame.size.height) / 2.0;
         unit.frame = frame;
+        unit.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
         [cell.contentView addSubview:unit];
         _valueUnitLabel = unit;
         _valueCell = cell; // updateMilkSwitch needs it. 

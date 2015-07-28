@@ -30,6 +30,7 @@
     UILabel *_valueUnitLabel;
     UITextField *_valueField;
     UISwitch *_breastMilkSwitch;
+    NSUInteger _activityValues[ActivityType_NumberOfActivityTypes];
 }
 
 - (void)saveActivity:(UIBarButtonItem *)sender;
@@ -53,6 +54,9 @@
     if (self=[super init]) {
         _createActivity = [[CreateActivity alloc] init];
         _createActivity.delegate = self;
+        for (NSUInteger i=0; i<ActivityType_NumberOfActivityTypes; ++i) {
+            _activityValues[i] = 0;
+        }
     }
     
     return self;
@@ -241,49 +245,58 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
                                       reuseIdentifier:cellIdentifier];
-        // value field
-        UITextField *valueField = [[UITextField alloc] init];
-        valueField.keyboardType = UIKeyboardTypeNumberPad;
-        valueField.placeholder = @"请输入...";
-        DoneCancelNumberPadToolbar *toolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:valueField];
-        toolbar.numberPadDelegate = self;
-        valueField.inputAccessoryView = toolbar;
-        [valueField sizeToFit];
-        CGRect frame = valueField.bounds;
-        frame.origin.x = 20;
-        frame.origin.y = (cell.frame.size.height - frame.size.height) / 2.0;
-        valueField.frame = frame;
-        [self updateSleepValue];
-        valueField.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-        [cell.contentView addSubview:valueField];
-        _valueField = valueField;
-        
-        // unit label
-        UILabel *unit = [[UILabel alloc] init];
-        EMActivityManager *activityMgr = [EMActivityManager sharedInstance];
-        unit.text = [activityMgr ActivityTypeUnit2String:_createActivity.activityType];
-        [unit sizeToFit];
-        frame = unit.frame;
-        frame.origin.x = valueField.frame.origin.x + valueField.frame.size.width + 20;
-        frame.origin.y = (cell.frame.size.height - frame.size.height) / 2.0;
-        unit.frame = frame;
-        unit.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-        [cell.contentView addSubview:unit];
-        _valueUnitLabel = unit;
-        _valueCell = cell; // updateMilkSwitch needs it. 
-        
-        // is breast milk switch
-        UISwitch *breastMilk = [[UISwitch alloc] init];
-        [breastMilk addTarget:self
-                       action:@selector(milkTypeChanged:)
-             forControlEvents:UIControlEventValueChanged];
-        [breastMilk sizeToFit];
-        breastMilk.hidden = YES;
-        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-        cell.accessoryView = breastMilk;
-        _breastMilkSwitch = breastMilk;
-        [self updateMilkSwitch];
     }
+    for (UIView *view in cell.contentView.subviews) {
+        [view removeFromSuperview];
+    }
+    
+    // value field
+    UITextField *valueField = [[UITextField alloc] init];
+    valueField.keyboardType = UIKeyboardTypeNumberPad;
+    valueField.placeholder = @"请输入...";
+    DoneCancelNumberPadToolbar *toolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:valueField];
+    toolbar.numberPadDelegate = self;
+    valueField.inputAccessoryView = toolbar;
+    [valueField sizeToFit];
+    CGRect frame = valueField.bounds;
+    frame.origin.x = 20;
+    frame.origin.y = (cell.frame.size.height - frame.size.height) / 2.0;
+    valueField.frame = frame;
+    if (_createActivity.activityType == ActivityType_Sleep) {
+        [self updateSleepValue];
+    } else {
+        NSUInteger value = _activityValues[_createActivity.activityType];
+        valueField.text = [[NSString alloc] initWithFormat:@"%lu", value];
+    }
+    valueField.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    [cell.contentView addSubview:valueField];
+    _valueField = valueField;
+    
+    // unit label
+    UILabel *unit = [[UILabel alloc] init];
+    EMActivityManager *activityMgr = [EMActivityManager sharedInstance];
+    unit.text = [activityMgr ActivityTypeUnit2String:_createActivity.activityType];
+    [unit sizeToFit];
+    frame = unit.frame;
+    frame.origin.x = valueField.frame.origin.x + valueField.frame.size.width + 20;
+    frame.origin.y = (cell.frame.size.height - frame.size.height) / 2.0;
+    unit.frame = frame;
+    unit.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    [cell.contentView addSubview:unit];
+    _valueUnitLabel = unit;
+    _valueCell = cell; // updateMilkSwitch needs it. 
+    
+    // is breast milk switch
+    UISwitch *breastMilk = [[UISwitch alloc] init];
+    [breastMilk addTarget:self
+                   action:@selector(milkTypeChanged:)
+         forControlEvents:UIControlEventValueChanged];
+    [breastMilk sizeToFit];
+    breastMilk.hidden = YES;
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    cell.accessoryView = breastMilk;
+    _breastMilkSwitch = breastMilk;
+    [self updateMilkSwitch];
     _valueCell = cell;
     
     return cell;
@@ -409,7 +422,8 @@
 #pragma mark - DoneCancelNumberPadToolbarDelegate
 -(void)doneCancelNumberPadToolbarDelegate:(DoneCancelNumberPadToolbar *)controller
                              didClickDone:(UITextField *)textField {
-    _createActivity.activityValue = (NSUInteger)[textField.text integerValue];
+    _activityValues[_createActivity.activityType] = (NSUInteger)[textField.text integerValue];
+    _createActivity.activityValue = _activityValues[_createActivity.activityType];
 }
 
 -(void)doneCancelNumberPadToolbarDelegate:(DoneCancelNumberPadToolbar *)controller

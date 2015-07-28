@@ -11,6 +11,7 @@
 #import "EMActivityManager.h"
 #import "EMDayRecord.h"
 #import "DayRecordChart.h"
+#import "EMSettings.h"
 
 @interface DayRecordChartViewController ()<UUChartDataSource, UITableViewDataSource, UITableViewDelegate, DayRecordChartDelegate> {
     UITableView *_tableview;
@@ -154,9 +155,15 @@
     CGRect frame = cell.contentView.bounds;
     frame.size.width = cell.contentView.frame.size.width - 20;
     frame.size.height = 200;
+    EMActivityManager *activityman = [EMActivityManager sharedInstance];
+    EMSettings *settings = activityman.settings;
+    UUChartStyle chartStyle = UUChartLineStyle;
+    if (settings.chartStyle == ChartStyle_Bar) {
+        chartStyle = UUChartBarStyle;
+    }
     _chart = [[UUChart alloc] initwithUUChartDataFrame:frame
                                             withSource:self
-                                             withStyle:UUChartLineStyle];
+                                             withStyle:chartStyle];
     _chart.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;;
     [_chart showInView:cell.contentView];
     cell.userInteractionEnabled = NO;

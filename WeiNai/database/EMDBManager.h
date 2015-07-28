@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @class EMDayRecord;
+@class EMSettings;
 
 @interface EMDBManager : NSObject
+
+@property (nonatomic, strong, readonly) EMSettings *settings;
 
 // query
 - (NSArray *)allDayRecords;

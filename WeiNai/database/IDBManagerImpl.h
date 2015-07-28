@@ -9,10 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @class EMDayRecord;
+@class EMSettings;
 
 @protocol IDBManagerImpl <NSObject>
 
 @required
+
+@property (nonatomic, strong, readonly) EMSettings *settings;
 
 - (void)load;
 - (void)unLoad;

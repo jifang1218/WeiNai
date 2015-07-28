@@ -67,6 +67,9 @@
 		C0E1207E1B55889B001F90E8 /* ActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E1207D1B55889A001F90E8 /* ActivityDetailViewController.m */; };
 		C0E120811B5588D2001F90E8 /* ToolboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E120801B5588D2001F90E8 /* ToolboxViewController.m */; };
 		C0E120841B5588DE001F90E8 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E120831B5588DE001F90E8 /* SettingsViewController.m */; };
+		C0F17E941B67609900CC3763 /* EMSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F17E931B67609900CC3763 /* EMSettings.m */; };
+		C0F17E971B6760AF00CC3763 /* EMSettings+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F17E961B6760AF00CC3763 /* EMSettings+Dict.m */; };
+		C0F17E9A1B676BB000CC3763 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F17E991B676BB000CC3763 /* Settings.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -192,6 +195,12 @@
 		C0E120821B5588DE001F90E8 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		C0E120831B5588DE001F90E8 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		C0E120851B55FC9F001F90E8 /* UIMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIMacros.h; sourceTree = "<group>"; };
+		C0F17E921B67609900CC3763 /* EMSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSettings.h; sourceTree = "<group>"; };
+		C0F17E931B67609900CC3763 /* EMSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSettings.m; sourceTree = "<group>"; };
+		C0F17E951B6760AF00CC3763 /* EMSettings+Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMSettings+Dict.h"; sourceTree = "<group>"; };
+		C0F17E961B6760AF00CC3763 /* EMSettings+Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMSettings+Dict.m"; sourceTree = "<group>"; };
+		C0F17E981B676BB000CC3763 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		C0F17E991B676BB000CC3763 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +295,8 @@
 				C0A9C2AF1B644A1A00EA5D68 /* DayRecordChart.m */,
 				C04F66F41B65CB60004F0E43 /* DayRecordsChart.h */,
 				C04F66F51B65CB60004F0E43 /* DayRecordsChart.m */,
+				C0F17E981B676BB000CC3763 /* Settings.h */,
+				C0F17E991B676BB000CC3763 /* Settings.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -374,6 +385,8 @@
 				C0C00BCC1B55353F00059160 /* EMSleep.m */,
 				C0E120691B556484001F90E8 /* EMActivityBase.h */,
 				C0E1206A1B556484001F90E8 /* EMActivityBase.m */,
+				C0F17E921B67609900CC3763 /* EMSettings.h */,
+				C0F17E931B67609900CC3763 /* EMSettings.m */,
 			);
 			name = types;
 			path = model/types;
@@ -413,6 +426,8 @@
 				C06C80301B5FC283001F9A58 /* EMMilk+Dict.m */,
 				C07852AB1B5FE0FE003F0A8C /* EMDayRecord+Dict.h */,
 				C07852AC1B5FE0FE003F0A8C /* EMDayRecord+Dict.m */,
+				C0F17E951B6760AF00CC3763 /* EMSettings+Dict.h */,
+				C0F17E961B6760AF00CC3763 /* EMSettings+Dict.m */,
 			);
 			path = impl;
 			sourceTree = "<group>";
@@ -518,12 +533,15 @@
 			files = (
 				C0E120721B55870F001F90E8 /* MainViewController.m in Sources */,
 				C06124DD1B6104AF00493CEC /* ActivityDetail.m in Sources */,
+				C0F17E9A1B676BB000CC3763 /* Settings.m in Sources */,
 				C0C00BC71B552A7800059160 /* EMExcrement.m in Sources */,
 				C09B942B1B57779F0049B04E /* ActionSheetCustomPicker.m in Sources */,
 				C0E1207E1B55889B001F90E8 /* ActivityDetailViewController.m in Sources */,
 				C09B94151B562A5C0049B04E /* ActivitySummary.m in Sources */,
+				C0F17E971B6760AF00CC3763 /* EMSettings+Dict.m in Sources */,
 				C06C801F1B5F9569001F9A58 /* EMBreastMilk+Dict.m in Sources */,
 				C06124C21B60B65400493CEC /* UUBar.m in Sources */,
+				C0F17E941B67609900CC3763 /* EMSettings.m in Sources */,
 				C06C802B1B5F9835001F9A58 /* NSDateComponents+Dict.m in Sources */,
 				C0E120811B5588D2001F90E8 /* ToolboxViewController.m in Sources */,
 				C03E48E01B66288500E31329 /* DayRecordsChartViewController.m in Sources */,

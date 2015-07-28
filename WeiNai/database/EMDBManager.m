@@ -22,6 +22,8 @@
 
 @implementation EMDBManager
 
+@dynamic settings;
+
 - (id)init {
     if (self=[super init]) {
         _dbmanImpl = [[EMDBManagerImplPlist alloc] init];
@@ -42,6 +44,15 @@
     BOOL ret = NO;
     
     ret = [_dbmanImpl save];
+    
+    return ret;
+}
+
+#pragma mark - properties
+- (EMSettings *)settings {
+    EMSettings *ret = nil;
+    
+    ret = [_dbmanImpl settings];
     
     return ret;
 }

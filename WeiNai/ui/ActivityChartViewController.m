@@ -8,6 +8,9 @@
 
 #import "ActivityChartViewController.h"
 #import "UUChart.h"
+#import "EMActivityManager.h"
+#import "UIMacros.h"
+#import "EMSettings.h"
 
 @interface ActivityChartViewController ()<UUChartDataSource> {
     UUChart *_chart;
@@ -35,9 +38,15 @@
     frame = self.view.frame;
     frame.size.height -= 130;
     frame.size.width -= 20;
+    EMActivityManager *activityman = [EMActivityManager sharedInstance];
+    EMSettings *settings = activityman.settings;
+    UUChartStyle chartStyle = UUChartLineStyle;
+    if (settings.chartStyle == ChartStyle_Bar) {
+        chartStyle = UUChartBarStyle;
+    }
     _chart = [[UUChart alloc] initwithUUChartDataFrame:frame
                                             withSource:self
-                                             withStyle:UUChartLineStyle];
+                                             withStyle:chartStyle];
     _chart.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [_chart showInView:self.view];
 }

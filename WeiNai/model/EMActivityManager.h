@@ -17,7 +17,11 @@
 
 @end
 
+@class EMSettings;
+
 @interface EMActivityManager : NSObject<EMDayRecordDelegate>
+
+@property (nonatomic, strong) EMSettings *settings;
 
 + (EMActivityManager *)sharedInstance;
 - (void)addDelegate:(id<EMActivityManagerDelegate>)delegate;

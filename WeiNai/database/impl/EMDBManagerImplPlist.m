@@ -14,6 +14,7 @@
 #import "EMExcrement+Dict.h"
 #import "EMSleep+Dict.h"
 #import "NSDateComponents+Dict.h"
+#import "EMSettings+Dict.h"
 
 #define FILENAME @"db.plist"
 #define DB_VER @"db_ver"
@@ -22,7 +23,6 @@
 
 @interface EMDBManagerImplPlist() {
     NSMutableArray *_dayRecords; // EMDayRecord array
-    NSMutableDictionary *_settings;
     NSString *_filename;
     float _dbVer;
 }
@@ -30,6 +30,8 @@
 @end
 
 @implementation EMDBManagerImplPlist
+
+@synthesize settings = _settings;
 
 - (id)init {
     if (self=[super init]) {
@@ -52,7 +54,7 @@
     // write default db.
     if (![[NSFileManager defaultManager] fileExistsAtPath:_filename]) {
         NSDictionary *d = @{@"db_ver":[NSNumber numberWithFloat:0.1],
-                            @"settings":[NSDictionary dictionary],
+                            @"settings":@{@"chart_style":[NSNumber numberWithUnsignedInteger:0]},
                             @"day_records":@[]};
         BOOL result = NO;
         result = [d writeToFile:_filename
@@ -63,7 +65,8 @@
     // open db.
     NSDictionary *dbroot = [[NSDictionary alloc] initWithContentsOfFile:_filename];
     _dbVer = [[dbroot objectForKey:@"db_ver"] floatValue];
-    _settings = [dbroot objectForKey:@"settings"];
+    NSDictionary *settingsDict = [dbroot objectForKey:@"settings"];
+    _settings = [[EMSettings alloc] initWithDict:settingsDict];
     
     // handle objects
     NSArray *dayRecordDicts = [dbroot objectForKey:@"day_records"];
@@ -87,7 +90,7 @@
         [dayRecordDicts addObject:dayRecordDict];
     }
     NSDictionary *dict = @{DAY_RECORDS:dayRecordDicts,
-                           SETTINGS:_settings,
+                           SETTINGS:[_settings toDict],
                            DB_VER:[NSNumber numberWithFloat:_dbVer]};
     
     ret = [dict writeToFile:_filename

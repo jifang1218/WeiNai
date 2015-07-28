@@ -12,7 +12,7 @@
 #import "NSDate+Category.h"
 #import "EMGCDMulticastDelegate.h"
 
-#define TEST 0
+#define TEST 1
 
 #if TEST
 #import "EMSleep.h"
@@ -37,6 +37,8 @@ static EMActivityManager *_sharedInstance = nil;
 @end
 
 @implementation EMActivityManager
+
+@synthesize settings = _settings;
 
 + (EMActivityManager *)sharedInstance {
     if (_sharedInstance == nil) {

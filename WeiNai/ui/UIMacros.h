@@ -48,4 +48,9 @@ typedef enum _EMDayRecordsPeriod {
     DayRecordsPeriod_3Month
 } EMDayRecordsPeriod;
 
+typedef enum _EMChartStyle {
+    ChartStyle_Line = 0,
+    ChartStyle_Bar
+} EMChartStyle;
+
 #endif

@@ -127,7 +127,8 @@
     if (_createActivity.activityType == ActivityType_Sleep) {
         NSTimeInterval seconds = [_createActivity.endTime timeIntervalSinceDate:_createActivity.startTime];
         NSInteger minutes = (NSInteger)(seconds / 60.0 + 0.5);
-        _valueField.text = [[NSString alloc] initWithFormat:@"%lu", minutes];
+        NSString *strMinutes = [[NSString alloc] initWithFormat:@"%lu", minutes];
+        _valueField.text = strMinutes;
     }
 }
 
@@ -262,15 +263,15 @@
     frame.origin.x = 20;
     frame.origin.y = (cell.frame.size.height - frame.size.height) / 2.0;
     valueField.frame = frame;
+    _valueField = valueField; // updateSleepValue needs it. 
     if (_createActivity.activityType == ActivityType_Sleep) {
-        [self updateSleepValue];
-    } else {
+        [self updateSleepValue]; // it calculates the time duration set by date picker(start & end time from model).
+    } else { // sleep value is got from updateSleepValue, not from _activityValues array.
         NSUInteger value = _activityValues[_createActivity.activityType];
         valueField.text = [[NSString alloc] initWithFormat:@"%lu", value];
     }
     valueField.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [cell.contentView addSubview:valueField];
-    _valueField = valueField;
     
     // unit label
     UILabel *unit = [[UILabel alloc] init];

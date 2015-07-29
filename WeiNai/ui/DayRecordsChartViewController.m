@@ -292,7 +292,7 @@
     return YES;
 }
 
-#pragma makr - tableview datasource/delegate
+#pragma mark - tableview datasource/delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }

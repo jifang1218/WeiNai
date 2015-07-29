@@ -15,6 +15,7 @@
 
 + (NSString *)dateString:(NSDate *)date;
 + (NSString *)dateComponentsString:(NSDateComponents *)date;
++ (NSString *)compactDateComponentsString:(NSDateComponents *)date;
 + (NSString *)timeString:(NSDate *)time;
 + (NSString *)timeComponentsString:(NSDateComponents *)time;
 

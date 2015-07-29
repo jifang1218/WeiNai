@@ -52,6 +52,8 @@
 		C09EAEB91B627B5700F0B733 /* ActivityChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09EAEB81B627B5700F0B733 /* ActivityChartViewController.m */; };
 		C09EAEBC1B62BB9900F0B733 /* DayRecordChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09EAEBB1B62BB9900F0B733 /* DayRecordChartViewController.m */; };
 		C0A9C2B01B644A1A00EA5D68 /* DayRecordChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A9C2AF1B644A1A00EA5D68 /* DayRecordChart.m */; };
+		C0B029D31B6927CA00E52599 /* Toolbox.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B029D21B6927CA00E52599 /* Toolbox.m */; };
+		C0B029D51B692E3D00E52599 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0B029D41B692E3D00E52599 /* AVFoundation.framework */; };
 		C0B6F8AF1B6139020063B33C /* ActivityList.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B6F8AE1B6139020063B33C /* ActivityList.m */; };
 		C0B8B9F31B58104400DBE54E /* DoneCancelNumberPadToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B8B9F21B58104400DBE54E /* DoneCancelNumberPadToolbar.m */; };
 		C0C00BBE1B552A1500059160 /* EMDayRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C00BBD1B552A1500059160 /* EMDayRecord.m */; };
@@ -164,6 +166,9 @@
 		C09EAEBB1B62BB9900F0B733 /* DayRecordChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayRecordChartViewController.m; sourceTree = "<group>"; };
 		C0A9C2AE1B644A1A00EA5D68 /* DayRecordChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayRecordChart.h; sourceTree = "<group>"; };
 		C0A9C2AF1B644A1A00EA5D68 /* DayRecordChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayRecordChart.m; sourceTree = "<group>"; };
+		C0B029D11B6927CA00E52599 /* Toolbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toolbox.h; sourceTree = "<group>"; };
+		C0B029D21B6927CA00E52599 /* Toolbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Toolbox.m; sourceTree = "<group>"; };
+		C0B029D41B692E3D00E52599 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C0B6F8AD1B6139020063B33C /* ActivityList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityList.h; sourceTree = "<group>"; };
 		C0B6F8AE1B6139020063B33C /* ActivityList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityList.m; sourceTree = "<group>"; };
 		C0B8B9F11B58104400DBE54E /* DoneCancelNumberPadToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoneCancelNumberPadToolbar.h; sourceTree = "<group>"; };
@@ -213,6 +218,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0B029D51B692E3D00E52599 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +257,7 @@
 		C06526C21B53FD6900DF4E34 = {
 			isa = PBXGroup;
 			children = (
+				C0B029D41B692E3D00E52599 /* AVFoundation.framework */,
 				C06526CD1B53FD6900DF4E34 /* WeiNai */,
 				C06526CC1B53FD6900DF4E34 /* Products */,
 			);
@@ -312,6 +319,8 @@
 				C04F66F51B65CB60004F0E43 /* DayRecordsChart.m */,
 				C0F17E981B676BB000CC3763 /* Settings.h */,
 				C0F17E991B676BB000CC3763 /* Settings.m */,
+				C0B029D11B6927CA00E52599 /* Toolbox.h */,
+				C0B029D21B6927CA00E52599 /* Toolbox.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -557,6 +566,7 @@
 				C09B94151B562A5C0049B04E /* ActivitySummary.m in Sources */,
 				C0F17E971B6760AF00CC3763 /* EMSettings+Dict.m in Sources */,
 				C06C801F1B5F9569001F9A58 /* EMBreastMilk+Dict.m in Sources */,
+				C0B029D31B6927CA00E52599 /* Toolbox.m in Sources */,
 				C06124C21B60B65400493CEC /* UUBar.m in Sources */,
 				C0F17E941B67609900CC3763 /* EMSettings.m in Sources */,
 				C06C802B1B5F9835001F9A58 /* NSDateComponents+Dict.m in Sources */,

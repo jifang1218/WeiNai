@@ -165,7 +165,7 @@
             } break;
         }
         NSDateComponents *date = dayRecord.date;
-        NSString *strDate = [Utility dateComponentsString:date];
+        NSString *strDate = [Utility compactDateComponentsString:date];
         [xArray addObject:strDate];
         NSNumber *dayTotalNumber = [NSNumber numberWithUnsignedInteger:dayTotal];
         [yArray addObject:dayTotalNumber];

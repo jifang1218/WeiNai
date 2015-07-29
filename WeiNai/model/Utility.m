@@ -7,6 +7,7 @@
 //
 
 #import "Utility.h"
+#import "NSDate+Category.h"
 
 @implementation Utility
 
@@ -50,6 +51,19 @@
     NSString *ret = nil;
     
     ret = [[NSString alloc] initWithFormat:@"%lu-%lu-%lu", date.year, date.month, date.day];
+    
+    return ret;
+}
+
++ (NSString *)compactDateComponentsString:(NSDateComponents *)date {
+    NSString *ret = nil;
+    
+    NSDate *now = [NSDate date];
+    if (date.year == now.year) {
+        ret = [[NSString alloc] initWithFormat:@"%lu-%lu", date.month, date.day];
+    } else {
+        ret = [[NSString alloc] initWithFormat:@"%lu-%lu-%lu", date.year, date.month, date.day];
+    }
     
     return ret;
 }

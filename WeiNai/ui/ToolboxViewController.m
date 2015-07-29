@@ -132,6 +132,8 @@
         return;
     }
     _recorder.delegate = self;
+    [_recorder recordForDuration:15.0];
+    [_playButton setEnabled:NO];
 }
 
 #pragma mark - audio player delegate
@@ -145,9 +147,15 @@
 
 #pragma mark - audio recorder delegate
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag {
+    if (!flag) {
+        [_playButton setEnabled:[_toolbox isPissAvailable]];
+    } else {
+        [_playButton setEnabled:YES];
+    }
 }
 
 - (void)audioRecorderEncodeErrorDidOccur:(AVAudioRecorder *)recorder error:(NSError *)error {
+    [_playButton setEnabled:[_toolbox isPissAvailable]];
 }
 
 #pragma mark - tableview delegate

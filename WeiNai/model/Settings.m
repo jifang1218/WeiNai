@@ -15,6 +15,16 @@
 @synthesize delegate = _delegate;
 @synthesize chartStyle = _chartStyle;
 
+- (id)init {
+    if (self=[super init]) {
+        EMActivityManager *activityman = [EMActivityManager sharedInstance];
+        EMSettings *settings = activityman.settings;
+        _chartStyle = settings.chartStyle;
+    }
+    
+    return self;
+}
+
 - (NSString *)chartStyle2String:(EMChartStyle)chartStyle {
     NSString *ret = nil;
     

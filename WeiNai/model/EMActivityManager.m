@@ -60,6 +60,7 @@ static EMActivityManager *_sharedInstance = nil;
         today.month = now.month;
         today.day = now.day;
         _today = [_dbman dayRecordAt:today];
+        _settings = _dbman.settings;
     }
     
     return self;

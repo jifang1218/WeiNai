@@ -8,6 +8,7 @@
 
 #import "CreateActivityViewController.h"
 #import "ActionSheetDatePicker.h"
+#import "UIDateTimePickerSheet.h"
 #import "CreateActivity.h"
 #import "Utility.h"
 #import "EMActivityManager.h"
@@ -540,53 +541,95 @@
     button = (UIButton *)sender;
     NSInteger tag = button.tag;
     
-    ActionDateDoneBlock startDone = ^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-        NSDate *date = (NSDate *)selectedDate;
-        _createActivity.startTime = date;
-        if ([_createActivity.startTime isLaterThanDate:_createActivity.endTime]) {
-            _createActivity.endTime = _createActivity.startTime;
+    if (IS_IPAD_RUNTIME) { // for iPad
+        NSString *title = nil;
+        NSDate *minDate = nil;
+        if (tag == kSetStartButtonTag) {
+            title = @"请选择开始时间";
+            minDate = [[NSDate date] dateAtStartOfDay];
+        } else {
+            title = @"请选择结束时间";
+            minDate = _createActivity.startTime;
         }
-    };
-    ActionDateDoneBlock endDone = ^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-        NSDate *date = (NSDate *)selectedDate;
-        _createActivity.endTime = date;
-        if ([_createActivity.endTime isEarlierThanDate:_createActivity.startTime]) {
-            _createActivity.endTime = _createActivity.startTime;
+        
+        [UIDateTimePickerSheet showDateTimeActionSheetWithMode:UIDatePickerModeTime
+                                                         title:title
+                                                    initialDate:nil
+                                                initalInterval:0
+                                             cancelButtonTitle:@"取消"
+                                               doneButtonTitle:@"完成"
+                                                   minimumDate:minDate
+                                                   maximumDate:[NSDate dateTomorrow]
+                                     finishSelectIntervalBlock:NULL
+                                         finishSelectDateBlock:^(BOOL success, NSDate *value) {
+                                             NSLog(@"date, %d", (int)success);
+                                             if (!success) {
+                                                 return;
+                                             }
+                                             if (tag == kSetStartButtonTag) {
+                                                 NSDate *date = value;
+                                                 _createActivity.startTime = date;
+                                                 if ([_createActivity.startTime isLaterThanDate:_createActivity.endTime]) {
+                                                     _createActivity.endTime = _createActivity.startTime;
+                                                 }
+                                             } else if (tag == kSetEndButtonTag) {
+                                                 NSDate *date = value;
+                                                 _createActivity.endTime = date;
+                                                 if ([_createActivity.endTime isEarlierThanDate:_createActivity.startTime]) {
+                                                     _createActivity.endTime = _createActivity.startTime;
+                                                 }
+                                             }
+                                         }
+                                                        inView:self.view];
+    } else { // for iPhone
+        ActionDateDoneBlock startDone = ^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
+            NSDate *date = (NSDate *)selectedDate;
+            _createActivity.startTime = date;
+            if ([_createActivity.startTime isLaterThanDate:_createActivity.endTime]) {
+                _createActivity.endTime = _createActivity.startTime;
+            }
+        };
+        ActionDateDoneBlock endDone = ^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
+            NSDate *date = (NSDate *)selectedDate;
+            _createActivity.endTime = date;
+            if ([_createActivity.endTime isEarlierThanDate:_createActivity.startTime]) {
+                _createActivity.endTime = _createActivity.startTime;
+            }
+        };
+        ActionDateCancelBlock startCancel = ^(ActionSheetDatePicker *picker) {
+        };
+        ActionDateCancelBlock endCancel = ^(ActionSheetDatePicker *picker) {
+        };
+        
+        ActionDateDoneBlock done = nil;
+        ActionDateCancelBlock cancel = nil;
+        NSDate *now = [NSDate date];
+        NSDate *min = now;
+        if (tag == kSetStartButtonTag) {
+            done = startDone;
+            cancel = startCancel;
+            min = [now dateAtStartOfDay];
+            [ActionSheetDatePicker showPickerWithTitle:@"请选择开始时间"
+                                        datePickerMode:UIDatePickerModeTime
+                                          selectedDate:now
+                                           minimumDate:min
+                                           maximumDate:[NSDate dateTomorrow]
+                                             doneBlock:done
+                                           cancelBlock:cancel
+                                                origin:self.view];
+        } else if (tag == kSetEndButtonTag) {
+            done = endDone;
+            cancel = endCancel;
+            [ActionSheetDatePicker showPickerWithTitle:@"请选择结束时间"
+                                        datePickerMode:UIDatePickerModeTime
+                                          selectedDate:now
+                                           minimumDate:_createActivity.startTime
+                                           maximumDate:[NSDate dateTomorrow]
+                                             doneBlock:done
+                                           cancelBlock:cancel
+                                                origin:self.view];
+        } else {
         }
-    };
-    ActionDateCancelBlock startCancel = ^(ActionSheetDatePicker *picker) {
-    };
-    ActionDateCancelBlock endCancel = ^(ActionSheetDatePicker *picker) {
-    };
-    
-    ActionDateDoneBlock done = nil;
-    ActionDateCancelBlock cancel = nil;
-    NSDate *now = [NSDate date];
-    NSDate *min = now;
-    if (tag == kSetStartButtonTag) {
-        done = startDone;
-        cancel = startCancel;
-        min = [now dateAtStartOfDay];
-        [ActionSheetDatePicker showPickerWithTitle:@"请选择开始时间"
-                                    datePickerMode:UIDatePickerModeTime
-                                      selectedDate:now
-                                       minimumDate:min
-                                       maximumDate:[NSDate dateTomorrow]
-                                         doneBlock:done
-                                       cancelBlock:cancel
-                                            origin:self.view];
-    } else if (tag == kSetEndButtonTag) {
-        done = endDone;
-        cancel = endCancel;
-        [ActionSheetDatePicker showPickerWithTitle:@"请选择结束时间"
-                                    datePickerMode:UIDatePickerModeTime
-                                      selectedDate:now
-                                       minimumDate:_createActivity.startTime
-                                       maximumDate:[NSDate dateTomorrow]
-                                         doneBlock:done
-                                       cancelBlock:cancel
-                                            origin:self.view];
-    } else {
     }
 }
 

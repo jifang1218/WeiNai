@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C027F6621B5AA54B00BB40BA /* EMActivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C027F6611B5AA54B00BB40BA /* EMActivityManager.m */; };
+		C036A3D91B68EFE00038EDA0 /* UIDateTimePickerSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C036A3D71B68EFE00038EDA0 /* UIDateTimePickerSheet.m */; };
+		C036A3DA1B68EFE00038EDA0 /* UIDateTimePickerSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = C036A3D81B68EFE00038EDA0 /* UIDateTimePickerSheet.xib */; };
 		C03E48E01B66288500E31329 /* DayRecordsChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C03E48DF1B66288500E31329 /* DayRecordsChartViewController.m */; };
 		C03F13CB1B56A90E001653D5 /* CreateActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C03F13CA1B56A90E001653D5 /* CreateActivityViewController.m */; };
 		C04F66F61B65CB60004F0E43 /* DayRecordsChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C04F66F51B65CB60004F0E43 /* DayRecordsChart.m */; };
@@ -75,6 +77,9 @@
 /* Begin PBXFileReference section */
 		C027F6601B5AA54B00BB40BA /* EMActivityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMActivityManager.h; sourceTree = "<group>"; };
 		C027F6611B5AA54B00BB40BA /* EMActivityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMActivityManager.m; sourceTree = "<group>"; };
+		C036A3D61B68EFE00038EDA0 /* UIDateTimePickerSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDateTimePickerSheet.h; sourceTree = "<group>"; };
+		C036A3D71B68EFE00038EDA0 /* UIDateTimePickerSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDateTimePickerSheet.m; sourceTree = "<group>"; };
+		C036A3D81B68EFE00038EDA0 /* UIDateTimePickerSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIDateTimePickerSheet.xib; sourceTree = "<group>"; };
 		C03E48DE1B66288500E31329 /* DayRecordsChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayRecordsChartViewController.h; sourceTree = "<group>"; };
 		C03E48DF1B66288500E31329 /* DayRecordsChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayRecordsChartViewController.m; sourceTree = "<group>"; };
 		C03F13C91B56A90E001653D5 /* CreateActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateActivityViewController.h; sourceTree = "<group>"; };
@@ -214,6 +219,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C036A3D51B68EFE00038EDA0 /* DateTimePickers_iPad */ = {
+			isa = PBXGroup;
+			children = (
+				C036A3D61B68EFE00038EDA0 /* UIDateTimePickerSheet.h */,
+				C036A3D71B68EFE00038EDA0 /* UIDateTimePickerSheet.m */,
+				C036A3D81B68EFE00038EDA0 /* UIDateTimePickerSheet.xib */,
+			);
+			path = DateTimePickers_iPad;
+			sourceTree = "<group>";
+		};
 		C06124B51B60B65400493CEC /* UUChart */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +328,7 @@
 		C09B94161B57779F0049B04E /* third_parties */ = {
 			isa = PBXGroup;
 			children = (
+				C036A3D51B68EFE00038EDA0 /* DateTimePickers_iPad */,
 				C06124B51B60B65400493CEC /* UUChart */,
 				C0B8B9F01B58104400DBE54E /* DoneCancelNumberPadToolbar */,
 				C09B94321B5796CB0049B04E /* catagories */,
@@ -518,6 +534,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C036A3DA1B68EFE00038EDA0 /* UIDateTimePickerSheet.xib in Resources */,
 				C06526DA1B53FD6900DF4E34 /* Main.storyboard in Resources */,
 				C06526DF1B53FD6900DF4E34 /* LaunchScreen.xib in Resources */,
 				C06526DC1B53FD6900DF4E34 /* Images.xcassets in Resources */,
@@ -584,6 +601,7 @@
 				C027F6621B5AA54B00BB40BA /* EMActivityManager.m in Sources */,
 				C09B942A1B57779F0049B04E /* AbstractActionSheetPicker.m in Sources */,
 				C0C00BCA1B55352500059160 /* EMPiss.m in Sources */,
+				C036A3D91B68EFE00038EDA0 /* UIDateTimePickerSheet.m in Sources */,
 				C0C00BBE1B552A1500059160 /* EMDayRecord.m in Sources */,
 				C0D36D5D1B54AC600014E19A /* EMDBManagerImplPlist.m in Sources */,
 				C0C00BC11B552A3500059160 /* EMPowderMilk.m in Sources */,

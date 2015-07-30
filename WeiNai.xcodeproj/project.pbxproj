@@ -25,6 +25,8 @@
 		C06526DA1B53FD6900DF4E34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C06526D81B53FD6900DF4E34 /* Main.storyboard */; };
 		C06526DC1B53FD6900DF4E34 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06526DB1B53FD6900DF4E34 /* Images.xcassets */; };
 		C06526DF1B53FD6900DF4E34 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C06526DD1B53FD6900DF4E34 /* LaunchScreen.xib */; };
+		C06825301B69F23100F7895E /* EMAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C068252D1B69F23100F7895E /* EMAudioPlayer.m */; };
+		C06825311B69F23100F7895E /* EMAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = C068252F1B69F23100F7895E /* EMAudioRecorder.m */; };
 		C06C801C1B5F954E001F9A58 /* EMPiss+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C801B1B5F954E001F9A58 /* EMPiss+Dict.m */; };
 		C06C801F1B5F9569001F9A58 /* EMBreastMilk+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C801E1B5F9569001F9A58 /* EMBreastMilk+Dict.m */; };
 		C06C80221B5F957C001F9A58 /* EMPowderMilk+Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = C06C80211B5F957C001F9A58 /* EMPowderMilk+Dict.m */; };
@@ -110,6 +112,10 @@
 		C06526D91B53FD6900DF4E34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C06526DB1B53FD6900DF4E34 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C06526DE1B53FD6900DF4E34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		C068252C1B69F23100F7895E /* EMAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAudioPlayer.h; sourceTree = "<group>"; };
+		C068252D1B69F23100F7895E /* EMAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMAudioPlayer.m; sourceTree = "<group>"; };
+		C068252E1B69F23100F7895E /* EMAudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAudioRecorder.h; sourceTree = "<group>"; };
+		C068252F1B69F23100F7895E /* EMAudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMAudioRecorder.m; sourceTree = "<group>"; };
 		C06C801A1B5F954E001F9A58 /* EMPiss+Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMPiss+Dict.h"; sourceTree = "<group>"; };
 		C06C801B1B5F954E001F9A58 /* EMPiss+Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMPiss+Dict.m"; sourceTree = "<group>"; };
 		C06C801D1B5F9569001F9A58 /* EMBreastMilk+Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMBreastMilk+Dict.h"; sourceTree = "<group>"; };
@@ -300,6 +306,7 @@
 		C06526F61B53FD9000DF4E34 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				C068252B1B69F23100F7895E /* audio */,
 				C07852AE1B606626003F0A8C /* GCDMulticastDelegate */,
 				C09B94131B562A5C0049B04E /* ActivitySummary.h */,
 				C09B94141B562A5C0049B04E /* ActivitySummary.m */,
@@ -323,6 +330,17 @@
 				C0B029D21B6927CA00E52599 /* Toolbox.m */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		C068252B1B69F23100F7895E /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				C068252C1B69F23100F7895E /* EMAudioPlayer.h */,
+				C068252D1B69F23100F7895E /* EMAudioPlayer.m */,
+				C068252E1B69F23100F7895E /* EMAudioRecorder.h */,
+				C068252F1B69F23100F7895E /* EMAudioRecorder.m */,
+			);
+			path = audio;
 			sourceTree = "<group>";
 		};
 		C07852AE1B606626003F0A8C /* GCDMulticastDelegate */ = {
@@ -565,6 +583,7 @@
 				C0E1207E1B55889B001F90E8 /* ActivityDetailViewController.m in Sources */,
 				C09B94151B562A5C0049B04E /* ActivitySummary.m in Sources */,
 				C0F17E971B6760AF00CC3763 /* EMSettings+Dict.m in Sources */,
+				C06825311B69F23100F7895E /* EMAudioRecorder.m in Sources */,
 				C06C801F1B5F9569001F9A58 /* EMBreastMilk+Dict.m in Sources */,
 				C0B029D31B6927CA00E52599 /* Toolbox.m in Sources */,
 				C06124C21B60B65400493CEC /* UUBar.m in Sources */,
@@ -618,6 +637,7 @@
 				C06C80281B5F95E8001F9A58 /* EMSleep+Dict.m in Sources */,
 				C09B94371B5796CB0049B04E /* NSDate+Category.m in Sources */,
 				C04F66F61B65CB60004F0E43 /* DayRecordsChart.m in Sources */,
+				C06825301B69F23100F7895E /* EMAudioPlayer.m in Sources */,
 				C0E1207B1B55888D001F90E8 /* ActivityListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

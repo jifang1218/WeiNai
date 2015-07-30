@@ -8,6 +8,7 @@
 
 #import "ToolboxViewController.h"
 #import "Toolbox.h"
+#import "Utility.h"
 @import AVFoundation;
 
 @interface ToolboxViewController()<UITableViewDataSource, UITableViewDelegate,
@@ -85,7 +86,14 @@
     frame.origin.y = (cell.contentView.frame.size.height - frame.size.height) / 2.0;
     frame.origin.x = 10;
     playBtn.frame = frame;
-    [playBtn setEnabled:[_toolbox isPissAvailable]];
+    BOOL isPissAvailable = [_toolbox isPissAvailable];
+    [playBtn setEnabled:isPissAvailable];
+    if (isPissAvailable) {
+        cell.detailTextLabel.text = [[NSString alloc] initWithFormat:@"录制于 : %@",
+                                     [Utility compactDateComponentsString:[_toolbox lastPissRecordDate]]];
+    } else {
+        cell.detailTextLabel.text = @"尚未录制";
+    }
     [cell.contentView addSubview:playBtn];
     _playButton = playBtn;
     

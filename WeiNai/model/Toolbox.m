@@ -48,4 +48,10 @@ static NSString *kPissFile = @"piss.wav";
     return ret;
 }
 
+- (NSDateComponents *)lastPissRecordDate {
+    NSDateComponents *ret = nil;
+    
+    return ret;
+}
+
 @end

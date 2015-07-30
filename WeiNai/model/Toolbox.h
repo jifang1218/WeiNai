@@ -21,5 +21,6 @@
 - (BOOL)isPissAvailable;
 - (NSString *)pissSoundPath;
 - (NSURL *)pissSoundURL;
+- (NSDateComponents *)lastPissRecordDate;
 
 @end

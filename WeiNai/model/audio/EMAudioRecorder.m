@@ -4,7 +4,7 @@
 
 static NSString *kWavExt = @"wav";
 
-typedef void (^CBAudioRecordFinished)(NSString *recordPath);
+typedef void (^CBAudioRecordFinished)(NSString *recordPath, NSError *error);
 
 @interface EMAudioRecorder () <AVAudioRecorderDelegate> {
     NSDate *_startDate;
@@ -82,8 +82,36 @@ typedef void (^CBAudioRecordFinished)(NSString *recordPath);
     }
 }
 
+- (void)asyncStartRecordWithPreparePath:(NSString *)aFilePath
+                      recordForDuration:(NSTimeInterval)duration
+                             completion:(void(^)(NSString *recordPath, NSError *error))completion {
+    _cbAudioRecordFinished = completion;
+    NSError *error = nil;
+    NSString *wavFilePath = [[aFilePath stringByDeletingPathExtension]
+                             stringByAppendingPathExtension:kWavExt];
+    NSURL *wavUrl = [[NSURL alloc] initFileURLWithPath:wavFilePath];
+    _recorder = [[AVAudioRecorder alloc] initWithURL:wavUrl
+                                            settings:self.recordSetting
+                                               error:&error];
+    if(!_recorder || error) {
+        _recorder = nil;
+        if (completion) {
+            error = [NSError errorWithDomain:NSLocalizedString(@"error.initRecorderFail", @"Failed to initialize AVAudioRecorder")
+                                        code:-1
+                                    userInfo:nil];
+            completion(aFilePath,error);
+        }
+        return ;
+    }
+    _startDate = [NSDate date];
+    _recorder.meteringEnabled = YES;
+    _recorder.delegate = self;
+    [_recorder recordForDuration:duration];
+    [_recorder record];
+}
+
 // 停止录音
-- (void)asyncStopRecordWithCompletion:(void(^)(NSString *recordPath))completion {
+- (void)asyncStopRecordWithCompletion:(void(^)(NSString *recordPath, NSError *error))completion {
     _cbAudioRecordFinished = completion;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [_recorder stop];
@@ -106,10 +134,12 @@ typedef void (^CBAudioRecordFinished)(NSString *recordPath);
                            successfully:(BOOL)flag {
     NSString *recordPath = [[_recorder url] path];
     if (_cbAudioRecordFinished) {
+        NSError *error = nil;
         if (!flag) {
+            error = [NSError errorWithDomain:@"record is fail" code:-1 userInfo:nil];
             recordPath = nil;
         }
-        _cbAudioRecordFinished(recordPath);
+        _cbAudioRecordFinished(recordPath,error);
     }
     _recorder = nil;
     _cbAudioRecordFinished = nil;

@@ -9,7 +9,10 @@
 #import "ToolboxViewController.h"
 #import "Toolbox.h"
 #import "Utility.h"
+#import "EMAudioPlayer.h"
+#import "EMAudioRecorder.h"
 @import AVFoundation;
+
 
 @interface ToolboxViewController()<UITableViewDataSource, UITableViewDelegate,
                                    ToolboxDelegate,
@@ -18,9 +21,13 @@
     Toolbox *_toolbox;
     AVAudioPlayer *_player;
     AVAudioRecorder *_recorder;
+    EMAudioRecorder *_audioRecorder;
+    EMAudioPlayer *_audioPlayer;
     UIButton *_playButton;
     UILabel *_pissAvailableHint;
 }
+@property (nonatomic, strong) EMAudioPlayer *audioPlayer;
+@property (nonatomic, strong) EMAudioRecorder *audioRecorder;
 
 - (void)setupUI;
 - (UITableViewCell *)configurePissCellForIndex:(NSInteger)index;
@@ -120,64 +127,58 @@
 
 #pragma mark - actions
 - (void)playPissSound:(id)sender {
-    NSURL *pissUrl = [_toolbox pissSoundURL];
-    NSError *error = nil;
-    _player = [[AVAudioPlayer alloc] initWithContentsOfURL:pissUrl
-                                                     error:&error];
-    if (error) {
-        NSLog(@"failed to play piss, error:%@", error);
-        return;
-    }
-    _player.delegate = self;
-    [_player play];
     [_playButton setEnabled:NO];
+    NSString *pissPath = [_toolbox pissSoundPath];
+    [self.audioPlayer asyncPlayWithPath:pissPath
+                             completion:^(NSError *error)
+    {
+        [_playButton setEnabled:YES];
+        if (!error) {
+            _pissAvailableHint.text = [[NSString alloc] initWithFormat:@"上次录制于 : %@",
+                                       [Utility compactDateComponentsString:[_toolbox lastPissRecordDate]]];
+            [_pissAvailableHint sizeToFit];
+        }else {
+            NSLog(@"failed to play piss, error:%@", error);
+            return;
+        }
+    }];
 }
 
 - (void)recordPissSound:(id)sender {
-    NSURL *pissUrl = [_toolbox pissSoundURL];
-    NSError *error = nil;
-    NSDictionary *settingsDict = @{AVSampleRateKey:[NSNumber numberWithFloat:8000.0], // 采样率
-                                   AVFormatIDKey:[NSNumber numberWithInt:kAudioFormatLinearPCM],
-                                   AVLinearPCMBitDepthKey:[NSNumber numberWithInt:16], // 采样位数 默认 16
-                                   AVNumberOfChannelsKey:[NSNumber numberWithInt:1]};
-    _recorder = [[AVAudioRecorder alloc] initWithURL:pissUrl
-                                            settings:settingsDict
-                                               error:&error];
-    if (error) {
-        NSLog(@"failed to record piss, error:%@", error);
-        return;
-    }
-    _recorder.delegate = self;
-    [_recorder recordForDuration:15.0];
+    NSString *pissPath = [_toolbox pissSoundPath];
     [_playButton setEnabled:NO];
+    [self.audioRecorder asyncStartRecordWithPreparePath:pissPath
+                                      recordForDuration:15.0
+                                             completion:^(NSString *recordPath, NSError *error)
+     {
+        if (!error) {
+            [_playButton setEnabled:YES];
+            _pissAvailableHint.text = [[NSString alloc] initWithFormat:@"上次录制于 : %@",
+                                       [Utility compactDateComponentsString:[_toolbox lastPissRecordDate]]];
+            [_pissAvailableHint sizeToFit];
+        }else {
+            [_playButton setEnabled:[_toolbox isPissAvailable]];
+        }
+    }];
 }
 
-#pragma mark - audio player delegate
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
-    [_playButton setEnabled:YES];
-    _pissAvailableHint.text = [[NSString alloc] initWithFormat:@"上次录制于 : %@",
-                               [Utility compactDateComponentsString:[_toolbox lastPissRecordDate]]];
-    [_pissAvailableHint sizeToFit];
-}
 
-- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error {
-    [_playButton setEnabled:YES];
-}
-
-#pragma mark - audio recorder delegate
-- (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag {
-    if (!flag) {
-        [_playButton setEnabled:[_toolbox isPissAvailable]];
-    } else {
-        [_playButton setEnabled:YES];
-        _pissAvailableHint.text = [[NSString alloc] initWithFormat:@"上次录制于 : %@",
-                                   [Utility compactDateComponentsString:[_toolbox lastPissRecordDate]]];
-        [_pissAvailableHint sizeToFit];
+#pragma mark - getter
+-(EMAudioPlayer *)audioPlayer{
+    if (!_audioPlayer) {
+        _audioPlayer = [[EMAudioPlayer alloc] init];
     }
+    
+    return _audioPlayer;
 }
 
-- (void)audioRecorderEncodeErrorDidOccur:(AVAudioRecorder *)recorder error:(NSError *)error {
-    [_playButton setEnabled:[_toolbox isPissAvailable]];
+-(EMAudioRecorder *)audioRecorder{
+    if (!_audioRecorder) {
+        _audioRecorder = [[EMAudioRecorder alloc] init];
+        [_audioRecorder.recorder recordForDuration:15.0];
+    }
+    
+    return _audioRecorder;
 }
 
 #pragma mark - tableview delegate

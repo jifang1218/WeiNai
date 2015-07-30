@@ -19,6 +19,7 @@
     AVAudioPlayer *_player;
     AVAudioRecorder *_recorder;
     UIButton *_playButton;
+    UILabel *_pissAvailableHint;
 }
 
 - (void)setupUI;
@@ -67,7 +68,8 @@
     static NSString *identifier = @"ToolboxCell_Piss";
     cell = [_tableview dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:identifier];
     }
     
     for (UIView *view in cell.contentView.subviews) {
@@ -86,16 +88,22 @@
     frame.origin.y = (cell.contentView.frame.size.height - frame.size.height) / 2.0;
     frame.origin.x = 10;
     playBtn.frame = frame;
-    BOOL isPissAvailable = [_toolbox isPissAvailable];
-    [playBtn setEnabled:isPissAvailable];
-    if (isPissAvailable) {
-        cell.detailTextLabel.text = [[NSString alloc] initWithFormat:@"录制于 : %@",
-                                     [Utility compactDateComponentsString:[_toolbox lastPissRecordDate]]];
-    } else {
-        cell.detailTextLabel.text = @"尚未录制";
-    }
     [cell.contentView addSubview:playBtn];
     _playButton = playBtn;
+    
+    BOOL isPissAvailable = [_toolbox isPissAvailable];
+    [playBtn setEnabled:isPissAvailable];
+    UILabel *labelIsPissReadyText = [[UILabel alloc] init];
+    if (isPissAvailable) {
+        labelIsPissReadyText.text = [[NSString alloc] initWithFormat:@"上次录制于 : %@",
+                                     [Utility compactDateComponentsString:[_toolbox lastPissRecordDate]]];
+    } else {
+        labelIsPissReadyText.text = @"尚未录制";
+    }
+    [labelIsPissReadyText sizeToFit];
+    labelIsPissReadyText.center = cell.contentView.center;
+    [cell.contentView addSubview:labelIsPissReadyText];
+    _pissAvailableHint = labelIsPissReadyText;
     
     // record button
     UIButton *recordBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -147,6 +155,9 @@
 #pragma mark - audio player delegate
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
     [_playButton setEnabled:YES];
+    _pissAvailableHint.text = [[NSString alloc] initWithFormat:@"上次录制于 : %@",
+                               [Utility compactDateComponentsString:[_toolbox lastPissRecordDate]]];
+    [_pissAvailableHint sizeToFit];
 }
 
 - (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error {
@@ -159,6 +170,9 @@
         [_playButton setEnabled:[_toolbox isPissAvailable]];
     } else {
         [_playButton setEnabled:YES];
+        _pissAvailableHint.text = [[NSString alloc] initWithFormat:@"上次录制于 : %@",
+                                   [Utility compactDateComponentsString:[_toolbox lastPissRecordDate]]];
+        [_pissAvailableHint sizeToFit];
     }
 }
 

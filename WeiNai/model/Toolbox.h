@@ -17,10 +17,10 @@
 @interface Toolbox : NSObject
 
 @property (nonatomic, weak) id<ToolboxDelegate> delegate;
+@property (nonatomic, strong) NSDateComponents *lastPissRecordDate;
 
 - (BOOL)isPissAvailable;
 - (NSString *)pissSoundPath;
 - (NSURL *)pissSoundURL;
-- (NSDateComponents *)lastPissRecordDate;
 
 @end

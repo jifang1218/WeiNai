@@ -11,6 +11,7 @@
 #import "Utility.h"
 #import "EMAudioPlayer.h"
 #import "EMAudioRecorder.h"
+#import "NSDate+Category.h"
 @import AVFoundation;
 
 
@@ -19,13 +20,12 @@
                                    AVAudioPlayerDelegate, AVAudioRecorderDelegate> {
     UITableView *_tableview;
     Toolbox *_toolbox;
-    AVAudioPlayer *_player;
-    AVAudioRecorder *_recorder;
     EMAudioRecorder *_audioRecorder;
     EMAudioPlayer *_audioPlayer;
     UIButton *_playButton;
     UILabel *_pissAvailableHint;
 }
+
 @property (nonatomic, strong) EMAudioPlayer *audioPlayer;
 @property (nonatomic, strong) EMAudioRecorder *audioRecorder;
 
@@ -53,7 +53,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.title = self.navigationController.tabBarItem.title;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
@@ -103,7 +102,7 @@
     UILabel *labelIsPissReadyText = [[UILabel alloc] init];
     if (isPissAvailable) {
         labelIsPissReadyText.text = [[NSString alloc] initWithFormat:@"上次录制于 : %@",
-                                     [Utility compactDateComponentsString:[_toolbox lastPissRecordDate]]];
+                                     [Utility compactDateComponentsString:_toolbox.lastPissRecordDate]];
     } else {
         labelIsPissReadyText.text = @"尚未录制";
     }
@@ -135,7 +134,7 @@
         [_playButton setEnabled:YES];
         if (!error) {
             _pissAvailableHint.text = [[NSString alloc] initWithFormat:@"上次录制于 : %@",
-                                       [Utility compactDateComponentsString:[_toolbox lastPissRecordDate]]];
+                                       [Utility compactDateComponentsString:_toolbox.lastPissRecordDate]];
             [_pissAvailableHint sizeToFit];
         }else {
             NSLog(@"failed to play piss, error:%@", error);
@@ -154,10 +153,18 @@
         if (!error) {
             [_playButton setEnabled:YES];
             _pissAvailableHint.text = [[NSString alloc] initWithFormat:@"上次录制于 : %@",
-                                       [Utility compactDateComponentsString:[_toolbox lastPissRecordDate]]];
+                                       [Utility compactDateComponentsString:_toolbox.lastPissRecordDate]];
             [_pissAvailableHint sizeToFit];
         }else {
             [_playButton setEnabled:[_toolbox isPissAvailable]];
+            
+            // update date
+            NSDate *now = [NSDate date];
+            NSDateComponents *date = [[NSDateComponents alloc] init];
+            date.year = now.year;
+            date.month = now.month;
+            date.day = now.day;
+            _toolbox.lastPissRecordDate = date;
         }
     }];
 }

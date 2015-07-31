@@ -18,6 +18,7 @@ static NSString *kPissFile = @"piss.wav";
 @implementation Toolbox
 
 @synthesize delegate = _delegate;
+@synthesize lastPissRecordDate = _lastPissRecordDate;
 
 - (NSString *)pissSoundPath {
     NSString *ret = nil;
@@ -44,12 +45,6 @@ static NSString *kPissFile = @"piss.wav";
     if ([[NSFileManager defaultManager] fileExistsAtPath:piss]) {
         ret = YES;
     }
-    
-    return ret;
-}
-
-- (NSDateComponents *)lastPissRecordDate {
-    NSDateComponents *ret = nil;
     
     return ret;
 }

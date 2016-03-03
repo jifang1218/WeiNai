@@ -21,7 +21,7 @@ class ActivityManagerImp implements IActivityManager {
 			fromDate.setYear(from.getYear());
 			fromDate.setMonth(from.getMonth());
 			fromDate.setDate(from.getDate());
-			fromDate.setHours(0);;
+			fromDate.setHours(0);
 			fromDate.setMinutes(0);
 			fromDate.setSeconds(0);
 			

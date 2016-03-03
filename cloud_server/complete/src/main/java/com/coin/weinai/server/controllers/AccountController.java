@@ -2,7 +2,6 @@ package com.coin.weinai.server.controllers;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,43 +15,26 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.coin.weinai.server.controllers.exceptions.OptionConflictException;
+import com.coin.weinai.server.entities.EMAccountRep;
 import com.coin.weinai.server.entities.EMExcrementRep;
 import com.coin.weinai.server.entities.EMPersonMilkRep;
 import com.coin.weinai.server.entities.EMPissRep;
 import com.coin.weinai.server.entities.EMPowderMilkRep;
 import com.coin.weinai.server.entities.EMSleepRep;
 import com.coin.weinai.server.entities.Person;
-import com.coin.weinai.server.entities.PersonRep;
 
 @RestController
-@RequestMapping("/weinai")
-public class ActivityController {
-	
+@RequestMapping("/weinai/users")
+public class AccountController {
 	private IActivityManager activityManager = new ActivityManagerImp();
 
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
-    
     @Autowired
-    private PersonRep personRep;
+    private EMAccountRep accountRep;
     
-    @Autowired
-    EMPissRep pissRep;
-    
-    @Autowired 
-    EMExcrementRep excrementRep;
-    
-    @Autowired
-    EMPersonMilkRep personMilkRep;
-    
-    @Autowired
-    EMPowderMilkRep powderMilkRep;
-    
-    @Autowired
-    EMSleepRep sleepRep;
-
-    @RequestMapping("/account/{user}")
+    @RequestMapping("/{user}")
     public Map<String, String> getAccountInfo(@PathVariable("user") String username) {
+    	
+    	List<EMAccount> accounts = accountRep.findAll();
     	Map<String, String> ret = new HashMap<String, String>();
     	
     	ret.put(username, "000000");

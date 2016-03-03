@@ -21,7 +21,7 @@ public class EMActivityBase {
 	boolean equals(EMActivityBase activity) {
 		boolean ret = false;
 		
-		if (memo == activity.memo &&
+		if (memo.equals(activity.memo) &&
 			time.equals(activity.time) &&
 			type == activity.type) {
 			ret = true;

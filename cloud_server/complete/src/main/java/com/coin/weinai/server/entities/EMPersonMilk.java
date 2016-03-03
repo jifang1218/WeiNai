@@ -12,7 +12,7 @@ class EMPersonMilk extends EMMilk {
 		boolean ret = false;
 		
 		if (super.equals(personMilk)) {
-			if (person == personMilk.person) {
+			if (person.equals(personMilk.person)) {
 				ret = true;
 			}
 		}

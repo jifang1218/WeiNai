@@ -12,7 +12,7 @@ class EMPowderMilk extends EMMilk {
 		boolean ret = false;
 		
 		if (super.equals(powderMilk)) {
-			if (brand == powderMilk.brand) {
+			if (brand.equals(powderMilk.brand)) {
 				ret = true;
 			}
 		}

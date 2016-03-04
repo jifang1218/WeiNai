@@ -31,17 +31,9 @@ public class AccountManagerImp implements IAccountManager {
 	public boolean containsUser(String username) {
 		boolean ret = false;
 		
-		if (accountRep != null) {
-			List<EMAccount> accounts = accountRep.findAll();
-			Iterator<EMAccount> pos = accounts.iterator();
-			while (pos.hasNext()) {
-				EMAccount account = pos.next();
-				if (account.getFather().equals(username) ||
-					account.getMother().equals(username)) {
-					ret = true;
-					break;
-				}
-			}
+		List<EMAccount> accounts = accountRep.findByUsername(username);
+		if (accounts.size() > 0) {
+			ret = true;
 		}
 			
 		return ret;
@@ -51,24 +43,9 @@ public class AccountManagerImp implements IAccountManager {
 	public EMAccount getAccount(String username) {
 		EMAccount ret = null;
 
-//		String hql="from Health as g where g.id=:id";
-//		Query query=session.createQuery(hql);
-//		query.setString("id", id);s
-//		queryString.append("from Health as h where h.userid=:userid and h.date = :date");
-//		Query query = session.createQuery(queryString.toString());	
-//		query.setString("userid", userid);
-//		query.setString("date", date);
-		
-	
-		List<EMAccount> accounts = accountRep.findAll();
-		Iterator<EMAccount> pos = accounts.iterator();
-		while (pos.hasNext()) {
-			EMAccount account = pos.next();
-			if (account.getFather().equals(username) ||
-				account.getMother().equals(username)) {
-				ret = account;
-				break;
-			}
+		List<EMAccount> accounts = accountRep.findByUsername(username);
+		if (accounts.size() > 0) {
+			ret = accounts.get(0);
 		}
 		
 		return ret;
@@ -76,15 +53,13 @@ public class AccountManagerImp implements IAccountManager {
 	
 	@Override
 	public
-	boolean createAccount(String username, String spouseName, String password, String children) {
+	boolean createAccount(String username, String password, String child) {
 		boolean ret = false;
 		
-		if (!containsUser(username) && 
-			!containsUser(spouseName)) {
+		if (!containsUser(username)) {
 			EMAccount account = new EMAccount();
-			account.setChildren(children);
-			account.setFather(spouseName);
-			account.setMother(username);
+			account.setChild(child);
+			account.setUsername(username);
 			account.setPassword(password);
 			accountRep.save(account);
 			ret = true;
@@ -92,6 +67,4 @@ public class AccountManagerImp implements IAccountManager {
 		
 		return ret;
 	}
-	
-
 }

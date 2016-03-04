@@ -7,18 +7,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "account")
 public class EMAccount {
-	String mother;
-	String father;
+	String username;
 	String password;
-	String children;
+	String child;
 	@Id
 	long id;
 	
 	boolean equals(EMAccount account) {
 		boolean ret = false;
 		
-		if ((mother != null && mother.equals(account.mother)) ||
-			(father != null && father.equals(account.father))) {
+		if ((username != null && username.equals(account.username)) &&
+			(password != null && password.equals(account.password)) &&
+			(child != null && child.equals(account.child))) {
 			ret = true;
 		}
 		
@@ -31,17 +31,11 @@ public class EMAccount {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getMother() {
-		return mother;
+	public String getUsername() {
+		return username;
 	}
-	public void setMother(String mother) {
-		this.mother = mother;
-	}
-	public String getFather() {
-		return father;
-	}
-	public void setFather(String father) {
-		this.father = father;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getPassword() {
 		return password;
@@ -49,10 +43,10 @@ public class EMAccount {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getChildren() {
-		return children;
+	public String getChild() {
+		return child;
 	}
-	public void setChildren(String children) {
-		this.children = children;
+	public void setChild(String child) {
+		this.child = child;
 	}
 }

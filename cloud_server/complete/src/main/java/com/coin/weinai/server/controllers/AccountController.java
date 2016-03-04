@@ -1,15 +1,16 @@
 package com.coin.weinai.server.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.coin.weinai.server.controllers.exceptions.AccountDuplicatedException;
 import com.coin.weinai.server.controllers.exceptions.AccountNotFoundException;
-import com.coin.weinai.server.controllers.exceptions.OperationFailureException;
 import com.coin.weinai.server.entities.EMAccount;
 import com.coin.weinai.server.managers.IAccountManager;
 
@@ -19,7 +20,9 @@ public class AccountController {
 	@Autowired
 	private IAccountManager accountManager;
 	
-    @RequestMapping("/{user}")
+	private static Logger logger = LoggerFactory.getLogger(AccountController.class);
+	
+    @RequestMapping(value="/{user}", method=RequestMethod.GET)
     public EMAccount getAccountInfo(@PathVariable("user") String username) {
     	EMAccount ret = null;
     	
@@ -33,17 +36,28 @@ public class AccountController {
     	return ret;
     }
     
-    @RequestMapping(value="/{user}/create", method=RequestMethod.GET)
-    //public void createAccount(@PathVariable("user") String username, @RequestBody EMAccount account) {
-    public void createAccount(@PathVariable("user") String username) {
-    	if (!accountManager.containsUser(username)) {
-    		if (accountManager.createAccount(username, "", "", "")) {
-    		} else {
-    			throw new OperationFailureException();
-    		}
-    	} else {
-    		throw new AccountDuplicatedException();
-    	}
+    @RequestMapping(method=RequestMethod.POST)
+    
+    @ResponseBody
+    public EMAccount createAccount(@RequestBody EMAccount account) {
+    	logger.info("shishi");
+    	
+    	Json json = new Json();
+    	
+//    	{
+//    	description:...account
+//    	EMAccount
+//    	}
+    	
+//    public void createAccount(@PathVariable("user") String username) {
+//    	if (!accountManager.containsUser(username)) {
+//    		if (accountManager.createAccount(username, "", "", "")) {
+//    		} else {
+//    			throw new OperationFailureException();
+//    		}
+//    	} else {
+//    		throw new AccountDuplicatedException();
+//    	}
     }
     
 //    @RequestMapping("/")

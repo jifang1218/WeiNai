@@ -1,6 +1,7 @@
 package com.coin.weinai.server.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 enum EMSleepQuality {
@@ -28,6 +29,14 @@ class EMSleep extends EMActivityBase {
 		return ret;
 	}
 	
+	@Id
+	long id;
+	long getId() {
+		return id;
+	}
+	void setId(long id) {
+		this.id = id;
+	}
 	int getDurationInMinutes() {
 		return durationInMinutes;
 	}

@@ -1,10 +1,10 @@
-package com.coin.weinai.server.controllers;
+package com.coin.weinai.server.managers;
 
 import java.util.Date;
 import java.util.List;
 import com.coin.weinai.server.entities.*;
 
-interface IActivityManager {
+public interface IActivityManager {
 	List<EMDailyActivity> getDailyActivities(Date from, Date to); 
 	boolean addDailyActivity(EMDailyActivity daily);
 	boolean removeDailyActivity(Date time);

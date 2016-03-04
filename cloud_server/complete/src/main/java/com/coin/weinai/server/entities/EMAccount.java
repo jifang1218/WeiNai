@@ -1,19 +1,16 @@
 package com.coin.weinai.server.entities;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ACCOUNT")
-public
-class EMAccount {
+@Table(name = "account")
+public class EMAccount {
 	String mother;
 	String father;
 	String password;
-	List<String> children;
+	String children;
 	@Id
 	long id;
 	
@@ -28,34 +25,34 @@ class EMAccount {
 		return ret;
 	}
 	
-	long getId() {
+	public long getId() {
 		return id;
 	}
-	void setId(long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
-	String getMother() {
+	public String getMother() {
 		return mother;
 	}
-	void setMother(String mother) {
+	public void setMother(String mother) {
 		this.mother = mother;
 	}
-	String getFather() {
+	public String getFather() {
 		return father;
 	}
-	void setFather(String father) {
+	public void setFather(String father) {
 		this.father = father;
 	}
-	String getPassword() {
+	public String getPassword() {
 		return password;
 	}
-	void setPassword(String password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
-	List<String> getChildren() {
+	public String getChildren() {
 		return children;
 	}
-	void setChildren(List<String> children) {
+	public void setChildren(String children) {
 		this.children = children;
 	}
 }

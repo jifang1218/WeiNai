@@ -14,8 +14,7 @@ enum EMActivityType {
 public class EMActivityBase {
 	String memo;
 	Date time;
-	@Id
-	long id;
+	
 	EMActivityType type;
 	
 	boolean equals(EMActivityBase activity) {
@@ -28,13 +27,6 @@ public class EMActivityBase {
 		}
 		
 		return ret;
-	}
-	
-	long getId() {
-		return id;
-	}
-	void setId(long id) {
-		this.id = id;
 	}
 	Date getTime() {
 		return time;

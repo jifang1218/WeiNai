@@ -1,6 +1,7 @@
 package com.coin.weinai.server.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 enum EMPissColor {
@@ -27,6 +28,14 @@ class EMPiss extends EMActivityBase {
 		return ret;
 	}
 	
+	@Id
+	long id;
+	long getId() {
+		return id;
+	}
+	void setId(long id) {
+		this.id = id;
+	}
 	int getMl() {
 		return ml;
 	}

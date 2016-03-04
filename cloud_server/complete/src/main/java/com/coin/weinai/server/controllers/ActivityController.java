@@ -1,6 +1,8 @@
 package com.coin.weinai.server.controllers;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.coin.weinai.server.controllers.exceptions.OptionConflictException;
+import com.coin.weinai.server.entities.EMDailyActivity;
 import com.coin.weinai.server.entities.EMExcrementRep;
 import com.coin.weinai.server.entities.EMPersonMilkRep;
 import com.coin.weinai.server.entities.EMPissRep;
@@ -23,18 +26,23 @@ import com.coin.weinai.server.entities.EMPowderMilkRep;
 import com.coin.weinai.server.entities.EMSleepRep;
 import com.coin.weinai.server.entities.Person;
 import com.coin.weinai.server.entities.PersonRep;
+import com.coin.weinai.server.managers.AccountManagerImp;
+import com.coin.weinai.server.managers.ActivityManagerImp;
+import com.coin.weinai.server.managers.IAccountManager;
+import com.coin.weinai.server.managers.IActivityManager;
 
 @RestController
-@RequestMapping("/weinai")
+@RequestMapping("/weinai/activities")
 public class ActivityController {
 	
-	private IActivityManager activityManager = new ActivityManagerImp();
+	@Autowired
+	private IAccountManager activityManager;
 
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
+//    private static final String template = "Hello, %s!";
+//    private final AtomicLong counter = new AtomicLong();
     
-    @Autowired
-    private PersonRep personRep;
+//    @Autowired
+//    private PersonRep personRep;
     
     @Autowired
     EMPissRep pissRep;
@@ -51,80 +59,82 @@ public class ActivityController {
     @Autowired
     EMSleepRep sleepRep;
 
-    @RequestMapping("/account/{user}")
-    public Map<String, String> getAccountInfo(@PathVariable("user") String username) {
-    	Map<String, String> ret = new HashMap<String, String>();
+    @RequestMapping("/{user}")
+    public List<EMDailyActivity> getActivities(@PathVariable("user") String username,
+    		int fromYear, int fromMonth, int fromDay, 
+    		int toYear, int toMonth, int toDay) {
+    	List<EMDailyActivity> ret = new LinkedList<EMDailyActivity>();
     	
-    	ret.put(username, "000000");
+    	
     	
     	return ret;
     }
     
-    @RequestMapping("/")
-    public Greeting greeting1(@RequestParam(value="name", defaultValue="World") String name) {
-        return new Greeting(counter.incrementAndGet(),
-                            String.format(template, name));
-    }
-    
-    @RequestMapping("")
-    public Greeting greeting11(@RequestParam(value="name", defaultValue="World") String name) {
-        return new Greeting(counter.incrementAndGet(),
-                            String.format(template, name));
-    }
-    
-    @RequestMapping("/hello2/{nb1}/{nb2}")
-    public Greeting greeting2(@PathVariable("nb1") String nb1, @PathVariable("nb2") String nb2) {
-        return new Greeting(counter.incrementAndGet(),
-                            nb1 + "-kkk-" + nb2);
-    }
-    
-    @RequestMapping("/header1")
-    public Greeting header(@RequestHeader (value="host", defaultValue="hostDefault") String hostName,
-				           @RequestHeader (value="Accept", defaultValue="AcceptDefault") String acceptType,
-				    	   @RequestHeader (value="Accept-Language", defaultValue="Accept-Language-Default") String acceptLang,
-				    	   @RequestHeader (value="Accept-Encoding", defaultValue="Accept-Encoding-Default") String acceptEnc,
-				    	   @RequestHeader (value="Cache-Control", defaultValue="Cache-Control-Default") String cacheCon,
-				    	   @RequestHeader (value="Cookie", defaultValue="CookieDefault") String cookie,
-				    	   @RequestHeader (value="User-Agent", defaultValue="User-Agent-Default") String userAgent)
-    {
-    	System.out.println("Host : " + hostName);
-    	System.out.println("Accept : " + acceptType);
-    	System.out.println("Accept Language : " + acceptLang);
-    	System.out.println("Accept Encoding : " + acceptEnc);
-    	System.out.println("Cache-Control : " + cacheCon);
-    	System.out.println("Cookie : " + cookie);
-    	System.out.println("User-Agent : " + userAgent);
-    	return new Greeting(counter.incrementAndGet(), "jifang_header");
-    }
-
-    @RequestMapping("/header2")
-    public Greeting header2(HttpServletRequest request)
-    {
-    	Person p = new Person();
-    	p.setAge(18);
-    	p.setName("shab");
-    	
-    	personRep.save(p);
-    	return new Greeting(counter.incrementAndGet(), "jifang_header");
-    }
-    
-    @RequestMapping("/header3")
-    @ResponseStatus(HttpStatus.OK) // return 200 OK by default. 
-    public Greeting header3(HttpServletRequest request)
-    {
-    	boolean b = false;
-    	if (b) {
-    		// change return value to HttpStatus.CONFLICT (409)
-    		throw new OptionConflictException();
-    	}
-    	return new Greeting(counter.incrementAndGet(), "jifang_header");
-    }
-    
-    // /header4?a=1&b=334&c=1.11
-    @RequestMapping("/header4")
-    @ResponseStatus(HttpStatus.OK) // return 200 OK by default. 
-    public Greeting header4(int a, String b, double c)
-    {
-    	return new Greeting(counter.incrementAndGet(), "jifang_header");
-    }
+//    @RequestMapping("/")
+//    public Greeting greeting1(@RequestParam(value="name", defaultValue="World") String name) {
+//        return new Greeting(counter.incrementAndGet(),
+//                            String.format(template, name));
+//    }
+//    
+//    @RequestMapping("")
+//    public Greeting greeting11(@RequestParam(value="name", defaultValue="World") String name) {
+//        return new Greeting(counter.incrementAndGet(),
+//                            String.format(template, name));
+//    }
+//    
+//    @RequestMapping("/hello2/{nb1}/{nb2}")
+//    public Greeting greeting2(@PathVariable("nb1") String nb1, @PathVariable("nb2") String nb2) {
+//        return new Greeting(counter.incrementAndGet(),
+//                            nb1 + "-kkk-" + nb2);
+//    }
+//    
+//    @RequestMapping("/header1")
+//    public Greeting header(@RequestHeader (value="host", defaultValue="hostDefault") String hostName,
+//				           @RequestHeader (value="Accept", defaultValue="AcceptDefault") String acceptType,
+//				    	   @RequestHeader (value="Accept-Language", defaultValue="Accept-Language-Default") String acceptLang,
+//				    	   @RequestHeader (value="Accept-Encoding", defaultValue="Accept-Encoding-Default") String acceptEnc,
+//				    	   @RequestHeader (value="Cache-Control", defaultValue="Cache-Control-Default") String cacheCon,
+//				    	   @RequestHeader (value="Cookie", defaultValue="CookieDefault") String cookie,
+//				    	   @RequestHeader (value="User-Agent", defaultValue="User-Agent-Default") String userAgent)
+//    {
+//    	System.out.println("Host : " + hostName);
+//    	System.out.println("Accept : " + acceptType);
+//    	System.out.println("Accept Language : " + acceptLang);
+//    	System.out.println("Accept Encoding : " + acceptEnc);
+//    	System.out.println("Cache-Control : " + cacheCon);
+//    	System.out.println("Cookie : " + cookie);
+//    	System.out.println("User-Agent : " + userAgent);
+//    	return new Greeting(counter.incrementAndGet(), "jifang_header");
+//    }
+//
+//    @RequestMapping("/header2")
+//    public Greeting header2(HttpServletRequest request)
+//    {
+//    	Person p = new Person();
+//    	p.setAge(18);
+//    	p.setName("shab");
+//    	
+//    	personRep.save(p);
+//    	return new Greeting(counter.incrementAndGet(), "jifang_header");
+//    }
+//    
+//    @RequestMapping("/header3")
+//    @ResponseStatus(HttpStatus.OK) // return 200 OK by default. 
+//    public Greeting header3(HttpServletRequest request)
+//    {
+//    	boolean b = false;
+//    	if (b) {
+//    		// change return value to HttpStatus.CONFLICT (409)
+//    		throw new OptionConflictException();
+//    	}
+//    	return new Greeting(counter.incrementAndGet(), "jifang_header");
+//    }
+//    
+//    // /header4?a=1&b=334&c=1.11
+//    @RequestMapping("/header4")
+//    @ResponseStatus(HttpStatus.OK) // return 200 OK by default. 
+//    public Greeting header4(int a, String b, double c)
+//    {
+//    	return new Greeting(counter.incrementAndGet(), "jifang_header");
+//    }
 }

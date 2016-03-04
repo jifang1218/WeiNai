@@ -1,4 +1,4 @@
-package com.coin.weinai.server.controllers;
+package com.coin.weinai.server.managers;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.coin.weinai.server.entities.EMDailyActivity;
 
-class ActivityManagerImp implements IActivityManager {
+public class ActivityManagerImp implements IActivityManager {
 	List<EMDailyActivity> dailyActivities = new LinkedList<EMDailyActivity>();
 
 	@SuppressWarnings("deprecation")

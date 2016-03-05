@@ -10,7 +10,8 @@ enum EMExcrementQuality {
 } 
 
 @Entity
-@Table(name = "EXCREMENT")
+@Table(name = "excrement")
+public
 class EMExcrement extends EMActivityBase {
 	int weight;
 	EMExcrementQuality quality;

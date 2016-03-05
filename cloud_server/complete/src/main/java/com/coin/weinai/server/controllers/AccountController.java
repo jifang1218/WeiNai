@@ -1,8 +1,13 @@
 package com.coin.weinai.server.controllers;
 
+import java.util.Date;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,8 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.coin.weinai.server.controllers.exceptions.AccountNotFoundException;
+import com.coin.weinai.server.controllers.types.EMResult;
 import com.coin.weinai.server.entities.EMAccount;
+import com.coin.weinai.server.entities.EMActivityBase;
 import com.coin.weinai.server.managers.IAccountManager;
+import com.coin.weinai.server.managers.InfoCenter;
 
 @RestController
 @RequestMapping("/weinai/users")
@@ -20,14 +28,17 @@ public class AccountController {
 	@Autowired
 	private IAccountManager accountManager;
 	
-	private static Logger logger = LoggerFactory.getLogger(AccountController.class);
+	private static Logger log = LoggerFactory.getLogger(AccountController.class);
 	
+	@ResponseBody
     @RequestMapping(value="/{user}", method=RequestMethod.GET)
     public EMAccount getAccountInfo(@PathVariable("user") String username) {
     	EMAccount ret = null;
     	
     	if (accountManager.containsUser(username)) {
     		ret = accountManager.getAccount(username);
+    		InfoCenter info = InfoCenter.getInstance();
+    		info.setCurrentAccount(ret);
     		accountManager.setCurrentAccount(ret);
     	} else {
     		throw new AccountNotFoundException();
@@ -36,30 +47,29 @@ public class AccountController {
     	return ret;
     }
     
-    @RequestMapping(method=RequestMethod.POST)
-    
     @ResponseBody
+    @RequestMapping(method=RequestMethod.POST)
     public EMAccount createAccount(@RequestBody EMAccount account) {
-    	logger.info("shishi");
+    	EMResult ret = new EMResult(-1, "", null);
     	
-    	Json json = new Json();
+    	if (accountManager.containsUser(account.getUsername())) {
+    		log.info("already exists.");
+    	} else {
+    		log.info("create new user: " + account.getUsername() + 
+    				" password: " + account.getPassword() + 
+    				" child: " + account.getChild());
+    		if (accountManager.createAccount(account)) {
+    			ret = new EMResult(0, "", account);
+    		} else {
+    			log.info("failed to create user.");
+    		}
+    	}
     	
-//    	{
-//    	description:...account
-//    	EMAccount
-//    	}
-    	
-//    public void createAccount(@PathVariable("user") String username) {
-//    	if (!accountManager.containsUser(username)) {
-//    		if (accountManager.createAccount(username, "", "", "")) {
-//    		} else {
-//    			throw new OperationFailureException();
-//    		}
-//    	} else {
-//    		throw new AccountDuplicatedException();
-//    	}
+    	return account;
     }
     
+    
+    	    
 //    @RequestMapping("/")
 //    public Greeting greeting1(@RequestParam(value="name", defaultValue="World") String name) {
 //        return new Greeting(counter.incrementAndGet(),

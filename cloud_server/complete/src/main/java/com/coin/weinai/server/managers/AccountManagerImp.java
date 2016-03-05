@@ -1,6 +1,5 @@
 package com.coin.weinai.server.managers;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,14 +52,10 @@ public class AccountManagerImp implements IAccountManager {
 	
 	@Override
 	public
-	boolean createAccount(String username, String password, String child) {
+	boolean createAccount(EMAccount account) {
 		boolean ret = false;
 		
-		if (!containsUser(username)) {
-			EMAccount account = new EMAccount();
-			account.setChild(child);
-			account.setUsername(username);
-			account.setPassword(password);
+		if (!containsUser(account.getUsername())) {
 			accountRep.save(account);
 			ret = true;
 		}

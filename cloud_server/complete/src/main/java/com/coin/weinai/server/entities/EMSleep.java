@@ -12,6 +12,7 @@ enum EMSleepQuality {
 
 @Entity
 @Table(name = "SLEEP")
+public
 class EMSleep extends EMActivityBase {
 	int durationInMinutes;
 	EMSleepQuality quality;

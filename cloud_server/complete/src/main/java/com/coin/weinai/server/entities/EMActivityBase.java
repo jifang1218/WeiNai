@@ -14,7 +14,7 @@ enum EMActivityType {
 public class EMActivityBase {
 	String memo;
 	Date time;
-	
+	String account;
 	EMActivityType type;
 	
 	boolean equals(EMActivityBase activity) {
@@ -45,5 +45,11 @@ public class EMActivityBase {
 	}
 	void setType(EMActivityType type) {
 		this.type = type;
+	}
+	String getAccount() {
+		return account;
+	}
+	void setAccount(String account) {
+		this.account = account;
 	}
 }

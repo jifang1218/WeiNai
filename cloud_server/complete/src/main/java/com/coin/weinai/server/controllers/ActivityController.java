@@ -1,5 +1,6 @@
 package com.coin.weinai.server.controllers;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,16 +10,21 @@ import java.util.concurrent.atomic.AtomicLong;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.coin.weinai.server.controllers.exceptions.OptionConflictException;
-import com.coin.weinai.server.entities.EMDailyActivity;
+import com.coin.weinai.server.entities.EMAccount;
+import com.coin.weinai.server.entities.EMActivityBase;
 import com.coin.weinai.server.entities.EMExcrementRep;
 import com.coin.weinai.server.entities.EMPersonMilkRep;
 import com.coin.weinai.server.entities.EMPissRep;
@@ -36,7 +42,10 @@ import com.coin.weinai.server.managers.IActivityManager;
 public class ActivityController {
 	
 	@Autowired
-	private IAccountManager activityManager;
+	private IActivityManager activityManager;
+	
+	@Autowired
+	private IAccountManager accountManager;
 
 //    private static final String template = "Hello, %s!";
 //    private final AtomicLong counter = new AtomicLong();
@@ -59,13 +68,17 @@ public class ActivityController {
     @Autowired
     EMSleepRep sleepRep;
 
-    @RequestMapping("/{user}")
-    public List<EMDailyActivity> getActivities(@PathVariable("user") String username,
-    		int fromYear, int fromMonth, int fromDay, 
-    		int toYear, int toMonth, int toDay) {
-    	List<EMDailyActivity> ret = new LinkedList<EMDailyActivity>();
+    @ResponseBody
+    @RequestMapping(method=RequestMethod.GET, value="/{user}")
+    public List<EMActivityBase> getActivities(@PathVariable("user") String user, 
+    		@DateTimeFormat(iso=ISO.DATE) Date fromDay, 
+    		@DateTimeFormat(iso=ISO.DATE) Date toDay) {
+    	List<EMActivityBase> ret = null;
     	
-    	
+    	//ret = activityManager.getActivities(user, fromDay, toDay);
+    	IAccountManager mgr = accountManager;
+    	EMAccount account = mgr.getCurrentAccount();
+    	String name = account.getUsername();
     	
     	return ret;
     }

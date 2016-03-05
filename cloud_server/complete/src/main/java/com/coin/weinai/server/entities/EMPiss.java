@@ -11,6 +11,7 @@ enum EMPissColor {
 
 @Entity
 @Table(name = "PISS")
+public
 class EMPiss extends EMActivityBase {
 	int ml; 
 	EMPissColor color;

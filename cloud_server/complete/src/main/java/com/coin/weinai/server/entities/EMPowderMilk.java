@@ -6,6 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "POWDERMILK")
+public
 class EMPowderMilk extends EMMilk {
 	String brand;
 

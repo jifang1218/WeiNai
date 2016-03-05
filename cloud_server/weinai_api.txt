@@ -1,0 +1,15 @@
+1. get account, GET
+http://{server}/weinai/users/{user}
+curl -H "content-type:application/json" -X GET "http://localhost:8080/weinai/users/jifang"
+
+2. create account, POST
+http://{server}/weinai/users
+curl -H "content-type:application/json" -X POST "http://localhost:8080/weinai/users" -d '{"username":"jifang","password":"000000","child":"gangber"}'
+
+3. update account, PUT
+http://{server}/weinai/users
+curl -H "content-type:application/json" -X POST "http://localhost:8080/weinai/users" -d '{"username":"jifang","password":"111111","child":"gangber"}'
+
+4. delete account, DELETE
+http://{server}/weinai/users/{user}
+curl -H "content-type:application/json" -X DELETE "http://localhost:8080/weinai/users/jifang"

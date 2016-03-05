@@ -3,9 +3,9 @@ package com.coin.weinai.server.managers;
 import com.coin.weinai.server.entities.EMAccount;
 
 public interface IAccountManager {
-	boolean containsUser(String username);
+	boolean containsAccount(String username);
 	EMAccount getAccount(String username);
 	boolean createAccount(EMAccount account);
-	EMAccount getCurrentAccount();
-	void setCurrentAccount(EMAccount account);
+	boolean updateAccount(EMAccount account);
+	boolean deleteAccount(String username);
 }

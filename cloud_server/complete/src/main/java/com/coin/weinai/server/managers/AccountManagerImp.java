@@ -13,21 +13,9 @@ public class AccountManagerImp implements IAccountManager {
 	
 	@Autowired
 	private EMAccountRep accountRep;
-	
-	private EMAccount currentAccount;
 
 	@Override
-	public EMAccount getCurrentAccount() {
-		return currentAccount;
-	}
-	
-	@Override
-	public void setCurrentAccount(EMAccount account) {
-		currentAccount = account;
-	}
-	
-	@Override
-	public boolean containsUser(String username) {
+	public boolean containsAccount(String username) {
 		boolean ret = false;
 		
 		List<EMAccount> accounts = accountRep.findByUsername(username);
@@ -55,8 +43,36 @@ public class AccountManagerImp implements IAccountManager {
 	boolean createAccount(EMAccount account) {
 		boolean ret = false;
 		
-		if (!containsUser(account.getUsername())) {
+		if (!containsAccount(account.getUsername())) {
 			accountRep.save(account);
+			ret = true;
+		}
+		
+		return ret;
+	}
+
+	@Override
+	public boolean updateAccount(EMAccount account) {
+		boolean ret = false;
+		
+		if (containsAccount(account.getUsername())) {
+			EMAccount old = getAccount(account.getUsername());
+			old.setChild(account.getChild());
+			old.setPassword(account.getPassword());
+			accountRep.save(old);
+			ret = true;
+		}
+		
+		return ret;
+	}
+
+	@Override
+	public boolean deleteAccount(String username) {
+		boolean ret = false;
+		
+		if (containsAccount(username)) {
+			EMAccount account = getAccount(username);
+			accountRep.delete(account);
 			ret = true;
 		}
 		

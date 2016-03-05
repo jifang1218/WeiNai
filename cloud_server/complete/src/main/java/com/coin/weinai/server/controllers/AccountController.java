@@ -16,11 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.coin.weinai.server.controllers.exceptions.AccountNotFoundException;
-import com.coin.weinai.server.controllers.types.EMResult;
 import com.coin.weinai.server.entities.EMAccount;
 import com.coin.weinai.server.entities.EMActivityBase;
 import com.coin.weinai.server.managers.IAccountManager;
-import com.coin.weinai.server.managers.InfoCenter;
 
 @RestController
 @RequestMapping("/weinai/users")
@@ -32,14 +30,11 @@ public class AccountController {
 	
 	@ResponseBody
     @RequestMapping(value="/{user}", method=RequestMethod.GET)
-    public EMAccount getAccountInfo(@PathVariable("user") String username) {
+    public EMAccount getAccountInfo(@PathVariable("user") String account) {
     	EMAccount ret = null;
     	
-    	if (accountManager.containsUser(username)) {
-    		ret = accountManager.getAccount(username);
-    		InfoCenter info = InfoCenter.getInstance();
-    		info.setCurrentAccount(ret);
-    		accountManager.setCurrentAccount(ret);
+    	if (accountManager.containsAccount(account)) {
+    		ret = accountManager.getAccount(account);
     	} else {
     		throw new AccountNotFoundException();
     	}
@@ -50,16 +45,13 @@ public class AccountController {
     @ResponseBody
     @RequestMapping(method=RequestMethod.POST)
     public EMAccount createAccount(@RequestBody EMAccount account) {
-    	EMResult ret = new EMResult(-1, "", null);
-    	
-    	if (accountManager.containsUser(account.getUsername())) {
+    	if (accountManager.containsAccount(account.getUsername())) {
     		log.info("already exists.");
     	} else {
     		log.info("create new user: " + account.getUsername() + 
     				" password: " + account.getPassword() + 
     				" child: " + account.getChild());
     		if (accountManager.createAccount(account)) {
-    			ret = new EMResult(0, "", account);
     		} else {
     			log.info("failed to create user.");
     		}
@@ -67,6 +59,71 @@ public class AccountController {
     	
     	return account;
     }
+    
+    @ResponseBody
+    @RequestMapping(method=RequestMethod.PUT)
+    public EMAccount updateAccount(@RequestBody EMAccount account) {
+    	EMAccount ret = null;
+    	
+    	if (accountManager.containsAccount(account.getUsername())) {
+    		if (accountManager.updateAccount(account)) {
+    			ret = account;
+    		}
+    	}
+    	
+    	return ret;
+    }
+    
+    @ResponseBody
+    @RequestMapping(value="{user}", method=RequestMethod.DELETE) 
+    public EMAccount deleteAccount(@PathVariable("user") String username) {
+    	EMAccount ret = null;
+    	
+    	if (accountManager.containsAccount(username)) {
+    		EMAccount account = accountManager.getAccount(username);
+    		if (accountManager.deleteAccount(username)) {
+    			ret = account;
+    		}
+    	}
+    	
+    	return ret;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     	    

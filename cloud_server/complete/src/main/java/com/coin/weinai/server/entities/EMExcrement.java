@@ -15,6 +15,13 @@ public
 class EMExcrement extends EMActivityBase {
 	int weight;
 	EMExcrementQuality quality;
+	String memo;
+	long time;
+	String account;
+	EMActivityType type;
+	
+	@Id
+	long id;
 	
 	boolean equals(EMExcrement excrement) {
 		boolean ret = false;
@@ -29,13 +36,35 @@ class EMExcrement extends EMActivityBase {
 		return ret;
 	}
 	
-	@Id
-	long id;
 	long getId() {
 		return id;
 	}
 	void setId(long id) {
 		this.id = id;
+	}
+	long getTime() {
+		return time;
+	}
+	void setTime(long time) {
+		this.time = time;
+	}
+	String getMemo() {
+		return memo;
+	}
+	void setMemo(String memo) {
+		this.memo = memo;
+	}
+	EMActivityType getType() {
+		return type;
+	}
+	void setType(EMActivityType type) {
+		this.type = type;
+	}
+	public String getAccount() {
+		return account;
+	}
+	void setAccount(String account) {
+		this.account = account;
 	}
 	int getWeight() {
 		return weight;

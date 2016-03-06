@@ -42,7 +42,7 @@ class EMExcrement extends EMActivityBase {
 	void setId(long id) {
 		this.id = id;
 	}
-	long getTime() {
+	public long getTime() {
 		return time;
 	}
 	void setTime(long time) {
@@ -54,7 +54,7 @@ class EMExcrement extends EMActivityBase {
 	void setMemo(String memo) {
 		this.memo = memo;
 	}
-	EMActivityType getType() {
+	public EMActivityType getType() {
 		return type;
 	}
 	void setType(EMActivityType type) {

@@ -1,13 +1,8 @@
 package com.coin.weinai.server.controllers;
 
-import java.util.Date;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.coin.weinai.server.controllers.exceptions.AccountNotFoundException;
 import com.coin.weinai.server.entities.EMAccount;
-import com.coin.weinai.server.entities.EMActivityBase;
 import com.coin.weinai.server.managers.IAccountManager;
 
 @RestController
@@ -35,7 +29,9 @@ public class AccountController {
     	
     	if (accountManager.containsAccount(account)) {
     		ret = accountManager.getAccount(account);
+    		log.info("get account : " + ret);
     	} else {
+    		log.info("account not exists : " + account);
     		throw new AccountNotFoundException();
     	}
     	
@@ -68,7 +64,12 @@ public class AccountController {
     	if (accountManager.containsAccount(account.getUsername())) {
     		if (accountManager.updateAccount(account)) {
     			ret = account;
+    			log.info("updated account : " + account);
+    		} else {
+    			log.info("failed to update account : " + account.getUsername());
     		}
+    	} else {
+    		log.info("account not exists : " + account.getUsername());
     	}
     	
     	return ret;
@@ -83,7 +84,12 @@ public class AccountController {
     		EMAccount account = accountManager.getAccount(username);
     		if (accountManager.deleteAccount(username)) {
     			ret = account;
+    			log.info("deleted account : " + username);
+    		} else {
+    			log.info("failed to delete account : " + username);
     		}
+    	} else {
+    		log.info("account not exists : " + username);
     	}
     	
     	return ret;

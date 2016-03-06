@@ -9,7 +9,9 @@ import org.springframework.stereotype.Component;
 import com.coin.weinai.server.entities.EMActivityBase;
 import com.coin.weinai.server.entities.EMActivityType;
 import com.coin.weinai.server.entities.EMExcrement;
+import com.coin.weinai.server.entities.EMExcrementQuality;
 import com.coin.weinai.server.entities.EMExcrementRep;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 @Component
 public class ActivityManagerImp implements IActivityManager {
@@ -34,6 +36,51 @@ public class ActivityManagerImp implements IActivityManager {
 		if (excrements.size() > 0) {
 			ret = excrements.get(0);
 		}
+		
+		return ret;
+	}
+	
+	@Override
+	public boolean addActivity(EMActivityType type, ObjectNode activityNode) {
+		boolean ret = false;
+		
+		switch (type) {
+			case Excrement: {
+				EMExcrement excrement = nodeToExcrement(activityNode);
+				ret = addExcrement(excrement);
+			} break;
+			default: {
+			} break;
+		}
+		
+		return ret;
+	}
+	
+	private EMExcrement nodeToExcrement(ObjectNode node) {
+		EMExcrement ret = null;
+
+		int weight = node.get("weight").asInt();
+		String memo = node.get("memo").asText();
+		long time = node.get("time").asLong();
+		String account = node.get("account").asText();
+		EMActivityType type = EMActivityType.Excrement;
+		int intquality = node.get("quality").asInt();
+		EMExcrementQuality quality = EMExcrementQuality.ExcrementQualityGood;
+		switch (intquality) {
+			case 0: {
+				quality = EMExcrementQuality.ExcrementQualityGood;
+			} break;
+			case 1: {
+				quality = EMExcrementQuality.ExcrementQualityBad;
+			} break;
+		}
+		ret = new EMExcrement();
+		ret.setWeight(weight);
+		ret.setMemo(memo);
+		ret.setAccount(account);
+		ret.setTime(time);
+		ret.setType(type);
+		ret.setQuality(quality);
 		
 		return ret;
 	}

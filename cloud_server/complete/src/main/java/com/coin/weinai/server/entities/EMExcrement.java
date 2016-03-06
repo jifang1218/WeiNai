@@ -4,11 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-enum EMExcrementQuality {
-    ExcrementQualityGood,
-    ExcrementQualityBad
-} 
-
 @Entity
 @Table(name = "excrement")
 public
@@ -45,37 +40,37 @@ class EMExcrement extends EMActivityBase {
 	public long getTime() {
 		return time;
 	}
-	void setTime(long time) {
+	public void setTime(long time) {
 		this.time = time;
 	}
 	String getMemo() {
 		return memo;
 	}
-	void setMemo(String memo) {
+	public void setMemo(String memo) {
 		this.memo = memo;
 	}
 	public EMActivityType getType() {
 		return type;
 	}
-	void setType(EMActivityType type) {
+	public void setType(EMActivityType type) {
 		this.type = type;
 	}
 	public String getAccount() {
 		return account;
 	}
-	void setAccount(String account) {
+	public void setAccount(String account) {
 		this.account = account;
 	}
 	int getWeight() {
 		return weight;
 	}
-	void setWeight(int weight) {
+	public void setWeight(int weight) {
 		this.weight = weight;
 	}
 	EMExcrementQuality getQuality() {
 		return quality;
 	}
-	void setQuality(EMExcrementQuality quality) {
+	public void setQuality(EMExcrementQuality quality) {
 		this.quality = quality;
 	}
 }

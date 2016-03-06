@@ -1,5 +1,6 @@
 package com.coin.weinai.server.controllers;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -12,11 +13,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.coin.weinai.server.entities.EMAccount;
 import com.coin.weinai.server.entities.EMActivityBase;
 import com.coin.weinai.server.entities.EMActivityType;
 import com.coin.weinai.server.entities.EMExcrement;
 import com.coin.weinai.server.managers.IAccountManager;
 import com.coin.weinai.server.managers.IActivityManager;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 @RestController
 @RequestMapping("/weinai/activities")
@@ -34,32 +39,47 @@ public class ActivityController {
     @RequestMapping(method=RequestMethod.GET, value="/excrements/{user}")
     public List<EMActivityBase> getActivities(@PathVariable("user") String user, int itype, long fromDay, long toDay) {
     	List<EMActivityBase> ret = null;
-    	
+    	/*
     	if (accountManager.containsAccount(user)) {
-    		EMActivityType type = (EMActivityType)itype;
+    		EMActivityType type = EMActivityType.Excrement;
     		ret = activityManager.getActivities(user, type, fromDay, toDay);
     		log.info("get activities : " + ret);
     	} else {
     		log.info("account not exists : " + user);
     	}
-    	
+    	*/
     	return ret;
     }
     
     @ResponseBody
-    @RequestMapping(method=RequestMethod.POST, value="/excrements")
-    public EMExcrement addExcrement(@RequestBody EMExcrement excrement) {
-    	EMExcrement ret = null;
-    	
-    	if (accountManager.containsAccount(excrement.getAccount())) {
-	    	if (activityManager.addExcrement(excrement)) {
-	    		ret = excrement;
-	    		log.info("added activity : " + ret);
-	    	} else {
-	    		log.info("failed to add activity : " + excrement);
+    @RequestMapping(method=RequestMethod.POST)
+    public ObjectNode addActivity(@RequestBody ObjectNode activityNode) {
+    	ObjectNode ret = null;
+
+    	int inttype = activityNode.get("type").asInt(0);
+    	EMActivityType type;
+    	switch (inttype) {
+	    	case 0: {
+	    		type = EMActivityType.Excrement;
+	    	} break;
+	    	case 1: {
+	    		type = EMActivityType.Excrement;
+	    	} break;
+	    	case 2: {
+	    		type = EMActivityType.Excrement;
+	    	} break;
+	    	case 3: {
+	    		type = EMActivityType.Excrement;
+	    	} break;
+	    	default: {
+	    		type = EMActivityType.Excrement;
 	    	}
+    	}
+    	
+    	if (activityManager.addActivity(type, activityNode)) {
+    		log.info("activity added.");
     	} else {
-    		log.info("account not exists : " + excrement.getAccount());
+    		log.info("failed to add activity : " + activityNode.asText());
     	}
     	
     	return ret;

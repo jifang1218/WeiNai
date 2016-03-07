@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 @Entity
 @Table(name = "excrement")
 public
@@ -72,5 +75,19 @@ class EMExcrement extends EMActivityBase {
 	}
 	public void setQuality(EMExcrementQuality quality) {
 		this.quality = quality;
+	}
+	
+	public ObjectNode toJsonNode() {
+		ObjectMapper mapper = new ObjectMapper();
+		ObjectNode ret = mapper.createObjectNode();
+		
+		ret.put("weight", getWeight());
+		ret.put("quality", getQuality().ordinal());
+		ret.put("memo", getMemo());
+		ret.put("time", getTime());
+		ret.put("account", getAccount());
+		ret.put("type", getType().ordinal());
+		
+		return ret;
 	}
 }

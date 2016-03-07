@@ -6,22 +6,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.coin.weinai.server.entities.EMActivityBase;
-import com.coin.weinai.server.entities.EMActivityType;
 import com.coin.weinai.server.entities.EMExcrement;
-import com.coin.weinai.server.entities.EMExcrementQuality;
 import com.coin.weinai.server.entities.EMExcrementRep;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 @Component
 public class ActivityManagerImp implements IActivityManager {
 	@Autowired
 	private EMExcrementRep excrementRep;
 	
-	private boolean containsActivity(String account, EMActivityType type, long time) {
+	private boolean containsExcrement(String account, long time) {
 		boolean ret = false;
 		
-		List<EMExcrement> excrements = excrementRep.findByAccountAndTypeAndTime(account, type, time);
+		List<EMExcrement> excrements = excrementRep.findByAccountAndTime(account, time);
 		if (excrements.size() > 0) {
 			ret = true;
 		}
@@ -29,10 +25,10 @@ public class ActivityManagerImp implements IActivityManager {
 		return ret;
 	}	
 	
-	public EMExcrement getActivity(String account, EMActivityType type, long time) {
+	public EMExcrement getExcrement(String account, long time) {
 		EMExcrement ret = null;
 		
-		List<EMExcrement> excrements = excrementRep.findByAccountAndTypeAndTime(account, type, time);
+		List<EMExcrement> excrements = excrementRep.findByAccountAndTime(account, time);
 		if (excrements.size() > 0) {
 			ret = excrements.get(0);
 		}
@@ -41,57 +37,13 @@ public class ActivityManagerImp implements IActivityManager {
 	}
 	
 	@Override
-	public boolean addActivity(EMActivityType type, ObjectNode activityNode) {
-		boolean ret = false;
+	public List<EMExcrement> getExcrements(String account, long from, long to) {
+		List<EMExcrement> ret = new LinkedList<EMExcrement>();
 		
-		switch (type) {
-			case Excrement: {
-				EMExcrement excrement = nodeToExcrement(activityNode);
-				ret = addExcrement(excrement);
-			} break;
-			default: {
-			} break;
-		}
-		
-		return ret;
-	}
-	
-	private EMExcrement nodeToExcrement(ObjectNode node) {
-		EMExcrement ret = null;
-
-		int weight = node.get("weight").asInt();
-		String memo = node.get("memo").asText();
-		long time = node.get("time").asLong();
-		String account = node.get("account").asText();
-		EMActivityType type = EMActivityType.Excrement;
-		int intquality = node.get("quality").asInt();
-		EMExcrementQuality quality = EMExcrementQuality.ExcrementQualityGood;
-		switch (intquality) {
-			case 0: {
-				quality = EMExcrementQuality.ExcrementQualityGood;
-			} break;
-			case 1: {
-				quality = EMExcrementQuality.ExcrementQualityBad;
-			} break;
-		}
-		ret = new EMExcrement();
-		ret.setWeight(weight);
-		ret.setMemo(memo);
-		ret.setAccount(account);
-		ret.setTime(time);
-		ret.setType(type);
-		ret.setQuality(quality);
-		
-		return ret;
-	}
-	
-	@Override
-	public List<EMActivityBase> getActivities(String account, EMActivityType type, long from, long to) {
-		List<EMActivityBase> ret = new LinkedList<EMActivityBase>();
-		
-		List<EMExcrement> excrements = excrementRep.findByAccountAndTypeAndTimeBetween(account, type, from, to);
+		List<EMExcrement> excrements = excrementRep.findByAccountAndTimeBetween(
+				account, from, to);
 		ret.addAll(excrements);
-		
+
 		return ret;
 	}
 
@@ -99,7 +51,7 @@ public class ActivityManagerImp implements IActivityManager {
 	public boolean addExcrement(EMExcrement excrement) {
 		boolean ret = false;
 		
-		if (!containsActivity(excrement.getAccount(), excrement.getType(), excrement.getTime())) {
+		if (!containsExcrement(excrement.getAccount(), excrement.getTime())) {
 			excrementRep.save(excrement);
 			ret = true;
 		}
@@ -111,9 +63,9 @@ public class ActivityManagerImp implements IActivityManager {
 	public boolean updateExcrement(EMExcrement excrement) {
 		boolean ret = false;
 		
-		if (containsActivity(excrement.getAccount(), excrement.getType(), excrement.getTime())) {
+		if (containsExcrement(excrement.getAccount(), excrement.getTime())) {
 			EMExcrement beUpdated = null;
-			beUpdated = getActivity(excrement.getAccount(), excrement.getType(), excrement.getTime());
+			beUpdated = getExcrement(excrement.getAccount(), excrement.getTime());
 			if (beUpdated != null) {
 				excrementRep.save(excrement);
 				ret = true;
@@ -124,11 +76,11 @@ public class ActivityManagerImp implements IActivityManager {
 	}
 
 	@Override
-	public boolean deleteExcrement(String account, EMActivityType type, long time) {
+	public boolean deleteExcrement(String account, long time) {
 		boolean ret = false;
 		
 		EMExcrement excrement = null;
-		excrement = getActivity(account, type, time);
+		excrement = getExcrement(account, time);
 		if (excrement != null) {
 			excrementRep.delete(excrement);
 			ret = true;

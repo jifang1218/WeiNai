@@ -8,8 +8,12 @@ import org.springframework.stereotype.Component;
 
 import com.coin.weinai.server.entities.EMExcrement;
 import com.coin.weinai.server.entities.EMExcrementRep;
+import com.coin.weinai.server.entities.EMPersonMilk;
+import com.coin.weinai.server.entities.EMPersonMilkRep;
 import com.coin.weinai.server.entities.EMPiss;
 import com.coin.weinai.server.entities.EMPissRep;
+import com.coin.weinai.server.entities.EMPowderMilk;
+import com.coin.weinai.server.entities.EMPowderMilkRep;
 import com.coin.weinai.server.entities.EMSleep;
 import com.coin.weinai.server.entities.EMSleepRep;
 
@@ -23,6 +27,12 @@ public class ActivityManagerImp implements IActivityManager {
 	
 	@Autowired
 	private EMSleepRep sleepRep;
+	
+	@Autowired
+	private EMPowderMilkRep powderMilkRep;
+	
+	@Autowired
+	private EMPersonMilkRep personMilkRep;
 	
 	private boolean containsExcrement(String account, long time) {
 		boolean ret = false;
@@ -51,6 +61,28 @@ public class ActivityManagerImp implements IActivityManager {
 		
 		List<EMSleep> sleeps = sleepRep.findByAccountAndTime(account, time);
 		if (sleeps.size() > 0) {
+			ret = true;
+		}
+		
+		return ret;
+	}
+	
+	private boolean containsPowderMilk(String account, long time) {
+		boolean ret = false;
+		
+		List<EMPowderMilk> powderMilks = powderMilkRep.findByAccountAndTime(account, time);
+		if (powderMilks.size() > 0) {
+			ret = true;
+		}
+		
+		return ret;
+	}
+	
+	private boolean containsPersonMilk(String account, long time) {
+		boolean ret = false;
+		
+		List<EMPersonMilk> personMilks = personMilkRep.findByAccountAndTime(account, time);
+		if (personMilks.size() > 0) {
 			ret = true;
 		}
 		
@@ -248,6 +280,136 @@ public class ActivityManagerImp implements IActivityManager {
 				account, from, to);
 		ret.addAll(sleeps);
 
+		return ret;
+	}
+
+	@Override
+	public List<EMPowderMilk> getPowderMilks(String account, long from, long to) {
+		List<EMPowderMilk> ret = new LinkedList<EMPowderMilk>();
+		
+		List<EMPowderMilk> powderMilks = powderMilkRep.findByAccountAndTimeBetween(
+				account, from, to);
+		ret.addAll(powderMilks);
+
+		return ret;
+	}
+
+	@Override
+	public List<EMPersonMilk> getPersonMilks(String account, long from, long to) {
+		List<EMPersonMilk> ret = new LinkedList<EMPersonMilk>();
+		
+		List<EMPersonMilk> personMilks = personMilkRep.findByAccountAndTimeBetween(
+				account, from, to);
+		ret.addAll(personMilks);
+
+		return ret;
+	}
+
+	@Override
+	public EMPowderMilk getPowderMilk(String account, long time) {
+		EMPowderMilk ret = null;
+		
+		List<EMPowderMilk> powderMilks = powderMilkRep.findByAccountAndTime(account, time);
+		if (powderMilks.size() > 0) {
+			ret = powderMilks.get(0);
+		}
+		
+		return ret;
+	}
+
+	@Override
+	public EMPersonMilk getPersonMilk(String account, long time) {
+		EMPersonMilk ret = null;
+		
+		List<EMPersonMilk> personMilks = personMilkRep.findByAccountAndTime(account, time);
+		if (personMilks.size() > 0) {
+			ret = personMilks.get(0);
+		}
+		
+		return ret;
+	}
+
+	@Override
+	public boolean addPowderMilk(EMPowderMilk powderMilk) {
+		boolean ret = false;
+		
+		if (!containsPowderMilk(powderMilk.getAccount(), powderMilk.getTime())) {
+			powderMilkRep.save(powderMilk);
+			ret = true;
+		}
+		
+		return ret;
+	}
+
+	@Override
+	public boolean addPersonMilk(EMPersonMilk personMilk) {
+		boolean ret = false;
+		
+		if (!containsPersonMilk(personMilk.getAccount(), personMilk.getTime())) {
+			personMilkRep.save(personMilk);
+			ret = true;
+		}
+		
+		return ret;
+	}
+
+	@Override
+	public boolean updatePowderMilk(EMPowderMilk powderMilk) {
+		boolean ret = false;
+		
+		if (containsPowderMilk(powderMilk.getAccount(), powderMilk.getTime())) {
+			EMPowderMilk beUpdated = null;
+			beUpdated = getPowderMilk(powderMilk.getAccount(), powderMilk.getTime());
+			if (beUpdated != null) {
+				powderMilkRep.save(powderMilk);
+				ret = true;
+			}
+		}
+		
+		return ret;
+	}
+
+	@Override
+	public boolean updatePersonMilk(EMPersonMilk personMilk) {
+		boolean ret = false;
+		
+		if (containsPersonMilk(personMilk.getAccount(), personMilk.getTime())) {
+			EMPersonMilk beUpdated = null;
+			beUpdated = getPersonMilk(personMilk.getAccount(), personMilk.getTime());
+			if (beUpdated != null) {
+				personMilkRep.save(personMilk);
+				ret = true;
+			}
+		}
+		
+		return ret;
+	}
+
+	@Override
+	public boolean deletePowderMilk(String account, long time) {
+		boolean ret = false;
+		
+		EMPowderMilk powderMilk = null;
+		powderMilk = getPowderMilk(account, time);
+		if (powderMilk != null) {
+			powderMilkRep.delete(powderMilk);
+			ret = true;
+		}
+		
+		return ret;
+	}
+
+	@Override
+	public boolean deletePersonMilk(String account, long time) {
+		boolean ret = false;
+		
+		EMPersonMilk personMilk = null;
+		personMilk = getPersonMilk(account, time);
+		if (personMilk != null) {
+			personMilkRep.delete(personMilk);
+			ret = true;
+		}
+		
 		return ret;
 	}
 }

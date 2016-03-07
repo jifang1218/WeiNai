@@ -76,4 +76,8 @@ public class EMSleep {
 		
 		return node;
 	}
+	public void setActivityType(EMActivityType sleep) {
+		// TODO Auto-generated method stub
+		
+	}
 }

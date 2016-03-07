@@ -14,7 +14,8 @@
 #define IS_IPAD_RUNTIME (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
 typedef enum _EMActivityType {
-    ActivityType_Milk = 0,
+    ActivityType_PowderMilk = 0,
+    ActivityType_PersonMilk,
     ActivityType_Piss,
     ActivityType_Excrement,
     ActivityType_Sleep,

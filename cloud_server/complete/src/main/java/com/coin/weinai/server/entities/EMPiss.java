@@ -48,7 +48,7 @@ public class EMPiss extends EMActivityBase {
 	EMActivityType getType() {
 		return type;
 	}
-	void setType(EMActivityType type) {
+	public void setType(EMActivityType type) {
 		this.type = type;
 	}
 	int getMl() {

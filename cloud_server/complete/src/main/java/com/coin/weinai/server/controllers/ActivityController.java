@@ -36,7 +36,7 @@ public class ActivityController {
 	private static Logger log = LoggerFactory.getLogger(ActivityController.class);
 	
     @ResponseBody
-    @RequestMapping(method=RequestMethod.GET, value="/excrements/{user}")
+    @RequestMapping(method=RequestMethod.GET, value="/{user}")
     public List<EMActivityBase> getActivities(@PathVariable("user") String user, int itype, long fromDay, long toDay) {
     	List<EMActivityBase> ret = null;
     	/*
@@ -52,34 +52,16 @@ public class ActivityController {
     }
     
     @ResponseBody
-    @RequestMapping(method=RequestMethod.POST)
-    public ObjectNode addActivity(@RequestBody ObjectNode activityNode) {
-    	ObjectNode ret = null;
-
-    	int inttype = activityNode.get("type").asInt(0);
-    	EMActivityType type;
-    	switch (inttype) {
-	    	case 0: {
-	    		type = EMActivityType.Excrement;
-	    	} break;
-	    	case 1: {
-	    		type = EMActivityType.Excrement;
-	    	} break;
-	    	case 2: {
-	    		type = EMActivityType.Excrement;
-	    	} break;
-	    	case 3: {
-	    		type = EMActivityType.Excrement;
-	    	} break;
-	    	default: {
-	    		type = EMActivityType.Excrement;
-	    	}
-    	}
+    @RequestMapping(method=RequestMethod.POST, value="/excrements")
+    public ObjectNode addExcrement(@RequestBody EMExcrement excrement) {
+    	ObjectNode ret = new ObjectNode(null);
     	
-    	if (activityManager.addActivity(type, activityNode)) {
-    		log.info("activity added.");
+    	if (activityManager.addExcrement(excrement)) {
+    		log.info("excrement added.");
+    		ret.put("error_code", 0);
     	} else {
-    		log.info("failed to add activity : " + activityNode.asText());
+    		log.info("failed to add excrement.");
+    		ret.put("error_code", -1);
     	}
     	
     	return ret;
@@ -89,7 +71,7 @@ public class ActivityController {
     @RequestMapping(method=RequestMethod.PUT, value="/excrements")
     public EMExcrement updateExcrement(@RequestBody EMExcrement excrement) {
     	EMExcrement ret = null;
-    	
+
     	if (accountManager.containsAccount(excrement.getAccount())) {
     		if (activityManager.updateExcrement(excrement)) {
     			ret = excrement;

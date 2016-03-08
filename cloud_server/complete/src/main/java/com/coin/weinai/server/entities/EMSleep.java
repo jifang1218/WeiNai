@@ -4,52 +4,57 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 @Entity
-@Table(name = "piss")
-public class EMSleep {
-	String memo;
-	long time;
-	String account;
-	EMActivityType type;
-	
-	@Id
-	long id;
-	
+@Table(name = "sleep")
+public class EMSleep extends EMActivityBase {	
 	int durationInMinutes;
 	EMSleepQuality quality;
 	
+	boolean equals(EMSleep sleep) {
+		boolean ret = false;
+		
+		if (super.equals(sleep)) {
+			if (durationInMinutes == sleep.getDurationInMinutes() &&
+				quality == sleep.getQuality()) {
+				ret = true;
+			}
+		}
+		
+		return ret;
+	}
+	
 	String getMemo() {
-		return memo;
+		return super.getMemo();
 	}
 	void setMemo(String memo) {
-		this.memo = memo;
+		super.setMemo(memo);
 	}
 	public long getTime() {
-		return time;
+		return super.getTime();
 	}
 	void setTime(long time) {
-		this.time = time;
+		super.setTime(time);
 	}
 	public String getAccount() {
-		return account;
+		return super.getAccount();
 	}
 	void setAccount(String account) {
-		this.account = account;
+		super.setAccount(account);
 	}
 	EMActivityType getType() {
-		return type;
+		return super.getType();
 	}
-	void setType(EMActivityType type) {
-		this.type = type;
+	public void setType(EMActivityType type) {
+		super.setType(type);
 	}
+	@Id
 	long getId() {
-		return id;
+		return super.getId();
 	}
 	void setId(long id) {
-		this.id = id;
+		super.setId(id);
 	}
 	int getDurationInMinutes() {
 		return durationInMinutes;
@@ -65,19 +70,11 @@ public class EMSleep {
 	}
 	
 	public ObjectNode toJsonNode() {
-		ObjectMapper mapper = new ObjectMapper();
-		ObjectNode node = mapper.createObjectNode();
-		node.put("memo", getMemo());
-		node.put("time", getTime());
-		node.put("account", getAccount());
-		node.put("type", getType().ordinal());
+		ObjectNode node = super.toJsonNode();
+		
 		node.put("quality", getQuality().ordinal());
 		node.put("durationInMinutes", getDurationInMinutes());
 		
 		return node;
-	}
-	public void setActivityType(EMActivityType sleep) {
-		// TODO Auto-generated method stub
-		
 	}
 }

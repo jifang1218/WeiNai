@@ -4,90 +4,75 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 @Entity
 @Table(name = "personmilk")
-public class EMPersonMilk {
-	String memo;
-	long time;
-	String account;
-	EMActivityType type;
-	
-	int ml;
+public class EMPersonMilk extends EMMilk {
 	String person;
 	
-	@Id
-	long id;
-
 	String getMemo() {
-		return memo;
+		return super.getMemo();
 	}
 
 	void setMemo(String memo) {
-		this.memo = memo;
+		super.setMemo(memo);
 	}
 
 	public long getTime() {
-		return time;
+		return super.getTime();
 	}
 
 	void setTime(long time) {
-		this.time = time;
+		super.setTime(time);
 	}
 
 	public String getAccount() {
-		return account;
+		return super.getAccount();
 	}
 
 	void setAccount(String account) {
-		this.account = account;
+		super.setAccount(account);
 	}
 
 	EMActivityType getType() {
-		return type;
+		return super.getType();
 	}
 
-	void setType(EMActivityType type) {
-		this.type = type;
+	public void setType(EMActivityType type) {
+		super.setType(type);
 	}
 
 	int getMl() {
-		return ml;
+		return super.getMl();
 	}
 
 	void setMl(int ml) {
-		this.ml = ml;
+		super.setMl(ml);
 	}
 
+	@Id
+	long getId() {
+		return super.getId();
+	}
+
+	void setId(long id) {
+		super.setId(id);
+	}
+	
+	public ObjectNode toJsonNode() {
+		ObjectNode ret = super.toJsonNode();
+		
+		ret.put("person", person);
+		
+		return ret;
+	}
+	
 	String getPerson() {
 		return person;
 	}
 
 	void setPerson(String person) {
 		this.person = person;
-	}
-
-	long getId() {
-		return id;
-	}
-
-	void setId(long id) {
-		this.id = id;
-	}
-	
-	public ObjectNode toJsonNode() {
-		ObjectMapper mapper = new ObjectMapper();
-		ObjectNode ret = mapper.createObjectNode();
-		
-		ret.put("memo", getMemo());
-		ret.put("time", getTime());
-		ret.put("account", getAccount());
-		ret.put("type", getType().ordinal());
-		ret.put("ml", getMl());
-		ret.put("person", getPerson());
-		
-		return ret;
 	}
 }

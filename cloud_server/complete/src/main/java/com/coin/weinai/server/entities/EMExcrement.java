@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 @Entity
@@ -13,13 +12,6 @@ public
 class EMExcrement extends EMActivityBase {
 	int weight;
 	EMExcrementQuality quality;
-	String memo;
-	long time;
-	String account;
-	EMActivityType type;
-	
-	@Id
-	long id;
 	
 	boolean equals(EMExcrement excrement) {
 		boolean ret = false;
@@ -34,35 +26,36 @@ class EMExcrement extends EMActivityBase {
 		return ret;
 	}
 	
+	@Id
 	long getId() {
-		return id;
+		return super.getId();
 	}
 	void setId(long id) {
-		this.id = id;
+		super.setId(id);
 	}
 	public long getTime() {
-		return time;
+		return super.getTime();
 	}
 	public void setTime(long time) {
-		this.time = time;
+		super.setTime(time);
 	}
 	String getMemo() {
-		return memo;
+		return super.getMemo();
 	}
 	public void setMemo(String memo) {
-		this.memo = memo;
+		super.setMemo(memo);
 	}
 	public EMActivityType getType() {
-		return type;
+		return super.getType();
 	}
 	public void setType(EMActivityType type) {
-		this.type = type;
+		super.setType(type);
 	}
 	public String getAccount() {
-		return account;
+		return super.getAccount();
 	}
 	public void setAccount(String account) {
-		this.account = account;
+		super.setAccount(account);
 	}
 	int getWeight() {
 		return weight;
@@ -78,15 +71,10 @@ class EMExcrement extends EMActivityBase {
 	}
 	
 	public ObjectNode toJsonNode() {
-		ObjectMapper mapper = new ObjectMapper();
-		ObjectNode ret = mapper.createObjectNode();
+		ObjectNode ret = super.toJsonNode();
 		
 		ret.put("weight", getWeight());
 		ret.put("quality", getQuality().ordinal());
-		ret.put("memo", getMemo());
-		ret.put("time", getTime());
-		ret.put("account", getAccount());
-		ret.put("type", getType().ordinal());
 		
 		return ret;
 	}

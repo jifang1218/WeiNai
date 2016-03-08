@@ -4,52 +4,57 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 @Entity
 @Table(name = "piss")
 public class EMPiss extends EMActivityBase {
-	String memo;
-	long time;
-	String account;
-	EMActivityType type;
-	
-	@Id
-	long id;
-	
 	int ml;
 	EMPissColor color;
 	
+	boolean equals(EMPiss piss) {
+		boolean ret = false;
+		
+		if (super.equals(piss)) {
+			if (ml == piss.getMl() &&
+				color == piss.getColor()) {
+				ret = true;
+			}
+		}
+		
+		return ret;
+	}
+	
+	@Id
 	long getId() {
-		return id;
+		return super.getId();
 	}
 	void setId(long id) {
-		this.id = id;
+		super.setId(id);
 	}
 	String getMemo() {
-		return memo;
+		return super.getMemo();
 	}
 	void setMemo(String memo) {
-		this.memo = memo;
+		super.setMemo(memo);
 	}
 	public long getTime() {
-		return time;
+		return super.getTime();
 	}
 	void setTime(long time) {
-		this.time = time;
+		super.setTime(time);
 	}
 	public String getAccount() {
-		return account;
+		return super.getAccount();
 	}
 	void setAccount(String account) {
-		this.account = account;
+		super.setAccount(account);
 	}
 	EMActivityType getType() {
-		return type;
+		return super.getType();
 	}
 	public void setType(EMActivityType type) {
-		this.type = type;
+		super.setType(type);
 	}
 	int getMl() {
 		return ml;
@@ -64,12 +69,8 @@ public class EMPiss extends EMActivityBase {
 		this.color = color;
 	}
 	public ObjectNode toJsonNode() {
-		ObjectMapper mapper = new ObjectMapper();
-		ObjectNode node = mapper.createObjectNode();
-		node.put("memo", getMemo());
-		node.put("time", getTime());
-		node.put("account", getAccount());
-		node.put("type", getType().ordinal());
+		ObjectNode node = super.toJsonNode();
+		
 		node.put("ml", getMl());
 		node.put("color", getColor().ordinal());
 		

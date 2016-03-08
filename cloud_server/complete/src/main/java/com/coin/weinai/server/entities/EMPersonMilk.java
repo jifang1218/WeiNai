@@ -36,11 +36,10 @@ public class EMPersonMilk extends EMMilk {
 	}
 
 	EMActivityType getType() {
-		return super.getType();
+		return EMActivityType.PersonMilk;
 	}
 
 	public void setType(EMActivityType type) {
-		super.setType(type);
 	}
 
 	int getMl() {
@@ -64,6 +63,7 @@ public class EMPersonMilk extends EMMilk {
 		ObjectNode ret = super.toJsonNode();
 		
 		ret.put("person", person);
+		ret.put("type", getType().toString());
 		
 		return ret;
 	}

@@ -70,7 +70,6 @@ abstract class EMActivityBase {
 		ret.put("memo", getMemo());
 		ret.put("time", getTime());
 		ret.put("account", getAccount());
-		ret.put("type", getType().ordinal());
 		
 		return ret;
 	}

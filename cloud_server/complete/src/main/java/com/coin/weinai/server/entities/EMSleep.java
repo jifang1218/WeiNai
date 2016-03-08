@@ -44,11 +44,11 @@ public class EMSleep extends EMActivityBase {
 		super.setAccount(account);
 	}
 	EMActivityType getType() {
-		return super.getType();
+		return EMActivityType.Sleep;
 	}
 	public void setType(EMActivityType type) {
-		super.setType(type);
 	}
+	
 	@Id
 	long getId() {
 		return super.getId();
@@ -74,6 +74,7 @@ public class EMSleep extends EMActivityBase {
 		
 		node.put("quality", getQuality().ordinal());
 		node.put("durationInMinutes", getDurationInMinutes());
+		node.put("type", getType().toString());
 		
 		return node;
 	}

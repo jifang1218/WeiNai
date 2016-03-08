@@ -36,11 +36,10 @@ public class EMPowderMilk extends EMMilk {
 	}
 
 	EMActivityType getType() {
-		return super.getType();
+		return EMActivityType.PowderMilk;
 	}
 
 	public void setType(EMActivityType type) {
-		super.setType(type);
 	}
 
 	int getMl() {
@@ -72,6 +71,7 @@ public class EMPowderMilk extends EMMilk {
 		ObjectNode ret = super.toJsonNode();
 		
 		ret.put("brand", getBrand());
+		ret.put("type", getType().toString());
 		
 		return ret;
 	}

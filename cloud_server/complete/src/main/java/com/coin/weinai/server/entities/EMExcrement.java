@@ -46,10 +46,9 @@ class EMExcrement extends EMActivityBase {
 		super.setMemo(memo);
 	}
 	public EMActivityType getType() {
-		return super.getType();
+		return EMActivityType.Excrement;
 	}
 	public void setType(EMActivityType type) {
-		super.setType(type);
 	}
 	public String getAccount() {
 		return super.getAccount();
@@ -74,7 +73,8 @@ class EMExcrement extends EMActivityBase {
 		ObjectNode ret = super.toJsonNode();
 		
 		ret.put("weight", getWeight());
-		ret.put("quality", getQuality().ordinal());
+		ret.put("quality", getQuality().toString());
+		ret.put("type", getType().toString());
 		
 		return ret;
 	}

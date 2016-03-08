@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.coin.weinai.server.entities.EMActivityType;
 import com.coin.weinai.server.entities.EMExcrement;
 import com.coin.weinai.server.entities.EMPersonMilk;
 import com.coin.weinai.server.entities.EMPiss;

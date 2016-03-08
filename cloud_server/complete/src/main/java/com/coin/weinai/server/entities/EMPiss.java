@@ -51,10 +51,9 @@ public class EMPiss extends EMActivityBase {
 		super.setAccount(account);
 	}
 	EMActivityType getType() {
-		return super.getType();
+		return EMActivityType.Piss;
 	}
 	public void setType(EMActivityType type) {
-		super.setType(type);
 	}
 	int getMl() {
 		return ml;
@@ -72,7 +71,8 @@ public class EMPiss extends EMActivityBase {
 		ObjectNode node = super.toJsonNode();
 		
 		node.put("ml", getMl());
-		node.put("color", getColor().ordinal());
+		node.put("color", getColor().toString());
+		node.put("type", getType().toString());
 		
 		return node;
 	}

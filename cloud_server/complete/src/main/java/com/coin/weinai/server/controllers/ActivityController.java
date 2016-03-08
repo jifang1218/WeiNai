@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.coin.weinai.server.entities.EMActivityType;
 import com.coin.weinai.server.entities.EMExcrement;
 import com.coin.weinai.server.entities.EMPersonMilk;
 import com.coin.weinai.server.entities.EMPiss;
@@ -53,7 +52,7 @@ public class ActivityController {
     	}
     	
     	ret.put("error_code", 0);
-    	ret.put("entities", excrementNodes);
+    	ret.putArray("entities").addAll(excrementNodes);
     	
     	return ret;
     }
@@ -74,7 +73,7 @@ public class ActivityController {
     	}
     	
     	ret.put("error_code", 0);
-    	ret.put("entities", pissNodes);
+    	ret.putArray("entities").addAll(pissNodes);
     	
     	return ret;
     }
@@ -95,7 +94,7 @@ public class ActivityController {
     	}
     	
     	ret.put("error_code", 0);
-    	ret.put("entities", sleepNodes);
+    	ret.putArray("entities").addAll(sleepNodes);
     	
     	return ret;
     }
@@ -116,7 +115,7 @@ public class ActivityController {
     	}
     	
     	ret.put("error_code", 0);
-    	ret.put("entities", powderMilkNodes);
+    	ret.putArray("entities").addAll(powderMilkNodes);
     	
     	return ret;
     }
@@ -137,7 +136,7 @@ public class ActivityController {
     	}
     	
     	ret.put("error_code", 0);
-    	ret.put("entities", personMilkNodes);
+    	ret.putArray("entities").addAll(personMilkNodes);
     	
     	return ret;
     }

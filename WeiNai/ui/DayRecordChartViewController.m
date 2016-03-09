@@ -108,7 +108,7 @@
     }
     EMActivityManager *activityman = [EMActivityManager sharedInstance];
     UISegmentedControl *typesSeg = [[UISegmentedControl alloc] initWithItems:
-                                    @[[activityman ActivityType2String:ActivityType_Milk],
+                                    @[[activityman ActivityType2String:ActivityType_PowderMilk],
                                       [activityman ActivityType2String:ActivityType_Piss],
                                       [activityman ActivityType2String:ActivityType_Excrement],
                                       [activityman ActivityType2String:ActivityType_Sleep],
@@ -117,7 +117,7 @@
                  action:@selector(activityTypeSelected:)
        forControlEvents:UIControlEventValueChanged];
     switch (_dayRecordChart.activityType) {
-        case ActivityType_Milk: {
+        case ActivityType_PowderMilk: {
             typesSeg.selectedSegmentIndex = 0;
         } break;
         case ActivityType_Piss: {
@@ -249,7 +249,7 @@
         NSInteger index = seg.selectedSegmentIndex;
         switch (index) {
             case 0: {
-                _dayRecordChart.activityType = ActivityType_Milk;
+                _dayRecordChart.activityType = ActivityType_PowderMilk;
             } break;
             case 1: {
                 _dayRecordChart.activityType = ActivityType_Piss;

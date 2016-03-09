@@ -163,7 +163,7 @@
     EMActivityBase *ret = nil;
     
     switch (_activityType) {
-        case ActivityType_Milk: {
+        case ActivityType_PowderMilk: {
             ret = [self makeMilkActivity];
         } break;
         case ActivityType_Excrement: {

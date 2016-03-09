@@ -124,7 +124,7 @@
     for (EMDayRecord *dayRecord in dayRecords) {
         NSArray *activities = nil;
         switch (_activityType) {
-            case ActivityType_Milk: {
+            case ActivityType_PowderMilk: {
                 activities = dayRecord.milks;
             } break;
             case ActivityType_Excrement: {
@@ -141,7 +141,7 @@
         }
         NSUInteger dayTotal = 0;
         switch (_activityType) {
-            case ActivityType_Milk: {
+            case ActivityType_PowderMilk: {
                 for (EMMilk *milk in activities) {
                     dayTotal += milk.ml;
                 }

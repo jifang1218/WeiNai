@@ -114,7 +114,7 @@
 
 #pragma mark - helper
 - (void)updateMilkSwitch {
-    if (_createActivity.activityType == ActivityType_Milk) {
+    if (_createActivity.activityType == ActivityType_PowderMilk) {
         _breastMilkSwitch.hidden = NO;
         _valueCell.detailTextLabel.text = @"是母乳吗?";
         _breastMilkSwitch.on = (_createActivity.milkType == MilkType_BreastMilk);
@@ -141,7 +141,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:cellIdentifier];
         UISegmentedControl *typesSeg = [[UISegmentedControl alloc] initWithItems:
-                                        @[[_createActivity activityType2String:ActivityType_Milk],
+                                        @[[_createActivity activityType2String:ActivityType_PowderMilk],
                                           [_createActivity activityType2String:ActivityType_Piss],
                                           [_createActivity activityType2String:ActivityType_Excrement],
                                           [_createActivity activityType2String:ActivityType_Sleep],
@@ -151,7 +151,7 @@
            forControlEvents:UIControlEventValueChanged];
         NSInteger segIndex = 0;
         switch (_createActivity.activityType) {
-            case ActivityType_Milk: {
+            case ActivityType_PowderMilk: {
                 segIndex = 0;
             } break;
             case ActivityType_Excrement: {
@@ -456,7 +456,7 @@
 
 - (void)didActivityTypeChanged:(EMActivityType)activityType {
     switch (_createActivity.activityType) {
-        case ActivityType_Milk: {
+        case ActivityType_PowderMilk: {
             _valueUnitLabel.text = @"毫升";
         } break;
         case ActivityType_Excrement: {
@@ -506,10 +506,10 @@
     if ([sender isKindOfClass:[UISegmentedControl class]]) {
         UISegmentedControl *seg = (UISegmentedControl *)sender;
         NSInteger index = seg.selectedSegmentIndex;
-        EMActivityType activityType = ActivityType_Milk;
+        EMActivityType activityType = ActivityType_PowderMilk;
         switch (index) {
             case 0: {
-                activityType = ActivityType_Milk;
+                activityType = ActivityType_PowderMilk;
             } break;
             case 1: {
                 activityType = ActivityType_Piss;

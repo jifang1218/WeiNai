@@ -121,7 +121,7 @@
             EMExcrement *excrement = (EMExcrement *)activity;
             ret = [self addExcrement:excrement];
         } break;
-        case ActivityType_Milk: {
+        case ActivityType_PowderMilk: {
             EMMilk *milk = (EMMilk *)activity;
             ret = [self addMilk:milk];
         } break;

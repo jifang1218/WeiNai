@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.coin.weinai.server.entities.EMActivityType;
 import com.coin.weinai.server.entities.EMExcrement;
 import com.coin.weinai.server.entities.EMPersonMilk;
 import com.coin.weinai.server.entities.EMPiss;
@@ -147,6 +148,7 @@ public class ActivityController {
     	ObjectMapper mapper = new ObjectMapper();
     	ObjectNode ret = mapper.createObjectNode();
 
+    	excrement.setType(EMActivityType.Excrement);
     	if (activityManager.addExcrement(excrement)) {
     		log.info("excrement added.");
     		ret.put("error_code", 0);
@@ -165,6 +167,7 @@ public class ActivityController {
     	ObjectMapper mapper = new ObjectMapper();
     	ObjectNode ret = mapper.createObjectNode();
 
+    	piss.setType(EMActivityType.Piss);
     	if (activityManager.addPiss(piss)) {
     		log.info("piss added.");
     		ret.put("error_code", 0);
@@ -183,6 +186,7 @@ public class ActivityController {
     	ObjectMapper mapper = new ObjectMapper();
     	ObjectNode ret = mapper.createObjectNode();
 
+    	sleep.setType(EMActivityType.Sleep);
     	if (activityManager.addSleep(sleep)) {
     		log.info("sleep added.");
     		ret.put("error_code", 0);
@@ -201,6 +205,7 @@ public class ActivityController {
     	ObjectMapper mapper = new ObjectMapper();
     	ObjectNode ret = mapper.createObjectNode();
 
+    	powderMilk.setType(EMActivityType.PowderMilk);
     	if (activityManager.addPowderMilk(powderMilk)) {
     		log.info("powder milk added.");
     		ret.put("error_code", 0);
@@ -219,6 +224,7 @@ public class ActivityController {
     	ObjectMapper mapper = new ObjectMapper();
     	ObjectNode ret = mapper.createObjectNode();
 
+    	personMilk.setType(EMActivityType.PersonMilk);
     	if (activityManager.addPersonMilk(personMilk)) {
     		log.info("person milk added.");
     		ret.put("error_code", 0);
@@ -237,6 +243,7 @@ public class ActivityController {
     	ObjectMapper mapper = new ObjectMapper();
     	ObjectNode ret = mapper.createObjectNode();
 
+    	excrement.setType(EMActivityType.Excrement);
     	if (accountManager.containsAccount(excrement.getAccount())) {
     		if (activityManager.updateExcrement(excrement)) {
     			ret.put("error_code", 0);
@@ -260,6 +267,7 @@ public class ActivityController {
     	ObjectMapper mapper = new ObjectMapper();
     	ObjectNode ret = mapper.createObjectNode();
 
+    	piss.setType(EMActivityType.Piss);
     	if (accountManager.containsAccount(piss.getAccount())) {
     		if (activityManager.updatePiss(piss)) {
     			ret.put("error_code", 0);
@@ -283,6 +291,7 @@ public class ActivityController {
     	ObjectMapper mapper = new ObjectMapper();
     	ObjectNode ret = mapper.createObjectNode();
 
+    	sleep.setType(EMActivityType.Sleep);
     	if (accountManager.containsAccount(sleep.getAccount())) {
     		if (activityManager.updateSleep(sleep)) {
     			ret.put("error_code", 0);
@@ -306,6 +315,7 @@ public class ActivityController {
     	ObjectMapper mapper = new ObjectMapper();
     	ObjectNode ret = mapper.createObjectNode();
 
+    	powderMilk.setType(EMActivityType.PowderMilk);
     	if (accountManager.containsAccount(powderMilk.getAccount())) {
     		if (activityManager.updatePowderMilk(powderMilk)) {
     			ret.put("error_code", 0);
@@ -329,6 +339,7 @@ public class ActivityController {
     	ObjectMapper mapper = new ObjectMapper();
     	ObjectNode ret = mapper.createObjectNode();
 
+    	personMilk.setType(EMActivityType.PersonMilk);
     	if (accountManager.containsAccount(personMilk.getAccount())) {
     		if (activityManager.updatePersonMilk(personMilk)) {
     			ret.put("error_code", 0);

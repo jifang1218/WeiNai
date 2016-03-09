@@ -44,7 +44,7 @@
                     [yArray addObject:g];
                 }
             } break;
-            case ActivityType_Milk: {
+            case ActivityType_PowderMilk: {
                 activities = _dayRecord.milks;
                 for (EMMilk *milk in activities) {
                     NSString *time = [Utility timeComponentsString:milk.time];
@@ -103,7 +103,7 @@
                         [yArray addObject:g];
                     }
                 } break;
-                case ActivityType_Milk: {
+                case ActivityType_PowderMilk: {
                     activities = _dayRecord.milks;
                     for (EMMilk *milk in activities) {
                         NSString *time = [Utility timeComponentsString:milk.time];

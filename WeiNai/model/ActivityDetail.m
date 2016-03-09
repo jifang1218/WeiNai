@@ -69,7 +69,8 @@
     EMActivityManager *activityMgr = [EMActivityManager sharedInstance];
     EMActivityBase *activity = [_activities objectAtIndex:index];
     switch (_activityType) {
-        case ActivityType_Milk: {
+        case ActivityType_PersonMilk:
+        case ActivityType_PowderMilk: {
             EMMilk *milk = (EMMilk *)activity;
             NSString *time = [[NSString alloc] initWithFormat:@"%lu:%lu", milk.time.hour, milk.time.minute];
             NSString *milkMethod = nil;
@@ -136,7 +137,8 @@
     NSMutableArray *yArray = [[NSMutableArray alloc] initWithCapacity:self.activities.count];
     NSArray *activities = _activities;
     switch (_activityType) {
-        case ActivityType_Milk: {
+        case ActivityType_PowderMilk:
+        case ActivityType_PersonMilk: {
             for (EMMilk *milk in activities) {
                 NSNumber *ml = [NSNumber numberWithUnsignedInteger:milk.ml];
                 [yArray addObject:ml];

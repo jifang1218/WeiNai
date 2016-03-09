@@ -224,7 +224,7 @@ static EMActivityManager *_sharedInstance = nil;
         case ActivityType_Excrement: {
             ret = @"便便";
         } break;
-        case ActivityType_Milk: {
+        case ActivityType_PowderMilk: {
             ret = @"喂奶";
         } break;
         case ActivityType_Piss: {
@@ -246,7 +246,7 @@ static EMActivityManager *_sharedInstance = nil;
         case ActivityType_Excrement: {
             ret = @"克";
         } break;
-        case ActivityType_Milk: {
+        case ActivityType_PowderMilk: {
             ret = @"毫升";
         } break;
         case ActivityType_Piss: {

@@ -25,37 +25,6 @@ abstract class EMMilk extends EMActivityBase {
 		return ret;
 	}
 	
-	long getId() {
-		return super.getId();
-	}
-	void setId(long id) {
-		super.setId(id);
-	}
-	String getMemo() {
-		return super.getMemo();
-	}
-	void setMemo(String memo) {
-		super.setMemo(memo);
-	}
-	public long getTime() {
-		return super.getTime();
-	}
-	void setTime(long time) {
-		super.setTime(time);
-	}
-	String getAccount() {
-		return super.getAccount();
-	}
-	void setAccount(String account) {
-		super.setAccount(account);
-	}
-	EMActivityType getType() {
-		return super.getType();
-	}
-	void setType(EMActivityType type) {
-		super.setType(type);
-	}
-	
 	ObjectNode toJsonNode() {
 		ObjectNode ret = super.toJsonNode();
 		

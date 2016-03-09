@@ -133,8 +133,8 @@
     }
     
     // handle milk
-    NSString *strMilk = [activityman ActivityType2String:ActivityType_Milk];
-    NSString *strMilkUnit = [activityman ActivityTypeUnit2String:ActivityType_Milk];
+    NSString *strMilk = [activityman ActivityType2String:ActivityType_PowderMilk];
+    NSString *strMilkUnit = [activityman ActivityTypeUnit2String:ActivityType_PowderMilk];
     NSUInteger totalMilkMLs = 0;
     NSArray *milks = dayRecord.milks;
     for (EMMilk *milk in milks) {

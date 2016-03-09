@@ -101,8 +101,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
                                       reuseIdentifier:cellIdentifier];
     }
-    NSString *text = [_summary activityType2String:ActivityType_Milk];
-    NSString *unit = [_summary activityTypeUnit2String:ActivityType_Milk];
+    NSString *text = [_summary activityType2String:ActivityType_PowderMilk];
+    NSString *unit = [_summary activityTypeUnit2String:ActivityType_PowderMilk];
     cell.textLabel.text = text;
     NSString *mlText = [[NSString alloc] initWithFormat:@"共 %lu %@", _milkSummary.ml, unit];
     cell.detailTextLabel.text = mlText;
@@ -229,7 +229,7 @@
     
     ActivityDetailViewController *detailViewController = nil;
     NSArray *activities = nil;
-    EMActivityType activityType = ActivityType_Milk;
+    EMActivityType activityType = ActivityType_PowderMilk;
     
     if (row!=0) {
         detailViewController = [[ActivityDetailViewController alloc] init];
@@ -288,14 +288,14 @@
 #pragma mark - action
 - (void)addActivity:(UIBarButtonItem *)sender {
     CreateActivityViewController *viewController = [[CreateActivityViewController alloc] init];
-    viewController.activityType = ActivityType_Milk;
+    viewController.activityType = ActivityType_PowderMilk;
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (void)showChart:(id)sender {
     DayRecordChartViewController *chartViewController = [[DayRecordChartViewController alloc] init];
     chartViewController.dayRecord = _summary.dayRecord;
-    chartViewController.activityType = ActivityType_Milk;
+    chartViewController.activityType = ActivityType_PowderMilk;
     [self.navigationController pushViewController:chartViewController animated:YES];
 }
 

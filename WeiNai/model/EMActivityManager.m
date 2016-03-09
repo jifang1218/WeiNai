@@ -12,16 +12,6 @@
 #import "NSDate+Category.h"
 #import "EMGCDMulticastDelegate.h"
 
-#define TEST 0
-
-#if TEST
-#import "EMSleep.h"
-#import "EMBreastMilk.h"
-#import "EMPowderMilk.h"
-#import "EMExcrement.h"
-#import "EMPiss.h"
-#endif
-
 static EMActivityManager *_sharedInstance = nil;
 
 @interface EMActivityManager() {
@@ -224,6 +214,7 @@ static EMActivityManager *_sharedInstance = nil;
         case ActivityType_Excrement: {
             ret = @"便便";
         } break;
+        case ActivityType_PersonMilk:
         case ActivityType_PowderMilk: {
             ret = @"喂奶";
         } break;
@@ -246,6 +237,7 @@ static EMActivityManager *_sharedInstance = nil;
         case ActivityType_Excrement: {
             ret = @"克";
         } break;
+        case ActivityType_PersonMilk:
         case ActivityType_PowderMilk: {
             ret = @"毫升";
         } break;

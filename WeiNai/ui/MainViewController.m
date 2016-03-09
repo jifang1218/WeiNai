@@ -47,11 +47,6 @@
     // 3. statistics
     // 4. settings
     
-//    self.tabBar.backgroundImage = [[UIImage imageNamed:@"tabbarBackground"] stretchableImageWithLeftCapWidth:25
-//                                                                                                topCapHeight:25];
-//    self.tabBar.selectionIndicatorImage = [[UIImage imageNamed:@"tabbarSelectBg"] stretchableImageWithLeftCapWidth:25
-//                                                                                                      topCapHeight:25];
-    
     // activity summary
     ActivitySummaryViewController *activitySummaryViewController = [[ActivitySummaryViewController alloc] init];
     EMActivityManager *activityman = [EMActivityManager sharedInstance];
@@ -62,10 +57,6 @@
                                                                               image:nil
                                                                                 tag:0];
     activitySummaryViewController.title = _activitySummaryViewController.tabBarItem.title;
-//    [_recordListViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_chatsHL"]
-//                         withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_chats"]];
-//    [self unSelectedTapTabBarItems:_chatListVC.tabBarItem];
-//    [self selectedTapTabBarItems:_chatListVC.tabBarItem];
     
     // activity list
     ActivityListViewController *activityListViewController = [[ActivityListViewController alloc] init];
@@ -73,10 +64,6 @@
     _activityListViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"全部记录"
                                                                            image:nil
                                                                              tag:1];
-//    [_contactsVC.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_contactsHL"]
-//                         withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_contacts"]];
-//    [self unSelectedTapTabBarItems:_contactsVC.tabBarItem];
-//    [self selectedTapTabBarItems:_contactsVC.tabBarItem];
     
     // statistics
     ToolboxViewController *toolboxViewController = [[ToolboxViewController alloc] init];
@@ -84,11 +71,6 @@
     _toolboxViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"工具箱"
                                                                          image:nil
                                                                            tag:2];
-//    [_settingsVC.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_settingHL"]
-//                         withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_setting"]];
-//    _settingsVC.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-//    [self unSelectedTapTabBarItems:_settingsVC.tabBarItem];
-//    [self selectedTapTabBarItems:_settingsVC.tabBarItem];
     
     // settings
     SettingsViewController *settingsViewController = [[SettingsViewController alloc] init];

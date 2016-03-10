@@ -1,15 +1,24 @@
 package com.coin.weinai.server.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+//account一方 mappedBy = "child一方的parent"关系有对方维护
 @Entity
 @Table(name = "account")
 public class EMAccount {
 	String username;
 	String password;
 	String child;
+	
+	List<Child> children;
+	
 	@Id
 	long id;
 	
@@ -49,4 +58,16 @@ public class EMAccount {
 	public void setChild(String child) {
 		this.child = child;
 	}
+
+	// account is table name. 
+	@OneToMany(mappedBy = "account",cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+	List<Child> getChildren() {
+		return children;
+	}
+
+	void setChildren(List<Child> children) {
+		this.children = children;
+	}
+	
+	
 }
